@@ -6,11 +6,12 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<title>Fresh Mangoes</title>
-		<style>
-			
+		
+		<style>	
 			body {
 				color: #252627;
 			}
+			
 			.bg-light {
 				background-color: white !important;
 			}
@@ -50,6 +51,13 @@
 				margin: 1em;
 			}
 			
+			
+			.spotlight li {
+				display: inline;
+				margin-right: 30px;
+/*				padding-top: 30px;*/
+			} 
+			
 			@media only screen and (max-width: 875px) {
 				.spotlight-posters img {
 					width: 150px;
@@ -58,8 +66,23 @@
 				}
 			}
 			
-			.movie {
+			.movieshow {
 				text-align: center;
+			}
+
+			
+			.underline {
+				border-bottom: 1px solid #E5E5E5;
+			}
+			
+			a {
+				color: #2C71B7;
+			}
+			
+			a:hover {
+				text-decoration: none;
+				color: #6EA0D4;
+				transition: 300ms ease-in-out;
 			}
 		</style>
 	</head>
@@ -71,8 +94,8 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li>
-					<li class="nav-item"> <a class="nav-link" href="#">Profile</a> </li>
-					<li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
+					<li class="nav-item"> <a class="nav-link" href="#">Register</a> </li>
+					<li class="nav-item">
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
 					<input aria-label="Search" class="form-control mr-sm-2" type="search"> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -80,39 +103,81 @@
 			</div>
 		</nav>
 		
-		<img id="poster" src="images/greatestshowman.jpg">
+		<img id="poster" src="images/greatestshowmanbanner.jpg">
 		
 		<div class="spotlight">
-			<h2> Spotlight </h2>	
+			<h2> Movies Spotlight </h2>	
 			<hr>
-			<u>Latest Movies</u>	|	Top Box Office	|	Coming Soon |
-			View All
-			<br>
+			<ul class="list-inline">
+				<li class="underline"><a href="">Latest Movies</a><li>
+				<li><a href="">Top Box Office</a></li>		
+				<li><a href="">Coming Soon</a></li> 
+				<li><a href="">View All</a></li>
+			</ul>
+		
 			<div class="spotlight-posters">
-				<div class="movie">
+				<div class="movieshow">
 					<img src="images/posters/latest1.jpeg"> <br>
 					Rascal Rebel Rabbit (2018) <br>
 					58/100
 				</div>
-				<div class="movie">
+				<div class="movieshow">
 					<img src="images/posters/latest2.jpeg"> <br>
 					The 15:17 To Paris (2018) <br>
 					62/100
 				</div>
 				
-				<div class="movie">
+				<div class="movieshow">
 					<img src="images/posters/latest3.jpg"> <br>
 					Golden Exits (2018) <br>
 					69/100
 				</div>
-				<div class="movie">
+				<div class="movieshow">
 					<img src="images/posters/latest4.jpg"> <br>
 					Entanglement (2018) <br>
 					79/100
 				</div>
 			</div>
-			
 		</div>
+		
+		<div class="spotlight">
+			<h2> TV Spotlight </h2>
+			<hr>
+			
+			<ul class="list-inline">
+				<li class="underline"> <a href="">New TV</a></li>
+				<li><a href="">Most Popular</a></li>		
+				<li><a href="">Top DVD & Streaming</a></li> 
+				<li><a href="">View All</a></li>
+			</ul>
+
+			<div class="spotlight-posters">
+				<div class="movieshow">
+					<img src="images/posters/new1.jpeg"> <br>
+					Kevin (Probably) Saves the World <br>
+					63/100
+				</div>
+				<div class="movieshow">
+					<img src="images/posters/new2.jpg"> <br>
+					The Frankenstein Chronicles <br>
+					71/100
+				</div>
+				<div class="movieshow">
+					<img src="images/posters/new3.jpg"> <br>
+					Another Period <br>
+					43/100
+				</div>
+				<div class="movieshow">
+					<img src="images/posters/new4.jpg"> <br>
+					Baskets <br>
+					66/100
+				</div>
+				
+				
+			</div>
+		</div>
+		
+		<p><p>
 	</body>
 	
 </html>
