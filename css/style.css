@@ -1,0 +1,35 @@
+body {
+	color: #252627;
+}
+
+.bg-light {
+	background-color: white !important;
+}
+
+.navbar-brand img{
+	width: 150px;
+}
+
+.btn-outline-success {
+	color: #7F7F7F;
+	border-color: #CDD4DB;
+}
+
+.btn-outline-success:hover {
+	background-color: #00BD78;
+	border-color: #00BD78;
+}
+
+.underline {
+	border-bottom: 1px solid #E5E5E5;
+}
+
+a {
+	color: #2C71B7;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #6EA0D4;
+	transition: 300ms ease-in-out;
+}

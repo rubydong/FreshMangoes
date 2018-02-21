@@ -2,33 +2,14 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/style.css">
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
 		<title>Fresh Mangoes</title>
 		
 		<style>	
-			body {
-				color: #252627;
-			}
-			
-			.bg-light {
-				background-color: white !important;
-			}
-			
-			.navbar-brand img{
-				width: 150px;
-			}
-
-			.btn-outline-success {
-				color: #7F7F7F;
-				border-color: #CDD4DB;
-			}
-			
-			.btn-outline-success:hover {
-				background-color: #00BD78;
-				border-color: #00BD78;
-			}
 			
 			.spotlight {
 				width: 80%;
@@ -51,11 +32,9 @@
 				margin: 1em;
 			}
 			
-			
 			.spotlight li {
 				display: inline;
 				margin-right: 30px;
-/*				padding-top: 30px;*/
 			} 
 			
 			@media only screen and (max-width: 875px) {
@@ -70,20 +49,6 @@
 				text-align: center;
 			}
 
-			
-			.underline {
-				border-bottom: 1px solid #E5E5E5;
-			}
-			
-			a {
-				color: #2C71B7;
-			}
-			
-			a:hover {
-				text-decoration: none;
-				color: #6EA0D4;
-				transition: 300ms ease-in-out;
-			}
 		</style>
 	</head>
 	<body>
@@ -94,8 +59,12 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li>
-					<li class="nav-item"> <a class="nav-link" href="#">Register</a> </li>
-					<li class="nav-item">
+					
+					<li class="nav-item"> <a class="nav-link" href="#">Profile</a> </li>
+					
+					<li class="nav-item"> <a class="nav-link" href="#">Editorial</a></li>
+					
+					<li class="nav-item"> <a class="nav-link" href="#">Sign out</a> </li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
 					<input aria-label="Search" class="form-control mr-sm-2" type="search"> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -109,7 +78,7 @@
 			<h2> Movies Spotlight </h2>	
 			<hr>
 			<ul class="list-inline">
-				<li class="underline"><a href="">Latest Movies</a><li>
+				<li class="underline"><a href="">Latest Movies</a></li>
 				<li><a href="">Top Box Office</a></li>		
 				<li><a href="">Coming Soon</a></li> 
 				<li><a href="">View All</a></li>
