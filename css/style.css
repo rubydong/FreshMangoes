@@ -55,6 +55,9 @@ a:hover {
 	text-align: right;
 }
 
+hr {
+	border-color: #;
+}
 /* index */
 
 #poster {
@@ -192,19 +195,39 @@ a:hover {
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
-	width: 80%;
 	margin: 0 auto;
 }
 
 .follow li {
 	border:1px solid #DFDFDF;
-	width: 100px;
-	height: 100px;
+	width: 50px;
+	height: 50px;
 	text-align: center;
 	justify-content: center;
-	line-height: 100px;
+	line-height: 50px;
 	border-radius: 3px;
-	margin:5px;
+	margin:2px;
+}
+
+.left {
+	width: 25%;
+	float: left;
+/*	border:1px solid black;*/
+	margin: 0 auto;
+}
+
+.bio {
+	text-align: center;
+	border:1px solid #DFDFDF;
+	border-radius: 2px;
+	padding:5px;
+}
+
+.right {
+	float: left;
+	width: 70%;
+/*	border:1px solid black;*/
+	margin-left: 3%;
 }
 
 /* bootstrap rewrite */
@@ -230,6 +253,17 @@ a:hover {
 	background-color: #759BBA !important;
 	color: #FFF;
 	border: none;
+}
+
+.btn-light {
+	background-color: #F2F2F2 !important;
+	color: #465057;
+}
+
+.btn-light:hover {
+	background-color: #759BBA !important;
+	color: #FFF;
+	transition: 300ms ease-in-out;
 }
 
 .btn:hover {
