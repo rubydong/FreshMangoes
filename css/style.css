@@ -51,6 +51,10 @@ a:hover {
 	margin: 0 auto;
 }
 
+.right-text {
+	text-align: right;
+}
+
 /* index */
 
 #poster {
@@ -108,7 +112,7 @@ a:hover {
 	margin: 10px;
 }
 
-.photos {
+.photos,.showtime {
 	clear: both;
 }
 
@@ -183,6 +187,26 @@ a:hover {
 	margin-left: -20px;
 }
 
+/* profile */
+.follow {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.follow li {
+	border:1px solid #DFDFDF;
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	justify-content: center;
+	line-height: 100px;
+	border-radius: 3px;
+	margin:5px;
+}
+
 /* bootstrap rewrite */
 
 .bg-light {
@@ -193,14 +217,23 @@ a:hover {
 	width: 150px;
 }
 
-.btn-outline-success {
-	color: #7F7F7F;
-	border-color: #CDD4DB;
+.btn-outline-success.focus, .btn-outline-success:focus {
+	box-shadow: none;
 }
 
 .btn-outline-success:hover {
-	background-color: #00BD78;
-	border-color: #00BD78;
+	background-color: #759BBA;
+	border: none;
+}
+
+.btn {
+	background-color: #759BBA !important;
+	color: #FFF;
+	border: none;
+}
+
+.btn:hover {
+	border: none !important;
 }
 
 .thead-light th{
