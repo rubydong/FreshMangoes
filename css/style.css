@@ -10,7 +10,7 @@ body {
 }
 
 .underline {
-	border-bottom: 1px solid #E5E5E5;
+	border-bottom: 1px solid #F2F2F2;
 }
 
 a,.summary h2, .filmography h4 {
@@ -25,6 +25,10 @@ a:hover {
 
 .padding {
 	padding: 15px;
+}
+
+.small-padding-top {
+	padding-top: 10px;
 }
 
 .padding-top {
@@ -118,7 +122,7 @@ a:hover {
 }
 
 .showtime li {
-	background-color: #E5E5E5;
+	background-color: #F2F2F2;
 	color: #485057;
 	padding: 5px;
 	border-radius: 3px;
@@ -134,18 +138,49 @@ a:hover {
 	transition: 300ms ease-in-out;
 }
 
-.cast img {
+/* movie and tv only */
+
+.casts img {
 	object-fit: cover;
 	width: 75px;
 	height: 75px;
 	padding: 5px;
-	border-radius: 2px;
+	border-radius: 3px;
 }
 
-.cast .cast-person {
+.casts .cast-person {
 	float: left;
 	width: 30%;
 	text-align: center;
+}
+
+.reviews {
+	margin: 0 auto;
+}
+
+.speech-bubble {
+	position: relative;
+	background: #F2F2F2;
+	border-radius: 3px;
+	color: #485057;
+	width: 80%;
+	text-align: left;
+	padding: 10px;
+	float: left;
+	margin: 1% 10%;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	border: 20px solid transparent;
+	border-right-color: #F2F2F2;
+	border-bottom: 0;
+	border-left: 0;
+	margin-top: -10px;
+	margin-left: -20px;
 }
 
 /* bootstrap rewrite */
@@ -169,7 +204,8 @@ a:hover {
 }
 
 .thead-light th{
-	background-color: #E5E5E5 !important;
+	background-color: #F2F2F2 !important;
+	border-top: none;
 }
 
 .table {
