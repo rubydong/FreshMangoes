@@ -6,6 +6,7 @@ body {
 	width: 80%;
 	margin: 0 auto;
 	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 .underline {
@@ -18,7 +19,7 @@ a,.summary h2, .filmography h4 {
 
 a:hover {
 	text-decoration: none;
-	color: #6EA0D4;
+	color: #B3B3B3;
 	transition: 300ms ease-in-out;
 }
 
@@ -28,6 +29,22 @@ a:hover {
 
 .padding-top {
 	padding-top: 40px;
+}
+
+.margin-top-bottom {
+	margin: 40px 0;
+}
+
+.align-right {
+	clear: both;
+	float: right;
+}
+
+.align-center {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 0 auto;
 }
 
 /* index */
@@ -73,10 +90,6 @@ a:hover {
 	padding-top: 6px;
 }
 
-.summary, .photos, .filmography {
-	margin: 40px 0;
-}
-
 .photos-inner{
 	margin: 0 auto;
 	width: 100%;
@@ -95,6 +108,45 @@ a:hover {
 	clear: both;
 }
 
+
+/* movie only */
+.showtime {
+	list-style: none;
+	width: 100%;
+	margin: 0 auto;
+	padding-bottom: 20px;
+}
+
+.showtime li {
+	background-color: #E5E5E5;
+	color: #485057;
+	padding: 5px;
+	border-radius: 3px;
+	width: 150px;
+	text-align: center;
+	margin: 5px;
+	display: inline-block;
+}
+
+.showtime li:hover {
+	background-color: #759BBA;
+	color: #FFF;
+	transition: 300ms ease-in-out;
+}
+
+.cast img {
+	object-fit: cover;
+	width: 75px;
+	height: 75px;
+	padding: 5px;
+	border-radius: 2px;
+}
+
+.cast .cast-person {
+	float: left;
+	width: 30%;
+	text-align: center;
+}
 
 /* bootstrap rewrite */
 
