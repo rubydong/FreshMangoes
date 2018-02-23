@@ -13,6 +13,9 @@ body {
 	border-bottom: 1px solid #F2F2F2;
 }
 
+h2 {
+	letter-spacing: 2px;
+}
 a,.summary h2, .filmography h4 {
 	color: #759BBA;
 }
@@ -90,6 +93,7 @@ hr {
 
 .movieshow {
 	text-align: center;
+	font-size: 18px;
 }
 
 
@@ -119,6 +123,16 @@ hr {
 	clear: both;
 }
 
+.rating img {
+	width: 16px;
+	height: 16px;
+	margin: -3px;
+	padding: 0;
+}
+
+.rating {
+	font-size: 15px;
+}
 
 /* movie only */
 .showtime {
