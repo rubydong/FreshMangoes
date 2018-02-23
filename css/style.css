@@ -191,6 +191,10 @@ hr {
 }
 
 /* profile */
+
+.profile {
+	background-color: #F2F2F2;
+}
 .follow {
 	list-style: none;
 	display: flex;
@@ -216,11 +220,24 @@ hr {
 	margin: 0 auto;
 }
 
-.bio {
+.bio, .profile-reviews .speech-bubble {
 	text-align: center;
 	border:1px solid #DFDFDF;
 	border-radius: 2px;
 	padding:5px;
+	background: white;
+}
+
+.profile-reviews .speech-bubble {
+	text-align: left;
+	width: 100%;
+	margin: auto;
+	margin-bottom: 5px;
+	padding: 20px;
+}
+
+.profile-reviews .speech-bubble:after {
+	display: none;
 }
 
 .right {
