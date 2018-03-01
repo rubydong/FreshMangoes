@@ -137,7 +137,7 @@ hr {
 .rating img {
 	width: 16px !important;
 	height: 16px !important;
-	margin: -3px !important;
+	margin: -1px !important;
 	padding: 0 !important;
 	box-shadow: none;
 }
@@ -201,6 +201,9 @@ hr {
 	transition: 300ms ease-in-out;
 }
 
+video {
+	width: 100%;
+}
 
 
 

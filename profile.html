@@ -6,6 +6,7 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="js/mangometer.js"></script>
 
 	</head>
 	<body class="profile">
@@ -34,7 +35,6 @@
 				</form>
 			</div>
 		</nav>
-<!--		<hr>-->
 		<div class="content">
 			
 			<div class="left">
@@ -47,7 +47,7 @@
 					<b>Followers:</b> <a href="">34</a> <br>
 					<b>Following:</b> <a href="">56</a> 
 					<p>
-					<button class="btn btn-light">Follow</button>
+					<!-- <button class="btn btn-light">Follow</button> -->
 				</div>
 				
 			</div>
@@ -59,15 +59,7 @@
 				
 				<div class="review">
 				<b>John Smith</b> 
-				<span class="rating align-right" >
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangobw.png"> 
-
-				</span>	
-				<br>
+				<span class="rating align-right" name="80"></span> <br>
 				<i>Black Panther</i>
 				
 				<hr>
@@ -75,15 +67,7 @@
 			</div>
 			<div class="review">
 				<b>John Smith</b> 
-				<span class="rating align-right" >
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangobw.png">
-					<img src="images/mangobw.png">
-					<img src="images/mangobw.png"> 
-
-				</span>	
-				<br>
+				<span class="rating align-right" name="40"></span> <br>
 				<i>Peter Rabbit</i>
 				
 				<hr>
@@ -118,6 +102,8 @@
 			</div>
 			
 		</div>
-		
+		<script>
+			generateMangoes();
+		</script>
 	</body>
 </html>

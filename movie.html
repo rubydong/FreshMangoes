@@ -3,6 +3,7 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
+		<script src="js/mangometer.js"></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -39,32 +40,27 @@
 			<div class="summary">
 				<img src="images/movie/blackpanther.jpg" align="left"> <h2>Black Panther</h2> <p>
 				
-				<span class="rating">
-					<b>MangoMeter: </b>
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">  
+				<b>MangoMeter: </b>
+				<span class="rating" name="97">  
 					97%
 				</span>
 				
 				<br>
-				<span class="rating">
-			
-					<b>Audience Score: </b> 
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangobw.png"> 
+				<b>Audience Score: </b> 
+				<span class="rating" name="77">
 					77% 
 				</span>
-				
-				<p class="padding">
+				<br>	
+				<b>Rating:</b>	PG-13 <br>
+				<b>Genre:</b>	Action & Adventure, Drama, Science Fiction & Fantasy <br>
+				<b>Directed By:</b>	Ryan Coogler <br>
+				<b>Written By:</b>	Joe Robert Cole, Ryan Coogler <br>
+				<b>In Theaters:</b>	Feb 16, 2018 Wide <br>
+				<b>Runtime:</b>	135 minutes <br>
+				<b>Studio:</b>	Marvel Studios
+				<p>
 				Black Panther elevates superhero cinema to thrilling new heights while telling one of the MCU's most absorbing stories -- and introducing some of its most fully realized characters.
-				
-				<p class="padding">
+				<p>
 				<button class="btn btn-light"> Interested</button>
 				<button class="btn btn-light"> Uninterested</button>
 			</div>
@@ -83,10 +79,10 @@
 			<div class="trailers margin-top-bottom">
 				<h2> Trailers </h2> 
 				<hr>
-				<video width="100%" controls>
-  <source src="videos/bptrailer.mp4" type="video/mp4">
- 
-</video>
+				<video controls>
+					<source src="videos/bptrailer.mp4" type="video/mp4">
+				</video>
+
 				
 			</div>
 			
@@ -170,29 +166,14 @@
 			
 			<div class="review pull-right">
 				<b>Matthew Rozsa</b> 
-				<span class="rating align-right" >
-						<img src="images/mangocolor.png">
-						<img src="images/mangocolor.png">
-						<img src="images/mangocolor.png">
-						<img src="images/mangocolor.png">
-						<img src="images/mangocolor.png"> 
-
-				</span>	<br>
+				<span class="rating align-right" name="100"></span> <br>
 				<i> Black Panther </i>
 				<hr>
 				"When it comes to creative visuals, engaging action and likable characters, "Black Panther" stands confidently next to the best fare offered up by the Marvel Cinematic Universe."
 			</div>
 			<div class="review pull-left">
 				<b>Christopher Orr</b> 
-				<span class="rating align-right" >
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png"> 
-
-				</span>	
-				<br>
+				<span class="rating align-right" name="100"></span> <br>
 				<i>Black Panther</i>
 				
 				<hr>
@@ -200,15 +181,7 @@
 			</div>
 			<div class="review pull-right">
 				<b>J. R. Jones</b> 
-				<span class="rating align-right" >
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png"> 
-
-				</span>	
-				<br>
+				<span class="rating align-right" name="100"></span> <br>
 				<i>Black Panther</i>
 				
 				<hr>
@@ -216,15 +189,7 @@
 			</div>
 			<div class="review pull-left">
 				<b>Anthony Lane</b> 
-				<span class="rating align-right" >
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangocolor.png">
-					<img src="images/mangobw.png"> 
-
-				</span>	
-				<br>
+				<span class="rating align-right" name="80"></span> <br>
 				<i>Black Panther</i>
 				
 				<hr>
@@ -234,5 +199,8 @@
 				<span class="align-right small-padding-top"> <a href="">Add a Rating </a>  | <a href="">View All Reviews </a> </span>
 			</div>
 		</div>
+		<script>
+			generateMangoes();
+		</script>
 	</body>
 </html>
