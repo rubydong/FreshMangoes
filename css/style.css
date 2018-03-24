@@ -66,6 +66,14 @@ hr {
 	box-shadow: 5px 5px 5px 0px rgba(209,209,209,0.5);
 }
 
+/* header */
+.register-login a{
+	margin-top: 70px;
+}
+
+.modal-content input {
+	margin-bottom: 15px;
+}
 /* index */
 
 #poster {
@@ -151,6 +159,10 @@ hr {
 
 
 /* celebrity, movie, tv pages */
+
+select, option {
+	background-color: white;
+}
 .summary img {
 	object-fit: cover;
 	width: 280px; 
@@ -399,4 +411,13 @@ h5 span {
 
 .input-group-text {
 	width: 70px;
+}
+
+.modal-content {
+	padding: 20px;
+}
+
+.modal-content button {
+	margin: 0 auto;
+	display: flex;
 }

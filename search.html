@@ -3,223 +3,188 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		<script src="js/mangometer.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="js/include.js"></script>
 	</head>
 	<body class="search">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#"><img src="images/logo.png"></a> 
-			<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
-			<span class="navbar-toggler-icon"></span></button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li>
-					
-					<li class="nav-item"> <a class="nav-link" href="#">Profile</a> </li>
-					
-					<li class="nav-item"> <a class="nav-link" href="#">Movies</a> </li>
-					
-					<li class="nav-item"> <a class="nav-link" href="#">TV Shows</a> </li>
-					
-					
-					
-					<li class="nav-item"> <a class="nav-link" href="#">Editorial</a></li>
-					
-					<li class="nav-item"> <a class="nav-link" href="#">Sign out</a> </li>
-				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input aria-label="Search" class="form-control mr-sm-2" type="search"> <button class="btn" type="submit">Search</button>
-				</form>
-			</div>
-		</nav>
-		
+		<div class="header"></div>
 		<div class="content">
-			
-
 			<div class="search-criteria">
-				<h4>Search Criteria</h4> <hr>
-				Genres
-				<ul>
-					<li><input type="checkbox"> Romance</li> 
-					<li><input type="checkbox"> Mystery</li>
-					<li><input type="checkbox"> Comedy</li>
-					<li><input type="checkbox"> Horror</li>
-					<li><input type="checkbox"> Supernatural</li>
-					<li><input type="checkbox"> Action</li>
-					<li><input type="checkbox"> Drama</li>
-					
-				</ul>
-				
-				Years
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<span class="input-group-text" id="inputGroup-sizing-default">Start</span>
+					<h4>Search Criteria</h4> <hr>
+					Genres
+					<ul>
+						<li><input type="checkbox"> Romance</li> 
+						<li><input type="checkbox"> Mystery</li>
+						<li><input type="checkbox"> Comedy</li>
+						<li><input type="checkbox"> Horror</li>
+						<li><input type="checkbox"> Supernatural</li>
+						<li><input type="checkbox"> Action</li>
+						<li><input type="checkbox"> Drama</li>
+
+					</ul>
+
+					Years
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="inputGroup-sizing-default">Start</span>
+						</div>
+						<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
 					</div>
-					<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-				</div>
 
-				
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<span class="input-group-text" id="inputGroup-sizing-default">End</span>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="inputGroup-sizing-default">End</span>
+						</div>
+						<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
 					</div>
-					<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+
+					Ratings
+					<ul>
+						<li>
+							<input type="radio"> 
+							<span class="rating" name="100"> & up</span>
+						</li> 
+						<li>
+							<input type="radio"> 
+							<span class="rating" name="80"> & up</span>
+						</li> 
+						<li>
+							<input type="radio"> 
+							<span class="rating" name="60"> & up</span>
+						</li> 
+						<li>
+							<input type="radio"> 
+							<span class="rating" name="40"> & up</span>
+						</li> 
+						<li>
+							<input type="radio"> 
+							<span class="rating" name="20"> & up</span>
+						</li> 
+					</ul>
+					<p>
+					<div class="criterias-div">
+					<button class="btn" type="submit">Apply Criterias</button>
+					</div>
 				</div>
-				
-				Ratings
-				<ul>
-					<li>
-						<input type="radio"> 
-						<span class="rating" name="100"> & up</span>
-					</li> 
-					<li>
-						<input type="radio"> 
-						<span class="rating" name="80"> & up</span>
-					</li> 
-					<li>
-						<input type="radio"> 
-						<span class="rating" name="60"> & up</span>
-					</li> 
-					<li>
-						<input type="radio"> 
-						<span class="rating" name="40"> & up</span>
-					</li> 
-					<li>
-						<input type="radio"> 
-						<span class="rating" name="20"> & up</span>
-					</li> 
+
+			<div class="search-results">
+				<h4>856 Results found for "Black"</h4> <hr>
+				<ul class="list-inline">
+					<li class="underline"><a href="">All</a></li>
+					<li><a href="">Movies</a></li>		
+					<li><a href="">TV Shows</a></li>		
+					<li><a href="">Celebrities</a></li>
 				</ul>
-				<p>
-				<div class="criterias-div">
-				<button class="btn" type="submit">Apply Criterias</button>
+
+				<div class="content-title">
+					<h5>Movies <span class="align-right"><a href="">View All</a></span></h5> 
 				</div>
-			</div>
-						
-		<div class="search-results">
-			<h4>856 Results found for "Black"</h4> <hr>
-			<ul class="list-inline">
-				<li class="underline"><a href="">All</a></li>
-				<li><a href="">Movies</a></li>		
-				<li><a href="">TV Shows</a></li>		
-				<li><a href="">Celebrities</a></li>
-			</ul>
-			
-			<div class="content-title">
-				<h5>Movies <span class="align-right"><a href="">View All</a></span></h5> 
-			</div>
-			<div class="search-content">
-				<div class="search-item">
-					<img src="images/search/pirate.png">
-					<div class="text">Pirates of the Caribbean: The  Curse of the Black Pearl (2003)</div>
-				</div>
-				
-				<div class="search-item">
-					<img src="images/search/mib3.jpg">
-					<div class="text">Men in Black III (2012)</div>
+				<div class="search-content">
+					<div class="search-item">
+						<img src="images/search/pirate.png">
+						<div class="text">Pirates of the Caribbean: The  Curse of the Black Pearl (2003)</div>
+					</div>
+
+					<div class="search-item">
+						<img src="images/search/mib3.jpg">
+						<div class="text">Men in Black III (2012)</div>
+					</div>
+
+					<div class="search-item">
+						<img src="images/search/bp.jpg">
+						<div class="text">Black Panther (2018)</div>
+					</div>
+
+					<div class="search-item">
+						<img src="images/search/blackruby.png">
+						<div class="text">Black Ruby (2018)</div>
+					</div>
+
+					<div class="search-item">
+						<img src="images/search/pirate.png">
+						<div class="text">Pirates of the Caribbean: The  Curse of the Black Pearl (2003)</div>
+					</div>
+
+					<div class="search-item">
+						<img src="images/search/mib3.jpg">
+						<div class="text">Men in Black III (2012)</div>
+					</div>
+
+					<div class="search-item">
+						<img src="images/search/bp.jpg">
+						<div class="text">Black Panther (2018)</div>
+					</div>
+
+					<div class="search-item">
+						<img src="images/search/blackruby.png">
+						<div class="text">Black Ruby (2018)</div>
+					</div>
+
 				</div>
 
-				<div class="search-item">
-					<img src="images/search/bp.jpg">
-					<div class="text">Black Panther (2018)</div>
-				</div>
-				
-				<div class="search-item">
-					<img src="images/search/blackruby.png">
-					<div class="text">Black Ruby (2018)</div>
-				</div>
-				
-				<div class="search-item">
-					<img src="images/search/pirate.png">
-					<div class="text">Pirates of the Caribbean: The  Curse of the Black Pearl (2003)</div>
-				</div>
-				
-				<div class="search-item">
-					<img src="images/search/mib3.jpg">
-					<div class="text">Men in Black III (2012)</div>
+				<h5 class="padding-top"> TV Shows <span class="align-right"><a href="">View All</a></span></h5>
+				<div class="search-content">
+					<div class="search-item">
+						<img src="images/search/blackdynamite.jpg"><div class="text">Black Dynamite</div>
+					</div>
+					<div class="search-item">
+						<img src="images/search/blackmirror.jpg"><div class="text">Black Mirror</div>
+					</div>
+					<div class="search-item">
+						<img src="images/search/orphanblack.jpg"><div class="text">Orphan Black</div>
+					</div>
+					<div class="search-item">
+						<img src="images/search/blackdynamite.jpg"><div class="text">Black Dynamite</div>
+					</div>
+					<div class="search-item">
+						<img src="images/search/blackmirror.jpg"><div class="text">Black Mirror</div>
+					</div>
+					<div class="search-item">
+						<img src="images/search/orphanblack.jpg"><div class="text">Orphan Black</div>
+					</div>
+					<div class="search-item">
+						<img src="images/search/blackdynamite.jpg"><div class="text">Black Dynamite</div>
+					</div>
+					<div class="search-item">
+						<img src="images/search/blackmirror.jpg"><div class="text">Black Mirror</div>
+					</div>
 				</div>
 
-				<div class="search-item">
-					<img src="images/search/bp.jpg">
-					<div class="text">Black Panther (2018)</div>
+
+				<h5 class="padding-top">Celebrities <span class="align-right"><a href="">View All</a></span></h5>
+				<div class="search-content">
+					<div class="search-item"><img src="images/search/rachelblack.jpg">
+						<div class="text">Rachel Black</div>
+					</div>
+
+					<div class="search-item"><img src="images/search/lisablack.jpg">
+						<div class="text">Lisa Black</div>
+					</div>
+					<div class="search-item"><img src="images/search/conradblack.jpg">
+						<div class="text">Conrad Black</div>
+					</div>
+					<div class="search-item"><img src="images/search/rachelblack.jpg">
+						<div class="text">Rachel Black</div>
+					</div>
+
+					<div class="search-item"><img src="images/search/lisablack.jpg">
+						<div class="text">Lisa Black</div>
+					</div>
+					<div class="search-item"><img src="images/search/conradblack.jpg">
+						<div class="text">Conrad Black</div>
+					</div>
+					<div class="search-item"><img src="images/search/rachelblack.jpg">
+						<div class="text">Rachel Black</div>
+					</div>
+
+					<div class="search-item"><img src="images/search/lisablack.jpg">
+						<div class="text">Lisa Black</div>
+					</div>
 				</div>
-				
-				<div class="search-item">
-					<img src="images/search/blackruby.png">
-					<div class="text">Black Ruby (2018)</div>
-				</div>
-				
-			</div>
-			
-			<h5 class="padding-top"> TV Shows <span class="align-right"><a href="">View All</a></span></h5>
-			<div class="search-content">
-				<div class="search-item">
-					<img src="images/search/blackdynamite.jpg"><div class="text">Black Dynamite</div>
-				</div>
-				<div class="search-item">
-					<img src="images/search/blackmirror.jpg"><div class="text">Black Mirror</div>
-				</div>
-				<div class="search-item">
-					<img src="images/search/orphanblack.jpg"><div class="text">Orphan Black</div>
-				</div>
-				<div class="search-item">
-					<img src="images/search/blackdynamite.jpg"><div class="text">Black Dynamite</div>
-				</div>
-				<div class="search-item">
-					<img src="images/search/blackmirror.jpg"><div class="text">Black Mirror</div>
-				</div>
-				<div class="search-item">
-					<img src="images/search/orphanblack.jpg"><div class="text">Orphan Black</div>
-				</div>
-				<div class="search-item">
-					<img src="images/search/blackdynamite.jpg"><div class="text">Black Dynamite</div>
-				</div>
-				<div class="search-item">
-					<img src="images/search/blackmirror.jpg"><div class="text">Black Mirror</div>
-				</div>
-			</div>
-			
-			
-			<h5 class="padding-top">Celebrities <span class="align-right"><a href="">View All</a></span></h5>
-			<div class="search-content">
-				<div class="search-item"><img src="images/search/rachelblack.jpg">
-					<div class="text">Rachel Black</div>
-				</div>
-				
-				<div class="search-item"><img src="images/search/lisablack.jpg">
-					<div class="text">Lisa Black</div>
-				</div>
-				<div class="search-item"><img src="images/search/conradblack.jpg">
-					<div class="text">Conrad Black</div>
-				</div>
-				<div class="search-item"><img src="images/search/rachelblack.jpg">
-					<div class="text">Rachel Black</div>
-				</div>
-				
-				<div class="search-item"><img src="images/search/lisablack.jpg">
-					<div class="text">Lisa Black</div>
-				</div>
-				<div class="search-item"><img src="images/search/conradblack.jpg">
-					<div class="text">Conrad Black</div>
-				</div>
-				<div class="search-item"><img src="images/search/rachelblack.jpg">
-					<div class="text">Rachel Black</div>
-				</div>
-				
-				<div class="search-item"><img src="images/search/lisablack.jpg">
-					<div class="text">Lisa Black</div>
-				</div>
-			</div>
-			
+
+			</div>			
 		</div>
-		
-				
-			
-		</div>
-		
-		<script>
-			generateMangoes();
-		</script>
+
 	</body>
 </html>

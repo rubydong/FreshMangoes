@@ -3,37 +3,12 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
-		<script src="js/mangometer.js"></script>
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="js/include.js"></script>
 
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#"><img src="images/logo.png"></a> 
-			<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
-			<span class="navbar-toggler-icon"></span></button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li>
-					
-					<li class="nav-item"> <a class="nav-link" href="#">Profile</a> </li>
-					
-					<li class="nav-item"> <a class="nav-link" href="#">Movies</a> </li>
-					
-					<li class="nav-item"> <a class="nav-link" href="#">TV Shows</a> </li>
-					
-					
-					<li class="nav-item"> <a class="nav-link" href="#">Editorial</a></li>
-					
-					<li class="nav-item"> <a class="nav-link" href="#">Sign out</a> </li>
-				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input aria-label="Search" class="form-control mr-sm-2" type="search"> <button class="btn" type="submit">Search</button>
-				</form>
-			</div>
-		</nav>
+		<div class="header"></div>
 		<hr>
 		<div class="content">
 			<div class="summary">
@@ -195,11 +170,34 @@
 				"Jordan has swagger to spare, with those rolling shoulders, but there's a breath of charm, too, all the more seductive in the overblown atmosphere of Marvel. He's twice as pantherish as the Panther."
 			</div>
 				
-				<span class="align-right small-padding-top"> <a href="">Add a Rating </a>  | <a href="">View All Reviews </a> </span>
+				<span class="align-right small-padding-top"> <a href="" data-toggle="modal" data-target="#rating-modal">Add a Rating</a>  | <a href="">View All Reviews </a> </span>
+				
+				
+				<div id="rating-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<h2>Add Rating</h2>
+						<form>
+							Rating out of five
+							<select class="form-control">
+							  <option value="five-mangoes">Five Mangoes</option>
+							  <option value="four-mangoes">Four Mangoes</option>
+							  <option value="three-mangoes">Three Mangoes</option>
+							  <option value="two-mangoes">Two Mangoes</option>
+							  <option value="one-mango">One Mango</option>
+							</select>
+							<p><p>
+							Review
+							<textarea class="form-control"></textarea>
+							<p><p>
+
+						  <button type="submit" class="btn btn-primary">Submit Review</button>
+						</form>
+					</div>
+				  </div>
+				</div>
 			</div>
 		</div>
-		<script>
-			generateMangoes();
-		</script>
+		
 	</body>
 </html>
