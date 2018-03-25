@@ -63,7 +63,7 @@ a:hover {
 }
 
 
-.box-shadow, .photos img, .review, .showtime li, .search-criteria, .search-results{
+.box-shadow, .review, .showtime li, .search-criteria, .search-results{
 	box-shadow: 5px 5px 5px 0px rgba(209,209,209,0.5);
 }
 
@@ -224,7 +224,6 @@ select, option {
 }
 
 video {
-	width: 33%;
 	margin-bottom: 50px;
 	margin: 3px;
 	max-height: 200px;
@@ -232,9 +231,23 @@ video {
 
 .videos {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
+/* tv only */
+.seasons img {
+	width: 100px;
+	height: 150px;
+	object-fit: cover;
+	margin-right: 20px;
+	float:left;
+}
 
+.season {
+	clear: both;
+	margin: 20px;
+}
 
 /* movie and tv only */
 
