@@ -19,7 +19,7 @@ h2 {
 b, i {
 	color: #5E5E5E;
 }
-a,.summary h2, .filmography h4 {
+a,.summary h2, .filmography h4, .episode b {
 	color: #759BBA;
 }
 
@@ -237,8 +237,8 @@ video {
 
 /* tv only */
 .seasons img {
-	width: 100px;
-	height: 150px;
+	width: 75px;
+	height: 100px;
 	object-fit: cover;
 	margin-right: 20px;
 	float:left;
@@ -246,9 +246,17 @@ video {
 
 .season {
 	clear: both;
-	margin: 20px;
+	margin: 2% 0;
 }
 
+.episode {
+	margin-top: 20px;
+}
+
+.plot select {
+	margin: 0 0 10px -2px;
+	width: 250px;
+}
 /* movie and tv only */
 
 .summary-title {
