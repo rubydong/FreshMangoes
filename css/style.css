@@ -6,7 +6,6 @@ body {
 	width: 80%;
 	margin: 0 auto;
 	margin-top: 50px;
-	margin-bottom: 50px;
 }
 
 .underline {
@@ -16,7 +15,11 @@ body {
 h2 {
 	letter-spacing: 2px;
 }
-a,.summary h2, .filmography h4, b, i {
+
+b, i {
+	color: #5E5E5E;
+}
+a,.summary h2, .filmography h4 {
 	color: #759BBA;
 }
 
@@ -29,6 +32,7 @@ a:hover {
 .padding {
 	padding: 15px;
 }
+
 
 .small-padding-top {
 	padding-top: 10px;
@@ -58,12 +62,16 @@ a:hover {
 	text-align: right;
 }
 
-hr {
-	border-color: #;
-}
 
 .box-shadow, .photos img, .review, .showtime li, .search-criteria, .search-results{
 	box-shadow: 5px 5px 5px 0px rgba(209,209,209,0.5);
+}
+
+.flex-center {
+	justify-content: center;
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
 }
 
 /* header */
@@ -95,6 +103,7 @@ hr {
 	display: inline;
 	margin-right: 30px;
 } 
+
 
 @media only screen and (max-width: 875px) {
 	.spotlight-posters img {
@@ -215,28 +224,67 @@ select, option {
 }
 
 video {
-	width: 100%;
+	width: 33%;
+	margin-bottom: 50px;
+	margin: 3px;
+	max-height: 200px;
+}
+
+.videos {
+	display: flex;
 }
 
 
 
 /* movie and tv only */
 
+.summary-title {
+	margin-left: calc(280px + 2%);
+	width: 70%;
+/*	float: left;*/
+}
+.content-info {
+	float: left;
+	width: 30%;
+	margin-left: 2%;
+}
+.plot {
+	float: left;
+	width: 35%;
+	margin-left: 2%;
+}
 .casts img {
 	object-fit: cover;
-	width: 75px;
-	height: 75px;
+	width: 100px;
+	height: 100px;
 	padding: 5px;
 	border-radius: 3px;
-	
 }
 
 .casts .cast-person {
 	float: left;
 	width: 30%;
-	text-align: center;
 }
 
+
+@media only screen and (max-width: 1200px) {
+	.plot, .content-info {
+		width: 60%;
+	}
+	
+	.content-info {
+		float: none	;
+		margin-left: calc(280px + 2%);
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.plot {
+		width: 50%;
+		float: none;
+		margin-left: calc(280px + 2%);
+	}
+}
 
 /* profile */
 
@@ -325,17 +373,12 @@ h5 span {
 	padding-right: 15px;
 	padding-top: 5px;
 }
+
 .search-results li {
 	display: inline;
 	margin-left: 20px;
 }
 
-.search-content {
-	justify-content: center;
-	display: flex;
-	flex-flow: row;
-	flex-wrap: wrap;
-}
 .search-item {
     position: relative;
     color: white;
