@@ -366,6 +366,9 @@ video {
 	background-color: #FAFAFA;
 }
 
+.header-hr{
+	margin-top: 0px;
+}
 .follow {
 	list-style: none;
 	display: flex;
