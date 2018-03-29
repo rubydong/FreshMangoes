@@ -64,7 +64,7 @@ a:hover {
 
 
 .box-shadow, .review, .showtime li, .search-criteria, .search-results{
-	box-shadow: 5px 5px 5px 0px rgba(209,209,209,0.5);
+	box-shadow: 4px 4px 5px 0px rgba(209,209,209, 0.3);
 }
 
 .flex-center {
@@ -363,7 +363,7 @@ video {
 /* profile */
 
 .profile, .search {
-	background-color: #F2F2F2;
+	background-color: #FAFAFA;
 }
 
 .follow {
@@ -390,19 +390,44 @@ video {
 	margin: 0 auto;
 }
 
-.bio, .profile-reviews .speech-bubble, .search-criteria, .search-results {
+.bio, .profile-reviews .speech-bubble, .search-criteria, .search-results, .interests {
 	text-align: center;
 	border:1px solid #DFDFDF;
 	border-radius: 2px;
-	padding:5px;
+	padding: 5px;
 	background: white;
 }
 
+.profile .bio img {
+	width: 100%;
+	height: 300px;
+	object-fit: cover;
+	padding: 10px;
+}
 
 .right {
 	float: left;
-	width: 70%;
-	margin-left: 3%;
+	width: 60%;
+	margin-left: 10%;
+}
+
+.x {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 2px;
+	text-align: right;
+	background: linear-gradient(to top, transparent, rgba(0,0,0, 0.2));
+	width: 100%;
+}
+
+.interests {
+	padding-top: 2%;
+	padding-bottom: 40px;
+}
+
+.interests span {
+	padding-right: 15px;
 }
 
 /* search */
@@ -475,7 +500,6 @@ h5 span {
 	padding: 2px;
 }
 
-
 /* bootstrap rewrite */
 
 .bg-light {
@@ -501,7 +525,7 @@ h5 span {
 	border: none;
 }
 
-.btn-light {
+.btn-light, .btn:hover {
 	background-color: #F2F2F2 !important;
 	color: #465057;
 }
