@@ -1,6 +1,7 @@
 .gradle
 .idea
 build/
+node_modules
 
 # Ignore Gradle GUI config
 gradle-app.setting

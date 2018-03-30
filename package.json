@@ -1,0 +1,25 @@
+{
+  "name": "freshMangoes",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubydong/FreshMangoes.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rubydong/FreshMangoes/issues"
+  },
+  "homepage": "https://github.com/rubydong/FreshMangoes#readme",
+  "dependencies": {
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "webpack": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.1.0",
+    "@types/react-dom": "^16.0.4",
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.1"
+  }
+}
