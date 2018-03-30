@@ -1,12 +1,12 @@
 plugins {
-    id 'java'
+    id 'application'
+    id 'checkstyle'
     id 'idea'
+    id 'java'
 
     id 'io.franzbecker.gradle-lombok' version '1.12'
-    id 'org.springframework.boot' version '2.0.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.4.RELEASE'
-
-    id 'application'
+    id 'org.springframework.boot' version '2.0.0.RELEASE'
 }
 
 mainClassName = 'App'
@@ -15,6 +15,11 @@ dependencies {
     compile 'com.google.guava:guava:23.0'
 
     testCompile 'junit:junit:4.12'
+}
+
+checkstyle {
+    toolVersion = '8.8'
+    configFile = rootProject.file('config/checkstyle/checkstyle.xml')
 }
 
 repositories {
