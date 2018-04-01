@@ -12,3 +12,24 @@ public class App {
     System.out.println(new App().getGreeting());
   }
 }
+
+//package com.freshmangoes.movie;
+//
+// import org.springframework.stereotype.Controller;
+// import org.springframework.ui.Model;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.RequestParam;
+//
+//@Controller
+//public class TestController {
+//
+//  @GetMapping("/testing")
+//  public String Test(@RequestParam(name = "name", required = false, defaultValue = "Jack Zheng")  String name,
+//                     @RequestParam(name = "random", required = false, defaultValue= "random") String d,
+//                     Model model) {
+//    model.addAttribute("name", name);
+//    model.addAttribute("random", d);
+//    return "testing";
+//  }
+//
+//}
