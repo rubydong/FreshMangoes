@@ -1,0 +1,568 @@
+body {
+	color: #252627;
+}
+
+.content {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.underline {
+	border-bottom: 1px solid #759BBA;
+	padding-bottom: 3px;
+}
+
+h2 {
+	letter-spacing: 2px;
+}
+
+b, i {
+	color: #5E5E5E;
+}
+a,.summary h2, .filmography h4, .episode b {
+	color: #759BBA;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #B3B3B3;
+	transition: 300ms ease-in-out;
+}
+
+.padding {
+	padding: 15px;
+}
+
+.small-padding-top {
+	padding-top: 10px;
+}
+
+.padding-top {
+	padding-top: 40px;
+}
+
+.margin-top-bottom {
+	margin: 40px 0;
+}
+
+.align-right {
+	clear: both;
+	float: right;
+}
+
+.align-center {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+.right-text {
+	text-align: right;
+}
+
+
+.box-shadow, .review, .showtime li, .search-criteria, .search-results{
+	box-shadow: 4px 4px 5px 0px rgba(209,209,209, 0.3);
+}
+
+.flex-center {
+	justify-content: center;
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
+}
+
+/* header */
+.register-login a{
+	margin-top: 70px;
+}
+
+.modal-content input {
+	margin-bottom: 15px;
+}
+
+/* index */
+#poster {
+	width: 100%;
+}
+
+.spotlight-posters {
+	display: flex;
+	justify-content: center;
+}
+
+.spotlight-posters img {
+	width: 200px;
+	height: 300px;
+	margin: 1em;
+}
+
+.spotlight-nav li{
+	margin: 0 10px;
+	
+} 
+
+@media only screen and (max-width: 875px) {
+	.spotlight-posters img {
+		width: 150px;
+		height: 225px;
+		margin: 1em;
+	}
+}
+
+.movieshow {
+	text-align: center;
+	font-size: 18px;
+}
+
+/* spotlight page */
+.spotlight-type ul {
+	list-style: none;
+}
+ 
+.spotlight-type li {
+	padding: 5px;
+}
+
+.spotlight-type {
+	float: left;
+	width: 20%;
+	margin-left: 2%;
+}
+
+.spotlight-content {
+	float: left;
+	width: 70%;
+	margin-left: 2%;
+}
+
+#spotlight-page .underline {
+	background-color: #759BBA;
+	color: #FFF;
+}
+
+#spotlight-page h2 {
+	text-align: center;
+}
+
+#spotlight-page .underline a{
+	color: #FFF;
+}
+
+.spotlight-page-posters {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.spotlight-page-posters .movieshow {
+	width: 20%;
+	margin: 5px;
+	font-size: 12px;
+}
+.spotlight-page-posters  .rating {
+	font-size: 12px;
+}
+
+.spotlight-page-posters img {
+	width: 150px;
+	max-height: 220px;
+	object-fit: cover;
+}
+
+
+/* reviews */
+.reviews {
+	margin: 0 auto;
+}
+
+.review {
+	width: 45%;
+	float: left; 
+	margin: 0 auto;
+	margin: 2.5%;
+	border:1px solid #DFDFDF;
+	border-radius: 2px;
+	padding: 10px;
+	background-color: white;
+}
+
+.pull-left {
+	float:left;
+	clear:left;
+}
+
+.pull-right {
+	float:right;
+	clear:right;
+}
+
+.profile .review {
+	text-align: left;
+	width: 100%;
+	margin: auto;
+	margin-bottom: 5px;
+	padding: 20px;
+}
+
+.rating img {
+	width: 16px !important;
+	height: 16px !important;
+	margin: -1px !important;
+	padding: 0 !important;
+	box-shadow: none;
+}
+
+.rating {
+	font-size: 15px;
+}
+
+
+/* celebrity, movie, tv pages */
+
+select, option {
+	background-color: white;
+}
+.summary img {
+	object-fit: cover;
+	width: 280px; 
+	padding-right: 15px;
+	padding-top: 6px;
+}
+
+.photos-inner{
+	margin: 0 auto;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.photos img {
+	object-fit: cover;
+	width: 23%;
+	height: 240px;
+	margin: 10px;
+}
+
+.photos,.showtime {
+	clear: both;
+}
+
+
+/* movie only */
+.showtime {
+	list-style: none;
+	width: 100%;
+	margin: 0 auto;
+	padding-bottom: 20px;
+}
+
+.showtime li {
+	background-color: #F2F2F2;
+	color: #485057;
+	padding: 5px;
+	border-radius: 3px;
+	width: 150px;
+	text-align: center;
+	margin: 5px;
+	display: inline-block;
+}
+
+.showtime li:hover {
+	background-color: #759BBA;
+	color: #FFF;
+	transition: 300ms ease-in-out;
+}
+
+video {
+	margin-bottom: 50px;
+	margin: 3px;
+	max-height: 200px;
+}
+
+.videos {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+/* tv only */
+.seasons img {
+	width: 75px;
+	height: 100px;
+	object-fit: cover;
+	margin-right: 20px;
+	float:left;
+}
+
+.season {
+	clear: both;
+	margin: 2% 0;
+}
+
+.episode {
+	margin-top: 20px;
+}
+
+.plot select {
+	margin: 0 0 10px -2px;
+	width: 250px;
+}
+/* movie and tv only */
+
+.summary-title {
+	margin-left: calc(280px + 2%);
+	width: 70%;
+/*	float: left;*/
+}
+.content-info {
+	float: left;
+	width: 30%;
+	margin-left: 2%;
+}
+.plot {
+	float: left;
+	width: 35%;
+	margin-left: 2%;
+}
+.casts img {
+	object-fit: cover;
+	width: 100px;
+	height: 100px;
+	padding: 5px;
+	border-radius: 3px;
+}
+
+.casts .cast-person {
+	float: left;
+	width: 30%;
+}
+
+
+@media only screen and (max-width: 1200px) {
+	.plot, .content-info {
+		width: 60%;
+	}
+	
+	.content-info {
+		float: none	;
+		margin-left: calc(280px + 2%);
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.plot {
+		width: 50%;
+		float: none;
+		margin-left: calc(280px + 2%);
+	}
+}
+
+/* profile */
+
+.profile, .search {
+	background-color: #fafafa;
+}
+
+.header-hr{
+	margin-top: 0px;
+}
+.follow {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+}
+
+.follow li {
+	border:1px solid #DFDFDF;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	justify-content: center;
+	line-height: 50px;
+	border-radius: 3px;
+	margin:2px;
+}
+
+.left {
+	width: 25%;
+	float: left;
+	margin: 0 auto;
+}
+
+.bio, .profile-reviews .speech-bubble, .search-criteria, .search-results, .interests {
+	text-align: center;
+	border:1px solid #DFDFDF;
+	border-radius: 2px;
+	padding: 5px;
+	background: white;
+}
+
+.profile .bio img {
+	width: 100%;
+	height: 300px;
+	object-fit: cover;
+	padding: 10px;
+}
+
+.right {
+	float: left;
+	width: 60%;
+	margin-left: 10%;
+}
+
+.x {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 2px;
+	text-align: right;
+	background: linear-gradient(to top, transparent, rgba(0,0,0, 0.2));
+	width: 100%;
+	
+}
+
+.interests {
+	padding-top: 2%;
+	padding-bottom: 40px;
+}
+
+.interests span {
+	padding-right: 15px;
+}
+
+/* search */
+.search-criteria {
+	width: 30%;
+	float: left;
+	margin-right: 10%;
+	text-align: left;
+	padding: 10px;
+}
+.search-criteria ul {
+	list-style: none;
+}
+.search-criteria h4 {
+	text-align: left;
+}
+
+.criterias-div {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.criterias button {
+	width: 100%;
+	text-align: center;
+}
+
+.search-results {
+	width: 60%;
+	float: left;
+	padding: 10px;
+}
+
+.search-results h4, .search-results h5 {
+	text-align: left;
+}
+
+h5 span {
+	font-weight: normal;
+	font-size: 13px;
+	padding-right: 15px;
+	padding-top: 5px;
+}
+
+.search-results li {
+	display: inline;
+	margin-left: 20px;
+}
+
+.search-item {
+    position: relative;
+    color: white;
+	width: 155px;
+	height: 200px;
+	margin: 5px;
+}
+
+.search-item img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
+.search-item .text {
+    position: absolute;
+    bottom: 0px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0));
+	width: 100%;
+	text-align: left;
+	padding: 2px;
+}
+
+/* bootstrap rewrite */
+
+.bg-light {
+	background-color: white !important;
+}
+
+.navbar-brand img{
+	width: 150px;
+}
+
+.btn-outline-success.focus, .btn-outline-success:focus {
+	box-shadow: none;
+}
+
+.btn-outline-success:hover {
+	background-color: #759BBA;
+	border: none;
+}
+
+.btn {
+	background-color: #759BBA !important;
+	color: #FFF;
+	border: none;
+}
+
+.btn-light, .btn:hover {
+	background-color: #F2F2F2 !important;
+	color: #465057;
+}
+
+.btn-light:hover {
+	background-color: #759BBA !important;
+	color: #FFF;
+	transition: 300ms ease-in-out;
+}
+
+.btn:hover {
+	border: none !important;
+}
+
+.thead-light th{
+	background-color: #F2F2F2 !important;
+	border-top: none;
+}
+
+.table {
+	margin: 20px 0;
+	padding: 20px;
+}
+
+.input-group-text {
+	width: 70px;
+}
+
+.modal-content {
+	padding: 20px;
+}
+
+.modal-content button {
+	margin: 0 auto;
+	display: flex;
+}
