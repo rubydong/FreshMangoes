@@ -1,12 +1,10 @@
 package com.freshmangoes.app.content.data;
 
-
-import com.freshmangoes.app.content.data.Content;
-
+import lombok.Builder;
 
 
+
+@Builder
 public class Episode extends Content {
-  public Episode() {
-    super();
-  }
+
 }
