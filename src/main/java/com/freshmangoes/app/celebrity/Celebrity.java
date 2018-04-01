@@ -11,7 +11,6 @@ import com.freshmangoes.app.common.Content;
 import com.freshmangoes.app.common.Media;
 
 
-
 public class Celebrity {
   private Integer id;
   private CelebrityType type;
