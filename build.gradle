@@ -13,10 +13,10 @@ mainClassName = 'com.freshmangoes.app.App'
 
 dependencies {
     compile 'com.google.guava:guava:23.0'
-
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-devtools'
 
+    compile 'org.projectlombok:lombok:1.16.20'
     testCompile 'junit:junit:4.12'
 }
 
