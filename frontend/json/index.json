@@ -1,0 +1,135 @@
+{
+	"poster": "../images/greatestshowmanbanner.jpg",
+	"opening": [
+		{
+			"name": "Rascal Rebel Rabbit (2018)",
+			"photo": "../images/posters/latest1.jpeg",
+			"score": 95
+		},
+		{
+			"name": "The 15:17 To Paris (2018)",
+			"photo": "../images/posters/latest2.jpeg",
+			"score": 58
+		},
+		{
+			"name": "Golden Exits (2018)",
+			"photo": "../images/posters/latest3.jpg",
+			"score": 69
+		},
+		{
+			"name": "Entanglement (2018)",
+			"photo": "../images/posters/latest4.jpg",
+			"score": 39
+		}
+	],
+	"topBoxOffice": [
+		{
+			"name": "Rascal Rebel Rabbit (2018)",
+			"photo": "../images/posters/latest1.jpeg",
+			"score": 95
+		},
+		{
+			"name": "The 15:17 To Paris (2018)",
+			"photo": "../images/posters/latest2.jpeg",
+			"score": 58
+		},
+		{
+			"name": "Golden Exits (2018)",
+			"photo": "../images/posters/latest3.jpg",
+			"score": 69
+		},
+		{
+			"name": "Entanglement (2018)",
+			"photo": "../images/posters/latest4.jpg",
+			"score": 39
+		}
+	],
+	"comingSoon": [
+		{
+			"name": "Rascal Rebel Rabbit (2018)",
+			"photo": "../images/posters/latest1.jpeg",
+			"score": 95
+		},
+		{
+			"name": "The 15:17 To Paris (2018)",
+			"photo": "../images/posters/latest2.jpeg",
+			"score": 58
+		},
+		{
+			"name": "Golden Exits (2018)",
+			"photo": "../images/posters/latest3.jpg",
+			"score": 69
+		},
+		{
+			"name": "Entanglement (2018)",
+			"photo": "../images/posters/latest4.jpg",
+			"score": 39
+		}
+	], 
+	"new": [
+		{
+			"name": "Kevin (Probably) Saves the World",
+			"photo": "../images/posters/new1.jpeg",
+			"score": 63
+		},
+		{
+			"name": "The Frankenstein Chronicles",
+			"photo": "../images/posters/new2.jpg",
+			"score": 71
+		},
+		{
+			"name": "Another Period",
+			"photo": "../images/posters/new3.jpg",
+			"score": 69
+		},
+		{
+			"name": "Baskets",
+			"photo": "../images/posters/new4.jpg",
+			"score": 66
+		}
+	], 
+	"mostPopular": [
+		{
+			"name": "Kevin (Probably) Saves the World",
+			"photo": "../images/posters/new1.jpeg",
+			"score": 63
+		},
+		{
+			"name": "The Frankenstein Chronicles",
+			"photo": "../images/posters/new2.jpg",
+			"score": 71
+		},
+		{
+			"name": "Another Period",
+			"photo": "../images/posters/new3.jpg",
+			"score": 69
+		},
+		{
+			"name": "Baskets",
+			"photo": "../images/posters/new4.jpg",
+			"score": 66
+		}
+	], 
+	"topDVDStreaming": [
+		{
+			"name": "Kevin (Probably) Saves the World",
+			"photo": "../images/posters/new1.jpeg",
+			"score": 63
+		},
+		{
+			"name": "The Frankenstein Chronicles",
+			"photo": "../images/posters/new2.jpg",
+			"score": 71
+		},
+		{
+			"name": "Another Period",
+			"photo": "../images/posters/new3.jpg",
+			"score": 69
+		},
+		{
+			"name": "Baskets",
+			"photo": "../images/posters/new4.jpg",
+			"score": 66
+		}
+	]
+}
