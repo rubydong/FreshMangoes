@@ -9,7 +9,7 @@ plugins {
     id 'org.springframework.boot' version '2.0.0.RELEASE'
 }
 
-mainClassName = 'App'
+mainClassName = 'com.freshmangoes.app.App'
 
 dependencies {
     compile 'com.google.guava:guava:23.0'
