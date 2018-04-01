@@ -1,10 +1,10 @@
-package com.freshmangoes.app.show;
+package com.freshmangoes.app.content.data;
 
 
 import java.util.List;
 
 
-import com.freshmangoes.app.show.Season;
+import com.freshmangoes.app.content.data.Season;
 
 
 

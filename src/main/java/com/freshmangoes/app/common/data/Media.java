@@ -1,4 +1,4 @@
-package com.freshmangoes.app.common;
+package com.freshmangoes.app.common.data;
 
 
 import java.net.URL;

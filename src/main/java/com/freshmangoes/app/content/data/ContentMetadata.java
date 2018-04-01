@@ -1,11 +1,11 @@
-package com.freshmangoes.app.common;
+package com.freshmangoes.app.content.data;
 
 
 import java.util.Date;
 import java.util.List;
 
 
-import com.freshmangoes.app.celebrity.Celebrity;
+import com.freshmangoes.app.celebrity.data.Celebrity;
 
 
 
