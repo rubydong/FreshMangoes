@@ -14,4 +14,22 @@ public class MySQLContentRepository implements ContentRepositoryInterface {
     // Return filler data for now
     return Content.builder().id(id).build();
   }
+
+  @Override
+  public Content findShowById(int id) {
+    // Return filler data for now
+    return Content.builder().id(id).build();
+  }
+
+  @Override
+  public Content findSeasonById(int id) {
+    // Return filler data for now
+    return Content.builder().id(id).build();
+  }
+
+  @Override
+  public Content findEpisodeById(int id) {
+    // Return filler data for now
+    return Content.builder().id(id).build();
+  }
 }

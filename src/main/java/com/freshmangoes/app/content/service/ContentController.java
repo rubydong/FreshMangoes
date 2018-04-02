@@ -19,25 +19,19 @@ public class ContentController {
   public Content getMovie(@PathVariable int id) {
     return contentService.findMovieById(id);
   }
-}
 
-//package com.freshmangoes.movie;
-//
-// import org.springframework.stereotype.Controller;
-// import org.springframework.ui.Model;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
-//
-//@Controller
-//public class TestController {
-//
-//  @GetMapping("/testing")
-//  public String Test(@RequestParam(name = "name", required = false, defaultValue = "Jack Zheng")  String name,
-//                     @RequestParam(name = "random", required = false, defaultValue= "random") String d,
-//                     Model model) {
-//    model.addAttribute("name", name);
-//    model.addAttribute("random", d);
-//    return "testing";
-//  }
-//
-//}
+  @RequestMapping("/show/{id}")
+  public Content getShow(@PathVariable int id) {
+    return contentService.findShowById(id);
+  }
+
+  @RequestMapping("/show/*/{seasonId}")
+  public Content getSeason(@PathVariable int seasonId) {
+    return contentService.findSeasonById(seasonId);
+  }
+
+  @RequestMapping("/show/*/*/{episodeId}")
+  public Content getEpisode(@PathVariable int episodeId) {
+    return contentService.findEpisodeById(episodeId);
+  }
+}
