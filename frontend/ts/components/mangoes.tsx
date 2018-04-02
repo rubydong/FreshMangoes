@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 export class Mangoes extends React.Component {
     render() {
@@ -17,9 +16,9 @@ export class Mangoes extends React.Component {
 
         return (
             
-            <div className="rating">
+            <span className="rating">
                 {mangoes}
-            </div>
+            </span>
         );
     }
 }

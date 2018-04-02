@@ -3,13 +3,14 @@ import * as ReactDOM from "react-dom";
 import "../css/bootstrap.css";
 import "../css/style.css";
 import { Header } from "./components/header";
-import { Mangoes } from "./components/mangoes";
+import { MovieTemplate } from "./components/movieTemplate";
 const data = require('../json/index.json');
 
 ReactDOM.render(
     <div>
         <Header/>
-        ok this now a movie
+        <MovieTemplate/>
+
     </div>,
     document.getElementById("index")
 );

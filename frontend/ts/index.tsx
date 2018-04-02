@@ -49,9 +49,9 @@ ReactDOM.render(
                 {data.new.map((content, i) =>
                     <div className="movieshow" key={i}>
                         <img src={content.photo}/> <br/>
-                         <a href={content.url}> {content.name}</a> <br/>
-                         <Mangoes data-rating={content.score}/>
-                            {content.score}%
+                        <a href={content.url}> {content.name}</a> <br/>
+                        <Mangoes data-rating={content.score}/> <br/>
+                        {content.score}%
                     </div>     
                 )}
             </div>
