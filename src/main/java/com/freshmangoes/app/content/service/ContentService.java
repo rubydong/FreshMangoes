@@ -1,6 +1,7 @@
 package com.freshmangoes.app.content.service;
 
 import com.freshmangoes.app.content.data.Content;
+import com.freshmangoes.app.content.repository.MySQLContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

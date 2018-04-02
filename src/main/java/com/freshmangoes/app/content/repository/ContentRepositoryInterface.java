@@ -1,6 +1,7 @@
-package com.freshmangoes.app.content.data;
+package com.freshmangoes.app.content.repository;
 
 
+import com.freshmangoes.app.content.data.Content;
 
 public interface ContentRepositoryInterface {
   Content findMovieById(int id);

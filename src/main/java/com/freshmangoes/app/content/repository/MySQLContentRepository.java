@@ -1,6 +1,7 @@
-package com.freshmangoes.app.content.service;
+package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.*;
+import com.freshmangoes.app.content.repository.ContentRepositoryInterface;
 import com.google.common.collect.ImmutableList;
 import org.springframework.stereotype.Repository;
 
