@@ -51,7 +51,7 @@ ReactDOM.render(
                         <img src={content.photo}/> <br/>
                          <a href={content.url}> {content.name}</a> <br/>
                          <Mangoes data-rating={content.score}/>
-                         {content.score}%
+                            {content.score}%
                     </div>     
                 )}
             </div>
