@@ -2,22 +2,22 @@ package com.freshmangoes.app.content.service;
 
 
 import com.freshmangoes.app.content.data.Content;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 @RestController
 public class ContentController {
 
+  @Autowired
+  private ContentService contentService;
+
   @RequestMapping("/movie/{id}")
-  public Content doGet(@PathVariable int id) {
-    Content m = Content
-     .builder()
-     .id(id)
-     .build();
-    return m;
+  public Content getMovie(@PathVariable int id) {
+    return contentService.findMovieById(id);
   }
 }
 
