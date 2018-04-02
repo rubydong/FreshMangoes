@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import "../bootstrap/css/bootstrap.css";
 import "../css/style.css";
 
 const data = require('../json/index.json');
@@ -8,7 +9,8 @@ let opening = [];
 ReactDOM.render(
     <div>
         <img id="poster" src={data.poster}/>
-  
+        
+        <div className="content">
         <div className="margin-top-bottom spotlight">
             <h2> Movies Spotlight </h2>	
             <hr/>
@@ -23,8 +25,8 @@ ReactDOM.render(
                 {data.opening.map((content) =>
                     <div className="movieshow">
                         <img src={content.photo}/> <br/>
-                         <a href={content.url}> {content.name}</a> <br/>
-                        <div className="rating" data-rating="95"> <br/>{content.score}</div>
+                        <a href={content.url}> {content.name}</a> <br/>
+                        <div className="rating" data-rating={content.score}> <br/>{content.score}</div>
                     </div>     
                 )}
             </div>
@@ -46,10 +48,11 @@ ReactDOM.render(
                     <div className="movieshow">
                         <img src={content.photo}/> <br/>
                          <a href={content.url}> {content.name}</a> <br/>
-                        <div className="rating" data-rating="95"> <br/>{content.score}</div>
+                         <div className="rating" data-rating={content.score}> <br/>{content.score}</div>
                     </div>     
                 )}
             </div>
+        </div>
         </div>
     </div>,
     document.getElementById("index")
