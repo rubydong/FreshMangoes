@@ -1,4 +1,4 @@
-package com.freshmangoes.app.celebrity;
+package com.freshmangoes.app.celebrity.data;
 
 
 
