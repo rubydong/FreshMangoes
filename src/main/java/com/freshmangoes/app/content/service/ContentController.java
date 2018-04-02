@@ -14,12 +14,12 @@ public class ContentController {
   @RequestMapping("/movie/{id}")
   public Content doGet(@PathVariable int id) {
     Content m = Content
-                  .builder()
-                  .id(id)
-                  .build();
+     .builder()
+     .id(id)
+     .build();
     return m;
   }
-
+}
 
 //package com.freshmangoes.movie;
 //
