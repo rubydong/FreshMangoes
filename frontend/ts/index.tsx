@@ -1,8 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import "../bootstrap/css/bootstrap.css";
+import "../css/bootstrap.css";
 import "../css/style.css";
-import {Header} from "./components/header";
+import { Header } from "./components/header";
+import { Mangoes } from "./components/mangoes";
 const data = require('../json/index.json');
 
 ReactDOM.render(
@@ -26,7 +27,8 @@ ReactDOM.render(
                     <div className="movieshow" key={i}>
                         <img src={content.photo}/> <br/>
                         <a href={content.url}> {content.name}</a> <br/>
-                        <div className="rating" data-rating={content.score}> <br/>{content.score}%</div>
+                        <Mangoes data-rating={content.score}/>
+                        {content.score}%
                     </div>     
                 )}
             </div>
@@ -48,7 +50,8 @@ ReactDOM.render(
                     <div className="movieshow" key={i}>
                         <img src={content.photo}/> <br/>
                          <a href={content.url}> {content.name}</a> <br/>
-                         <div className="rating" data-rating={content.score}> <br/>{content.score}%</div>
+                         <Mangoes data-rating={content.score}/>
+                         {content.score}%
                     </div>     
                 )}
             </div>
