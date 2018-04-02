@@ -12,7 +12,7 @@ plugins {
 mainClassName = 'com.freshmangoes.app.App'
 
 dependencies {
-    compile 'com.fasterxml.jackson.core:jackson-core:2.7.3'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.9.4'
     compile 'com.google.guava:guava:23.0'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-devtools'

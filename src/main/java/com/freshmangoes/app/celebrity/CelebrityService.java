@@ -1,7 +1,16 @@
 package com.freshmangoes.app.celebrity;
 
+import com.freshmangoes.app.celebrity.data.Celebrity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class CelebrityService {
-  public String getById(int id){
-    return Integer.toString(id);
+
+  @Autowired
+  private CelebrityRepository celebrityRepository;
+
+  public Celebrity getCelebrity(int id){
+    return celebrityRepository.findCelebrityById(id);
   }
 }

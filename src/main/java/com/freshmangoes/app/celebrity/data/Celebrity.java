@@ -1,15 +1,19 @@
 package com.freshmangoes.app.celebrity.data;
 
 
+import com.freshmangoes.app.common.data.Media;
+import com.freshmangoes.app.content.data.Content;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
-
-import com.freshmangoes.app.content.data.Content;
-import com.freshmangoes.app.common.data.Media;
-
-
+@Data
+@Builder
+@AllArgsConstructor
 
 public class Celebrity {
   private Integer id;
