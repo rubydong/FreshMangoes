@@ -2,7 +2,7 @@ package com.freshmangoes.app.content.data;
 
 
 
-enum ContentType {
+public enum ContentType {
   Episode,
   Movie,
   Season,

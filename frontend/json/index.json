@@ -1,135 +1,159 @@
 {
-	"poster": "../images/greatestshowmanbanner.jpg",
+	"poster": "images/greatestshowmanbanner.jpg",
 	"opening": [
 		{
-			"name": "Rascal Rebel Rabbit (2018)",
-			"photo": "../images/posters/latest1.jpeg",
-			"score": 95
+			"name": "Peter Rabbit (2018)",
+			"photo": "images/posters/latest1.jpeg",
+			"score": 95,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "The 15:17 To Paris (2018)",
-			"photo": "../images/posters/latest2.jpeg",
-			"score": 58
+			"photo": "images/posters/latest2.jpeg",
+			"score": 58,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Golden Exits (2018)",
-			"photo": "../images/posters/latest3.jpg",
-			"score": 69
+			"photo": "images/posters/latest3.jpg",
+			"score": 69,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Entanglement (2018)",
-			"photo": "../images/posters/latest4.jpg",
-			"score": 39
+			"photo": "images/posters/latest4.jpg",
+			"score": 39,
+			"url": "/movie/peter_rabbit_2018"
 		}
 	],
 	"topBoxOffice": [
 		{
 			"name": "Rascal Rebel Rabbit (2018)",
-			"photo": "../images/posters/latest1.jpeg",
-			"score": 95
+			"photo": "images/posters/latest1.jpeg",
+			"score": 95,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "The 15:17 To Paris (2018)",
-			"photo": "../images/posters/latest2.jpeg",
-			"score": 58
+			"photo": "images/posters/latest2.jpeg",
+			"score": 58,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Golden Exits (2018)",
-			"photo": "../images/posters/latest3.jpg",
-			"score": 69
+			"photo": "images/posters/latest3.jpg",
+			"score": 69,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Entanglement (2018)",
-			"photo": "../images/posters/latest4.jpg",
-			"score": 39
+			"photo": "images/posters/latest4.jpg",
+			"score": 39,
+			"url": "/movie/peter_rabbit_2018"
 		}
 	],
 	"comingSoon": [
 		{
 			"name": "Rascal Rebel Rabbit (2018)",
-			"photo": "../images/posters/latest1.jpeg",
-			"score": 95
+			"photo": "images/posters/latest1.jpeg",
+			"score": 95,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "The 15:17 To Paris (2018)",
-			"photo": "../images/posters/latest2.jpeg",
-			"score": 58
+			"photo": "images/posters/latest2.jpeg",
+			"score": 58,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Golden Exits (2018)",
-			"photo": "../images/posters/latest3.jpg",
-			"score": 69
+			"photo": "images/posters/latest3.jpg",
+			"score": 69,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Entanglement (2018)",
-			"photo": "../images/posters/latest4.jpg",
-			"score": 39
+			"photo": "images/posters/latest4.jpg",
+			"score": 39,
+			"url": "/movie/peter_rabbit_2018"
 		}
 	], 
 	"new": [
 		{
 			"name": "Kevin (Probably) Saves the World",
-			"photo": "../images/posters/new1.jpeg",
-			"score": 63
+			"photo": "images/posters/new1.jpeg",
+			"score": 63,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "The Frankenstein Chronicles",
-			"photo": "../images/posters/new2.jpg",
-			"score": 71
+			"photo": "images/posters/new2.jpg",
+			"score": 71,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Another Period",
-			"photo": "../images/posters/new3.jpg",
-			"score": 69
+			"photo": "images/posters/new3.jpg",
+			"score": 69,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Baskets",
-			"photo": "../images/posters/new4.jpg",
-			"score": 66
+			"photo": "images/posters/new4.jpg",
+			"score": 66,
+			"url": "/movie/peter_rabbit_2018"
 		}
 	], 
 	"mostPopular": [
 		{
 			"name": "Kevin (Probably) Saves the World",
-			"photo": "../images/posters/new1.jpeg",
-			"score": 63
+			"photo": "images/posters/new1.jpeg",
+			"score": 63,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "The Frankenstein Chronicles",
-			"photo": "../images/posters/new2.jpg",
-			"score": 71
+			"photo": "images/posters/new2.jpg",
+			"score": 71,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Another Period",
-			"photo": "../images/posters/new3.jpg",
-			"score": 69
+			"photo": "images/posters/new3.jpg",
+			"score": 69,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Baskets",
-			"photo": "../images/posters/new4.jpg",
-			"score": 66
+			"photo": "images/posters/new4.jpg",
+			"score": 66,
+			"url": "/movie/peter_rabbit_2018"
 		}
 	], 
 	"topDVDStreaming": [
 		{
 			"name": "Kevin (Probably) Saves the World",
-			"photo": "../images/posters/new1.jpeg",
-			"score": 63
+			"photo": "images/posters/new1.jpeg",
+			"score": 63,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "The Frankenstein Chronicles",
-			"photo": "../images/posters/new2.jpg",
-			"score": 71
+			"photo": "images/posters/new2.jpg",
+			"score": 71,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Another Period",
-			"photo": "../images/posters/new3.jpg",
-			"score": 69
+			"photo": "images/posters/new3.jpg",
+			"score": 69,
+			"url": "/movie/peter_rabbit_2018"
 		},
 		{
 			"name": "Baskets",
-			"photo": "../images/posters/new4.jpg",
-			"score": 66
+			"photo": "images/posters/new4.jpg",
+			"score": 66,
+			"url": "/movie/peter_rabbit_2018"
 		}
 	]
 }
