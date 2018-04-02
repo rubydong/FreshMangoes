@@ -1,7 +1,7 @@
-package com.freshmangoes.app.content;
+package com.freshmangoes.app.content.service;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.freshmangoes.app.content.data.Content;
 
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ContentController {
-  private final ObjectMapper om = new ObjectMapper();
+
+  @RequestMapping("/movie/{id}")
+  public Content doGet(@PathVariable int id) {
+    Content m = Content
+                  .builder()
+                  .id(id)
+                  .build();
+    return m;
+  }
 
 //  @RequestMapping("/movie/{id}")
 //  public Random Test(@PathVariable int id) {
