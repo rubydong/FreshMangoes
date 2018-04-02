@@ -20,16 +20,6 @@ public class ContentController {
     return m;
   }
 
-//  @RequestMapping("/movie/{id}")
-//  public Random Test(@PathVariable int id) {
-//    Random r = new Random();
-//    r.id = 10;
-//    r.name = "random";
-//
-//    return r;
-//  }
-}
-
 
 //package com.freshmangoes.movie;
 //
