@@ -2,12 +2,12 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "../bootstrap/css/bootstrap.css";
 import "../css/style.css";
-
+import {Header} from "./components/header";
 const data = require('../json/index.json');
-let opening = [];
 
 ReactDOM.render(
     <div>
+        <Header/>
         <img id="poster" src={data.poster}/>
         
         <div className="content">
@@ -22,11 +22,11 @@ ReactDOM.render(
             </ul>
         
             <div className="spotlight-posters">
-                {data.opening.map((content) =>
-                    <div className="movieshow">
+                {data.opening.map((content, i) =>
+                    <div className="movieshow" key={i}>
                         <img src={content.photo}/> <br/>
                         <a href={content.url}> {content.name}</a> <br/>
-                        <div className="rating" data-rating={content.score}> <br/>{content.score}</div>
+                        <div className="rating" data-rating={content.score}> <br/>{content.score}%</div>
                     </div>     
                 )}
             </div>
@@ -44,11 +44,11 @@ ReactDOM.render(
             </ul>
 
             <div className="spotlight-posters">
-                {data.new.map((content) =>
-                    <div className="movieshow">
+                {data.new.map((content, i) =>
+                    <div className="movieshow" key={i}>
                         <img src={content.photo}/> <br/>
                          <a href={content.url}> {content.name}</a> <br/>
-                         <div className="rating" data-rating={content.score}> <br/>{content.score}</div>
+                         <div className="rating" data-rating={content.score}> <br/>{content.score}%</div>
                     </div>     
                 )}
             </div>
