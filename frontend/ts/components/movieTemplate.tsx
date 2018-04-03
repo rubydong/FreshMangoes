@@ -2,10 +2,6 @@ import * as React from "react";
 import { Mangoes } from "./Mangoes";
 const movie = require('../../json/movie.json');
 
-console.log("do i even enter movie template");
-// console.log("I AM IN MOVIE TEMPLATE AND...... " + this.props.location);
-// tells me this.props is undefined hmmm
-
 export class MovieTemplate extends React.Component {
     render() {
         return (

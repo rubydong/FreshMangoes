@@ -1,11 +1,13 @@
 package com.freshmangoes.app.common.data;
 
 
+import lombok.Data;
+
 import java.net.URL;
 import java.util.List;
 
 
-
+@Data
 public class Media {
   private List<URL> photos;
   private List<URL> videos;
