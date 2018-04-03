@@ -5,13 +5,11 @@ var app = express();
 app.use(express.static(__dirname));
 
 app.get("/", function (request, response) {
-    console.log(__dirname);
-    response.sendFile(path.join(__dirname + "/movie.html"));
+    response.sendFile(path.join(__dirname + "/index.html"));
 });
 
 app.get("/movie", function (request, response) {
-    console.log("soooo does it even go into movie or");
-    response.sendFile(path.join(__dirname + "/movie.html"));
+    response.sendFile(path.join(__dirname + "/index.html"));
 });
 
 app.listen(1337);
