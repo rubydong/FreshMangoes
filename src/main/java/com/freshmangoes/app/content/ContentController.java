@@ -1,7 +1,7 @@
 package com.freshmangoes.app.content;
 
 import com.freshmangoes.app.content.data.Content;
-import com.freshmangoes.app.content.service.ContentService;
+import com.freshmangoes.app.content.service.ContentServiceIntf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContentController {
 
   @Autowired
-  private ContentService contentService;
+  private ContentServiceIntf contentService;
 
   @RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
   public Content getMovie(@PathVariable int id) {

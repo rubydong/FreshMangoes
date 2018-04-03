@@ -1,14 +1,13 @@
 package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.*;
-import com.freshmangoes.app.content.repository.ContentRepositoryInterface;
 import com.google.common.collect.ImmutableList;
 import org.springframework.stereotype.Repository;
 
 
 
 @Repository
-public class MySQLContentRepository implements ContentRepositoryInterface {
+public class MySQLContentRepository implements ContentRepository {
 
   @Override
   public Content findMovieById(int id) {
