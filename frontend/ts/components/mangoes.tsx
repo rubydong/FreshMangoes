@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 export class Mangoes extends React.Component {
     render() {
@@ -8,18 +7,18 @@ export class Mangoes extends React.Component {
         let mangoes = [];
        
         for (let i = 0; i < rating; i++) {
-            mangoes.push(<img src="images/mangocolor.png"/>);
+            mangoes.push(<img src="http://i67.tinypic.com/lazqr.jpg"/>);
         }
 
         for (let i = 0; i < 5 - rating; i++) {
-            mangoes.push(<img src="images/mangobw.png" />);
+            mangoes.push(<img src="http://i63.tinypic.com/2gxecgl.png" />);
         }
 
         return (
             
-            <div className="rating">
+            <span className="rating">
                 {mangoes}
-            </div>
+            </span>
         );
     }
 }
