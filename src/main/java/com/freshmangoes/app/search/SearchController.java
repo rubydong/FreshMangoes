@@ -1,9 +1,13 @@
-package com.freshmangoes.app.celebrity;
+package com.freshmangoes.app.search;
 
-import com.freshmangoes.app.celebrity.data.Celebrity;
-import com.freshmangoes.app.search.SearchService;
+import com.freshmangoes.app.search.service.SearchService;
+import com.freshmangoes.app.search.data.SearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -12,10 +16,9 @@ public class SearchController {
   @Autowired
   private SearchService searchService;
 
-
   @RequestMapping(value = "search", params = "query", method = RequestMethod.GET)
-  public Celebrity doGet(
-      @RequestParam("query") String keyword) {
-    return celebrityService.getCelebrity(id);
+  public SearchResult doGet(
+      @RequestParam("query") String searchQuery) {
+    return searchService.searchByKeyword(searchQuery);
   }
 }
