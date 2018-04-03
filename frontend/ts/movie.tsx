@@ -12,5 +12,5 @@ ReactDOM.render(
         <MovieTemplate/>
 
     </div>,
-    document.getElementById("index")
+    document.getElementById("movie")
 );

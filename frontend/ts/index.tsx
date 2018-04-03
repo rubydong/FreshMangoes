@@ -24,10 +24,10 @@ ReactDOM.render(
         
             <div className="spotlight-posters">
                 {data.opening.map((content, i) =>
-                    <div className="movieshow" key={i}>
+                    <div className="movieshow" key={content.id}>
                         <img src={content.photo}/> <br/>
                         <a href={content.url}> {content.name}</a> <br/>
-                        <Mangoes data-rating={content.score}/>
+                        <Mangoes data-rating={content.score}/> <br/>
                         {content.score}%
                     </div>     
                 )}
