@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "../../css/bootstrap.css";
 import "../../css/style.css";
-import { Mangoes } from "./mangoes";
+import { Mangoes } from "./Mangoes";
 const data = require('../../json/index.json');
 
 export class IndexTemplate extends React.Component {
@@ -27,7 +27,7 @@ export class IndexTemplate extends React.Component {
                     {data.opening.map((content, i) =>
                         <div className="movieshow" key={content.id}>
                             <img src={content.photo}/> <br/>
-                            <a href={content.url}> {content.name}</a> <br/>
+                            <a href={"/movie/" + content.id}> {content.name}</a> <br/>
                             <Mangoes data-rating={content.score}/> <br/>
                             {content.score}%
                         </div>     
@@ -50,7 +50,7 @@ export class IndexTemplate extends React.Component {
                     {data.new.map((content, i) =>
                         <div className="movieshow" key={i}>
                             <img src={content.photo}/> <br/>
-                            <a href={content.url}> {content.name}</a> <br/>
+                            <a href={"/show/" + content.id}> {content.name}</a> <br/>
                             <Mangoes data-rating={content.score}/> <br/>
                             {content.score}%
                         </div>     

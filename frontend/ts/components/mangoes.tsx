@@ -7,11 +7,11 @@ export class Mangoes extends React.Component {
         let mangoes = [];
        
         for (let i = 0; i < rating; i++) {
-            mangoes.push(<img src="images/mangocolor.png"/>);
+            mangoes.push(<img src="./images/mangocolor.png"/>);
         }
 
         for (let i = 0; i < 5 - rating; i++) {
-            mangoes.push(<img src="images/mangobw.png" />);
+            mangoes.push(<img src="./images/mangobw.png" />);
         }
 
         return (

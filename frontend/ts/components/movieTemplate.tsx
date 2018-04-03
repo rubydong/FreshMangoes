@@ -1,6 +1,10 @@
 import * as React from "react";
-import { Mangoes } from "./mangoes";
+import { Mangoes } from "./Mangoes";
 const movie = require('../../json/movie.json');
+
+console.log("do i even enter movie template");
+// console.log("I AM IN MOVIE TEMPLATE AND...... " + this.props.location);
+// tells me this.props is undefined hmmm
 
 export class MovieTemplate extends React.Component {
     render() {
@@ -9,17 +13,17 @@ export class MovieTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <img src="images/movie/blackpanther.jpg" className="img-align-left"/> 
+                    <img src="../../images/movie/blackpanther.jpg" className="img-align-left"/> 
                     <div className="summary-title">
                         <h2>Black Panther</h2>
                     </div>
                     
                     <div className="plot">
                         <b>MangoMeter Audience Score</b> <br/>
-                        <Mangoes data-rating={movie.metadata.mangoScore}/> <br/>
+                        <Mangoes data-rating={movie.metadata.mangoScore}/>
                         {movie.metadata.mangoScore}%
 
-                        <Mangoes data-rating={movie.metadata.audienceScore}/> <br/>
+                        <Mangoes data-rating={movie.metadata.audienceScore}/> 
                         {movie.metadata.audienceScore}% <p/><p/>
 
                         <b>About Movie</b> <br/> 
@@ -46,10 +50,10 @@ export class MovieTemplate extends React.Component {
                     <h2> Photos </h2> <p/>
                     <hr/>
                     <div className="photos-inner">
-                        <img src="images/movie/bp1.jpg"/>
-                        <img src="images/movie/bp2.jpg"/>
-                        <img src="images/movie/bp3.jpg"/>
-                        <img src="images/movie/bp4.jpg"/>
+                        <img src="../images/movie/bp1.jpg"/>
+                        <img src="../images/movie/bp2.jpg"/>
+                        <img src="../images/movie/bp3.jpg"/>
+                        <img src="../images/movie/bp4.jpg"/>
                     </div>
                 </div>
                 
@@ -58,13 +62,13 @@ export class MovieTemplate extends React.Component {
                     <hr/>
                     <div className="videos">
                         <video controls>
-                            <source src="videos/bptrailer.mp4" type="video/mp4"/>
+                            <source src="../videos/bptrailer.mp4" type="video/mp4"/>
                         </video>
                         <video controls>
-                            <source src="videos/bptrailer.mp4" type="video/mp4"/>
+                            <source src="../videos/bptrailer.mp4" type="video/mp4"/>
                         </video>
                         <video controls>
-                            <source src="videos/bptrailer.mp4" type="video/mp4"/>
+                            <source src="../videos/bptrailer.mp4" type="video/mp4"/>
                         </video>
                     </div>
                     
@@ -112,32 +116,32 @@ export class MovieTemplate extends React.Component {
                     <hr/>
                     <div className="flex-center">
                         <div className="cast-person">
-                            <img src="images/movie/cast1.jpg" className="img-align-left"/>
+                            <img src="../images/movie/cast1.jpg" className="img-align-left"/>
                             <b><a href="">Chadwick Boseman</a></b>  <br/> <i>T'Challa/Black Panther</i>
                         </div>
 
                         <div className="cast-person">
-                            <img src="images/movie/cast2.jpg" className="img-align-left"/>
+                            <img src="../images/movie/cast2.jpg" className="img-align-left"/>
                             <b><a href="">Michael B. Jordan</a></b>  <br/> <i>Erik Killmonger</i>
                         </div>
 
                         <div className="cast-person">
-                            <img src="images/movie/cast3.jpg" className="img-align-left"/>
+                            <img src="../images/movie/cast3.jpg" className="img-align-left"/>
                             <b><a href="">Lupita Nyong'o</a></b>  <br/> <i> Nakia</i>
                         </div>
 
                         <div className="cast-person">
-                            <img src="images/movie/cast4.jpg" className="img-align-left"/>
+                            <img src="../images/movie/cast4.jpg" className="img-align-left"/>
                             <b><a href="">Danai Gurira</a></b>  <br/><i>Okoye</i>
                         </div>
 
                         <div className="cast-person">
-                            <img src="images/movie/cast5.jpg" className="img-align-left"/>
+                            <img src="../images/movie/cast5.jpg" className="img-align-left"/>
                             <b><a href="">Martin Freeman</a></b>  <br/> <i>Everett K. Ross</i>
                         </div>
 
                         <div className="cast-person">
-                            <img src="images/movie/cast6.jpg" className="img-align-left"/>
+                            <img src="../images/movie/cast6.jpg" className="img-align-left"/>
                             <b><a href="">Daniel Kaluuya</a></b>  <br/> <i>W'Kabi</i>
                         </div>
                     </div>
