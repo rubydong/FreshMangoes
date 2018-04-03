@@ -5,6 +5,7 @@ import com.freshmangoes.app.content.repository.ContentRepositoryInterface;
 import com.google.common.collect.ImmutableList;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
 
 @Repository
@@ -97,4 +98,16 @@ public class MySQLContentRepository implements ContentRepositoryInterface {
                         .build())
             .build();
   }
+
+  @Override
+  public List<Content> findAllMoviesLikeKeyword(String searchQuery) {
+    return null;
+  }
+
+  @Override
+  public List<Show> findAllShowsLikeKeyword(String searchQuery) {
+    return null;
+  }
+
+
 }

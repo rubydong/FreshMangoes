@@ -1,6 +1,7 @@
 package com.freshmangoes.app.celebrity;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
+import com.freshmangoes.app.celebrity.service.CelebrityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
