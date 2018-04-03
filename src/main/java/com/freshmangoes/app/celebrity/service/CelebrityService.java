@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CelebrityService {
+public class CelebrityService implements CelebrityServiceIntf {
 
   @Autowired
-  private CelebrityRepository celebrityRepository;
+  private CelebrityRepository mySQLCelebrityRepository;
 
   public Celebrity getCelebrity(int id){
-    return celebrityRepository.findCelebrityById(id);
+    return mySQLCelebrityRepository.findCelebrityById(id);
   }
 }

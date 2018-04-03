@@ -18,5 +18,6 @@ public interface ContentRepository {
   Content findEpisodeById(int id);
 
   List<Content> findAllMoviesLikeKeyword(String searchQuery);
+
   List<Show> findAllShowsLikeKeyword(String searchQuery);
 }
