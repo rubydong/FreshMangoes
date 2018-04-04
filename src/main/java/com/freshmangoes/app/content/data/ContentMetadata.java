@@ -14,6 +14,7 @@ public class ContentMetadata {
   private String name;
   private String maturityRating;
   private String summary;
+  private String studio;
   private List<String> genres;
   private Integer runTime;
   private Double mangoScore;

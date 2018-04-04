@@ -5,5 +5,5 @@ import com.freshmangoes.app.rating.data.Rating;
 
 
 public interface RatingRepository {
-  boolean insertRating(Rating rating);
+  boolean insertRating(final Rating rating);
 }

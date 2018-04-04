@@ -1,22 +1,16 @@
 package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.*;
-
 import java.util.List;
 
 
 
-
 public interface ContentRepository {
-  Movie findMovieById(int id);
+  Movie findMovieById(final int id);
 
-  Show findShowById(int id);
+  Show findShowById(final int id);
 
-  Season findSeasonById(int id);
+  List<Movie> findAllMoviesLikeKeyword(final String searchQuery);
 
-  Episode findEpisodeById(int id);
-
-  List<Movie> findAllMoviesLikeKeyword(String searchQuery);
-
-  List<Show> findAllShowsLikeKeyword(String searchQuery);
+  List<Show> findAllShowsLikeKeyword(final String searchQuery);
 }
