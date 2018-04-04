@@ -2,6 +2,7 @@ package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.*;
 import com.freshmangoes.app.rating.data.Rating;
+import com.freshmangoes.app.rating.data.UserType;
 import com.google.common.collect.ImmutableList;
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +28,7 @@ public class MySQLContentRepository implements ContentRepository {
        .add(Rating
         .builder()
         .id(1337)
+        .type(UserType.Audience)
         .reviewerId(7331)
         .body("Good movie, would recommend to other people")
         .score(2)
