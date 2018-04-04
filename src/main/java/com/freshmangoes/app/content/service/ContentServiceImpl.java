@@ -12,19 +12,19 @@ public class ContentServiceImpl implements ContentService {
   @Autowired
   private ContentRepository mySQLContentRepository;
 
-  public Movie findMovieById(int id) {
+  public Movie findMovieById(final int id) {
     return mySQLContentRepository.findMovieById(id);
   }
 
-  public Show findShowById(int id) {
+  public Show findShowById(final int id) {
     return mySQLContentRepository.findShowById(id);
   }
 
-  public Season findSeasonById(int id) {
+  public Season findSeasonById(final int id) {
     return mySQLContentRepository.findSeasonById(id);
   }
 
-  public Episode findEpisodeById(int id) {
+  public Episode findEpisodeById(final int id) {
     return mySQLContentRepository.findEpisodeById(id);
   }
 }

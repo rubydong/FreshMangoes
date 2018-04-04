@@ -20,22 +20,22 @@ public class ContentController {
   private ContentService contentService;
 
   @RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
-  public Movie getMovie(@PathVariable int id) {
+  public Movie getMovie(@PathVariable final int id) {
     return contentService.findMovieById(id);
   }
 
   @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
-  public Show getShow(@PathVariable int id) {
+  public Show getShow(@PathVariable final int id) {
     return contentService.findShowById(id);
   }
 
   @RequestMapping(value = "/show/*/{seasonId}", method = RequestMethod.GET)
-  public Season getSeason(@PathVariable int seasonId) {
+  public Season getSeason(@PathVariable final int seasonId) {
     return contentService.findSeasonById(seasonId);
   }
 
   @RequestMapping(value = "/show/*/*/{episodeId}", method = RequestMethod.GET)
-  public Episode getEpisode(@PathVariable int episodeId) {
+  public Episode getEpisode(@PathVariable final int episodeId) {
     return contentService.findEpisodeById(episodeId);
   }
 }

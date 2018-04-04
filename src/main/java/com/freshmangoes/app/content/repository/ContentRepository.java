@@ -8,15 +8,15 @@ import java.util.List;
 
 
 public interface ContentRepository {
-  Movie findMovieById(int id);
+  Movie findMovieById(final int id);
 
-  Show findShowById(int id);
+  Show findShowById(final int id);
 
-  Season findSeasonById(int id);
+  Season findSeasonById(final int id);
 
-  Episode findEpisodeById(int id);
+  Episode findEpisodeById(final int id);
 
-  List<Movie> findAllMoviesLikeKeyword(String searchQuery);
+  List<Movie> findAllMoviesLikeKeyword(final String searchQuery);
 
-  List<Show> findAllShowsLikeKeyword(String searchQuery);
+  List<Show> findAllShowsLikeKeyword(final String searchQuery);
 }
