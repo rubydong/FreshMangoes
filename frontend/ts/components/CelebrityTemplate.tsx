@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Mangoes } from "./Mangoes";
 import axios from "axios";
+import { parseDate } from "../../helperFunctions";
 
 export class CelebrityTemplate extends React.Component {
     state = {
@@ -10,7 +11,6 @@ export class CelebrityTemplate extends React.Component {
         birthplace: "",
         biography: "",
         photos: []
-        // I WANT ROLES TO BE ROLE INSTEAD...
     }
 
     componentWillMount() {
@@ -20,7 +20,7 @@ export class CelebrityTemplate extends React.Component {
             currentComponent.setState({ 
                 name: response.data.name,
                 profilePhoto: response.data.profilePhoto,
-                birthday: response.data.birthday,
+                birthday: parseDate(response.data.birthday),
                 birthplace: response.data.birthplace,
                 biography: response.data.biography,
                 photos: response.data.media.photos
@@ -74,8 +74,7 @@ export class CelebrityTemplate extends React.Component {
                             <th>Title</th>
                             <th>Year</th>
                             <th>Rating</th>
-                            <th>Credit</th>
-                            <th>Box Office</th>
+                            <th>Role</th>
                         </tr>
                         </thead>
                         <tr>
@@ -83,7 +82,6 @@ export class CelebrityTemplate extends React.Component {
                             <td> 2017 </td>
                             <td> 16% </td>
                             <td> Actor </td>
-                            <td> $20.5M </td>
                         </tr>
                         
                         <tr>
@@ -91,7 +89,6 @@ export class CelebrityTemplate extends React.Component {
                             <td> 2017 </td>
                             <td> 71% </td>
                             <td> Belle </td>
-                            <td> $504M </td>
                         </tr>
                         
                         <tr>
@@ -99,7 +96,6 @@ export class CelebrityTemplate extends React.Component {
                             <td> 2016 </td>
                             <td> 27% </td>
                             <td> Len </td>
-                            <td> $4M </td>
                         </tr>
                         
                     </table>
@@ -112,7 +108,7 @@ export class CelebrityTemplate extends React.Component {
                             <th>Title</th>
                             <th>Year</th>
                             <th>Rating</th>
-                            <th>Credit</th>
+                            <th>Role</th>
                         </tr>
                         </thead>
                         <tr>

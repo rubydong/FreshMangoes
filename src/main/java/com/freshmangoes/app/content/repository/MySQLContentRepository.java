@@ -170,7 +170,7 @@ public class MySQLContentRepository implements ContentRepository {
        .builder()
        .id(2411)
        .type(ContentType.Show)
-       .summaryPhoto(new URL("http://images/tvshow/strangerfirst.jpg"))
+       .summaryPhoto(new URL("https://images/tvshow/strangerfirst.jpg"))
        .media(Media
         .builder()
         .photos(new ImmutableList.Builder<URL>()
