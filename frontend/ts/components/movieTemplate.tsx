@@ -1,16 +1,36 @@
 import * as React from "react";
 import { Mangoes } from "./Mangoes";
-const movie = require('../../json/movie.json');
+import axios from "axios";
+const movie = require("../../json/movie.json");
 
 export class MovieTemplate extends React.Component {
+    state = {
+        movieJson: null
+    }
+
+    componentWillMount() {
+        let currentComponent = this;
+        axios.get('https://1b823f0c-3672-4405-99af-b191f388b74c.mock.pstmn.io/movie/0')
+        .then(function (response) {
+            currentComponent.setState({ movieJson: response.data });
+            console.log(currentComponent.state.movieJson);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
     render() {
+        if (this.state.movieJson == null) return <div>Loading......</div>;
         return (
+            
         <div>
             <hr/>
             <div className="content">
                 <div className="summary">
                     <img src="../../images/movie/blackpanther.jpg" className="img-align-left"/> 
                     <div className="summary-title">
+                        <h1>{String(this.state.movieJson.success)}</h1>
                         <h2>Black Panther</h2>
                     </div>
                     

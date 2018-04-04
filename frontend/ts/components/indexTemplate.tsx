@@ -1,18 +1,45 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import "../../css/bootstrap.css";
-import "../../css/style.css";
 import { Mangoes } from "./Mangoes";
-const data = require('../../json/index.json');
+import axios from "axios";
 
 export class IndexTemplate extends React.Component {
+    state = {
+        poster: "",
+        opening: [],
+        topBoxOffice: [],
+        comingSoon: [],
+        new: [],
+        mostPopular: [],
+        topDVDStreaming: []
+    }
+
+    componentWillMount() {
+        let currentComponent = this;
+        axios.get('https://74cd4b37-e430-4ece-9e25-2a7081508c0e.mock.pstmn.io/index')
+        .then(function (response) {
+            console.log(response);
+            currentComponent.setState(
+                { 
+                    poster: response.data.poster,
+                    opening: response.data.opening,
+                    topBoxOffice: response.data.topBoxOffice,
+                    comingSoon: response.data.comingSoon,
+                    new: response.data.new,
+                    mostPopular: response.data.mostPopular,
+                    topDVDStreaming: response.data.topDVDStreaming
+                }
+            );
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
     render() {
         return (
         
         <div>
-            <img id="poster" src={data.poster}/>
-            
-            <div className="content">
+            <img id="poster" src={this.state.poster}/>
             <div className="margin-top-bottom spotlight">
                 <h2> Movies Spotlight </h2>	
                 <hr/>
@@ -24,7 +51,7 @@ export class IndexTemplate extends React.Component {
                 </ul>
             
                 <div className="spotlight-posters">
-                    {data.opening.map((content, i) =>
+                    {this.state.opening.map((content) =>
                         <div className="movieshow" key={content.id}>
                             <img src={content.photo}/> <br/>
                             <a href={"/movie/" + content.id}> {content.name}</a> <br/>
@@ -47,8 +74,8 @@ export class IndexTemplate extends React.Component {
                 </ul>
 
                 <div className="spotlight-posters">
-                    {data.new.map((content, i) =>
-                        <div className="movieshow" key={i}>
+                    {this.state.new.map((content) =>
+                        <div className="movieshow" key={content.id}>
                             <img src={content.photo}/> <br/>
                             <a href={"/show/" + content.id}> {content.name}</a> <br/>
                             <Mangoes data-rating={content.score}/> <br/>
@@ -56,7 +83,6 @@ export class IndexTemplate extends React.Component {
                         </div>     
                     )}
                 </div>
-            </div>
             </div>
         </div>
     )}
