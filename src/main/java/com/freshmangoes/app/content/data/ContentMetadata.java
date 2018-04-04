@@ -2,8 +2,8 @@ package com.freshmangoes.app.content.data;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
+import com.freshmangoes.app.celebrity.data.Celebrity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,5 +20,5 @@ public class ContentMetadata {
   private Double mangoScore;
   private Double audienceScore;
   private Date releaseDate;
-  private Map<String, String> cast;
+  private List<Celebrity> cast;
 }
