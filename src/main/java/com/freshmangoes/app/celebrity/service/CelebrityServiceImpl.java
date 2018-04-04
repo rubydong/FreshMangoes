@@ -11,7 +11,7 @@ public class CelebrityServiceImpl implements CelebrityService {
   @Autowired
   private CelebrityRepository mySQLCelebrityRepository;
 
-  public Celebrity getCelebrity(int id){
+  public Celebrity getCelebrity(final int id) {
     return mySQLCelebrityRepository.findCelebrityById(id);
   }
 }

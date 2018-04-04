@@ -4,9 +4,11 @@ import com.freshmangoes.app.common.data.Media;
 import java.net.URL;
 import java.util.Date;
 import java.util.Map;
+import com.freshmangoes.app.content.data.Content;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+
 
 @Data
 @Builder
@@ -21,4 +23,7 @@ public class Celebrity {
   private String biography;
   private Media media;
   private Map<String, String> roles;
+  private Content highestRated;
+  private Content lowestRated;
+
 }
