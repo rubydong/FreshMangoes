@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Mangoes } from "./Mangoes";
 import axios from "axios";
+import { parseMedia, parseDate }  from "../../helperFunctions.js";
 
 export class ShowTemplate extends React.Component {
     state = {
@@ -13,16 +14,16 @@ export class ShowTemplate extends React.Component {
         mangoScore: 0,
         audienceScore: 0,
         releaseDate: "",
-        studioNetwork: "",
+        network: "",
         cast: []
     }
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('https://ca8135fe-1ee0-465a-8147-c5d034840cbf.mock.pstmn.io/show/223')
+        axios.get('http://localhost:8080/show/0')
         .then(function (response) {
             currentComponent.setState({ 
-                summaryPhoto: response.data.summaryPhoto,
+                summaryPhoto: parseMedia(response.data.summaryPhoto),
                 photos: response.data.media.photos,
                 videos: response.data.media.videos,
                 name: response.data.metadata.name,
@@ -30,8 +31,8 @@ export class ShowTemplate extends React.Component {
                 genres: response.data.metadata.genres,
                 mangoScore: response.data.metadata.mangoScore,
                 audienceScore: response.data.metadata.audienceScore,
-                releaseDate: response.data.metadata.releaseDate,
-                studioNetwork: response.data.metadata.studioNetwork,
+                releaseDate: parseDate(response.data.metadata.releaseDate),
+                network: response.data.metadata.studio,
                 cast: response.data.metadata.cast
              });
         })
@@ -44,10 +45,21 @@ export class ShowTemplate extends React.Component {
         const genres = this.state.genres.map((genre, i) => {
             return <span key={i}> {genre}{i < this.state.genres.length - 1 ? ', ' : ''}</span>
         });
+
+        const photos = this.state.photos.map((photo, i) => {
+            let newUrl = parseMedia(photo);
+            return <img src={newUrl} key={i}/>
+        });
+
+        const videos = this.state.videos.map((video, i) => {
+            let newUrl = parseMedia(video);
+            return <video controls> <source src={newUrl} type="video/mp4" key={i}/> </video>
+        });
         
         const cast = this.state.cast.map((castPerson, i) => {
+            let newUrl = parseMedia(castPerson.profilePhoto);
             return <div className="cast-person" key={i}>
-                <img src={castPerson.profilePhoto} className="img-align-left"/>
+                <img src={newUrl} className="img-align-left"/>
                 <b><a href={"../celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
                 <i>{castPerson.role}</i>
             </div>
@@ -84,7 +96,7 @@ export class ShowTemplate extends React.Component {
                         <b>Directed By:</b>	Ryan Coogler <br/>
                         <b>Written By:</b>	Joe Robert Cole, Ryan Coogler <br/>
                         <b>In Theaters:</b>	{this.state.releaseDate} <br/>
-                        <b>Studio:</b> {this.state.studioNetwork} <p/><p/>
+                        <b>Network:</b> {this.state.network} <p/><p/>
                         <button className="btn small-margin-right"> Interested</button>
                         <button className="btn"> Uninterested</button>
                     </div>
@@ -92,18 +104,12 @@ export class ShowTemplate extends React.Component {
                 
                 <div className="photos padding-top margin-top-bottom-">
                     <h2> Photos </h2> <p/> <hr/>
-                    <div className="photos-inner">
-                        {this.state.photos.map((photo, i) => <img src={photo} key={i}/>)}
-                    </div>     
+                    <div className="photos-inner"> {photos} </div>     
                 </div>
                 
                 <div className="margin-top-bottom">
                     <h2> Videos </h2> <hr/>
-                    <div className="videos">
-                        {this.state.videos.map((video, i) =>
-                            <video controls> <source src={video} type="video/mp4" key={i}/> </video>
-                        )}
-                    </div>
+                    <div className="videos"> {videos} </div>
                 </div>
                 
                 <div className="seasons margin-top-bottom">

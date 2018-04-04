@@ -14,8 +14,8 @@ export class Header extends React.Component {
                         <li className="nav-item"> <a className="nav-link" href="/profile.html">Profile</a> </li>
                         {/* <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#login-modal">Login</a></li> */}
 					    {/* <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#register-modal">Register</a></li> */}
-                        <li className="nav-item"> <a className="nav-link" href="/movie">Movies</a> </li>
-                        <li className="nav-item"> <a className="nav-link" href="/tvshow.html">TV Shows</a> </li>
+                        <li className="nav-item"> <a className="nav-link" href="/movie/0">Movies</a> </li>
+                        <li className="nav-item"> <a className="nav-link" href="/show/0">TV Shows</a> </li>
                         <li className="nav-item"> <a className="nav-link" href="#">Sign out</a> </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
