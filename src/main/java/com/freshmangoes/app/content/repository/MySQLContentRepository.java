@@ -12,9 +12,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 import com.google.common.collect.ImmutableMap;
-import org.springframework.stereotype.Repository;
 
 
 @Repository
@@ -153,6 +153,7 @@ public class MySQLContentRepository implements ContentRepository {
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
+
     return null;
   }
 
