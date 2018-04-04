@@ -1,9 +1,12 @@
 package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.*;
+import com.freshmangoes.app.rating.data.Rating;
 import com.google.common.collect.ImmutableList;
 import org.springframework.stereotype.Repository;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,23 +17,41 @@ public class MySQLContentRepository implements ContentRepository {
   @Override
   public Movie findMovieById(int id) {
     // Return filler data for now
-    return Movie
-            .builder()
-            .id(id)
-            .type(ContentType.Movie)
+    try {
+      return Movie
+       .builder()
+       .id(id)
+       .type(ContentType.Movie)
+       .ratings(new ImmutableList.Builder<Rating>()
+       .add(Rating
+        .builder()
+        .id(1337)
+        .reviewerId(7331)
+        .body("Good movie, would recommend to other people")
+        .score(2)
+        .contentId(12345)
+        .build())
+       .build())
+       .summaryPhoto(new URL("https://goo.gl/ZAaNHg"))
             .contentMetadata(ContentMetadata
-                        .builder()
-                        .audienceScore(25.2)
-                        .genres(new ImmutableList.Builder<String>()
-                                      .add("Action")
-                                      .build())
-                        .mangoScore(22.5)
-                        .maturityRating("PG13")
-                        .name("Black Panther")
-                        .runTime(160)
-                        .summary("African warriors.")
-                        .build())
-            .build();
+       .builder()
+       .audienceScore(25.2)
+       .genres(new ImmutableList.Builder<String>()
+        .add("Action")
+        .add("Tragedy")
+        .add("Revenge")
+        .build())
+       .mangoScore(22.5)
+       .maturityRating("PG13")
+       .name("Black Panther")
+       .runTime(160)
+       .summary("African warriors.")
+       .build())
+       .build();
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override
