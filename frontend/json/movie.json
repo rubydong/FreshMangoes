@@ -4,7 +4,7 @@
 	"summaryPhoto": "../images/movie/blackpanther.jpg",
 	"media": {
 		"photos": ["../images/movie/bp1.jpg", "../images/movie/bp2.jpg", "../images/movie/bp3.jpg", "../images/movie/bp4.jpg"],
-		"videos": ["../videos/movie/bptrailer.mp4", "../videos/movie/bptrailer.mp4", "../videos/movie/bptrailer.mp4"]
+		"videos": ["../videos/bptrailer.mp4", "../videos/bptrailer.mp4", "../videos/bptrailer.mp4"]
 	},
 	"metadata": {
 		"name": "Black Panther",
@@ -15,6 +15,7 @@
 		"mangoScore": 97,
 		"audienceScore": 77,
 		"releaseDate": "February 16, 2018",
+		"studioNetwork": "Marvel Studios",
 		"cast": [
       {
 				"id": 0,
