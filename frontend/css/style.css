@@ -46,6 +46,18 @@ a:hover {
 	margin: 40px 0;
 }
 
+.tiny-margin-right {
+	margin-right: 2px;
+}
+
+.small-margin-right {
+	margin-right: 5px;
+}
+
+.med-margin-right {
+	margin-right: 15px;
+}
+
 .align-right {
 	clear: both;
 	float: right;
@@ -215,6 +227,7 @@ a:hover {
 	width: 16px !important;
 	height: 16px !important;
 	margin: -1px !important;
+	margin-top: -6px !important;
 	padding: 0 !important;
 	box-shadow: none;
 }

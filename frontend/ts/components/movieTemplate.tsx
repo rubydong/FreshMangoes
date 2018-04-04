@@ -5,15 +5,42 @@ const movie = require("../../json/movie.json");
 
 export class MovieTemplate extends React.Component {
     state = {
-        movieJson: null
+        summaryPhoto: "",
+        photos: [],
+        videos: [],
+        name: "",
+        maturityRating: "",
+        summary: "",
+        genres: [],
+        runTime: 0,
+        mangoScore: 0,
+        audienceScore: 0,
+        releaseDate: "",
+        studioNetwork: "",
+        cast: []
     }
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('https://1b823f0c-3672-4405-99af-b191f388b74c.mock.pstmn.io/movie/0')
+        axios.get('https://ca8135fe-1ee0-465a-8147-c5d034840cbf.mock.pstmn.io/movie/0')
         .then(function (response) {
-            currentComponent.setState({ movieJson: response.data });
-            console.log(currentComponent.state.movieJson);
+            currentComponent.setState({ 
+                summaryPhoto: response.data.summaryPhoto,
+                photos: response.data.media.photos,
+                videos: response.data.media.videos,
+                name: response.data.metadata.name,
+                maturityRating: response.data.metadata.maturityRating,
+                summary: response.data.metadata.summary,
+                genres: response.data.metadata.genres,
+                runTime: response.data.metadata.runTime,
+                mangoScore: response.data.metadata.mangoScore,
+                audienceScore: response.data.metadata.audienceScore,
+                releaseDate: response.data.metadata.releaseDate,
+                studioNetwork: response.data.metadata.studioNetwork,
+                cast: response.data.metadata.cast
+             });
+
+             console.log(currentComponent.state.cast);
         })
         .catch(function (error) {
             console.log(error);
@@ -21,7 +48,18 @@ export class MovieTemplate extends React.Component {
     }
 
     render() {
-        if (this.state.movieJson == null) return <div>Loading......</div>;
+        const genres = this.state.genres.map((genre, i) => {
+            return <span key={i}> {genre}{i < this.state.genres.length - 1 ? ', ' : ''}</span>
+        });
+        
+        const cast = this.state.cast.map((castPerson, i) => {
+            return <div className="cast-person" key={i}>
+                <img src={castPerson.profilePhoto} className="img-align-left"/>
+                <b><a href={"./celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
+                <i>{castPerson.role}</i>
+            </div>
+        });
+
         return (
             
         <div>
@@ -30,64 +68,57 @@ export class MovieTemplate extends React.Component {
                 <div className="summary">
                     <img src="../../images/movie/blackpanther.jpg" className="img-align-left"/> 
                     <div className="summary-title">
-                        <h1>{String(this.state.movieJson.success)}</h1>
-                        <h2>Black Panther</h2>
+                        <h2>{this.state.name}</h2>
                     </div>
                     
                     <div className="plot">
-                        <b>MangoMeter Audience Score</b> <br/>
-                        <Mangoes data-rating={movie.metadata.mangoScore}/>
-                        {movie.metadata.mangoScore}%
+                        <b> MangoMeter <span className="med-margin-right"></span> Audience Score</b> <br/>
 
-                        <Mangoes data-rating={movie.metadata.audienceScore}/> 
-                        {movie.metadata.audienceScore}% <p/><p/>
+                        <Mangoes data-rating={this.state.mangoScore}/>
+                        <span className="tiny-margin-right"></span>
+                        {this.state.mangoScore}%
+                        
+                        <span className="med-margin-right"></span>
+
+                        <Mangoes data-rating={this.state.audienceScore}/> 
+                        <span className="tiny-margin-right"></span>
+                        {this.state.audienceScore}% <p/><p/>
 
                         <b>About Movie</b> <br/> 
-                        {movie.metadata.summary} <p/> 
+                        {this.state.summary} <p/> 
                     </div>
 
                     <div className="content-info">
-                        <b>Rating:</b>	{movie.metadata.maturityRating}<br/>
-                        <b>Genres:</b>	{movie.metadata.genres} <br/>
+                        <b>Rating:</b>	{this.state.maturityRating}<br/>
+                        <b>Genres:</b>	{genres} <br/>
                         <b>Directed By:</b>	Ryan Coogler <br/>
                         <b>Written By:</b>	Joe Robert Cole, Ryan Coogler <br/>
-                        <b>In Theaters:</b>	{movie.metadata.releaseDate} <br/>
-                        <b>Runtime:</b>	{movie.metadata.runTime} minutes <br/>
-                        <b>Studio:</b>	Marvel Studios <p/><p/>
-                        <button className="btn"> Interested</button>
+                        <b>In Theaters:</b>	{this.state.releaseDate} <br/>
+                        <b>Runtime:</b>	{this.state.runTime} minutes <br/>
+                        <b>Studio:</b> {this.state.studioNetwork} <p/><p/>
+                        <button className="btn small-margin-right"> Interested</button>
                         <button className="btn"> Uninterested</button>
                     </div>
-                    
-                        
-                    
                 </div>
                 
                 <div className="photos padding-top margin-top-bottom-">
-                    <h2> Photos </h2> <p/>
-                    <hr/>
+                    <h2> Photos </h2> <p/> <hr/>
                     <div className="photos-inner">
-                        <img src="../images/movie/bp1.jpg"/>
-                        <img src="../images/movie/bp2.jpg"/>
-                        <img src="../images/movie/bp3.jpg"/>
-                        <img src="../images/movie/bp4.jpg"/>
-                    </div>
+                        {this.state.photos.map((photo, i) =>
+                        <img src={photo} key={i}/>
+                        )}
+                    </div>     
                 </div>
                 
                 <div className="margin-top-bottom">
-                    <h2> Trailers </h2> 
-                    <hr/>
+                    <h2> Trailers </h2> <hr/>
                     <div className="videos">
-                        <video controls>
-                            <source src="../videos/bptrailer.mp4" type="video/mp4"/>
-                        </video>
-                        <video controls>
-                            <source src="../videos/bptrailer.mp4" type="video/mp4"/>
-                        </video>
-                        <video controls>
-                            <source src="../videos/bptrailer.mp4" type="video/mp4"/>
-                        </video>
+                        {this.state.videos.map((video, i) =>
+                            <video controls>
+                                <source src={video} type="video/mp4" key={i}/>
+                            </video>
+                        )}
                     </div>
-                    
                 </div>
                 
                 <div className="ticketshowtime padding-top margin-top-bottom">
@@ -131,35 +162,7 @@ export class MovieTemplate extends React.Component {
                     <h2>Cast</h2>
                     <hr/>
                     <div className="flex-center">
-                        <div className="cast-person">
-                            <img src="../images/movie/cast1.jpg" className="img-align-left"/>
-                            <b><a href="">Chadwick Boseman</a></b>  <br/> <i>T'Challa/Black Panther</i>
-                        </div>
-
-                        <div className="cast-person">
-                            <img src="../images/movie/cast2.jpg" className="img-align-left"/>
-                            <b><a href="">Michael B. Jordan</a></b>  <br/> <i>Erik Killmonger</i>
-                        </div>
-
-                        <div className="cast-person">
-                            <img src="../images/movie/cast3.jpg" className="img-align-left"/>
-                            <b><a href="">Lupita Nyong'o</a></b>  <br/> <i> Nakia</i>
-                        </div>
-
-                        <div className="cast-person">
-                            <img src="../images/movie/cast4.jpg" className="img-align-left"/>
-                            <b><a href="">Danai Gurira</a></b>  <br/><i>Okoye</i>
-                        </div>
-
-                        <div className="cast-person">
-                            <img src="../images/movie/cast5.jpg" className="img-align-left"/>
-                            <b><a href="">Martin Freeman</a></b>  <br/> <i>Everett K. Ross</i>
-                        </div>
-
-                        <div className="cast-person">
-                            <img src="../images/movie/cast6.jpg" className="img-align-left"/>
-                            <b><a href="">Daniel Kaluuya</a></b>  <br/> <i>W'Kabi</i>
-                        </div>
+                        {cast}
                     </div>
                     <p/>
                     <div className="align-right"><a href="">View All Cast</a></div>
@@ -171,31 +174,31 @@ export class MovieTemplate extends React.Component {
                 
                 <div className="review pull-right">
                     <b><a href="">Matthew Rozsa</a></b> 
-                    <span className="align-right"> <Mangoes data-rating={movie.metadata.mangoScore}/></span> <br/>
-                    <i> Black Panther </i>
+                    <span className="align-right"> <Mangoes data-rating={this.state.mangoScore}/></span> <br/>
+                    <i> {this.state.name} </i>
                     <hr/>
-                    "When it comes to creative visuals, engaging action and likable characters, "Black Panther" stands confidently next to the best fare offered up by the Marvel Cinematic Universe."
+                    "When it comes to creative visuals, engaging action and likable characters, "{this.state.name}" stands confidently next to the best fare offered up by the Marvel Cinematic Universe."
                 </div>
                 <div className="review pull-left">
                     <b><a href="">Christopher Orr</a></b> 
-                    <span className="align-right"> <Mangoes data-rating={movie.metadata.mangoScore}/></span> <br/>
-                    <i>Black Panther</i>
+                    <span className="align-right"> <Mangoes data-rating={this.state.mangoScore}/></span> <br/>
+                    <i>{this.state.name}</i>
                     
                     <hr/>
                     "Whether or not this is the best film Marvel Studios has made to date-and it is clearly in the discussion-it is by far the most thought-provoking."
                 </div>
                 <div className="review pull-right">
                     <b><a href="">J. R. Jones</a></b> 
-                    <span className="align-right"> <Mangoes data-rating={movie.metadata.mangoScore}/></span> <br/>
-                    <i>Black Panther</i>
+                    <span className="align-right"> <Mangoes data-rating={this.state.mangoScore}/></span> <br/>
+                    <i>{this.state.name}</i>
                     
                     <hr/>
                     "The identity politics provide a fresh spin to the genre's increasingly tedious narrative formula."
                 </div>
                 <div className="review pull-left">
                     <b><a href="">Anthony Lane</a></b> 
-                    <span className="align-right"> <Mangoes data-rating={movie.metadata.mangoScore}/></span> <br/>
-                    <i>Black Panther</i>
+                    <span className="align-right"> <Mangoes data-rating={this.state.mangoScore}/></span> <br/>
+                    <i>{this.state.name}</i>
                     
                     <hr/>
                     "Jordan has swagger to spare, with those rolling shoulders, but there's a breath of charm, too, all the more seductive in the overblown atmosphere of Marvel. He's twice as pantherish as the Panther."
