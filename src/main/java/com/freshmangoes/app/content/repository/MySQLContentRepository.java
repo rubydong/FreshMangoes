@@ -39,20 +39,25 @@ public class MySQLContentRepository implements ContentRepository {
                                       .build())
                                 .build();
 
-    List<Celebrity> cast = new ImmutableList.Builder<Celebrity>()
-                                .add(Celebrity
-                                      .builder()
-                                      .name("Chadwick Boseman")
-                                      .id(1337)
-                                      .type(CelebrityType.Actor)
-                                      .birthplace("Anderson, SC")
-                                      .birthday(new Date(880782472000L))
-                                      .biography("Studied acting at the British American Drama Academy "
-                                       + "in Oxford after graduating from Howard University in "
-                                       + "Washington, United States. Originally aspired to be a director. "
-                                       + "Made his TV debut in a 2003 episode of Third Watch.")
-                                      .build())
-                                .build();
+    List<Celebrity> cast = new ImmutableList.Builder<Celebrity>().build();
+    try {
+      Celebrity c = Celebrity
+                      .builder()
+                      .name("Chadwick Boseman")
+                      .id(1337)
+                      .type(CelebrityType.Actor)
+                      .birthplace("Anderson, SC")
+                      .birthday(new Date(880782472000L))
+                      .profilePhoto(new URL("https://goo.gl/oU3PBh"))
+                      .biography("Studied acting at the British American Drama Academy "
+                       + "in Oxford after graduating from Howard University in "
+                       + "Washington, United States. Originally aspired to be a director. "
+                       + "Made his TV debut in a 2003 episode of Third Watch.")
+                      .build();
+      cast.add(c);
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
 
     List<String> genres = new ImmutableList.Builder<String>()
                                .add("Action")

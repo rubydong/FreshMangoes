@@ -1,12 +1,9 @@
 package com.freshmangoes.app.celebrity.data;
 
-
 import com.freshmangoes.app.common.data.Media;
-import com.freshmangoes.app.content.data.Content;
 import java.net.URL;
 import java.util.Date;
-import java.util.List;
-
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +11,6 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-
 public class Celebrity {
   private Integer id;
   private CelebrityType type;
@@ -24,5 +20,5 @@ public class Celebrity {
   private String birthplace;
   private String biography;
   private Media media;
-  private List<Content> roles;
+  private Map<String, String> roles;
 }

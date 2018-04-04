@@ -10,8 +10,6 @@ public interface ContentRepository {
 
   Show findShowById(final int id);
 
-//  Season findSeasonById(final int id);
-
   List<Movie> findAllMoviesLikeKeyword(final String searchQuery);
 
   List<Show> findAllShowsLikeKeyword(final String searchQuery);
