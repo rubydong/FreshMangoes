@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -165,6 +166,8 @@ public class MySQLContentRepository implements ContentRepository {
             .name("Durarara!!")
             .runTime(24)
             .summary("Supernatural japanese gangsters")
+            .releaseDate(new Date(880782472000L))
+            .cast(null)
             .build())
         .build());
 
@@ -184,6 +187,8 @@ public class MySQLContentRepository implements ContentRepository {
             .name("Durarara!!")
             .runTime(24)
             .summary("Supernatural japanese gangsters")
+            .releaseDate(new Date(880782472000L))
+            .cast(null)
             .build())
         .build());
 

@@ -1,6 +1,6 @@
 package com.freshmangoes.app.search;
 
-import com.freshmangoes.app.search.service.SearchServiceImpl;
+import com.freshmangoes.app.search.service.SearchService;
 import com.freshmangoes.app.search.data.SearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SearchController {
 
   @Autowired
-  private SearchServiceImpl searchServiceImpl;
+  private SearchService searchService;
 
   @RequestMapping(value = "search", params = "query", method = RequestMethod.GET)
   public SearchResult doGet(
       @RequestParam("query") String searchQuery) {
-    return searchServiceImpl.searchByKeyword(searchQuery);
+    return searchService.searchByKeyword(searchQuery);
   }
 }

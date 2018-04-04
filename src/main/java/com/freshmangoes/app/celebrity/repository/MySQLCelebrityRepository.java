@@ -29,10 +29,12 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
           .profilePhoto(new URL("https://goo.gl/wdpmKu"))
           .birthplace("Anderson, SC")
           .birthday(new Date(880782472000L))
-          .biography("Little League baseball but primarily played basketball. Studied acting "
-              + "at the British American Drama Academy in Oxford after graduating from Howard "
-              + "University in Washington, United States. ")
+          .biography("Studied acting at the British American Drama Academy "
+              + "in Oxford after graduating from Howard University in "
+              + "Washington, United States. Originally aspired to be a director. "
+              + "Made his TV debut in a 2003 episode of Third Watch.")
           .media(null)
+          .roles(null)
           .build();
     } catch (MalformedURLException e) {
       e.printStackTrace();
@@ -50,11 +52,17 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
           .name("Steven Spielberg")
           .id(8)
           .type(CelebrityType.Director)
-          .profilePhoto(new URL("goo.gl/rcqkrJ"))
+          .profilePhoto(new URL("https://goo.gl/rcqkrJ"))
           .birthplace("Cincinnati, OH")
           .birthday(new Date(-727052823000L))
-          .biography("Highest grossing director of all time. ")
+          .biography("Highest grossing director of all time. A lifelong cinema buff, he began "
+              + "directing his first short movies while still a child, later studying film at "
+              + "California State University and winning notice for his 1969 short feature "
+              + "Amblin'. He first made his mark in television, directing Joan Crawford in the "
+              + "pilot for Rod Serling's Night Gallery and working on episodes of Columbo "
+              + "and Marcus Welby, M.D. ")
           .media(null)
+          .roles(null)
           .build());
     } catch (MalformedURLException e) {
       e.printStackTrace();
