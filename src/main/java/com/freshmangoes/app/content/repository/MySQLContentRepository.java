@@ -1,23 +1,24 @@
 package com.freshmangoes.app.content.repository;
 
+import com.freshmangoes.app.celebrity.data.Celebrity;
+import com.freshmangoes.app.celebrity.data.CelebrityType;
 import com.freshmangoes.app.content.data.*;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.data.UserType;
 import com.google.common.collect.ImmutableList;
-import org.springframework.stereotype.Repository;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 
 @Repository
 public class MySQLContentRepository implements ContentRepository {
 
   @Override
-  public Movie findMovieById(int id) {
+  public Movie findMovieById(final int id) {
     // Return filler data for now
     try {
       return Movie
@@ -38,6 +39,23 @@ public class MySQLContentRepository implements ContentRepository {
        .summaryPhoto(new URL("https://goo.gl/ZAaNHg"))
             .contentMetadata(ContentMetadata
        .builder()
+       .releaseDate(new Date(880782472000L))
+       .cast(new ImmutableList.Builder<Celebrity>()
+       .add(Celebrity
+        .builder()
+        .name("Chadwick Boseman")
+        .id(id)
+        .type(CelebrityType.Actor)
+        .profilePhoto(new URL("https://goo.gl/wdpmKu"))
+        .birthplace("Anderson, SC")
+        .birthday(new Date(880782472000L))
+        .biography("Studied acting at the British American Drama Academy "
+         + "in Oxford after graduating from Howard University in "
+         + "Washington, United States. Originally aspired to be a director. "
+         + "Made his TV debut in a 2003 episode of Third Watch.")
+        .media(null)
+        .roles(null)
+        .build()).build())
        .audienceScore(25.2)
        .genres(new ImmutableList.Builder<String>()
         .add("Action")
@@ -58,7 +76,7 @@ public class MySQLContentRepository implements ContentRepository {
   }
 
   @Override
-  public Show findShowById(int id) {
+  public Show findShowById(final int id) {
     // Return filler data for now
     return Show
             .builder()
@@ -80,7 +98,7 @@ public class MySQLContentRepository implements ContentRepository {
   }
 
   @Override
-  public Season findSeasonById(int id) {
+  public Season findSeasonById(final int id) {
     // Return filler data for now
     return Season
             .builder()
@@ -102,7 +120,7 @@ public class MySQLContentRepository implements ContentRepository {
   }
 
   @Override
-  public Episode findEpisodeById(int id) {
+  public Episode findEpisodeById(final int id) {
     // Return filler data for now
     return Episode
             .builder()
@@ -124,7 +142,7 @@ public class MySQLContentRepository implements ContentRepository {
   }
 
   @Override
-  public List<Movie> findAllMoviesLikeKeyword(String searchQuery) {
+  public List<Movie> findAllMoviesLikeKeyword(final String searchQuery) {
     List<Movie> movies = new ArrayList<>();
 
     movies.add(
@@ -170,7 +188,7 @@ public class MySQLContentRepository implements ContentRepository {
   }
 
   @Override
-  public List<Show> findAllShowsLikeKeyword(String searchQuery) {
+  public List<Show> findAllShowsLikeKeyword(final String searchQuery) {
     List<Show>shows = new ArrayList<>();
 
     shows.add(
