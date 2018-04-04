@@ -2,6 +2,7 @@ package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.celebrity.data.CelebrityType;
+import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.content.data.*;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.data.UserType;
@@ -11,6 +12,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.google.common.collect.ImmutableMap;
 import org.springframework.stereotype.Repository;
 
 
@@ -39,60 +42,118 @@ public class MySQLContentRepository implements ContentRepository {
                                       .build())
                                 .build();
 
-    List<Celebrity> cast = new ImmutableList.Builder<Celebrity>().build();
-    try {
-      Celebrity c = Celebrity
-                      .builder()
-                      .name("Chadwick Boseman")
-                      .id(1337)
-                      .type(CelebrityType.Actor)
-                      .birthplace("Anderson, SC")
-                      .birthday(new Date(880782472000L))
-                      .profilePhoto(new URL("https://goo.gl/oU3PBh"))
-                      .biography("Studied acting at the British American Drama Academy "
-                       + "in Oxford after graduating from Howard University in "
-                       + "Washington, United States. Originally aspired to be a director. "
-                       + "Made his TV debut in a 2003 episode of Third Watch.")
-                      .build();
-      cast.add(c);
-    } catch (MalformedURLException e) {
-      e.printStackTrace();
-    }
 
     List<String> genres = new ImmutableList.Builder<String>()
-                               .add("Action")
-                               .add("Tragedy")
-                               .add("Revenge")
+                               .add("Action & Adventure")
+                               .add("Drama")
+                               .add("Science Fiction & Fantasy")
                                .build();
-
-    ContentMetadata metadata = ContentMetadata
-                                .builder()
-                                .releaseDate(new Date(880782472000L))
-                                .cast(cast)
-                                .audienceScore(90.5)
-                                .genres(genres)
-                                .mangoScore(93.6)
-                                .maturityRating("PG13")
-                                .name("Black Panther")
-                                .runTime(160)
-                                .summary("African Warriors.")
-                                .build();
-
-    Movie movie = Movie
-                    .builder()
-                    .id(id)
-                    .type(ContentType.Movie)
-                    .ratings(ratings)
-                    .contentMetadata(metadata)
-                    .build();
-
     try {
-      movie.setSummaryPhoto(new URL("https://goo.gl/ZAaNHg"));
+    return Movie
+            .builder()
+            .id(id)
+            .type(ContentType.Movie)
+            .ratings(ratings)
+            .contentMetadata(ContentMetadata
+             .builder()
+             .releaseDate(new Date(1519776000000L))
+             .cast(new ImmutableList.Builder<Celebrity>()
+              .add(Celebrity
+               .builder()
+               .name("Chadwick Boseman")
+               .id(0)
+               .type(CelebrityType.Actor)
+               .profilePhoto(new URL("https://images/movie/cast1.jpg"))
+               .roles(new ImmutableMap.Builder<String, String>()
+               .put("Black Panther", "T'Challa")
+               .build())
+               .build())
+              .add(Celebrity
+               .builder()
+               .name("Michael B. Jordan")
+               .id(1)
+               .type(CelebrityType.Actor)
+               .profilePhoto(new URL("https://images/movie/cast2.jpg"))
+               .roles(new ImmutableMap.Builder<String, String>()
+                .put("Black Panther", "Erik Killmonger")
+                .build())
+               .build())
+              .add(Celebrity
+               .builder()
+               .name("Lupita Nyong'o")
+               .id(2)
+               .type(CelebrityType.Actor)
+               .profilePhoto(new URL("https://images/movie/cast3.jpg"))
+               .roles(new ImmutableMap.Builder<String, String>()
+                .put("Black Panther", "Nakia")
+                .build())
+               .build())
+              .add(Celebrity
+               .builder()
+               .name("Danai Gurira")
+               .id(3)
+               .type(CelebrityType.Actor)
+               .profilePhoto(new URL("https://images/movie/cast4.jpg"))
+               .roles(new ImmutableMap.Builder<String, String>()
+                .put("Black Panther", "Okoye")
+                .build())
+               .build())
+              .add(Celebrity
+               .builder()
+               .name("Martin Freeman")
+               .id(4)
+               .type(CelebrityType.Actor)
+               .roles(new ImmutableMap.Builder<String, String>()
+                .put("Black Panther", "Everett K. Ross")
+                .build())
+               .profilePhoto(new URL("https://images/movie/cast5.jpg"))
+               .build())
+              .add(Celebrity
+               .builder()
+               .name("Daniel Kaluuya")
+               .id(5)
+               .type(CelebrityType.Actor)
+               .profilePhoto(new URL("https://images/movie/cast6.jpg"))
+               .roles(new ImmutableMap.Builder<String, String>()
+                .put("Black Panther", "W'Kabi")
+                .build())
+               .build())
+              .build())
+             .audienceScore(77.0)
+             .genres(genres)
+             .mangoScore(97.0)
+             .maturityRating("PG-13")
+             .name("Black Panther")
+             .runTime(135)
+             .studio("Marvel Studios")
+             .summary("Black Panther follows T'Challa who, after the events of '"
+              + "Captain America: Civil War,' returns home to the isolated, "
+              + "technologically advanced African nation of Wakanda to take his "
+              + "place as King. However, when an old enemy reappears on the radar, "
+              + "T'Challa's mettle as King and Black Panther is tested when he is "
+              + "drawn into a conflict that puts the entire fate of Wakanda and the world "
+              + "at risk.")
+             .build())
+            .summaryPhoto(new URL("https://images/movie/blackpanther.jpg"))
+            .media(Media
+                    .builder()
+                    .photos(new ImmutableList.Builder<URL>()
+                                  .add(new URL("https://images/movie/bp1.jpg"))
+                                  .add(new URL("https://images/movie/bp2.jpg"))
+                                  .add(new URL("https://images/movie/bp3.jpg"))
+                                  .add(new URL("https://images/movie/bp4.jpg"))
+                                  .build())
+                    .videos(new ImmutableList.Builder<URL>()
+                                  .add(new URL("https://videos/bptrailer.mp4"))
+                                  .add(new URL("https://videos/bptrailer.mp4"))
+                                  .add(new URL("https://videos/bptrailer.mp4"))
+                                  .build())
+                    .build())
+            .build();
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
-
-    return movie;
+    return null;
   }
 
   @Override
