@@ -63,7 +63,7 @@ export class MovieTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <img src="../../images/movie/blackpanther.jpg" className="img-align-left"/> 
+                    <img src={this.state.summaryPhoto} className="img-align-left"/> 
                     <div className="summary-title">
                         <h2>{this.state.name}</h2>
                     </div>

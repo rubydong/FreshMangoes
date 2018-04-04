@@ -1,0 +1,56 @@
+{
+	"id": 2411,
+	"type": "Movie",
+	"summaryPhoto": "../images/tvshow/strangerfirst.jpg",
+	"media": {
+		"photos": ["../images/tvshow/strangerphotos1.jpg", "../images/tvshow/strangerphotos2.jpg", "../images/tvshow/strangerphotos3.jpg", "../images/tvshow/strangerphotos4.jpg"],
+		"videos": ["../videos/strangervideo.mp4", "../videos/strangervideo.mp4", "../videos/strangervideo.mp4"]
+	},  
+	"metadata": {
+		"name": "Stranger Things",
+		"summary": "A love letter to the '80s classics that captivated a generation, Stranger Things is set in 1983 Indiana, where a young boy vanishes into thin air. As friends, family and local police search for answers, they are drawn into an extraordinary mystery involving top-secret government experiments, terrifying supernatural forces and one very strange little girl.",
+		"genres": ["Science Fiction & Fantasy"],
+		"mangoScore": 94,
+		"audienceScore": 94,
+		"releaseDate": "Jul 15, 2016",
+		"studioNetwork": "Netflix",
+		"cast": [
+            {
+				"id": 10,
+				"name": "Winona Ryder",
+				"role": "Joyce Byers",
+				"profilePhoto": "../images/tvshow/winona.jpg"
+			},
+			{
+				"id": 11,
+				"name": "David Harbour",
+				"role": "Chief",
+				"profilePhoto": "../images/tvshow/david.jpg"
+            }, 
+            {
+                "id": 12,
+                "name": "Millie Bobbie Brown",
+                "role": "Eleven",
+                "profilePhoto": "../images/tvshow/millie.jpg"
+            },
+            {
+                "id": 13,
+                "name": "Finn Wolfhard",
+                "role": "Mike",
+                "profilePhoto": "../images/tvshow/finn.jpg"
+            },
+            {
+                "id": 14,
+                "name": "Gaten Matarazzo",
+                "role": "Dustin",
+                "profilePhoto": "../images/tvshow/gaten.jpg"
+            },
+            {
+                "id": 15,
+                "name": "Caleb Mclaughlin",
+                "role": "Lucas",
+                "profilePhoto": "../images/tvshow/caleb.jpg"
+            }
+		]
+	}
+}
