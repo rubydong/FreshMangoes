@@ -14,7 +14,7 @@ public class SearchServiceImpl implements SearchService{
   @Autowired
   private ContentRepository contentRepository;
 
-  public SearchResult searchByKeyword(String searchQuery) {
+  public SearchResult searchByKeyword(final String searchQuery) {
       return SearchResult
               .builder()
               .movies(contentRepository.findAllMoviesLikeKeyword(searchQuery))

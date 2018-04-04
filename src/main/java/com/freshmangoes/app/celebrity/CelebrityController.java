@@ -16,7 +16,7 @@ public class CelebrityController {
   private CelebrityService celebrityService;
 
   @RequestMapping(value = "/celebrity/{id}", method = RequestMethod.GET)
-  public Celebrity doGet(@PathVariable int id) {
+  public Celebrity doGet(@PathVariable final int id) {
     return celebrityService.getCelebrity(id);
   }
 }

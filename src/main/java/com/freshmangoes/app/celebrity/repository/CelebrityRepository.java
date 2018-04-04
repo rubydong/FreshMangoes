@@ -7,5 +7,5 @@ import java.util.List;
 public interface CelebrityRepository {
   Celebrity findCelebrityById(int id);
 
-  List<Celebrity> findAllLikeKeyword(String searchQuery);
+  List<Celebrity> findAllLikeKeyword(final String searchQuery);
 }
