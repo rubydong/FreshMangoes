@@ -15,11 +15,12 @@ public class SearchService {
   private ContentRepository contentRepository;
 
   public SearchResult searchByKeyword(String searchQuery) {
-    SearchResult result = new SearchResult();
-    result.setMovies(contentRepository.findAllMoviesLikeKeyword(searchQuery));
-    result.setShows(contentRepository.findAllShowsLikeKeyword(searchQuery));
-    result.setCelebrities(mySQLCelebrityRepository.findAllLikeKeyword(searchQuery));
-    return result;
+      return SearchResult
+              .builder()
+              .movies(contentRepository.findAllMoviesLikeKeyword(searchQuery))
+              .shows(contentRepository.findAllShowsLikeKeyword(searchQuery))
+              .celebrities(mySQLCelebrityRepository.findAllLikeKeyword(searchQuery))
+              .build();
   }
 
 }

@@ -6,12 +6,10 @@ import com.freshmangoes.app.content.data.Show;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 @Data
 @Builder
-@NoArgsConstructor
 public class SearchResult {
   List<Celebrity> celebrities;
   List<Content> movies;
