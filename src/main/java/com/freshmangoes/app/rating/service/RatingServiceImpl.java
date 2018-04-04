@@ -6,16 +6,18 @@ import com.freshmangoes.app.rating.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+
 @Service
 public class RatingServiceImpl implements RatingService {
   @Autowired
   private RatingRepository ratingRepository;
 
-  public boolean addToRating(Integer contentId,
-                             Integer score,
-                             UserType type,
-                             Integer reviewerId,
-                             String body) {
+  public boolean addToRating(final Integer contentId,
+                             final Integer score,
+                             final UserType type,
+                             final Integer reviewerId,
+                             final String body) {
     return ratingRepository.insertRating(Rating
                                           .builder()
                                           .contentId(contentId)
