@@ -2,7 +2,7 @@ package com.freshmangoes.app.celebrity.data;
 
 
 
-enum CelebrityType {
+public enum CelebrityType {
   Actor,
   Director,
   Writer,

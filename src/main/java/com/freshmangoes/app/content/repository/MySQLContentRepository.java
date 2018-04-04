@@ -1,45 +1,68 @@
 package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.*;
-import com.freshmangoes.app.content.repository.ContentRepositoryInterface;
+import com.freshmangoes.app.rating.data.Rating;
 import com.google.common.collect.ImmutableList;
 import org.springframework.stereotype.Repository;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 @Repository
-public class MySQLContentRepository implements ContentRepositoryInterface {
+public class MySQLContentRepository implements ContentRepository {
 
   @Override
-  public Content findMovieById(int id) {
+  public Movie findMovieById(int id) {
     // Return filler data for now
-    return Content
-            .builder()
-            .id(id)
-            .type(ContentType.Movie)
-            .metadata(ContentMetadata
-                        .builder()
-                        .audienceScore(25.2)
-                        .genres(new ImmutableList.Builder<String>()
-                                      .add("Action")
-                                      .build())
-                        .mangoScore(22.5)
-                        .maturityRating("PG13")
-                        .name("Black Panther")
-                        .runTime(160)
-                        .summary("African warriors.")
-                        .build())
-            .build();
+    try {
+      return Movie
+       .builder()
+       .id(id)
+       .type(ContentType.Movie)
+       .ratings(new ImmutableList.Builder<Rating>()
+       .add(Rating
+        .builder()
+        .id(1337)
+        .reviewerId(7331)
+        .body("Good movie, would recommend to other people")
+        .score(2)
+        .contentId(12345)
+        .build())
+       .build())
+       .summaryPhoto(new URL("https://goo.gl/ZAaNHg"))
+            .contentMetadata(ContentMetadata
+       .builder()
+       .audienceScore(25.2)
+       .genres(new ImmutableList.Builder<String>()
+        .add("Action")
+        .add("Tragedy")
+        .add("Revenge")
+        .build())
+       .mangoScore(22.5)
+       .maturityRating("PG13")
+       .name("Black Panther")
+       .runTime(160)
+       .summary("African warriors.")
+       .build())
+       .build();
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override
-  public Content findShowById(int id) {
+  public Show findShowById(int id) {
     // Return filler data for now
-    return Content
+    return Show
             .builder()
             .id(id)
             .type(ContentType.Show)
-            .metadata(ContentMetadata
+            .contentMetadata(ContentMetadata
                         .builder()
                         .audienceScore(54.2)
                         .genres(new ImmutableList.Builder<String>()
@@ -55,13 +78,13 @@ public class MySQLContentRepository implements ContentRepositoryInterface {
   }
 
   @Override
-  public Content findSeasonById(int id) {
+  public Season findSeasonById(int id) {
     // Return filler data for now
-    return Content
+    return Season
             .builder()
             .id(id)
             .type(ContentType.Season)
-            .metadata(ContentMetadata
+            .contentMetadata(ContentMetadata
                         .builder()
                         .audienceScore(25.2)
                         .genres(new ImmutableList.Builder<String>()
@@ -77,13 +100,13 @@ public class MySQLContentRepository implements ContentRepositoryInterface {
   }
 
   @Override
-  public Content findEpisodeById(int id) {
+  public Episode findEpisodeById(int id) {
     // Return filler data for now
-    return Content
+    return Episode
             .builder()
             .id(id)
             .type(ContentType.Episode)
-            .metadata(ContentMetadata
+            .contentMetadata(ContentMetadata
                         .builder()
                         .audienceScore(25.2)
                         .genres(new ImmutableList.Builder<String>()
@@ -96,5 +119,100 @@ public class MySQLContentRepository implements ContentRepositoryInterface {
                         .summary("Cannabalistic edgelords")
                         .build())
             .build();
+  }
+
+  @Override
+  public List<Movie> findAllMoviesLikeKeyword(String searchQuery) {
+    List<Movie> movies = new ArrayList<>();
+
+    movies.add(
+        Movie
+        .builder()
+        .id(34)
+        .type(ContentType.Movie)
+        .contentMetadata(ContentMetadata
+            .builder()
+            .audienceScore(67.0)
+            .genres(new ImmutableList.Builder<String>()
+                .add("Action")
+                .add("Science Fiction & Fantasy")
+                .build())
+            .mangoScore(33.2)
+            .maturityRating("PG13")
+            .name("Batman V Superman: Dawn of Justice")
+            .runTime(151)
+            .summary("Batman fights Superman.")
+            .build())
+        .build());
+
+    movies.add(
+        Movie
+        .builder()
+        .id(15)
+        .type(ContentType.Movie)
+        .contentMetadata(ContentMetadata
+            .builder()
+            .audienceScore(25.2)
+            .genres(new ImmutableList.Builder<String>()
+                .add("Action")
+                .build())
+            .mangoScore(22.5)
+            .maturityRating("PG13")
+            .name("Black Panther")
+            .runTime(160)
+            .summary("African warriors.")
+            .build())
+        .build());
+
+    return movies;
+  }
+
+  @Override
+  public List<Show> findAllShowsLikeKeyword(String searchQuery) {
+    List<Show>shows = new ArrayList<>();
+
+    shows.add(
+        Show
+        .builder()
+        .id(62)
+        .type(ContentType.Show)
+        .contentMetadata(ContentMetadata
+            .builder()
+            .audienceScore(54.2)
+            .genres(new ImmutableList.Builder<String>()
+                .add("Comedy")
+                .build())
+            .mangoScore(43.2)
+            .maturityRating("R")
+            .name("Durarara!!")
+            .runTime(24)
+            .summary("Supernatural japanese gangsters")
+            .releaseDate(new Date(880782472000L))
+            .cast(null)
+            .build())
+        .build());
+
+    shows.add(
+        Show
+        .builder()
+        .id(62)
+        .type(ContentType.Show)
+        .contentMetadata(ContentMetadata
+            .builder()
+            .audienceScore(54.2)
+            .genres(new ImmutableList.Builder<String>()
+                .add("Comedy")
+                .build())
+            .mangoScore(43.2)
+            .maturityRating("R")
+            .name("Durarara!!")
+            .runTime(24)
+            .summary("Supernatural japanese gangsters")
+            .releaseDate(new Date(880782472000L))
+            .cast(null)
+            .build())
+        .build());
+
+    return shows;
   }
 }

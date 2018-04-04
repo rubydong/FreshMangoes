@@ -1,30 +1,14 @@
 package com.freshmangoes.app.content.service;
 
-import com.freshmangoes.app.content.data.Content;
-import com.freshmangoes.app.content.repository.MySQLContentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.freshmangoes.app.content.data.*;
 
 
+public interface ContentService {
+  Movie findMovieById(int id);
 
-@Service
-public class ContentService {
-  @Autowired
-  private MySQLContentRepository mySQLContentRepository;
+  Show findShowById(int id);
 
-  public Content findMovieById(int id) {
-    return mySQLContentRepository.findMovieById(id);
-  }
+  Season findSeasonById(int id);
 
-  public Content findShowById(int id) {
-    return mySQLContentRepository.findShowById(id);
-  }
-
-  public Content findSeasonById(int id) {
-    return mySQLContentRepository.findSeasonById(id);
-  }
-
-  public Content findEpisodeById(int id) {
-    return mySQLContentRepository.findEpisodeById(id);
-  }
+  Episode findEpisodeById(int id);
 }
