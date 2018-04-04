@@ -1,9 +1,7 @@
 package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.*;
-
 import java.util.List;
-
 
 
 
@@ -12,9 +10,7 @@ public interface ContentRepository {
 
   Show findShowById(final int id);
 
-  Season findSeasonById(final int id);
-
-  Episode findEpisodeById(final int id);
+//  Season findSeasonById(final int id);
 
   List<Movie> findAllMoviesLikeKeyword(final String searchQuery);
 

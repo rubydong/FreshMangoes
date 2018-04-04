@@ -20,59 +20,74 @@ public class MySQLContentRepository implements ContentRepository {
   @Override
   public Movie findMovieById(final int id) {
     // Return filler data for now
+    List<Rating> ratings = new ImmutableList.Builder<Rating>()
+                                .add(Rating
+                                      .builder()
+                                      .id(1)
+                                      .type(UserType.Audience)
+                                      .body("Good movie, would recommend to other people")
+                                      .score(89)
+                                      .contentId(id)
+                                      .build())
+                                .add(Rating
+                                      .builder()
+                                      .id(2)
+                                      .type(UserType.Critic)
+                                      .body("Overhyped, generic superhero movie")
+                                      .score(60)
+                                      .contentId(id)
+                                      .build())
+                                .build();
+
+    List<Celebrity> cast = new ImmutableList.Builder<Celebrity>()
+                                .add(Celebrity
+                                      .builder()
+                                      .name("Chadwick Boseman")
+                                      .id(1337)
+                                      .type(CelebrityType.Actor)
+                                      .birthplace("Anderson, SC")
+                                      .birthday(new Date(880782472000L))
+                                      .biography("Studied acting at the British American Drama Academy "
+                                       + "in Oxford after graduating from Howard University in "
+                                       + "Washington, United States. Originally aspired to be a director. "
+                                       + "Made his TV debut in a 2003 episode of Third Watch.")
+                                      .build())
+                                .build();
+
+    List<String> genres = new ImmutableList.Builder<String>()
+                               .add("Action")
+                               .add("Tragedy")
+                               .add("Revenge")
+                               .build();
+
+    ContentMetadata metadata = ContentMetadata
+                                .builder()
+                                .releaseDate(new Date(880782472000L))
+                                .cast(cast)
+                                .audienceScore(90.5)
+                                .genres(genres)
+                                .mangoScore(93.6)
+                                .maturityRating("PG13")
+                                .name("Black Panther")
+                                .runTime(160)
+                                .summary("African Warriors.")
+                                .build();
+
+    Movie movie = Movie
+                    .builder()
+                    .id(id)
+                    .type(ContentType.Movie)
+                    .ratings(ratings)
+                    .contentMetadata(metadata)
+                    .build();
+
     try {
-      return Movie
-       .builder()
-       .id(id)
-       .type(ContentType.Movie)
-       .ratings(new ImmutableList.Builder<Rating>()
-       .add(Rating
-        .builder()
-        .id(1337)
-        .type(UserType.Audience)
-        .reviewerId(7331)
-        .body("Good movie, would recommend to other people")
-        .score(2)
-        .contentId(12345)
-        .build())
-       .build())
-       .summaryPhoto(new URL("https://goo.gl/ZAaNHg"))
-            .contentMetadata(ContentMetadata
-       .builder()
-       .releaseDate(new Date(880782472000L))
-       .cast(new ImmutableList.Builder<Celebrity>()
-       .add(Celebrity
-        .builder()
-        .name("Chadwick Boseman")
-        .id(id)
-        .type(CelebrityType.Actor)
-        .profilePhoto(new URL("https://goo.gl/wdpmKu"))
-        .birthplace("Anderson, SC")
-        .birthday(new Date(880782472000L))
-        .biography("Studied acting at the British American Drama Academy "
-         + "in Oxford after graduating from Howard University in "
-         + "Washington, United States. Originally aspired to be a director. "
-         + "Made his TV debut in a 2003 episode of Third Watch.")
-        .media(null)
-        .roles(null)
-        .build()).build())
-       .audienceScore(25.2)
-       .genres(new ImmutableList.Builder<String>()
-        .add("Action")
-        .add("Tragedy")
-        .add("Revenge")
-        .build())
-       .mangoScore(22.5)
-       .maturityRating("PG13")
-       .name("Black Panther")
-       .runTime(160)
-       .summary("African warriors.")
-       .build())
-       .build();
+      movie.setSummaryPhoto(new URL("https://goo.gl/ZAaNHg"));
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
-    return null;
+
+    return movie;
   }
 
   @Override
@@ -97,49 +112,6 @@ public class MySQLContentRepository implements ContentRepository {
             .build();
   }
 
-  @Override
-  public Season findSeasonById(final int id) {
-    // Return filler data for now
-    return Season
-            .builder()
-            .id(id)
-            .type(ContentType.Season)
-            .contentMetadata(ContentMetadata
-                        .builder()
-                        .audienceScore(25.2)
-                        .genres(new ImmutableList.Builder<String>()
-                                      .add("Slice of Life")
-                                      .build())
-                        .mangoScore(22.5)
-                        .maturityRating("PG13")
-                        .name("Flying Witch")
-                        .runTime(160)
-                        .summary("Farming life")
-                        .build())
-            .build();
-  }
-
-  @Override
-  public Episode findEpisodeById(final int id) {
-    // Return filler data for now
-    return Episode
-            .builder()
-            .id(id)
-            .type(ContentType.Episode)
-            .contentMetadata(ContentMetadata
-                        .builder()
-                        .audienceScore(25.2)
-                        .genres(new ImmutableList.Builder<String>()
-                                      .add("Tragedy")
-                                      .build())
-                        .mangoScore(22.5)
-                        .maturityRating("R")
-                        .name("Tokyo Ghoul")
-                        .runTime(160)
-                        .summary("Cannabalistic edgelords")
-                        .build())
-            .build();
-  }
 
   @Override
   public List<Movie> findAllMoviesLikeKeyword(final String searchQuery) {

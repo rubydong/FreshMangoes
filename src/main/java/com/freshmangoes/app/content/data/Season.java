@@ -1,10 +1,9 @@
 package com.freshmangoes.app.content.data;
 
-import java.net.URL;
-import java.util.List;
-
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.rating.data.Rating;
+import java.net.URL;
+import java.util.List;
 import lombok.Builder;
 
 
