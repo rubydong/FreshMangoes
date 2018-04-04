@@ -23,6 +23,7 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
     try {
       return Celebrity
           .builder()
+          .name("Chadwick Boseman")
           .id(id)
           .type(CelebrityType.Actor)
           .profilePhoto(new URL("https://goo.gl/wdpmKu"))
@@ -46,14 +47,13 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
       celebrities.add(
           Celebrity
           .builder()
-          .id(12)
-          .type(CelebrityType.Actor)
-          .profilePhoto(new URL("https://goo.gl/wdpmKu"))
-          .birthplace("Anderson, SC")
-          .birthday(new Date(880782472000L))
-          .biography("Little League baseball but primarily played basketball. Studied acting "
-              + "at the British American Drama Academy in Oxford after graduating from Howard "
-              + "University in Washington, United States. ")
+          .name("Steven Spielberg")
+          .id(8)
+          .type(CelebrityType.Director)
+          .profilePhoto(new URL("goo.gl/rcqkrJ"))
+          .birthplace("Cincinnati, OH")
+          .birthday(new Date(-727052823000L))
+          .biography("Highest grossing director of all time. ")
           .media(null)
           .build());
     } catch (MalformedURLException e) {

@@ -16,7 +16,7 @@ public interface ContentRepository {
 
   Episode findEpisodeById(int id);
 
-  List<Content> findAllMoviesLikeKeyword(String searchQuery);
+  List<Movie> findAllMoviesLikeKeyword(String searchQuery);
 
   List<Show> findAllShowsLikeKeyword(String searchQuery);
 }
