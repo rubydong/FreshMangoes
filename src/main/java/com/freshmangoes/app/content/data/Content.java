@@ -1,14 +1,13 @@
 package com.freshmangoes.app.content.data;
 
 import com.freshmangoes.app.common.data.Media;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
-
-@Data
-@Builder
-public class Content {
+@Getter
+@Setter
+public abstract class Content {
   private Integer id;
   private ContentType type;
   private Media media;

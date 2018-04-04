@@ -11,13 +11,13 @@ import java.util.List;
 public class MySQLContentRepository implements ContentRepository {
 
   @Override
-  public Content findMovieById(int id) {
+  public Movie findMovieById(int id) {
     // Return filler data for now
-    return Content
+    return Movie
             .builder()
             .id(id)
             .type(ContentType.Movie)
-            .metadata(ContentMetadata
+            .contentMetadata(ContentMetadata
                         .builder()
                         .audienceScore(25.2)
                         .genres(new ImmutableList.Builder<String>()
@@ -33,13 +33,13 @@ public class MySQLContentRepository implements ContentRepository {
   }
 
   @Override
-  public Content findShowById(int id) {
+  public Show findShowById(int id) {
     // Return filler data for now
-    return Content
+    return Show
             .builder()
             .id(id)
             .type(ContentType.Show)
-            .metadata(ContentMetadata
+            .contentMetadata(ContentMetadata
                         .builder()
                         .audienceScore(54.2)
                         .genres(new ImmutableList.Builder<String>()
@@ -55,13 +55,13 @@ public class MySQLContentRepository implements ContentRepository {
   }
 
   @Override
-  public Content findSeasonById(int id) {
+  public Season findSeasonById(int id) {
     // Return filler data for now
-    return Content
+    return Season
             .builder()
             .id(id)
             .type(ContentType.Season)
-            .metadata(ContentMetadata
+            .contentMetadata(ContentMetadata
                         .builder()
                         .audienceScore(25.2)
                         .genres(new ImmutableList.Builder<String>()
@@ -77,13 +77,13 @@ public class MySQLContentRepository implements ContentRepository {
   }
 
   @Override
-  public Content findEpisodeById(int id) {
+  public Episode findEpisodeById(int id) {
     // Return filler data for now
-    return Content
+    return Episode
             .builder()
             .id(id)
             .type(ContentType.Episode)
-            .metadata(ContentMetadata
+            .contentMetadata(ContentMetadata
                         .builder()
                         .audienceScore(25.2)
                         .genres(new ImmutableList.Builder<String>()
