@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Mangoes } from "./Mangoes";
 import axios from "axios";
-const movie = require("../../json/movie.json");
 
 export class MovieTemplate extends React.Component {
     state = {
@@ -39,8 +38,6 @@ export class MovieTemplate extends React.Component {
                 studioNetwork: response.data.metadata.studioNetwork,
                 cast: response.data.metadata.cast
              });
-
-             console.log(currentComponent.state.cast);
         })
         .catch(function (error) {
             console.log(error);
@@ -55,7 +52,7 @@ export class MovieTemplate extends React.Component {
         const cast = this.state.cast.map((castPerson, i) => {
             return <div className="cast-person" key={i}>
                 <img src={castPerson.profilePhoto} className="img-align-left"/>
-                <b><a href={"./celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
+                <b><a href={"../celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
                 <i>{castPerson.role}</i>
             </div>
         });
@@ -75,13 +72,11 @@ export class MovieTemplate extends React.Component {
                         <b> MangoMeter <span className="med-margin-right"></span> Audience Score</b> <br/>
 
                         <Mangoes data-rating={this.state.mangoScore}/>
-                        <span className="tiny-margin-right"></span>
                         {this.state.mangoScore}%
                         
                         <span className="med-margin-right"></span>
 
                         <Mangoes data-rating={this.state.audienceScore}/> 
-                        <span className="tiny-margin-right"></span>
                         {this.state.audienceScore}% <p/><p/>
 
                         <b>About Movie</b> <br/> 
@@ -104,9 +99,7 @@ export class MovieTemplate extends React.Component {
                 <div className="photos padding-top margin-top-bottom-">
                     <h2> Photos </h2> <p/> <hr/>
                     <div className="photos-inner">
-                        {this.state.photos.map((photo, i) =>
-                        <img src={photo} key={i}/>
-                        )}
+                        {this.state.photos.map((photo, i) => <img src={photo} key={i}/>)}
                     </div>     
                 </div>
                 
@@ -114,9 +107,7 @@ export class MovieTemplate extends React.Component {
                     <h2> Trailers </h2> <hr/>
                     <div className="videos">
                         {this.state.videos.map((video, i) =>
-                            <video controls>
-                                <source src={video} type="video/mp4" key={i}/>
-                            </video>
+                            <video controls> <source src={video} type="video/mp4" key={i}/> </video>
                         )}
                     </div>
                 </div>
