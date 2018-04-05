@@ -14,7 +14,7 @@ public class HomeController {
   @Autowired
   private HomeService homeService;
 
-  @RequestMapping(value = "/", method = RequestMethod.GET)
+  @RequestMapping(value = "/index", method = RequestMethod.GET)
   public IndexPageItems getIndexPage() {
     return homeService.getIndexPageItems();
   }
