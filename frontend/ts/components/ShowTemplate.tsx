@@ -15,12 +15,13 @@ export class ShowTemplate extends React.Component {
         audienceScore: 0,
         releaseDate: "",
         network: "",
+        seasons: [],
         cast: []
     }
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('http://localhost:8080/show/0')
+        axios.get('http://localhost:8080/' + window.location.pathname)
         .then(function (response) {
             currentComponent.setState({ 
                 summaryPhoto: parseMedia(response.data.summaryPhoto),
@@ -33,6 +34,7 @@ export class ShowTemplate extends React.Component {
                 audienceScore: response.data.metadata.audienceScore,
                 releaseDate: parseDate(response.data.metadata.releaseDate),
                 network: response.data.metadata.studio,
+                seasons: response.data.seasons,
                 cast: response.data.metadata.cast
              });
         })
@@ -42,6 +44,7 @@ export class ShowTemplate extends React.Component {
     }
 
     render() {
+
         const genres = this.state.genres.map((genre, i) => {
             return <span key={i}> {genre}{i < this.state.genres.length - 1 ? ', ' : ''}</span>
         });
@@ -55,7 +58,17 @@ export class ShowTemplate extends React.Component {
             let newUrl = parseMedia(video);
             return <video controls> <source src={newUrl} type="video/mp4" key={i}/> </video>
         });
-        
+       
+        const seasons = this.state.seasons.map((season, i) => {
+            let newUrl = parseMedia(season.summaryPhoto);
+           
+            return <div className="season">
+                <img src={newUrl}/>
+                <b><a href={"/season/" + season.id}>{season.metadata.name}</a></b> <br/>
+                {season.metadata.summary}
+                </div>
+        });
+
         const cast = this.state.cast.map((castPerson, i) => {
             let newUrl = parseMedia(castPerson.profilePhoto);
             return <div className="cast-person" key={i}>
@@ -114,23 +127,11 @@ export class ShowTemplate extends React.Component {
                 
                 <div className="seasons margin-top-bottom">
                     <h2> Seasons </h2> <hr/>
-                    <div className="season">
-                        <img src="../images/tvshow/strangerthings.jpg"/><b><a href="">Stranger Things: Season 2</a></b> 
-                        <br/><i>2017, Netflix, 9 episodes, 94% rating</i><br/>
-                        Stranger Things' slow-building sophomore season balances moments of humor and a nostalgic sweetness against a growing horror that's all the more effective thanks to the show's full-bodied characters and evocative tone.
-                    </div>
-                    
-                    <div className="season">
-                        <img src="../images/tvshow/strangerfirst.jpg"/>
-                        <b><a href="">Stranger Things: Season 1</a></b> <br/><i>2016, Netflix, 8 episodes, 94% rating</i>
-                        <br/>
-                        Exciting, heartbreaking, and sometimes scary, Stranger Things acts as an addictive homage to Spielberg films and vintage 1980s television. <br/>
-                    </div>
+                    {seasons}
                 </div>
                 
                 <div className="casts margin-top-bottom"> 
-                    <h2>Cast</h2>
-                    <hr/>
+                    <h2>Cast</h2> <hr/>
                     <div className="flex-center">
                         {cast}
                     </div>

@@ -17,7 +17,6 @@ export class IndexTemplate extends React.Component {
         let currentComponent = this;
         axios.get('https://ca8135fe-1ee0-465a-8147-c5d034840cbf.mock.pstmn.io/index')
         .then(function (response) {
-            console.log(response);
             currentComponent.setState(
                 { 
                     poster: response.data.poster,

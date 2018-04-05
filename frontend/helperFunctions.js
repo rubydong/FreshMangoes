@@ -9,3 +9,4 @@ export function parseDate(date) {
     if (date == "") return "";
     return date.substring(0, 10);
 }
+

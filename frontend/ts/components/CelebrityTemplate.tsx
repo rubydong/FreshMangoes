@@ -3,6 +3,7 @@ import { Mangoes } from "./Mangoes";
 import axios from "axios";
 import { parseDate } from "../../helperFunctions";
 
+console.log(window.location.pathname);
 export class CelebrityTemplate extends React.Component {
     state = {
         name: "",
@@ -15,7 +16,7 @@ export class CelebrityTemplate extends React.Component {
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('https://ca8135fe-1ee0-465a-8147-c5d034840cbf.mock.pstmn.io/celebrity/23')
+        axios.get("https://ca8135fe-1ee0-465a-8147-c5d034840cbf.mock.pstmn.io/" + window.location.pathname)
         .then(function (response) {
             currentComponent.setState({ 
                 name: response.data.name,

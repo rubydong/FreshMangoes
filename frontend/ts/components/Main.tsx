@@ -12,8 +12,8 @@ const Main = () => (
       <Route exact path='/' component={IndexTemplate}/>
       <Route path='/movie/:id' component={MovieTemplate}/>
       <Route path='/show/:id' component={ShowTemplate}/>
-      <Route path="/celebrity" component={CelebrityTemplate}/>
-      <Route path="/search?query=:query" component={SearchTemplate}/>
+      <Route path="/celebrity/:id" component={CelebrityTemplate}/>
+      <Route path="/search" component={SearchTemplate}/>
     </Switch>
   </main>
 )

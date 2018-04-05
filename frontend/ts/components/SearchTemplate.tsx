@@ -2,7 +2,7 @@ import * as React from "react";
 import { Mangoes } from "./Mangoes";
 import axios from "axios";
 
-console.log("goes into search template");
+
 export class SearchTemplate extends React.Component {
     state = {
         // summaryPhoto: "",
