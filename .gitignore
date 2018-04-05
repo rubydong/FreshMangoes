@@ -1,6 +1,7 @@
 .gradle
 .idea
 build/
+frontend/dist/
 node_modules
 
 # Ignore Gradle GUI config
