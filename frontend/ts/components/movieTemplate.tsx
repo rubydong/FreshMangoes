@@ -65,7 +65,7 @@ export class MovieTemplate extends React.Component {
             return <div className="cast-person" key={i}>
                 <img src={newUrl} className="img-align-left"/>
                 <b><a href={"../celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
-                <i>{castPerson.role}</i>
+                <i>{castPerson.roles[this.state.name]}</i>
             </div>
         });
 
