@@ -1,0 +1,88 @@
+{
+    "celebrities": null,
+    "movies": [
+        {
+            "id": 34,
+            "type": "Movie",
+            "media": null,
+            "metadata": {
+                "name": "Batman V Superman: Dawn of Justice",
+                "maturityRating": "PG13",
+                "summary": "Batman fights Superman.",
+                "genres": [
+                    "Action",
+                    "Science Fiction & Fantasy"
+                ],
+                "runTime": 151,
+                "mangoScore": 33.2,
+                "audienceScore": 67,
+                "releaseDate": null,
+                "cast": null
+            },
+            "summaryPhoto": null,
+            "ratings": null
+        },
+        {
+            "id": 15,
+            "type": "Movie",
+            "media": null,
+            "metadata": {
+                "name": "Black Panther",
+                "maturityRating": "PG13",
+                "summary": "African warriors.",
+                "genres": [
+                    "Action"
+                ],
+                "runTime": 160,
+                "mangoScore": 22.5,
+                "audienceScore": 25.2,
+                "releaseDate": null,
+                "cast": null
+            },
+            "summaryPhoto": null,
+            "ratings": null
+        }
+    ],
+    "shows": [
+        {
+            "id": 62,
+            "type": "Show",
+            "media": null,
+            "metadata": {
+                "name": "Durarara!!",
+                "maturityRating": "R",
+                "summary": "Supernatural japanese gangsters",
+                "genres": [
+                    "Comedy"
+                ],
+                "runTime": 24,
+                "mangoScore": 43.2,
+                "audienceScore": 54.2,
+                "releaseDate": "1997-11-29T05:47:52.000+0000",
+                "cast": null
+            },
+            "summaryPhoto": null,
+            "ratings": null
+        },
+        {
+            "id": 62,
+            "type": "Show",
+            "media": null,
+            "metadata": {
+                "name": "Durarara!!",
+                "maturityRating": "R",
+                "summary": "Supernatural japanese gangsters",
+                "genres": [
+                    "Comedy"
+                ],
+                "runTime": 24,
+                "mangoScore": 43.2,
+                "audienceScore": 54.2,
+                "releaseDate": "1997-11-29T05:47:52.000+0000",
+                "cast": null
+            },
+            "summaryPhoto": null,
+            "ratings": null
+        }
+    ]
+}
