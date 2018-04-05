@@ -3,7 +3,6 @@ import { Mangoes } from "./Mangoes";
 import axios from "axios";
 import { parseDate } from "../../helperFunctions";
 
-console.log(window.location.pathname);
 export class CelebrityTemplate extends React.Component {
     state = {
         name: "",

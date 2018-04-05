@@ -10,6 +10,7 @@ const Main = () => (
   <main>
     <Switch>
       <Route exact path='/' component={IndexTemplate}/>
+      <Route exact path='/index' component={IndexTemplate}/>
       <Route path='/movie/:id' component={MovieTemplate}/>
       <Route path='/show/:id' component={ShowTemplate}/>
       <Route path="/celebrity/:id" component={CelebrityTemplate}/>

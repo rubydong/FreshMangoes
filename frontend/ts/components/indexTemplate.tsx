@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Mangoes } from "./Mangoes";
 import axios from "axios";
+import { parseIndexMedia }  from "../../helperFunctions.js";
 
 export class IndexTemplate extends React.Component {
     state = {
@@ -15,17 +16,17 @@ export class IndexTemplate extends React.Component {
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('https://ca8135fe-1ee0-465a-8147-c5d034840cbf.mock.pstmn.io/index')
+        axios.get('http://localhost:8080/index')
         .then(function (response) {
             currentComponent.setState(
                 { 
-                    poster: response.data.poster,
-                    opening: response.data.opening,
-                    topBoxOffice: response.data.topBoxOffice,
-                    comingSoon: response.data.comingSoon,
-                    new: response.data.new,
-                    mostPopular: response.data.mostPopular,
-                    topDVDStreaming: response.data.topDVDStreaming
+                    poster: parseIndexMedia(response.data.posterImage),
+                    opening: response.data.openingMovies,
+                    topBoxOffice: response.data.topBoxOfficeMovies,
+                    comingSoon: response.data.comingSoonMovies,
+                    new: response.data.newShows,
+                    mostPopular: response.data.mostPopularShows,
+                    topDVDStreaming: response.data.topDVDStreamingShows
                 }
             );
         })
@@ -35,6 +36,27 @@ export class IndexTemplate extends React.Component {
     }
 
     render() {
+
+        const opening = this.state.opening.map((content) => {
+            const newUrl = parseIndexMedia(content.summaryPhoto);
+            return <div className="movieshow" key={content.id}>
+                <img src={newUrl}/> <br/>
+                <a href={"/movie/" + content.id}> {content.metadata.name}</a> <br/>
+                <Mangoes data-rating={content.metadata.mangoScore}/> <br/>
+                {content.metadata.mangoScore}%
+            </div>     
+        }); 
+
+        const newShows = this.state.new.map((content) => {
+            const newUrl = parseIndexMedia(content.summaryPhoto);
+            return <div className="movieshow" key={content.id}>
+                <img src={newUrl}/> <br/>
+                <a href={"/movie/" + content.id}> {content.metadata.name}</a> <br/>
+                <Mangoes data-rating={content.metadata.mangoScore}/> <br/>
+                {content.metadata.mangoScore}%
+            </div>     
+        });
+
         return (
         <div>
             <img id="poster" src={this.state.poster}/>
@@ -50,14 +72,7 @@ export class IndexTemplate extends React.Component {
                     </ul>
                 
                     <div className="spotlight-posters">
-                        {this.state.opening.map((content) =>
-                            <div className="movieshow" key={content.id}>
-                                <img src={content.photo}/> <br/>
-                                <a href={"/movie/" + content.id}> {content.name}</a> <br/>
-                                <Mangoes data-rating={content.score}/> <br/>
-                                {content.score}%
-                            </div>     
-                        )}
+                        {opening}
                     </div>
                 </div>
 
@@ -73,14 +88,7 @@ export class IndexTemplate extends React.Component {
                     </ul>
 
                     <div className="spotlight-posters">
-                        {this.state.new.map((content) =>
-                            <div className="movieshow" key={content.id}>
-                                <img src={content.photo}/> <br/>
-                                <a href={"/show/" + content.id}> {content.name}</a> <br/>
-                                <Mangoes data-rating={content.score}/> <br/>
-                                {content.score}%
-                            </div>     
-                        )}
+                        {newShows}
                     </div>
                 </div>
             </div>

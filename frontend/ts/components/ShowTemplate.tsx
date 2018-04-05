@@ -16,7 +16,7 @@ export class ShowTemplate extends React.Component {
         releaseDate: "",
         network: "",
         seasons: [],
-        cast: []
+        cast: [],
     }
 
     componentWillMount() {
@@ -71,10 +71,11 @@ export class ShowTemplate extends React.Component {
 
         const cast = this.state.cast.map((castPerson, i) => {
             let newUrl = parseMedia(castPerson.profilePhoto);
+            let name = this.state.name;
             return <div className="cast-person" key={i}>
                 <img src={newUrl} className="img-align-left"/>
                 <b><a href={"../celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
-                <i>{castPerson.role}</i>
+                {/* <i>{castPerson.roles}.name</i> */}
             </div>
         });
 
