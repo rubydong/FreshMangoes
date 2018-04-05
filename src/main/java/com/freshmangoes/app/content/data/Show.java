@@ -5,9 +5,13 @@ import com.freshmangoes.app.rating.data.Rating;
 import java.net.URL;
 import java.util.List;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 
 
+@Getter
+@Setter
 public class Show extends Content {
   private List<Season> seasons;
 
