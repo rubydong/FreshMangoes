@@ -3,8 +3,12 @@ package com.freshmangoes.app.celebrity.data;
 import com.freshmangoes.app.common.data.Media;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+
+import com.freshmangoes.app.common.data.Pair;
 import com.freshmangoes.app.content.data.Content;
+import com.freshmangoes.app.content.data.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +26,7 @@ public class Celebrity {
   private String birthplace;
   private String biography;
   private Media media;
-  private Map<String, String> roles;
+  private Map<String, Pair> roles;
   private Content highestRated;
   private Content lowestRated;
 

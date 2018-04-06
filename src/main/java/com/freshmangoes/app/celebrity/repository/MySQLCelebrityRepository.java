@@ -3,6 +3,7 @@ package com.freshmangoes.app.celebrity.repository;
 import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.celebrity.data.CelebrityType;
 import com.freshmangoes.app.common.data.Media;
+import com.freshmangoes.app.common.data.Pair;
 import com.freshmangoes.app.content.data.ContentMetadata;
 import com.freshmangoes.app.content.data.Movie;
 import com.google.common.collect.ImmutableList;
@@ -27,6 +28,9 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
    */
   public Celebrity findCelebrityById(final int id) {
     try {
+      ArrayList <String> roles = new ArrayList<>();
+      roles.add("T'Challa");
+      roles.add("Black Panther");
       return Celebrity
           .builder()
           .id(id)
@@ -49,8 +53,26 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
                   .build())
               .videos(new ImmutableList.Builder<URL>().build())
               .build())
-          .roles(new ImmutableMap.Builder<String, String>()
-              .put("Black Panther", "T'Challa")
+          .roles(new ImmutableMap.Builder<String, Pair>()
+              .put("Black Panther",
+                  new Pair<String, Movie>("T'Challa/Black Panther", Movie
+                      .builder()
+                      .id(0)
+                      .contentMetadata(ContentMetadata
+                          .builder()
+                          .mangoScore(97.0)
+                          .build())
+                      .build()))
+              .put("Gods of Egypt",
+                  new Pair<String, Movie>("Thoth",
+                      Movie
+                          .builder()
+                          .id(34)
+                          .contentMetadata(ContentMetadata
+                              .builder()
+                              .mangoScore(34.0)
+                              .build())
+                          .build()))
               .build())
           .highestRated(Movie
               .builder()
@@ -84,72 +106,28 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
       celebrities.add(
           Celebrity
               .builder()
-              .name("Steven Spielberg")
-              .id(8)
-              .type(CelebrityType.Director)
-              .media(Media
-                  .builder()
-                  .photos(new ArrayList<>())
-                  .videos(new ArrayList<>())
-                  .build())
-              .profilePhoto(new URL("https://goo.gl/rcqkrJ"))
-              .birthplace("Cincinnati, OH")
-              .birthday(new Date(-727052823000L))
-              .biography("Highest grossing director of all time. A lifelong cinema buff, he began "
-                  + "directing his first short movies while still a child, later studying film at "
-                  + "California State University and winning notice for his 1969 short feature "
-                  + "Amblin'. He first made his mark in television, directing Joan Crawford in the "
-                  + "pilot for Rod Serling's Night Gallery and working on episodes of Columbo "
-                  + "and Marcus Welby, M.D. ")
-              .roles(new ImmutableMap.Builder<String, String>()
-                  .put("Ready Player One", "Director")
-                  .build())
+              .id(12)
+              .type(CelebrityType.Actor)
+              .profilePhoto(new URL("https://images/search/rachelblack.jpg"))
+              .name("Rachel Black")
               .build());
 
       celebrities.add(
           Celebrity
               .builder()
-              .id(12)
+              .id(13)
               .type(CelebrityType.Actor)
-              .profilePhoto(new URL("https://goo.gl/wdpmKu"))
-              .birthday(new Date(880782472000L))
-              .name("Chadwick Boseman")
-              .birthplace("Anderson, South Carolina")
-              .biography("Studied acting at the British American Drama Academy "
-                  + "in Oxford after graduating from Howard University in "
-                  + "Washington, United States. Originally aspired to be a director. "
-                  + "Made his TV debut in a 2003 episode of Third Watch.")
-              .media(Media
-                  .builder()
-                  .photos(new ImmutableList.Builder<URL>()
-                      .add(new URL("https://goo.gl/wdpmKu"))
-                      .add(new URL("https://goo.gl/wdpmKu"))
-                      .add(new URL("https://goo.gl/wdpmKu"))
-                      .add(new URL("https://goo.gl/wdpmKu"))
-                      .build())
-                  .videos(new ImmutableList.Builder<URL>().build())
-                  .build())
-              .roles(new ImmutableMap.Builder<String, String>()
-                  .put("Black Panther", "T'Challa")
-                  .build())
-              .highestRated(Movie
-                  .builder()
-                  .id(12)
-                  .contentMetadata(ContentMetadata
-                      .builder()
-                      .name("Black Panther")
-                      .mangoScore(97.0)
-                      .build())
-                  .build())
-              .lowestRated(Movie
-                  .builder()
-                  .id(13)
-                  .contentMetadata(ContentMetadata
-                      .builder()
-                      .name("Gods of Egypt")
-                      .mangoScore(15.0)
-                      .build())
-                  .build())
+              .profilePhoto(new URL("https://images/search/lisablack.jpg"))
+              .name("Lisa Black")
+              .build());
+
+      celebrities.add(
+          Celebrity
+              .builder()
+              .id(14)
+              .type(CelebrityType.Actor)
+              .profilePhoto(new URL("https://conradblack.jpg"))
+              .name("Conrad Black")
               .build());
     } catch (MalformedURLException e) {
       e.printStackTrace();
