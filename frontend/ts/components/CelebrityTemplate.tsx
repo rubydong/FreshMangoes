@@ -10,12 +10,16 @@ export class CelebrityTemplate extends React.Component {
         birthday: "",
         birthplace: "",
         biography: "",
-        photos: []
+        photos: [],
+        highestRatedName: "",
+        highestRatedScore: 0,
+        lowestRatedName: null,
+        lowestRatedScore: 0
     }
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get("https://ca8135fe-1ee0-465a-8147-c5d034840cbf.mock.pstmn.io/" + window.location.pathname)
+        axios.get("http://localhost:8080/" + window.location.pathname)
         .then(function (response) {
             currentComponent.setState({ 
                 name: response.data.name,
@@ -23,7 +27,11 @@ export class CelebrityTemplate extends React.Component {
                 birthday: parseDate(response.data.birthday),
                 birthplace: response.data.birthplace,
                 biography: response.data.biography,
-                photos: response.data.media.photos
+                photos: response.data.media.photos,
+                highestRatedName: response.data.highestRated.metadata.name,
+                highestRatedScore: response.data.highestRated.metadata.mangoScore,
+                lowestRatedName: response.data.lowestRated.metadata.name,
+                lowestRatedScore: response.data.lowestRated.metadata.mangoScore
              });
 
         })
@@ -40,13 +48,13 @@ export class CelebrityTemplate extends React.Component {
                 
                 <div className="summary">
                     <img src={this.state.profilePhoto} className="img-align-left"/> <h2>{this.state.name}</h2> <p/>
-                    <b>Highest Rated:</b>  Ballet Shoes (2008)
-                    <span className="tiny-margin-right"></span> 
-                    <Mangoes data-rating="100"/> 100%  <br/>
+                    <b>Highest Rated:</b>  {this.state.highestRatedName} 
+                    <span className="small-margin-right"></span> 
+                    <Mangoes data-rating={this.state.highestRatedScore}/>{this.state.highestRatedScore}%  <br/>
                     
-                    <b>Lowest Rated:</b>  Regression (2016) 
-                    <span className="tiny-margin-right"></span> 
-                    <Mangoes data-rating="15"/> 15% <br/>
+                    <b>Lowest Rated:</b>  {this.state.lowestRatedName}
+                    <span className="small-margin-right"></span> 
+                    <Mangoes data-rating={this.state.lowestRatedScore}/> {this.state.highestRatedScore}% <br/>
                     
                     <b>Birthday:</b> {this.state.birthday} <br/>
                     <b>Birthplace:</b> {this.state.birthplace}

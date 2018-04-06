@@ -328,12 +328,11 @@ video {
 	margin: 0 0 10px -2px;
 	width: 250px;
 }
-/* movie and tv only */
 
+/* movie and tv only */
 .summary-title {
 	margin-left: calc(280px + 2%);
 	width: 70%;
-/*	float: left;*/
 }
 .content-info {
 	float: left;
@@ -381,7 +380,7 @@ video {
 /* profile */
 
 .profile, .search {
-	background-color: #fafafa;
+	background-color: #FAFAFA;
 }
 
 .header-hr{

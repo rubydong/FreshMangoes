@@ -74,7 +74,7 @@ export class ShowTemplate extends React.Component {
             return <div className="cast-person" key={i}>
                 <img src={newUrl} className="img-align-left"/>
                 <b><a href={"../celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
-                <i>{castPerson.roles[this.state.name]}</i>
+                {/* <i>{castPerson.roles[this.state.name]}</i> */}
             </div>
         });
 

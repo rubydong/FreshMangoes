@@ -19,7 +19,9 @@ export class Header extends React.Component {
                         <li className="nav-item"> <a className="nav-link" href="#">Sign out</a> </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                        <input aria-label="Search" className="form-control mr-sm-2" type="search"/> <button className="btn" type="submit">Search</button>
+                        <input aria-label="Search" className="form-control mr-sm-2" type="search"/>
+                        <a href="/search" className="btn btn-primary">Search</a>
+                        {/* <button className="btn" type="submit">Search</button> */}
                     </form>
                 </div>
             </nav>
