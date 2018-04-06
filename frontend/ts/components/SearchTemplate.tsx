@@ -19,7 +19,7 @@ export class SearchTemplate extends React.Component {
                 celebrities: response.data.celebrities,
                 movies: response.data.movies,
                 shows: response.data.shows,
-                results: Object.keys(response.data).length
+                results: response.data.celebrities.length + response.data.shows.length + response.data.movies.length
              });
             console.log(response.data);
         })
