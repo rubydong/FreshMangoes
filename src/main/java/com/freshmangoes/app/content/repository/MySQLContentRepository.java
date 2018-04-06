@@ -64,7 +64,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .name("Chadwick Boseman")
                       .id(0)
                       .type(CelebrityType.Actor)
-                      .profilePhoto(new URL("https://images/movie/cast1.jpg"))
+                      .profilePhoto(new URL("https://images/movie/cast1.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Black Panther",
                               new Pair<String, Movie>("T'Challa/Black Panther", null))
@@ -75,7 +75,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .name("Michael B. Jordan")
                       .id(1)
                       .type(CelebrityType.Actor)
-                      .profilePhoto(new URL("https://images/movie/cast2.jpg"))
+                      .profilePhoto(new URL("https://images/movie/cast2.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Black Panther",
                               new Pair<String, Movie>("Erik Killmonger", null))
@@ -86,7 +86,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .name("Lupita Nyong'o")
                       .id(2)
                       .type(CelebrityType.Actor)
-                      .profilePhoto(new URL("https://images/movie/cast3.jpg"))
+                      .profilePhoto(new URL("https://images/movie/cast3.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Black Panther",
                               new Pair<String, Movie>("Nakia", null))
@@ -97,7 +97,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .name("Danai Gurira")
                       .id(3)
                       .type(CelebrityType.Actor)
-                      .profilePhoto(new URL("https://images/movie/cast4.jpg"))
+                      .profilePhoto(new URL("https://images/movie/cast4.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Black Panther",
                               new Pair<String, Movie>("Okoye", null))
@@ -112,14 +112,14 @@ public class MySQLContentRepository implements ContentRepository {
                           .put("Black Panther",
                               new Pair<String, Movie>("Everett K. Ross", null))
                           .build())
-                      .profilePhoto(new URL("https://images/movie/cast5.jpg"))
+                      .profilePhoto(new URL("https://images/movie/cast5.png"))
                       .build())
                   .add(Celebrity
                       .builder()
                       .name("Daniel Kaluuya")
                       .id(5)
                       .type(CelebrityType.Actor)
-                      .profilePhoto(new URL("https://images/movie/cast6.jpg"))
+                      .profilePhoto(new URL("https://images/movie/cast6.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Black Panther",
                               new Pair<String, Movie>("W'Kabi", null))
@@ -141,14 +141,14 @@ public class MySQLContentRepository implements ContentRepository {
                   + "drawn into a conflict that puts the entire fate of Wakanda and the world "
                   + "at risk.")
               .build())
-          .summaryPhoto(new URL("https://images/movie/blackpanther.jpg"))
+          .summaryPhoto(new URL("https://images/movie/blackpanther.png"))
           .media(Media
               .builder()
               .photos(new ImmutableList.Builder<URL>()
-                  .add(new URL("https://images/movie/bp1.jpg"))
-                  .add(new URL("https://images/movie/bp2.jpg"))
-                  .add(new URL("https://images/movie/bp3.jpg"))
-                  .add(new URL("https://images/movie/bp4.jpg"))
+                  .add(new URL("https://images/movie/bp1.png"))
+                  .add(new URL("https://images/movie/bp2.png"))
+                  .add(new URL("https://images/movie/bp3.png"))
+                  .add(new URL("https://images/movie/bp4.png"))
                   .build())
               .videos(new ImmutableList.Builder<URL>()
                   .add(new URL("https://videos/bptrailer.mp4"))
@@ -205,7 +205,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .add(Episode.builder().build())
                       .add(Episode.builder().build())
                       .build())
-                  .summaryPhoto(new URL("https://images/tvshow/strangerthings.jpg"))
+                  .summaryPhoto(new URL("https://images/tvshow/strangerthings.png"))
                   .contentMetadata(ContentMetadata
                       .builder()
                       .name("Stranger Things: Season 1")
@@ -232,7 +232,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .add(Episode.builder().build())
                       .add(Episode.builder().build())
                       .build())
-                  .summaryPhoto(new URL("https://images/tvshow/strangerfirst.jpg"))
+                  .summaryPhoto(new URL("https://images/tvshow/strangerfirst.png"))
                   .contentMetadata(ContentMetadata
                       .builder()
                       .name("Stranger Things: Season 2")
@@ -246,14 +246,14 @@ public class MySQLContentRepository implements ContentRepository {
                       .build())
                   .build())
               .build())
-          .summaryPhoto(new URL("https://images/tvshow/strangerfirst.jpg"))
+          .summaryPhoto(new URL("https://images/tvshow/strangerfirst.png"))
           .media(Media
               .builder()
               .photos(new ImmutableList.Builder<URL>()
-                  .add(new URL("https://images/tvshow/strangerphotos1.jpg"))
-                  .add(new URL("https://images/tvshow/strangerphotos2.jpg"))
-                  .add(new URL("https://images/tvshow/strangerphotos3.jpg"))
-                  .add(new URL("https://images/tvshow/strangerphotos4.jpg"))
+                  .add(new URL("https://images/tvshow/strangerphotos1.png"))
+                  .add(new URL("https://images/tvshow/strangerphotos2.png"))
+                  .add(new URL("https://images/tvshow/strangerphotos3.png"))
+                  .add(new URL("https://images/tvshow/strangerphotos4.png"))
                   .build())
               .videos(new ImmutableList.Builder<URL>()
                   .add(new URL("https://videos/strangervideo.mp4"))
@@ -280,7 +280,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .builder()
                       .id(10)
                       .name("Winona Ryder")
-                      .profilePhoto(new URL("https://images/tvshow/winona.jpg"))
+                      .profilePhoto(new URL("https://images/tvshow/winona.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Stranger Things",
                               new Pair<String, Movie>("Joyce Byers", null))
@@ -290,7 +290,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .builder()
                       .id(11)
                       .name("David Harbour")
-                      .profilePhoto(new URL("https://images/tvshow/david.jpg"))
+                      .profilePhoto(new URL("https://images/tvshow/david.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Stranger Things",
                               new Pair<String, Movie>("Chief", null))
@@ -300,7 +300,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .builder()
                       .id(12)
                       .name("Finn Wolfhard")
-                      .profilePhoto(new URL("https://images/tvshow/finn.jpg"))
+                      .profilePhoto(new URL("https://images/tvshow/finn.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Stranger Things",
                               new Pair<String, Movie>("Mike", null))
@@ -310,7 +310,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .builder()
                       .id(13)
                       .name("Millie Bobbie Brown")
-                      .profilePhoto(new URL("https://images/tvshow/millie.jpg"))
+                      .profilePhoto(new URL("https://images/tvshow/millie.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Stranger Things",
                               new Pair<String, Movie>("Eleven", null))
@@ -320,7 +320,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .builder()
                       .id(14)
                       .name("Gaten Matarazzo")
-                      .profilePhoto(new URL("https://images/tvshow/gaten.jpg"))
+                      .profilePhoto(new URL("https://images/tvshow/gaten.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Stranger Things",
                               new Pair<String, Movie>("Dustin", null))
@@ -330,7 +330,7 @@ public class MySQLContentRepository implements ContentRepository {
                       .builder()
                       .id(15)
                       .name("Caleb Mclaughlin")
-                      .profilePhoto(new URL("https://images/tvshow/caleb.jpg"))
+                      .profilePhoto(new URL("https://images/tvshow/caleb.png"))
                       .roles(new ImmutableMap.Builder<String, Pair>()
                           .put("Stranger Things",
                               new Pair<String, Movie>("Lucas", null))
@@ -375,7 +375,7 @@ public class MySQLContentRepository implements ContentRepository {
                   .name("Black Panther")
                   .releaseDate(new Date(1519776000000L))
                   .build())
-              .summaryPhoto(new URL("https://images/search/bp.jpg"))
+              .summaryPhoto(new URL("https://images/search/bp.png"))
               .build());
 
       movies.add(
@@ -383,7 +383,7 @@ public class MySQLContentRepository implements ContentRepository {
               .builder()
               .id(2)
               .type(ContentType.Movie)
-              .summaryPhoto(new URL("https://images/search/mib3.jpg"))
+              .summaryPhoto(new URL("https://images/search/mib3.png"))
               .contentMetadata(ContentMetadata
                   .builder()
                   .name("Men In Black III")

@@ -122,7 +122,7 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
               .builder()
               .id(12)
               .type(CelebrityType.Actor)
-              .profilePhoto(new URL("https://images/search/rachelblack.jpg"))
+              .profilePhoto(new URL("https://images/search/rachelblack.png"))
               .name("Rachel Black")
               .build());
 
@@ -131,7 +131,7 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
               .builder()
               .id(13)
               .type(CelebrityType.Actor)
-              .profilePhoto(new URL("https://images/search/lisablack.jpg"))
+              .profilePhoto(new URL("https://images/search/lisablack.png"))
               .name("Lisa Black")
               .build());
 
@@ -140,7 +140,7 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
               .builder()
               .id(14)
               .type(CelebrityType.Actor)
-              .profilePhoto(new URL("https://conradblack.jpg"))
+              .profilePhoto(new URL("https://images/search/conradblack.png"))
               .name("Conrad Black")
               .build());
 
@@ -149,7 +149,7 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
               .builder()
               .id(12)
               .type(CelebrityType.Actor)
-              .profilePhoto(new URL("https://images/search/rachelblack.jpg"))
+              .profilePhoto(new URL("https://images/search/rachelblack.png"))
               .name("Rachel Black")
               .build());
     } catch (MalformedURLException e) {
