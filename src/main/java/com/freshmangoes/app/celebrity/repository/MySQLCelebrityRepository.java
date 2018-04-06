@@ -5,6 +5,7 @@ import com.freshmangoes.app.celebrity.data.CelebrityType;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.common.data.Pair;
 import com.freshmangoes.app.content.data.ContentMetadata;
+import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.content.data.Movie;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -58,6 +59,7 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
                   new Pair<String, Movie>("T'Challa/Black Panther", Movie
                       .builder()
                       .id(0)
+                      .type(ContentType.Movie)
                       .contentMetadata(ContentMetadata
                           .builder()
                           .mangoScore(97.0)
@@ -68,9 +70,21 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
                       Movie
                           .builder()
                           .id(34)
+                          .type(ContentType.Movie)
                           .contentMetadata(ContentMetadata
                               .builder()
                               .mangoScore(34.0)
+                              .build())
+                          .build()))
+              .put("Detroit 1-8-7",
+                  new Pair<String, Movie>("Tommy Westin",
+                      Movie
+                          .builder()
+                          .id(35)
+                          .type(ContentType.Show)
+                          .contentMetadata(ContentMetadata
+                              .builder()
+                              .mangoScore(87.0)
                               .build())
                           .build()))
               .build())
@@ -128,6 +142,15 @@ public class MySQLCelebrityRepository implements CelebrityRepository {
               .type(CelebrityType.Actor)
               .profilePhoto(new URL("https://conradblack.jpg"))
               .name("Conrad Black")
+              .build());
+
+      celebrities.add(
+          Celebrity
+              .builder()
+              .id(12)
+              .type(CelebrityType.Actor)
+              .profilePhoto(new URL("https://images/search/rachelblack.jpg"))
+              .name("Rachel Black")
               .build());
     } catch (MalformedURLException e) {
       e.printStackTrace();

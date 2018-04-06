@@ -451,6 +451,18 @@ public class MySQLContentRepository implements ContentRepository {
               .summaryPhoto(new URL("https://images/search/orphanblack.png"))
               .build());
 
+      shows.add(
+          Show
+              .builder()
+              .id(5)
+              .type(ContentType.Show)
+              .contentMetadata(ContentMetadata
+                  .builder()
+                  .name("Black Dynamite")
+                  .build())
+              .summaryPhoto(new URL("https://images/search/blackdynamite.png"))
+              .build());
+
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
