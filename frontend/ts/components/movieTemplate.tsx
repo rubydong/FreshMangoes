@@ -62,10 +62,11 @@ export class MovieTemplate extends React.Component {
         
         const cast = this.state.cast.map((castPerson, i) => {
             let newUrl = parseMedia(castPerson.profilePhoto);
+            let role = Object.keys(castPerson.roles[this.state.name])[0];
             return <div className="cast-person" key={i}>
                 <img src={newUrl} className="img-align-left"/>
                 <b><a href={"../celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
-                {/* <i>{castPerson.roles[this.state.name]}</i> */}
+                <i>{role}</i>
             </div>
         });
 
