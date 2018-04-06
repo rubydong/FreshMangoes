@@ -6,4 +6,6 @@ public enum CelebrityType {
   Actor,
   Director,
   Writer,
+  Producer,
+  Creator
 }
