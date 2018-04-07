@@ -3,7 +3,6 @@ import { Mangoes } from "./Mangoes";
 import axios from "axios";
 import { parseMedia }  from "../../helperFunctions.js";
 
-console.log("profile page");
 export class ProfileTemplate extends React.Component {
     render() {
 
