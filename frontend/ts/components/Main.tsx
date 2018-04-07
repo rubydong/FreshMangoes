@@ -6,6 +6,7 @@ import { ShowTemplate } from "./ShowTemplate";
 import { CelebrityTemplate } from "./CelebrityTemplate";
 import { SearchTemplate } from "./SearchTemplate";
 import { ProfileTemplate } from "./ProfileTemplate";
+import { SpotlightTemplate } from "./SpotlightTemplate";
 
 const Main = () => (
   <main>
@@ -17,6 +18,7 @@ const Main = () => (
       <Route path="/celebrity/:id" component={CelebrityTemplate}/>
       <Route path="/search" component={SearchTemplate}/>
       <Route path="/profile/:id" component={ProfileTemplate}/>
+      <Route path="/spotlight" component={SpotlightTemplate}/>
     </Switch>
   </main>
 )
