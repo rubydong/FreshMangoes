@@ -2,6 +2,9 @@ import * as React from "react";
 
 export class Header extends React.Component {
     render() {
+        const isLoggedIn = true;
+
+
         return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -11,11 +14,19 @@ export class Header extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item"> <a className="nav-link" href="/">Home</a> </li>
-                        <li className="nav-item"> <a className="nav-link" href="/profile/0">Profile</a> </li>
-                        <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
-					    <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#register-modal">Register</a></li>
                         <li className="nav-item"> <a className="nav-link" href="/spotlight">Spotlight</a> </li>
-                        <li className="nav-item"> <a className="nav-link" href="#">Sign out</a> </li>
+            
+                        {isLoggedIn
+                        ? <div className="flex-center">
+                            <li className="nav-item"> <a className="nav-link" href="/profile/0">Profile</a> </li>
+                            <li className="nav-item"> <a className="nav-link" href="#">Sign out</a> </li> 
+                          </div>
+                        : <div className="flex-center">
+                            <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#login-modal">Login</a></li> 
+                            <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#register-modal">Register</a></li>
+                          </div>
+                        }
+                        
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                         <input aria-label="Search" className="form-control mr-sm-2" type="search"/>

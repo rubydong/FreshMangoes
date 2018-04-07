@@ -24,8 +24,3 @@ const Main = () => (
 )
 
 export default Main
-
-// To do:
-// - ShowTemplate
-// - ProfileTemplate
-// - SearchTemplate
