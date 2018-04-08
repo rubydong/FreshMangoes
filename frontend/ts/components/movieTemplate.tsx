@@ -35,7 +35,7 @@ export class MovieTemplate extends React.Component {
                 runTime: response.data.metadata.runTime,
                 mangoScore: response.data.metadata.mangoScore,
                 audienceScore: response.data.metadata.audienceScore,
-                releaseDate: response.data.metadata.releaseDate,
+                releaseDate: parseDate(response.data.metadata.releaseDate),
                 studio: response.data.metadata.studio,
                 cast: response.data.metadata.cast
              });

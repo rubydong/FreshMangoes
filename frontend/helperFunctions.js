@@ -16,6 +16,7 @@ export function parseIndexMedia(media) {
 
 export function parseDate(date) {
     if (date == "") return "";
-    return date.substring(0, 10);
+    var d = new Date(date);
+    return d.getMonth() + '-' + d.getDay() + '-' + d.getFullYear();
 }
 

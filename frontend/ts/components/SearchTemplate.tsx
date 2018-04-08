@@ -34,7 +34,7 @@ export class SearchTemplate extends React.Component {
             const newUrl = parseMedia(movie.summaryPhoto);
             return <div className="search-item" key={movie.id}>
                 <img src={newUrl}/>
-                <div className="text">{movie.metadata.name}</div>
+                <div className="text"><a href={'/movie/' + movie.id}> {movie.metadata.name} </a></div>
             </div>
         });
 
@@ -42,7 +42,7 @@ export class SearchTemplate extends React.Component {
             const newUrl = parseMedia(show.summaryPhoto);
             return <div className="search-item" key={show.id}>
                 <img src={newUrl}/>
-                <div className="text">{show.metadata.name}</div>
+                <div className="text"><a href={'/show/' + show.id}> {show.metadata.name} </a></div>
             </div>
         });
 
@@ -50,7 +50,7 @@ export class SearchTemplate extends React.Component {
             const newUrl = parseMedia(celebrity.profilePhoto);  
             return <div className="search-item" key={celebrity.id}>
                 <img src={newUrl}/>
-                <div className="text">{celebrity.name}</div>
+                <div className="text"><a href={'/celebrity' + celebrity.id}> {celebrity.name} </a></div>
             </div>
         });
 

@@ -10,37 +10,39 @@ export class ProfileTemplate extends React.Component {
         numFollowers: 0,
         numFollowing: 0,
         interestedList: [],
-        disinterestedList: []
+        disinterestedList: [], 
+        currentUser: -1
     }    
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get("http://localhost:9000/api" + window.location.pathname)
-        .then(function (response) {
+        axios.all([
+            axios.get("http://localhost:9000/api" + window.location.pathname),
+            axios.get("http://localhost:9000/api/getCurrentUser")
+        ]).then(axios.spread(function(profile, currentUser) {
             currentComponent.setState({ 
-                displayName: response.data.displayName,
-                profilePicture: "../"+ parseProfileMedia(response.data.profilePicture),
-                interestedList: response.data.interestedList,
-                disinterestedList: response.data.disinterestedList,
-                numFollowers: response.data.numFollowers,
-                numFollowing: response.data.numFollowing
+                displayName: profile.data.displayName,
+                profilePicture: "../"+ parseProfileMedia(profile.data.profilePicture),
+                interestedList: profile.data.interestedList,
+                disinterestedList: profile.data.disinterestedList,
+                numFollowers: profile.data.numFollowers,
+                numFollowing: profile.data.numFollowing,
+                currentUser: currentUser.data.userId
              });
-
-             console.log(response.data);
-            //  console.log(this.state);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        }))
     }
 
     render() {
-
+        console.log(this.state.currentUser);
+        const x = (("/profile/" + this.state.currentUser) == window.location.pathname) ? <div className="x">X</div> : '';
+        const followButton = (("/profile/" + this.state.currentUser) != window.location.pathname) ? <button className="btn">Follow</button> : '';
+        
+        
         const interestedList = this.state.interestedList.map((content, i) => {
             let newUrl = parseProfileMedia(content.summaryPhoto);
             return <div className="search-item">
             <img src={newUrl}/>
-            <div className="x">X</div>
+            {x}
             <div className="text">{content.metadata.name}</div>
             </div>
         });
@@ -49,7 +51,7 @@ export class ProfileTemplate extends React.Component {
             let newUrl = parseProfileMedia(content.summaryPhoto);
             return <div className="search-item">
             <img src={newUrl}/>
-            <div className="x">X</div>
+            {x}
             <div className="text">{content.metadata.name}</div>
             </div>
         });
@@ -67,7 +69,7 @@ export class ProfileTemplate extends React.Component {
                             <b>Followers:</b> <a href="">{this.state.numFollowers}</a> <br/>
                             <b>Following:</b> <a href="">{this.state.numFollowing}</a> 
                             <p/>
-                            {/* <button className="btn">Follow</button>  */}
+                            {followButton}
                         </div>
                         
                     </div>
@@ -78,7 +80,7 @@ export class ProfileTemplate extends React.Component {
                     <div className="profile-reviews list-group">
                         
                         <div className="review">
-                            <b><a href="">Ruby Dong</a></b> 
+                            <b><a href="">{this.state.displayName}</a></b> 
                             <span className="align-right"><Mangoes data-rating="80"/></span> <br/>
                             <i>Black Panther</i>
         
@@ -86,7 +88,7 @@ export class ProfileTemplate extends React.Component {
                             "Jordan has swagger to spare, with those rolling shoulders, but there's a breath of charm, too, all the more seductive in the overblown atmosphere of Marvel. He's twice as pantherish as the Panther."
                         </div>
                         <div className="review">
-                            <b><a href="">Ruby Dong</a></b> 
+                            <b><a href="">{this.state.displayName}</a></b> 
                             <span className="align-right"><Mangoes data-rating="40"/></span>  <br/>
                             <i>Peter Rabbit</i>
                             <hr/>

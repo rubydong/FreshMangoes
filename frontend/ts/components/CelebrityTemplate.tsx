@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Mangoes } from "./Mangoes";
 import axios from "axios";
+import { parseDate }  from "../../helperFunctions.js";
 
 export class CelebrityTemplate extends React.Component {
     state = {
@@ -25,7 +26,7 @@ export class CelebrityTemplate extends React.Component {
             currentComponent.setState({ 
                 name: response.data.name,
                 profilePhoto: response.data.profilePhoto,
-                birthday: response.data.birthday,
+                birthday: parseDate(response.data.birthday),
                 birthplace: response.data.birthplace,
                 biography: response.data.biography,
                 photos: response.data.media.photos,

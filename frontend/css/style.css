@@ -507,6 +507,10 @@ h5 span {
 	margin: 5px;
 }
 
+.search-item a {
+	color: #FFFFFF;
+}
+
 .search-item img {
 	object-fit: cover;
 	width: 100%;
