@@ -19,7 +19,6 @@ public class Constants {
 
   public static final String ADD_TO_DISINTERESTED_MAPPING = "disinterested/remove/{contentId}";
   public static final String REMOVE_FROM_DISINTERESTED_MAPPING = "disinterested/remove/{contentId}";
-
   public static final String PROFILE_MAPPING = "/profile/{userId}";
   public static final String FOLLOW_MAPPING = "/follow/{userId}";
   public static final String UNFOLLOW_MAPPING = "/unfollow/{userId}";

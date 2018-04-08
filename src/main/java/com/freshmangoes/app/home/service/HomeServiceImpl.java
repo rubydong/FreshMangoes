@@ -8,7 +8,6 @@ import com.google.common.collect.ImmutableList;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import org.springframework.stereotype.Service;
 
 @Service

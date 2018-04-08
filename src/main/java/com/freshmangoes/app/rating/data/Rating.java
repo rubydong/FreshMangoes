@@ -4,7 +4,6 @@ import com.freshmangoes.app.user.data.userType;
 import lombok.Builder;
 import lombok.Data;
 
-
 @Data
 @Builder
 public class Rating {
