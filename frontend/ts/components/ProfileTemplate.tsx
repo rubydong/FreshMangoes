@@ -45,14 +45,14 @@ export class ProfileTemplate extends React.Component {
             </div>
         });
 
-        // const disinterestedList = this.state.disinterestedList.map((content, i) => {
-        //     let newUrl = parseProfileMedia(content.summaryPhoto);
-        //     return <div className="search-item">
-        //     <img src={newUrl}/>
-        //     <div className="x">X</div>
-        //     <div className="text">{content.metadata.name}</div>
-        //     </div>
-        // });
+        const disinterestedList = this.state.disinterestedList.map((content, i) => {
+            let newUrl = parseProfileMedia(content.summaryPhoto);
+            return <div className="search-item">
+            <img src={newUrl}/>
+            <div className="x">X</div>
+            <div className="text">{content.metadata.name}</div>
+            </div>
+        });
 
         return (
             <div className="profile">
@@ -105,7 +105,7 @@ export class ProfileTemplate extends React.Component {
                     <h2 className="padding-top"> Not Interested </h2>
                     <div className="interests box-shadow">
                         <div className="flex-center">
-                            {/* {disinterestedList} */}
+                            {disinterestedList}
                         </div>
                         <span className="align-right"><a href="">View All</a></span>
                     </div>
