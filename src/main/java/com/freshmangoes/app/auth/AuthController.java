@@ -44,6 +44,12 @@ public class AuthController {
     return new ResponseEntity(status);
   }
 
+  @PostMapping(Constants.LOGOUT_MAPPING)
+  public ResponseEntity logout() {
+    session.invalidate();
+    return new ResponseEntity(HttpStatus.OK);
+  }
+
   @PostMapping(Constants.REGISTER_MAPPING)
   public ResponseEntity register(@RequestBody final Map<String, String> body) {
     final Integer userId;
@@ -66,4 +72,5 @@ public class AuthController {
 
     return rootNode.toString();
   }
+
 }

@@ -2,6 +2,7 @@ package com.freshmangoes.app.common.data;
 
 public class Constants {
   public static final String LOGIN_MAPPING = "/login";
+  public static final String LOGOUT_MAPPING = "/logout";
   public static final String REGISTER_MAPPING = "/register";
   public static final String CURRENT_USER_MAPPING = "/getCurrentUser";
 
