@@ -9,10 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthController {
@@ -26,6 +23,7 @@ public class AuthController {
   @Autowired
   private ObjectMapper mapper;
 
+  @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping(Constants.LOGIN_MAPPING)
   public ResponseEntity login(@RequestBody final Map<String, String> body) {
     final HttpStatus status;
@@ -50,6 +48,7 @@ public class AuthController {
     return new ResponseEntity(HttpStatus.OK);
   }
 
+  @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping(Constants.REGISTER_MAPPING)
   public ResponseEntity register(@RequestBody final Map<String, String> body) {
     final Integer userId;
@@ -61,6 +60,7 @@ public class AuthController {
     return new ResponseEntity((userId != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
   }
 
+  @CrossOrigin(origins = "http://localhost:8080")
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = "application/json")
   public String currentUser() {
     final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
