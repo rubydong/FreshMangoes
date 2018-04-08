@@ -28,7 +28,6 @@ export class Header extends React.Component {
 
     render() {
         const isLoggedIn = this.state.currentUser != undefined && this.state.currentUser != -1;
-        console.log('render user:' + this.state.currentUser);
         const profileUrl = "/profile/" + this.state.currentUser;
         
         return (
@@ -43,20 +42,20 @@ export class Header extends React.Component {
                         <li className="nav-item"> <a className="nav-link" href="/spotlight">Spotlight</a> </li>
             
                         {isLoggedIn
-                        ? <div className="flex-center">
+                        ? <span className="flex-center">
                             <li className="nav-item"> <a className="nav-link" href={profileUrl}>Profile</a> </li>
                             <li className="nav-item"> <a className="nav-link" href="" onClick={this.logout}>Sign out</a> </li> 
-                          </div>
-                        : <div className="flex-center">
+                          </span>
+                        : <span className="flex-center">
                             <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#login-modal">Login</a></li> 
                             <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#register-modal">Register</a></li>
-                          </div>
+                          </span>
                         }
                         
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                         <input aria-label="Search" className="form-control mr-sm-2" type="search"/>
-                        <a href="/search" className="btn btn-primary">Search</a>
+                        <a href="/search?query=black" className="btn btn-primary">Search</a>
                         {/* <button className="btn" type="submit">Search</button> */}
                     </form>
                 </div>
