@@ -36,7 +36,7 @@ export class RegisterTemplate extends React.Component {
 
     console.log(registerInfo);
 
-     axios.post('http://localhost:9000/api/register', { registerInfo })
+     axios.post('http://localhost:9000/api/register', registerInfo)
        .then(res => {
          console.log(res);
          console.log(res.data);

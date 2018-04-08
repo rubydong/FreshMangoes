@@ -3,7 +3,6 @@ import { Mangoes } from "./Mangoes";
 import axios from "axios";
 import { parseMedia, parseDate }  from "../../helperFunctions.js";
 
-console.log(window.location.pathname);
 export class MovieTemplate extends React.Component {
     state = {
         summaryPhoto: "",
@@ -36,10 +35,12 @@ export class MovieTemplate extends React.Component {
                 runTime: response.data.metadata.runTime,
                 mangoScore: response.data.metadata.mangoScore,
                 audienceScore: response.data.metadata.audienceScore,
-                releaseDate: parseDate(response.data.metadata.releaseDate),
+                releaseDate: response.data.metadata.releaseDate,
                 studio: response.data.metadata.studio,
                 cast: response.data.metadata.cast
              });
+
+             console.log(response.data);
         })
         .catch(function (error) {
             console.log(error);

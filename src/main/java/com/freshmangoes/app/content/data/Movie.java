@@ -6,12 +6,10 @@ import java.net.URL;
 import java.util.List;
 import lombok.Builder;
 
-
-
 public class Movie extends Content {
   @Builder
   public Movie(Integer id,
-               ContentType type,
+               contentType type,
                Media media,
                ContentMetadata contentMetadata,
                List<Rating> ratings,

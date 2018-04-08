@@ -7,13 +7,11 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-
-
 @Getter
 @Setter
 public abstract class Content {
   private Integer id;
-  private ContentType type;
+  private contentType type;
   private Media media;
   private ContentMetadata metadata;
   private URL summaryPhoto;
