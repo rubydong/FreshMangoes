@@ -1,6 +1,5 @@
 package com.freshmangoes.app.user.service;
 
-import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.content.repository.ContentRepository;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.repository.UserRepository;
