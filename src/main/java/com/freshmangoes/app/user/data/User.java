@@ -21,6 +21,6 @@ public class User {
   private List<Integer> followers;
   private List<Integer> following;
   private List<Content> interestedList;
-  private List<Content> notInterestedList;
+  private List<Content> disinterestedList;
   private List<Rating> reviews;
 }
