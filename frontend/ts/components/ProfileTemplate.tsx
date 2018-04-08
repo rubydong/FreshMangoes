@@ -15,7 +15,7 @@ export class ProfileTemplate extends React.Component {
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('http://localhost:8080/' + window.location.pathname)
+        axios.get('http://localhost:9000/api' + window.location.pathname)
         .then(function (response) {
             currentComponent.setState({ 
                 displayName: response.data.displayName,

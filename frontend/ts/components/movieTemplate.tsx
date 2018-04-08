@@ -22,7 +22,7 @@ export class MovieTemplate extends React.Component {
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('http://localhost:8080/' + window.location.pathname)
+        axios.get('http://localhost:9000/api' + window.location.pathname)
         .then(function (response) {
             currentComponent.setState({ 
                 summaryPhoto: parseMedia(response.data.summaryPhoto),

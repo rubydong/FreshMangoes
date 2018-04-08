@@ -1,4 +1,5 @@
 import * as React from "react";
+import axios from "axios";
 
 export class RegisterTemplate extends React.Component {
     state = {
@@ -29,18 +30,24 @@ export class RegisterTemplate extends React.Component {
 
     const registerInfo = {
         email: this.state.email,
-        username: this.state.username,
+        displayName: this.state.username,
         password: this.state.password,
-        passwordConfirmation: this.state.passwordConfirmation
     };
 
     console.log(registerInfo);
 
-    // axios.post('http://localhost:8080/login', { registerInfo })
-    //   .then(res => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //   })
+     axios.post('http://localhost:9000/api/register', { registerInfo })
+       .then(res => {
+         console.log(res);
+         console.log(res.data);
+       },
+         err => {
+           console.log(err);
+           console.log(err.data);
+         })
+        .catch(err => {
+          console.log(err);
+        })
     }
     render() {
         return (

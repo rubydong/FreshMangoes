@@ -25,7 +25,7 @@ export class LoginTemplate extends React.Component {
 
     console.log(loginInfo);
 
-    axios.post('http://localhost:8080/login', { loginInfo })
+    axios.post('http://localhost:9000/api/login', { loginInfo })
         .then(res => {
         console.log(res);
         console.log(res.data);

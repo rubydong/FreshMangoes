@@ -16,7 +16,7 @@ export class IndexTemplate extends React.Component {
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('http://localhost:8080/index')
+        axios.get('http://localhost:9000/api/index')
         .then(function (response) {
             currentComponent.setState(
                 { 

@@ -13,7 +13,7 @@ export class SearchTemplate extends React.Component {
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('http://localhost:8080/search?query=h')
+        axios.get('http://localhost:9000/api/search?query=h')
         .then(function (response) {
             currentComponent.setState({ 
                 celebrities: response.data.celebrities,
