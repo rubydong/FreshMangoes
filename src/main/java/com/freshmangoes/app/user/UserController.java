@@ -55,4 +55,34 @@ public class UserController {
 
     return new ResponseEntity(status);
   }
+
+  @PostMapping(Constants.ADD_TO_DISINTERESTED_MAPPING)
+  public ResponseEntity addToDisinterestedList(@PathVariable final Integer contentId) {
+    final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+    final HttpStatus status;
+
+    if (userId == null) {
+      status = HttpStatus.BAD_REQUEST;
+    } else {
+      status = userService.addToDisinterestedList(userId, contentId) ? HttpStatus.OK
+          : HttpStatus.BAD_REQUEST;
+    }
+
+    return new ResponseEntity(status);
+  }
+
+  @PostMapping(Constants.REMOVE_FROM_INTERESTED_MAPPING)
+  public ResponseEntity removeFromDisinterestedList(@PathVariable final Integer contentId) {
+    final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+    final HttpStatus status;
+
+    if (userId == null) {
+      status = HttpStatus.BAD_REQUEST;
+    } else {
+      status = userService.removeFromDisinterestedList(userId, contentId) ? HttpStatus.OK
+          : HttpStatus.BAD_REQUEST;
+    }
+
+    return new ResponseEntity(status);
+  }
 }

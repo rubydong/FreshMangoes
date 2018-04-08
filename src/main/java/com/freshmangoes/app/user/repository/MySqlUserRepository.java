@@ -150,4 +150,14 @@ public class MySqlUserRepository implements UserRepository {
     return user;
   }
 
+  @Override
+  public Boolean updateInterestedList(Integer userId, Integer contentId, Boolean present) {
+    return null;
+  }
+
+  @Override
+  public Boolean updateDisinterestedList(Integer userId, Integer contentId, Boolean present) {
+    return null;
+  }
+
 }
