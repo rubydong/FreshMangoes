@@ -17,8 +17,11 @@ export class MovieTemplate extends React.Component {
         audienceScore: 0,
         releaseDate: "",
         studio: "",
-        cast: []
-    }    
+        cast: [],
+
+        numMangos: "",
+        reviewBody: ""
+    }
 
     componentWillMount() {
         let currentComponent = this;
@@ -45,6 +48,19 @@ export class MovieTemplate extends React.Component {
         .catch(function (error) {
             console.log(error);
         });
+    }
+
+    handleMangoChange = event => {
+        this.setState({ numMangos: event.value });
+        console.log(event.value);
+    }
+
+    handleBodyChange = event => {
+        this.setState({ reviewBody: event.value });
+        console.log(event.value)
+    }
+
+    addReview() {
     }
 
     render() {
@@ -213,7 +229,7 @@ export class MovieTemplate extends React.Component {
                             <h2>Add Rating</h2>
                             <form>
                                 Rating out of five
-                                <select className="form-control">
+                                <select onChange={this.handleMangoChange} className="form-control">
                                 <option value="five-mangoes">Five Mangoes</option>
                                 <option value="four-mangoes">Four Mangoes</option>
                                 <option value="three-mangoes">Three Mangoes</option>
