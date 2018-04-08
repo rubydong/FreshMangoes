@@ -16,7 +16,7 @@ export class LoginTemplate extends React.Component {
     }
 
     handleSubmit = event => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const loginInfo = {
         email: this.state.email,
@@ -29,6 +29,7 @@ export class LoginTemplate extends React.Component {
         .then(res => {
         console.log(res);
         console.log(res.data);
+        this.forceUpdate();
       })
     }
 
