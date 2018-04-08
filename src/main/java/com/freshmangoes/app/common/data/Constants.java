@@ -1,0 +1,14 @@
+package com.freshmangoes.app.common.data;
+
+public class Constants {
+  public static final String LOGIN_MAPPING = "/login";
+  public static final String REGISTER_MAPPING = "/register";
+  public static final String CURRENT_USER_MAPPING = "/getCurrentUser";
+
+  public static final String PROFILE_MAPPING = "/profile/{userId}";
+
+  public static final String USER_ID = "userId";
+  public static final String DISPLAY_NAME = "displayName";
+  public static final String EMAIL = "email";
+  public static final String PASSWORD = "password";
+}
