@@ -13,10 +13,24 @@ export class Header extends React.Component {
             currentComponent.setState({ 
                 currentUser: response.data.userId,
             });
+
+            this.forceUpdate();
         })
         .catch(function (error) {
             console.log(error);
         });
+
+        axios.post('http://localhost:9000/api/logout', {})
+        .then(res => {
+            currentComponent.setState({ 
+                currentUser: -1,
+            });
+            console.log(res);
+            console.log(res.data);
+            this.forceUpdate();
+        });
+
+    
     }
 
     render() {
@@ -36,7 +50,7 @@ export class Header extends React.Component {
                         {isLoggedIn
                         ? <div className="flex-center">
                             <li className="nav-item"> <a className="nav-link" href="/profile/0">Profile</a> </li>
-                            <li className="nav-item"> <a className="nav-link" href="#">Sign out</a> </li> 
+                            <li className="nav-item"> <a className="nav-link" href="">Sign out</a> </li> 
                           </div>
                         : <div className="flex-center">
                             <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#login-modal">Login</a></li> 

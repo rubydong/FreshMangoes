@@ -6,7 +6,6 @@ export function parseMedia(media) {
 }
 
 export function parseProfileMedia(media) {
-    console.log("../" + media.substring(7));
     return "../" + media.substring(7);
 }
 

@@ -40,6 +40,7 @@ export class RegisterTemplate extends React.Component {
        .then(res => {
          console.log(res);
          console.log(res.data);
+         this.forceUpdate();
        },
          err => {
            console.log(err);
