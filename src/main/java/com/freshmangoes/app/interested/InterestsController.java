@@ -9,9 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-/**
- * Created by romin on 4/8/18.
- */
 public class InterestsController {
 
   @Autowired
