@@ -51,7 +51,6 @@ export class CelebrityTemplate extends React.Component {
             let content = this.state.filmsObject[title];
             let type = content[role].type;
             let score = content[role].metadata.mangoScore;
-            // let year = content[role].metadata.releaseDate;
             
             return <tr>
                     <td>{title}</td>
@@ -83,8 +82,7 @@ export class CelebrityTemplate extends React.Component {
                     {this.state.biography}
                 </div>
 
-                
-                <div className="photos margin-top-bottom">
+                <div className="photos margin-top-bottom padding-top">
                     <h2> Photos </h2> <p/> <hr/>
                     <div className="photos-inner">
                         {this.state.photos.map((photo, i) => <img src={photo} key={i}/>)}

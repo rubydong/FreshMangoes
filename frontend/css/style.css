@@ -242,9 +242,10 @@ a:hover {
 select, option {
 	background-color: white;
 }
+
 .summary img {
 	object-fit: cover;
-	width: 280px; 
+	width: 280px;
 	padding-right: 15px;
 	padding-top: 6px;
 }
