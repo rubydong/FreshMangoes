@@ -15,9 +15,13 @@ public class Constants {
   public static final String RATING_MAPPING = "/rating/{contentId}";
 
   public static final String PROFILE_MAPPING = "/profile/{userId}";
+  public static final String FOLLOW_MAPPING = "/follow/{userId}";
+  public static final String UNFOLLOW_MAPPING = "/unfollow/{userId}";
 
   public static final String USER_ID = "userId";
+  public static final String OTHER_USER_ID = "otherUserId";
   public static final String DISPLAY_NAME = "displayName";
   public static final String EMAIL = "email";
   public static final String PASSWORD = "password";
+
 }
