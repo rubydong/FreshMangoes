@@ -5,10 +5,8 @@ import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Show;
 import com.freshmangoes.app.home.data.IndexPageItems;
 import com.google.common.collect.ImmutableList;
-
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import org.springframework.stereotype.Service;
 
 @Service

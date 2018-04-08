@@ -4,6 +4,7 @@ import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.content.data.ContentMetadata;
 import com.freshmangoes.app.content.data.contentType;
 import com.freshmangoes.app.content.data.Movie;
+import com.freshmangoes.app.content.data.contentType;
 import com.freshmangoes.app.user.data.User;
 import com.google.common.collect.ImmutableList;
 
@@ -37,6 +38,7 @@ public class MySqlUserRepository implements UserRepository {
       List<Content> interested = new ImmutableList.Builder<Content>()
           .add(
               Movie.builder()
+<<<<<<< HEAD
                   .type(contentType.MOVIE)
                   .contentMetadata(ContentMetadata.builder()
                       .name("Black Panther")
@@ -78,6 +80,38 @@ public class MySqlUserRepository implements UserRepository {
                   )
                   .summaryPhoto(new URL("http://images/posters/pitchperfect3.jpeg"))
                   .build()
+=======
+                   .type(contentType.MOVIE)
+                   .contentMetadata(ContentMetadata.builder()
+                                                   .name("Black Panther")
+                                                   .releaseDate(new Date(1483228800000L))
+                                                   .build()
+                   )
+                   .summaryPhoto(new URL("http://images/movie/blackpanther.png"))
+                   .build()
+          )
+          .add(
+              Movie.builder()
+                   .type(contentType.SHOW)
+                   .contentMetadata(ContentMetadata.builder()
+                                                   .name("Stranger Things")
+                                                   .releaseDate(new Date(1483228800000L))
+                                                   .build()
+                   )
+                   .summaryPhoto(new URL("http://images/tvshow/strangerthings.png"))
+                   .build()
+          )
+          .add(
+              Movie.builder()
+                   .type(contentType.MOVIE)
+                   .contentMetadata(ContentMetadata.builder()
+                                                   .name("Avengers: Infinity War")
+                                                   .releaseDate(new Date(1483228800000L))
+                                                   .build()
+                   )
+                   .summaryPhoto(new URL("http://images/posters/avengers.jpg"))
+                .build()
+>>>>>>> changed all mappings to constants
           )
 
           .build();
@@ -85,11 +119,19 @@ public class MySqlUserRepository implements UserRepository {
       List<Content> uninterested = new ImmutableList.Builder<Content>()
           .add(
               Movie.builder()
+<<<<<<< HEAD
                   .type(contentType.MOVIE)
                   .contentMetadata(ContentMetadata.builder()
                       .name("Coco")
                       .releaseDate(new Date(1483228800000L))
                       .build()
+=======
+                   .type(contentType.MOVIE)
+                   .contentMetadata(ContentMetadata.builder()
+                                                   .name("Coco")
+                                                   .releaseDate(new Date(1483228800000L))
+                                                   .build()
+>>>>>>> changed all mappings to constants
                   )
                   .summaryPhoto(new URL("http://images/posters/coco.jpeg"))
                   .build()
