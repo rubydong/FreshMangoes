@@ -1,13 +1,11 @@
 package com.freshmangoes.app.rating.service;
 
-import com.freshmangoes.app.rating.data.UserType;
-
-
+import com.freshmangoes.app.user.data.userType;
 
 public interface RatingService {
-  boolean addToRating(final Integer contentId,
-                      final Integer score,
-                      final UserType type,
-                      final Integer reviewerId,
-                      final String body);
+  boolean addToRating(Integer contentId,
+                      Integer score,
+                      userType type,
+                      Integer reviewerId,
+                      String body);
 }

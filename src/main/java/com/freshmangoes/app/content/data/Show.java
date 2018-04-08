@@ -8,8 +8,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-
-
 @Getter
 @Setter
 public class Show extends Content {
@@ -17,7 +15,7 @@ public class Show extends Content {
 
   @Builder
   public Show(Integer id,
-              ContentType type,
+              contentType type,
               Media media,
               ContentMetadata contentMetadata,
               List<Season> seasons,

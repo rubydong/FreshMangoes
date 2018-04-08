@@ -6,14 +6,12 @@ import java.net.URL;
 import java.util.List;
 import lombok.Builder;
 
-
-
 public class Season extends Content {
   private List<Episode> episodes;
 
   @Builder
   public Season(Integer id,
-                ContentType type,
+                contentType type,
                 Media media,
                 ContentMetadata contentMetadata,
                 List<Episode> episodes,

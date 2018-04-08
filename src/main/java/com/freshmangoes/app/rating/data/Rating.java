@@ -1,9 +1,8 @@
 package com.freshmangoes.app.rating.data;
 
-import lombok.Data;
+import com.freshmangoes.app.user.data.userType;
 import lombok.Builder;
-
-
+import lombok.Data;
 
 @Data
 @Builder
@@ -13,5 +12,5 @@ public class Rating {
   private Integer reviewerId;
   private Integer score;
   private String body;
-  private UserType type;
+  private userType type;
 }

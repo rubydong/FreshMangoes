@@ -7,8 +7,6 @@ import com.freshmangoes.app.content.repository.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class ContentServiceImpl implements ContentService {
   @Autowired
