@@ -131,7 +131,7 @@ public class MySqlUserRepository implements UserRepository {
                  .numFollowing(56)
                  .profilePicture(new URL("http://images/usericon.png"))
                  .interestedList(interested)
-                 .disInterestedList(uninterested)
+                 .disinterestedList(uninterested)
                  .build();
     } catch (Exception ex) {
       return null;
