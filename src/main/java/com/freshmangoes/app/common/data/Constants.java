@@ -15,6 +15,10 @@ public class Constants {
   public static final String RATING_MAPPING = "/rating/{contentId}";
 
   public static final String ADD_TO_INTERESTED_MAPPING = "interested/add/{contentId}";
+  public static final String REMOVE_FROM_INTERESTED_MAPPING = "interested/remove/{contentId}";
+
+  public static final String ADD_TO_DISINTERESTED_MAPPING = "disinterested/remove/{contentId}";
+  public static final String REMOVE_FROM_DISINTERESTED_MAPPING = "disinterested/remove/{contentId}";
 
   public static final String PROFILE_MAPPING = "/profile/{userId}";
   public static final String FOLLOW_MAPPING = "/follow/{userId}";

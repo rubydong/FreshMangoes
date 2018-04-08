@@ -1,5 +1,7 @@
 package com.freshmangoes.app.user.service;
 
+import com.freshmangoes.app.content.data.Content;
+import com.freshmangoes.app.content.repository.ContentRepository;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
   @Autowired
   private UserRepository userRepository;
+
+  @Autowired
+  private ContentRepository contentRepository;
 
   @Override
   public Integer loginUser(final String email, final String password) {
@@ -38,7 +43,35 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User getUser(Integer userId) {
+  public User getUser(final Integer userId) {
     return userRepository.findById(userId);
+  }
+
+  @Override
+  public Boolean addToInterestedList(final Integer userId, final Integer contentId) {
+    if (!contentRepository.existsById(contentId)) {
+      return false;
+    } else {
+      return userRepository.updateInterestedList(userId, contentId, true);
+    }
+  }
+
+  @Override
+  public Boolean removeFromInterestedList(final Integer userId, final Integer contentId) {
+    return userRepository.updateInterestedList(userId, contentId, false);
+  }
+
+  @Override
+  public Boolean addToDisinterestedList(final Integer userId, final Integer contentId) {
+    if (!contentRepository.existsById(contentId)) {
+      return false;
+    } else {
+      return userRepository.updateDisinterestedList(userId, contentId, true);
+    }
+  }
+
+  @Override
+  public Boolean removeFromDisinterestedList(final Integer userId, final Integer contentId) {
+    return userRepository.updateDisinterestedList(userId, contentId, false);
   }
 }
