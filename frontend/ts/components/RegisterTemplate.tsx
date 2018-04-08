@@ -4,7 +4,7 @@ import axios from "axios";
 export class RegisterTemplate extends React.Component {
     state = {
         email: '',
-        username: '',
+        displayName: '',
         password: '',
         passwordConfirmation: ''
     }
@@ -13,8 +13,8 @@ export class RegisterTemplate extends React.Component {
     this.setState({ email: event.target.value });
     }
 
-    handleUsernameChange = event => {
-    this.setState({ username: event.target.value });
+    handleDisplayNameChange = event => {
+    this.setState({ displayName: event.target.value });
     }
 
     handlePasswordChange = event => {
@@ -30,7 +30,7 @@ export class RegisterTemplate extends React.Component {
 
     const registerInfo = {
         email: this.state.email,
-        displayName: this.state.username,
+        displayName: this.state.displayName,
         password: this.state.password,
     };
 
@@ -58,8 +58,8 @@ export class RegisterTemplate extends React.Component {
                         <form onSubmit={this.handleSubmit}>
                             Email
                             <input type="text" className="form-control" onChange={this.handleEmailChange}/> 
-                            Username
-                            <input type="text" className="form-control" onChange={this.handleUsernameChange}/> 
+                            Display Name
+                            <input type="text" className="form-control" onChange={this.handleDisplayNameChange}/> 
                             Password
                             <input type="password" className="form-control" onChange={this.handlePasswordChange}/> 
                             Password Confirmation 

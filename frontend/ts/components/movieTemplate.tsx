@@ -3,6 +3,7 @@ import { Mangoes } from "./Mangoes";
 import axios from "axios";
 import { parseMedia, parseDate }  from "../../helperFunctions.js";
 
+console.log(window.location.pathname);
 export class MovieTemplate extends React.Component {
     state = {
         summaryPhoto: "",
@@ -22,7 +23,7 @@ export class MovieTemplate extends React.Component {
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get('http://localhost:9000/api' + window.location.pathname)
+        axios.get("http://localhost:9000/api" + window.location.pathname)
         .then(function (response) {
             currentComponent.setState({ 
                 summaryPhoto: parseMedia(response.data.summaryPhoto),

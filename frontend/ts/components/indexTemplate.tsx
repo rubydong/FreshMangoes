@@ -51,7 +51,7 @@ export class IndexTemplate extends React.Component {
             const newUrl = parseIndexMedia(content.summaryPhoto);
             return <div className="movieshow" key={content.id}>
                 <img src={newUrl}/> <br/>
-                <a href={"/movie/" + content.id}> {content.metadata.name}</a> <br/>
+                <a href={"/show/" + content.id}> {content.metadata.name}</a> <br/>
                 <Mangoes data-rating={content.metadata.mangoScore}/> <br/>
                 {content.metadata.mangoScore}%
             </div>     
