@@ -47,31 +47,4 @@ public class UserServiceImpl implements UserService {
     return userRepository.findById(userId);
   }
 
-  @Override
-  public Boolean addToInterestedList(final Integer userId, final Integer contentId) {
-    if (!contentRepository.existsById(contentId)) {
-      return false;
-    } else {
-      return userRepository.updateInterestedList(userId, contentId, true);
-    }
-  }
-
-  @Override
-  public Boolean removeFromInterestedList(final Integer userId, final Integer contentId) {
-    return userRepository.updateInterestedList(userId, contentId, false);
-  }
-
-  @Override
-  public Boolean addToDisinterestedList(final Integer userId, final Integer contentId) {
-    if (!contentRepository.existsById(contentId)) {
-      return false;
-    } else {
-      return userRepository.updateDisinterestedList(userId, contentId, true);
-    }
-  }
-
-  @Override
-  public Boolean removeFromDisinterestedList(final Integer userId, final Integer contentId) {
-    return userRepository.updateDisinterestedList(userId, contentId, false);
-  }
 }
