@@ -22,6 +22,11 @@ import org.springframework.stereotype.Repository;
 public class MySqlContentRepository implements ContentRepository {
 
   @Override
+  public Boolean existsById(Integer id) {
+    return null;
+  }
+
+  @Override
   public Movie findMovieById(final int id) {
     // Return filler data for now
     List<Rating> ratings = new ImmutableList.Builder<Rating>()
