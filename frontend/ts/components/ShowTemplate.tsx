@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Mangoes } from "./Mangoes";
 import axios from "axios";
-import { parseMedia, parseDate }  from "../../helperFunctions.js";
+import { parseMedia }  from "../../helperFunctions.js";
 
 export class ShowTemplate extends React.Component {
     state = {
@@ -32,7 +32,7 @@ export class ShowTemplate extends React.Component {
                 genres: response.data.metadata.genres,
                 mangoScore: response.data.metadata.mangoScore,
                 audienceScore: response.data.metadata.audienceScore,
-                releaseDate: parseDate(response.data.metadata.releaseDate),
+                releaseDate: response.data.metadata.releaseDate,
                 network: response.data.metadata.studio,
                 seasons: response.data.seasons,
                 cast: response.data.metadata.cast

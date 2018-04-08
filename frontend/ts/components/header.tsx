@@ -1,9 +1,26 @@
 import * as React from "react";
+import axios from "axios";
 
 export class Header extends React.Component {
-    render() {
-        const isLoggedIn = false;
+    state = {
+        currentUser: -1
+    }
+    
+    componentWillMount() {
+        let currentComponent = this;
+        axios.get("http://localhost:9000/api/getCurrentUser")
+        .then(function (response) {
+            currentComponent.setState({ 
+                currentUser: response.data.userId,
+            });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
 
+    render() {
+        const isLoggedIn = this.state.currentUser != -1;
 
         return (
         <div>
