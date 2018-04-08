@@ -76,17 +76,7 @@ public class MySqlUserRepository implements UserRepository {
                   .summaryPhoto(new URL("http://images/posters/pitchperfect3.jpeg"))
                   .build()
           )
-          .add(
-              Movie.builder()
-                  .type(contentType.MOVIE)
-                  .contentMetadata(ContentMetadata.builder()
-                      .name("Red Sparrow")
-                      .releaseDate(new Date(1483228800000L))
-                      .build()
-                  )
-                  .summaryPhoto(new URL("http://images/posters/redsparrow.jpg"))
-                  .build()
-          )
+
           .build();
 
       List<Content> uninterested = new ImmutableList.Builder<Content>()
@@ -98,7 +88,7 @@ public class MySqlUserRepository implements UserRepository {
                                                    .releaseDate(new Date(1483228800000L))
                                                    .build()
                   )
-                  .summaryPhoto(new URL("http://images/posters/coco.png"))
+                  .summaryPhoto(new URL("http://images/posters/coco.jpeg"))
                   .build()
           )
           .add(
@@ -120,7 +110,18 @@ public class MySqlUserRepository implements UserRepository {
                       .releaseDate(new Date(1483228800000L))
                       .build()
                   )
-                  .summaryPhoto(new URL("http://images/posters/greatestshowman.jpg"))
+                  .summaryPhoto(new URL("http://images/posters/greatestshowman.jpeg"))
+                  .build()
+          )
+          .add(
+              Movie.builder()
+                  .type(contentType.MOVIE)
+                  .contentMetadata(ContentMetadata.builder()
+                      .name("Red Sparrow")
+                      .releaseDate(new Date(1483228800000L))
+                      .build()
+                  )
+                  .summaryPhoto(new URL("http://images/posters/redsparrow.jpg"))
                   .build()
           )
           .build();

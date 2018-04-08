@@ -14,6 +14,8 @@ public class Constants {
   public static final String EPISODE_MAPPING = "/show/*/*/{episodeId}";
   public static final String RATING_MAPPING = "/rating/{contentId}";
 
+  public static final String ADD_TO_INTERESTED_MAPPING = "interested/add/{contentId}";
+
   public static final String PROFILE_MAPPING = "/profile/{userId}";
 
   public static final String USER_ID = "userId";
