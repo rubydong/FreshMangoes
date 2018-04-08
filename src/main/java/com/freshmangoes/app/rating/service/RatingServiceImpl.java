@@ -6,6 +6,8 @@ import com.freshmangoes.app.rating.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RatingServiceImpl implements RatingService {
   @Autowired
@@ -24,5 +26,13 @@ public class RatingServiceImpl implements RatingService {
                                           .reviewerId(reviewerId)
                                           .body(body)
                                           .build());
+  }
+
+  public List<Rating> getRatingByContentId(final Integer contentId) {
+    return ratingRepository.findByContentId(contentId);
+  }
+
+  public List<Rating> getRatingByReviewerId(final Integer reviewerId) {
+    return ratingRepository.findByReviewerId(reviewerId);
   }
 }
