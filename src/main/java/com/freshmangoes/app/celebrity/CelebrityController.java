@@ -2,11 +2,9 @@ package com.freshmangoes.app.celebrity;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.celebrity.service.CelebrityService;
+import com.freshmangoes.app.common.data.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -15,7 +13,7 @@ public class CelebrityController {
   @Autowired
   private CelebrityService celebrityService;
 
-  @RequestMapping(value = "/celebrity/{id}", method = RequestMethod.GET)
+  @GetMapping(Constants.CELEBRITY_MAPPING)
   public Celebrity doGet(@PathVariable final int id) {
     return celebrityService.getCelebrity(id);
   }
