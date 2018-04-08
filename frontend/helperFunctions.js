@@ -5,6 +5,11 @@ export function parseMedia(media) {
     return media;
 }
 
+export function parseProfileMedia(media) {
+    console.log("../" + media.substring(7));
+    return "../" + media.substring(7);
+}
+
 export function parseIndexMedia(media) {
     if (media == "" || !media.includes("https")) return media;
     // console.log(media.substring(8));
