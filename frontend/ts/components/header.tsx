@@ -6,6 +6,13 @@ export class Header extends React.Component {
         currentUser: -1
     }
     
+    logout = event => {
+        this.setState({ email: event.target.value });
+        axios.post('http://localhost:9000/api/logout', {})
+        .then(res => {
+        });
+    }
+
     componentWillMount() {
         let currentComponent = this;
         axios.get("http://localhost:9000/api/getCurrentUser")
@@ -13,29 +20,17 @@ export class Header extends React.Component {
             currentComponent.setState({ 
                 currentUser: response.data.userId,
             });
-
-            this.forceUpdate();
         })
         .catch(function (error) {
             console.log(error);
         });
-
-        axios.post('http://localhost:9000/api/logout', {})
-        .then(res => {
-            currentComponent.setState({ 
-                currentUser: -1,
-            });
-            console.log(res);
-            console.log(res.data);
-            this.forceUpdate();
-        });
-
-    
     }
 
     render() {
-        const isLoggedIn = this.state.currentUser != -1;
-
+        const isLoggedIn = this.state.currentUser != undefined && this.state.currentUser != -1;
+        console.log('render user:' + this.state.currentUser);
+        const profileUrl = "/profile/" + this.state.currentUser;
+        
         return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,8 +44,8 @@ export class Header extends React.Component {
             
                         {isLoggedIn
                         ? <div className="flex-center">
-                            <li className="nav-item"> <a className="nav-link" href="/profile/0">Profile</a> </li>
-                            <li className="nav-item"> <a className="nav-link" href="">Sign out</a> </li> 
+                            <li className="nav-item"> <a className="nav-link" href={profileUrl}>Profile</a> </li>
+                            <li className="nav-item"> <a className="nav-link" href="" onClick={this.logout}>Sign out</a> </li> 
                           </div>
                         : <div className="flex-center">
                             <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#login-modal">Login</a></li> 
