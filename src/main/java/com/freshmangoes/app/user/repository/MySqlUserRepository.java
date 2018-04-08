@@ -65,6 +65,28 @@ public class MySqlUserRepository implements UserRepository {
                    .summaryPhoto(new URL("http://images/posters/avengers.jpg"))
                 .build()
           )
+          .add(
+              Movie.builder()
+                  .type(ContentType.Movie)
+                  .contentMetadata(ContentMetadata.builder()
+                      .name("Pitch Perfect 3")
+                      .releaseDate(new Date(1483228800000L))
+                      .build()
+                  )
+                  .summaryPhoto(new URL("http://images/posters/pitchperfect3.jpeg"))
+                  .build()
+          )
+          .add(
+              Movie.builder()
+                  .type(ContentType.Movie)
+                  .contentMetadata(ContentMetadata.builder()
+                      .name("Red Sparrow")
+                      .releaseDate(new Date(1483228800000L))
+                      .build()
+                  )
+                  .summaryPhoto(new URL("http://images/posters/redsparrow.jpg"))
+                  .build()
+          )
           .build();
 
       List<Content> uninterested = new ImmutableList.Builder<Content>()
@@ -90,6 +112,17 @@ public class MySqlUserRepository implements UserRepository {
                   .summaryPhoto(new URL("http://images/posters/wrinkleintime.jpg"))
                   .build()
           )
+          .add(
+              Movie.builder()
+                  .type(ContentType.Movie)
+                  .contentMetadata(ContentMetadata.builder()
+                      .name("The Greatest Showman")
+                      .releaseDate(new Date(1483228800000L))
+                      .build()
+                  )
+                  .summaryPhoto(new URL("http://images/posters/greatestshowman.jpg"))
+                  .build()
+          )
           .build();
       return User.builder()
                  .id(0)
@@ -98,7 +131,7 @@ public class MySqlUserRepository implements UserRepository {
                  .numFollowing(56)
                  .profilePicture(new URL("http://images/usericon.png"))
                  .interestedList(interested)
-                 .notInterestedList(uninterested)
+                 .disInterestedList(uninterested)
                  .build();
     } catch (Exception ex) {
       return null;

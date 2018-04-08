@@ -18,6 +18,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class Celebrity {
+  //Todo Split this to break circular dependency
   private Integer id;
   private CelebrityType type;
   private URL profilePhoto;

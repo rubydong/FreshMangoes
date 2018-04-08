@@ -1,8 +1,7 @@
 package com.freshmangoes.app.rating.data;
 
-import lombok.Data;
 import lombok.Builder;
-
+import lombok.Data;
 
 
 @Data
