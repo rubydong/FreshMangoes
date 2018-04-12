@@ -18,14 +18,15 @@ public class RatingServiceImpl implements RatingService {
                              final userType type,
                              final Integer reviewerId,
                              final String body) {
-    return ratingRepository.insertRating(Rating
-                                          .builder()
-                                          .contentId(contentId)
-                                          .score(score)
-                                          .type(type)
-                                          .reviewerId(reviewerId)
-                                          .body(body)
-                                          .build());
+//    return ratingRepository.insertRating(Rating
+//                                          .builder()
+//                                          .contentId(contentId)
+//                                          .score(score)
+//                                          .type(type)
+//                                          .reviewerId(reviewerId)
+//                                          .body(body)
+//                                          .build());
+    return true;
   }
 
   public List<Rating> getRatingByContentId(final Integer contentId) {

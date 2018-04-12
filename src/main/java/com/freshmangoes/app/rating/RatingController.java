@@ -38,10 +38,8 @@ public class RatingController {
     if (!contentId.isPresent() && !reviewerId.isPresent()) {
       return ratingService.getRatingByReviewerId((Integer)session.getAttribute(Constants.USER_ID));
     } else if (reviewerId.isPresent()) {
-      System.out.println(reviewerId);
       return ratingService.getRatingByReviewerId(Integer.parseInt(reviewerId.get()));
     } else {
-      System.out.println(contentId);
       return ratingService.getRatingByContentId(Integer.parseInt(contentId.get()));
     }
   }

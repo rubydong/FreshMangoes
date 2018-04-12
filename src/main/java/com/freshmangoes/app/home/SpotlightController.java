@@ -1,19 +1,19 @@
 package com.freshmangoes.app.home;
 
 import com.freshmangoes.app.common.data.Constants;
-import com.freshmangoes.app.home.data.IndexPageItems;
-import com.freshmangoes.app.home.service.HomeService;
+import com.freshmangoes.app.home.data.SpotlightItems;
+import com.freshmangoes.app.home.service.SpotlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HomeController {
+public class SpotlightController {
   @Autowired
-  private HomeService homeService;
+  private SpotlightService homeService;
 
   @GetMapping(Constants.INDEX_MAPPING)
-  public IndexPageItems getIndexPage() {
+  public SpotlightItems getIndexPage() {
     return homeService.getIndexPageItems();
   }
 
