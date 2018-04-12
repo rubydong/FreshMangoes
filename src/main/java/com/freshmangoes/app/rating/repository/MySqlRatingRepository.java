@@ -28,11 +28,6 @@ public class MySqlRatingRepository implements RatingRepository {
     return true;
   }
 
-  /* Strange issue based on following series of request:
-   * -- GET based on contentId/reviewerId works
-   * -- POST a new review
-   * -- GET based on contentId works, GET based on reviewerId results in NULL POINTER EXCEPTION
-   */
   public List<Rating> findByReviewerId(final Integer reviewerId) {
     return ratingMap.values().stream()
      .filter(r -> r.getReviewerId().equals(reviewerId))

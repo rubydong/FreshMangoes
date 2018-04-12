@@ -2,8 +2,8 @@ package com.freshmangoes.app.user.repository;
 
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.content.data.ContentMetadata;
-import com.freshmangoes.app.content.data.contentType;
 import com.freshmangoes.app.content.data.Movie;
+import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.user.data.User;
 import com.google.common.collect.ImmutableList;
 
@@ -37,7 +37,7 @@ public class MySqlUserRepository implements UserRepository {
       List<Content> interested = new ImmutableList.Builder<Content>()
        .add(
         Movie.builder()
-         .type(contentType.MOVIE)
+         .type(ContentType.MOVIE)
          .contentMetadata(ContentMetadata.builder()
           .name("Black Panther")
           .releaseDate(new Date(1483228800000L))
@@ -48,7 +48,7 @@ public class MySqlUserRepository implements UserRepository {
        )
        .add(
         Movie.builder()
-         .type(contentType.SHOW)
+         .type(ContentType.SHOW)
          .contentMetadata(ContentMetadata.builder()
           .name("Stranger Things")
           .releaseDate(new Date(1483228800000L))
@@ -59,7 +59,7 @@ public class MySqlUserRepository implements UserRepository {
        )
        .add(
         Movie.builder()
-         .type(contentType.MOVIE)
+         .type(ContentType.MOVIE)
          .contentMetadata(ContentMetadata.builder()
           .name("Avengers: Infinity War")
           .releaseDate(new Date(1483228800000L))
@@ -70,7 +70,7 @@ public class MySqlUserRepository implements UserRepository {
        )
        .add(
         Movie.builder()
-         .type(contentType.MOVIE)
+         .type(ContentType.MOVIE)
          .contentMetadata(ContentMetadata.builder()
           .name("Pitch Perfect 3")
           .releaseDate(new Date(1483228800000L))
@@ -85,7 +85,7 @@ public class MySqlUserRepository implements UserRepository {
       List<Content> uninterested = new ImmutableList.Builder<Content>()
        .add(
         Movie.builder()
-         .type(contentType.MOVIE)
+         .type(ContentType.MOVIE)
          .contentMetadata(ContentMetadata.builder()
           .name("Coco")
           .releaseDate(new Date(1483228800000L))
@@ -96,7 +96,7 @@ public class MySqlUserRepository implements UserRepository {
        )
        .add(
         Movie.builder()
-         .type(contentType.MOVIE)
+         .type(ContentType.MOVIE)
          .contentMetadata(ContentMetadata.builder()
           .name("A Wrinkle in Time")
           .releaseDate(new Date(1483228800000L))
@@ -107,7 +107,7 @@ public class MySqlUserRepository implements UserRepository {
        )
        .add(
         Movie.builder()
-         .type(contentType.MOVIE)
+         .type(ContentType.MOVIE)
          .contentMetadata(ContentMetadata.builder()
           .name("The Greatest Showman")
           .releaseDate(new Date(1483228800000L))
@@ -118,7 +118,7 @@ public class MySqlUserRepository implements UserRepository {
        )
        .add(
         Movie.builder()
-         .type(contentType.MOVIE)
+         .type(ContentType.MOVIE)
          .contentMetadata(ContentMetadata.builder()
           .name("Red Sparrow")
           .releaseDate(new Date(1483228800000L))

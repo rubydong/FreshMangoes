@@ -1,19 +1,23 @@
 package com.freshmangoes.app.celebrity.repository;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
-import com.freshmangoes.app.celebrity.data.celebrityType;
+import com.freshmangoes.app.celebrity.data.CelebrityType;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.common.data.Pair;
 import com.freshmangoes.app.content.data.ContentMetadata;
-import com.freshmangoes.app.content.data.contentType;
+import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.content.data.Movie;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -32,7 +36,7 @@ public class MySqlCelebrityRepository implements CelebrityRepository {
       return Celebrity
           .builder()
           .id(id)
-          .type(celebrityType.ACTOR)
+          .type(CelebrityType.ACTOR)
           .profilePhoto(new URL("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/elm030118cechadwick-001-1517496619.jpg?crop=1xw:1xh;center,top&resize=480:*"))
           .birthday(new Date(880782472000L))
           .name("Chadwick Boseman")
@@ -56,7 +60,7 @@ public class MySqlCelebrityRepository implements CelebrityRepository {
                   new Pair<String, Movie>("T'Challa/Black Panther", Movie
                       .builder()
                       .id(0)
-                      .type(contentType.MOVIE)
+                      .type(ContentType.MOVIE)
                       .contentMetadata(ContentMetadata
                           .builder()
                           .mangoScore(97.0)
@@ -67,7 +71,7 @@ public class MySqlCelebrityRepository implements CelebrityRepository {
                       Movie
                           .builder()
                           .id(34)
-                          .type(contentType.MOVIE)
+                          .type(ContentType.MOVIE)
                           .contentMetadata(ContentMetadata
                               .builder()
                               .mangoScore(34.0)
@@ -78,7 +82,7 @@ public class MySqlCelebrityRepository implements CelebrityRepository {
                       Movie
                           .builder()
                           .id(35)
-                          .type(contentType.SHOW)
+                          .type(ContentType.SHOW)
                           .contentMetadata(ContentMetadata
                               .builder()
                               .mangoScore(87.0)
@@ -118,7 +122,7 @@ public class MySqlCelebrityRepository implements CelebrityRepository {
           Celebrity
               .builder()
               .id(12)
-              .type(celebrityType.ACTOR)
+              .type(CelebrityType.ACTOR)
               .profilePhoto(new URL("https://images/search/rachelblack.png"))
               .name("Rachel Black")
               .build());
@@ -127,7 +131,7 @@ public class MySqlCelebrityRepository implements CelebrityRepository {
           Celebrity
               .builder()
               .id(13)
-              .type(celebrityType.ACTOR)
+              .type(CelebrityType.ACTOR)
               .profilePhoto(new URL("https://images/search/lisablack.png"))
               .name("Lisa Black")
               .build());
@@ -136,7 +140,7 @@ public class MySqlCelebrityRepository implements CelebrityRepository {
           Celebrity
               .builder()
               .id(14)
-              .type(celebrityType.ACTOR)
+              .type(CelebrityType.ACTOR)
               .profilePhoto(new URL("https://images/search/conradblack.png"))
               .name("Conrad Black")
               .build());
@@ -145,7 +149,7 @@ public class MySqlCelebrityRepository implements CelebrityRepository {
           Celebrity
               .builder()
               .id(12)
-              .type(celebrityType.ACTOR)
+              .type(CelebrityType.ACTOR)
               .profilePhoto(new URL("https://images/search/rachelblack.png"))
               .name("Rachel Black")
               .build());

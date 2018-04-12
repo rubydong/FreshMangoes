@@ -2,6 +2,7 @@ package com.freshmangoes.app.search.data;
 
 import java.util.Date;
 import java.util.List;
+
 import lombok.Builder;
 import lombok.Data;
 

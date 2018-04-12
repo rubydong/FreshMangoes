@@ -1,16 +1,18 @@
 package com.freshmangoes.app.content.service;
 
 import com.freshmangoes.app.content.data.*;
-import com.freshmangoes.app.content.repository.ContentRepository;
-import com.freshmangoes.app.content.repository.EpisodeRepository;
-import com.freshmangoes.app.content.repository.SeasonRepository;
+import com.freshmangoes.app.content.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ContentServiceImpl implements ContentService {
+
   @Autowired
-  private ContentRepository mySQLContentRepository;
+  private ShowRepository mySQLShowRepository;
+
+  @Autowired
+  private MovieRepository mySQLMovieRepository;
 
   @Autowired
   private SeasonRepository mySQLSeasonRepository;
@@ -19,11 +21,11 @@ public class ContentServiceImpl implements ContentService {
   private EpisodeRepository mySQLEpisodeRepository;
 
   public Movie findMovieById(final int id) {
-    return mySQLContentRepository.findMovieById(id);
+    return mySQLMovieRepository.findMovieById(id);
   }
 
   public Show findShowById(final int id) {
-    return mySQLContentRepository.findShowById(id);
+    return mySQLShowRepository.findShowById(id);
   }
 
   public Season findSeasonById(final int id) {

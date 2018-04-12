@@ -8,17 +8,20 @@ public class Constants {
   public static final String CURRENT_USER_MAPPING = "/getCurrentUser";
   public static final String SEARCH_MAPPING = "/search";
   public static final String CELEBRITY_MAPPING = "/celebrity/{id}";
+
   public static final String MOVIE_MAPPING = "/movie/{id}";
   public static final String SHOW_MAPPING = "/show/{id}";
   public static final String SEASON_MAPPING = "/show/*/{seasonId}";
   public static final String EPISODE_MAPPING = "/show/*/*/{episodeId}";
+
   public static final String ADD_RATING_MAPPING = "/rating/{contentId}";
-  public static final String GET_RATING_MAPPING = "/rating/search";
+  public static final String GET_RATING_BY_CONTENT_ID_MAPPING = "/rating/search/cid/{contentId}";
+  public static final String GET_RATING_BY_REVIEWER_ID_MAPPING =  "/rating/search/rid/{reviewerId}";
 
   public static final String ADD_TO_INTERESTED_MAPPING = "interested/add/{contentId}";
   public static final String REMOVE_FROM_INTERESTED_MAPPING = "interested/remove/{contentId}";
 
-  public static final String ADD_TO_DISINTERESTED_MAPPING = "disinterested/remove/{contentId}";
+  public static final String ADD_TO_DISINTERESTED_MAPPING = "disinterested/add/{contentId}";
   public static final String REMOVE_FROM_DISINTERESTED_MAPPING = "disinterested/remove/{contentId}";
   public static final String PROFILE_MAPPING = "/profile/{userId}";
   public static final String FOLLOW_MAPPING = "/follow/{userId}";

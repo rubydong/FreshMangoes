@@ -2,14 +2,17 @@ package com.freshmangoes.app.content.data;
 
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.rating.data.Rating;
+
 import java.net.URL;
+
 import java.util.List;
+
 import lombok.Builder;
 
 public class Movie extends Content {
   @Builder
   public Movie(Integer id,
-               contentType type,
+               ContentType type,
                Media media,
                ContentMetadata contentMetadata,
                List<Rating> ratings,
