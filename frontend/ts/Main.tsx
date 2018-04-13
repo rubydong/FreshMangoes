@@ -2,7 +2,7 @@ import * as React from "react";
 import { Switch, Route } from 'react-router-dom'
 import { IndexTemplate } from "./IndexTemplate";
 import { MovieTemplate } from "./MovieTemplate";
-import { ShowTemplate } from "./ShowTemplate";
+import { ShowTemplate } from "./templates/ShowTemplate";
 import { CelebrityTemplate } from "./CelebrityTemplate";
 import { SearchTemplate } from "./SearchTemplate";
 import { ProfileTemplate } from "./ProfileTemplate";

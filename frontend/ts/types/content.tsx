@@ -20,6 +20,19 @@ export class ContentMetadata {
   cast: Celebrity[];
   releaseDate: Date;
   studioNetwork: String;
+
+  constructor() {
+    this.name = "";
+    this.mangoScore = 0;
+    this.audienceScore = 0;
+    this.maturityRating = "";
+    this.genres = [];
+    this.runtime = 0;
+    this.summary = "";
+    this.cast = [];
+    this.releaseDate = null;
+    this.studioNetwork = null;
+  }
 }
 
 export class Content {
@@ -29,6 +42,15 @@ export class Content {
   metadata: ContentMetadata;
   summaryPhoto : URL;
   ratings: Rating[];
+
+  constructor() {
+    this.id = 0;
+    this.type = null;
+    this.media = new Media();
+    this.metadata = new ContentMetadata();
+    this.summaryPhoto = null;
+    this.ratings = [];
+  }
 }
 
 export class Movie extends Content {
@@ -43,4 +65,9 @@ export class Season extends Content {
 
 export class Show extends Content {
   seasons: Season[];
+
+  constructor() {
+    super();
+    this.seasons = [];
+  }
 }

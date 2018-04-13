@@ -4,25 +4,28 @@ import { CastComponent } from '../components/CastComponent';
 import { Mangoes } from '../components/Mangoes';
 import { PhotoComponent } from '../components/PhotoComponent';
 import { VideoComponent } from '../components/VideoComponent';
-import { Show } from '../types/content';
+import { ContentMetadata, Show } from '../types/content';
 import * as React from 'react';
 
 export class ShowTemplate extends React.Component {
     state : Show;
 
-    componentWillMount() {
-        let currentComponent = this;
-        axios.get('http://localhost:9000/api' + window.location.pathname)
-        .then(function (response) {
-            currentComponent.setState(response.data);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    constructor(props) {
+      super(props);
+      this.state = new Show();
+    }
+
+    async componentDidMount() {
+      try {
+        const response = await axios.get('http://localhost:9000/api' + window.location.pathname);
+        console.log(response.data);
+        this.setState(response.data);
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     render() {
-
         const genres = this.state.metadata.genres.map((genre, i) => {
             return <span key={i}> {genre}{i < this.state.metadata.genres.length - 1 ? ', ' : ''}</span>
         });
@@ -43,11 +46,10 @@ export class ShowTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <img src={summaryPhoto} className="img-align-left"/> 
+                    <img src={summaryPhoto} className="img-align-left"/>
                     <div className="summary-title">
                         <h2>{this.state.metadata.name}</h2>
                     </div>
-                    
                     <div className="plot">
                         <b> MangoMeter <span className="med-margin-right"></span> Audience Score</b> <br/>
 
@@ -55,11 +57,11 @@ export class ShowTemplate extends React.Component {
                         {this.state.metadata.mangoScore}%
                         <span className="med-margin-right"></span>
 
-                        <Mangoes data-rating={this.state.metadata.audienceScore}/> 
+                        <Mangoes data-rating={this.state.metadata.audienceScore}/>
                         {this.state.metadata.audienceScore}% <p/><p/>
 
-                        <b>About Movie</b> <br/> 
-                        {this.state.metadata.summary} <p/> 
+                        <b>About Movie</b> <br/>
+                        {this.state.metadata.summary} <p/>
                     </div>
 
                     <div className="content-info">
@@ -72,16 +74,14 @@ export class ShowTemplate extends React.Component {
                         <button className="btn"> Uninterested</button>
                     </div>
                 </div>
-                
-               
+
                 <PhotoComponent data-photos={this.state.media.photos}/>
-                <VideoComponent data-videos={this.state.media.videos}/>  
-                
+                <VideoComponent data-videos={this.state.media.videos}/>
+
                 <div className="seasons margin-top-bottom">
                     <h2> Seasons </h2> <hr/>
                     {seasons}
                 </div>
-                
                 <CastComponent data-cast={this.state.metadata.cast} data-name={this.state.metadata.name}/>
             </div>
 		</div>

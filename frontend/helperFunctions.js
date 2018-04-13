@@ -1,5 +1,5 @@
 export function parseMedia(media) {
-    if (media == "") return "";
+    if (media == "" || media == null) return "";
     if (media.includes("https"))
         return "../" + media.substring(8);
     return media;
