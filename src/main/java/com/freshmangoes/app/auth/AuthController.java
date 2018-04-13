@@ -2,6 +2,7 @@ package com.freshmangoes.app.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.freshmangoes.app.auth.service.AuthService;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.user.service.UserService;
 import java.util.Map;
@@ -14,9 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "*")
 public class AuthController {
-
   @Autowired
-  private UserService userService;
+  private AuthService authService;
 
   @Autowired
   private HttpSession session;
@@ -29,7 +29,7 @@ public class AuthController {
     final HttpStatus status;
     final Integer userId;
 
-    userId = userService.loginUser(body.get(Constants.EMAIL),
+    userId = authService.loginUser(body.get(Constants.EMAIL),
                                    body.get(Constants.PASSWORD));
 
     if (userId != null) {
@@ -52,7 +52,7 @@ public class AuthController {
   public ResponseEntity register(@RequestBody final Map<String, String> body) {
     final Integer userId;
 
-    userId = userService.registerUser(body.get(Constants.EMAIL),
+    userId = authService.registerUser(body.get(Constants.EMAIL),
                                       body.get(Constants.PASSWORD),
                                       body.get(Constants.DISPLAY_NAME));
 
@@ -70,5 +70,4 @@ public class AuthController {
 
     return rootNode.toString();
   }
-
 }

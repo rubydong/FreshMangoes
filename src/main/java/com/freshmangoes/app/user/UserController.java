@@ -4,8 +4,6 @@ import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.service.UserService;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +14,6 @@ public class UserController {
 
   @Autowired
   private UserService userService;
-
-  @Autowired
-  private HttpSession session;
 
   @GetMapping(Constants.PROFILE_MAPPING)
   public User getProfile(@PathVariable final int userId) {
