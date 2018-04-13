@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Header } from './Header'
+import { Header } from './components/Header'
 import { LoginTemplate } from './LoginTemplate';
 import { RegisterTemplate } from './RegisterTemplate';
 import Main from './Main'

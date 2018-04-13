@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Mangoes } from "./Mangoes";
+import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
-import { parseDate }  from "../../helperFunctions.js";
+import { parseDate }  from "../helperFunctions.js";
+import {PhotoComponent} from './components/PhotoComponent'
 
 export class CelebrityTemplate extends React.Component {
     state = {
@@ -82,12 +83,8 @@ export class CelebrityTemplate extends React.Component {
                     {this.state.biography}
                 </div>
 
-                <div className="photos margin-top-bottom padding-top">
-                    <h2> Photos </h2> <p/> <hr/>
-                    <div className="photos-inner">
-                        {this.state.photos.map((photo, i) => <img src={photo} key={i}/>)}
-                    </div>     
-                </div>
+
+                <PhotoComponent data-photos={this.state.photos}/> 
 
                 <div className="filmography margin-top-bottom">
                     <h2> Filmography </h2> <hr/>

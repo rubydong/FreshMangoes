@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Mangoes } from "./Mangoes";
+import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
-import { parseDate, parseMedia }  from "../../helperFunctions.js";
+import { parseDate, parseMedia }  from "../helperFunctions.js";
+import {PhotoComponent} from './components/PhotoComponent'
 
 export class ShowTemplate extends React.Component {
     state = {
@@ -49,10 +50,10 @@ export class ShowTemplate extends React.Component {
             return <span key={i}> {genre}{i < this.state.genres.length - 1 ? ', ' : ''}</span>
         });
 
-        const photos = this.state.photos.map((photo, i) => {
-            let newUrl = parseMedia(photo);
-            return <img src={newUrl} key={i}/>
-        });
+        // const photos = this.state.photos.map((photo, i) => {
+        //     let newUrl = parseMedia(photo);
+        //     return <img src={newUrl} key={i}/>
+        // });
 
         const videos = this.state.videos.map((video, i) => {
             let newUrl = parseMedia(video);
@@ -116,11 +117,9 @@ export class ShowTemplate extends React.Component {
                     </div>
                 </div>
                 
-                <div className="photos padding-top margin-top-bottom-">
-                    <h2> Photos </h2> <p/> <hr/>
-                    <div className="photos-inner"> {photos} </div>     
-                </div>
-                
+               
+                <PhotoComponent data-photos={this.state.photos}/>
+                    
                 <div className="margin-top-bottom">
                     <h2> Videos </h2> <hr/>
                     <div className="videos"> {videos} </div>
