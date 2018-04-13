@@ -52,18 +52,26 @@ def scrape_shows(num_shows):
     while num_shows > 0:
         print(f"{num_shows} shows left")
         discoveries = make_request(f"{tmdb_url}/discover/tv", {"api_key": tmdb_api_key, "page": page})
+        count = len(discoveries)
+
         for discovered in discoveries["results"]:
             base_url = f"{tmdb_url}/tv/{discovered['id']}"
             params = {"api_key": tmdb_api_key}
             details = scrape(base_url, params, discovered['id'], "shows")
-            for season in details["seasons"]:
-                season_base_url = f"{base_url}/season/{season['season_number']}"
-                season_details = scrape(season_base_url, params, season['id'], "seasons")
+
+            if details['number_of_episodes'] > 200:
+                count -= 1
+                continue
+
+            for season in range(details["number_of_seasons"]):
+                season_base_url = f"{base_url}/season/{season}"
+                season_details = scrape(season_base_url, params, f"{details['id']}_{season}", "seasons")
+
                 for episode in season_details["episodes"]:
                     episode_base_url = f"{season_base_url}/episode/{episode['episode_number']}"
-                    scrape(episode_base_url, params, episode['id'], "episodes")
+                    scrape(episode_base_url, params, f"{details['id']}_{season}_{episode['episode_number']}", "episodes")
         page += 1
-        num_shows -= len(discoveries["results"])
+        num_shows -= count
 
 
 def scrape_movies(num_movies):
