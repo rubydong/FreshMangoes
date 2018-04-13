@@ -9,7 +9,7 @@ export enum ContentType {
   EPISODE
 }
 
-export interface ContentMetadata {
+export class ContentMetadata {
   name: string;
   mangoScore : number;
   audienceScore : number;
@@ -22,7 +22,7 @@ export interface ContentMetadata {
   studioNetwork: String;
 }
 
-export interface Content {
+export class Content {
   id: number;
   type: ContentType;
   media: Media;
@@ -31,16 +31,16 @@ export interface Content {
   ratings: Rating[];
 }
 
-export interface Movie extends Content {
+export class Movie extends Content {
 }
 
-export interface Episode extends Content {
+export class Episode extends Content {
 }
 
-export interface Season extends Content {
+export class Season extends Content {
   episodes: Episode[];
 }
 
-export interface Show extends Content {
+export class Show extends Content {
   seasons: Season[];
 }

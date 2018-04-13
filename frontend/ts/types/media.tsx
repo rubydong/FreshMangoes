@@ -1,4 +1,4 @@
-export interface Media {
+export class Media {
   photos: URL[];
   videos: URL[];
 }

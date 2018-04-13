@@ -1,3 +1,2 @@
-export interface Celebrity {
-
+export class Celebrity {
 }

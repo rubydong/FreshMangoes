@@ -1,2 +1,2 @@
-export interface Rating {
+export class Rating {
 }
