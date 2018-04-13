@@ -1,8 +1,10 @@
 .gradle
 .idea
 build/
-frontend/dist/
+out/
+dist/
 node_modules
+venv
 
 # Ignore Gradle GUI config
 gradle-app.setting
