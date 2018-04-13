@@ -1,7 +1,10 @@
 import * as React from "react";
-import { Mangoes } from "./Mangoes";
+import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
-import { parseMedia, parseDate }  from "../../helperFunctions.js";
+import { parseMedia, parseDate }  from "../helperFunctions.js";
+import { PhotoComponent } from './components/PhotoComponent';
+import { VideoComponent } from './components/VideoComponent';
+import { CastComponent } from './components/CastComponent';
 
 export class MovieTemplate extends React.Component {
     state = {
@@ -68,26 +71,6 @@ export class MovieTemplate extends React.Component {
             return <span key={i}> {genre}{i < this.state.genres.length - 1 ? ', ' : ''}</span>
         });
 
-        const photos = this.state.photos.map((photo, i) => {
-            let newUrl = parseMedia(photo);
-            return <img src={newUrl} key={i}/>
-        });
-
-        const videos = this.state.videos.map((video, i) => {
-            let newUrl = parseMedia(video);
-            return <video controls> <source src={newUrl} type="video/mp4" key={i}/> </video>
-        });
-        
-        const cast = this.state.cast.map((castPerson, i) => {
-            let newUrl = parseMedia(castPerson.profilePhoto);
-            let role = Object.keys(castPerson.roles[this.state.name])[0];
-            return <div className="cast-person" key={i}>
-                <img src={newUrl} className="img-align-left"/>
-                <b><a href={"../celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
-                <i>{role}</i>
-            </div>
-        });
-
         return (
             
         <div>
@@ -127,62 +110,10 @@ export class MovieTemplate extends React.Component {
                     </div>
                 </div>
                 
-                <div className="photos padding-top margin-top-bottom-">
-                    <h2> Photos </h2> <p/> <hr/>
-                    <div className="photos-inner"> {photos} </div>     
-                </div>
+                <PhotoComponent data-photos={this.state.photos}/>   
+                <VideoComponent data-videos={this.state.videos}/>  
+                <CastComponent data-cast={this.state.cast} data-name={this.state.name}/>
                 
-                <div className="margin-top-bottom">
-                    <h2> Trailers </h2> <hr/>
-                    <div className="videos"> {videos} </div>
-                </div>
-                
-                <div className="ticketshowtime padding-top margin-top-bottom">
-                    <h2> Tickets & Showtimes</h2>
-                    <hr/>
-                    Showtimes for <b><a href="">February 21, 2018</a></b> near Stony Brook  <br/>
-                    <b><a href="">AMC LOEWS STONY BROOK 17</a></b> <br/>
-                    2196 Nesconset Hwy <br/>
-                    <a href="">Change Location</a>
-                
-                    <div className="padding"></div>
-                    3D Showtimes 
-                    <ul className="list-inline showtime"> 
-                        <li> 11:00am </li>
-                        <li> 2:15am </li>
-                        <li> 5:20am </li>
-                        <li> 8:30am </li>
-                        <li> 9:15am </li>
-                    </ul>
-                    
-                    Standard Showtimes
-                    <ul className="list-inline showtime">
-                        <li> 10:30am </li>
-                        <li> 11:30am </li>
-                        <li> 12:00pm </li>
-                        <li> 1:30pm </li>
-                        <li> 2:45pm </li>
-                        <li> 3:15pm </li>
-                        <li> 4:35pm </li>
-                        <li> 6:00pm </li>
-                        <li> 6:35pm </li>
-                        <li> 7:45pm </li>
-                        <li> 10:00pm </li>
-                        <li> 10:20pm </li>
-                    </ul>
-                    
-                    <div className="align-right"><a href=""> View All Theaters & Showtimes </a> </div>
-                </div>
-                
-                <div className="casts margin-top-bottom"> 
-                    <h2>Cast</h2>
-                    <hr/>
-                    <div className="flex-center">
-                        {cast}
-                    </div>
-                    <p/>
-                    <div className="align-right"><a href="">View All Cast</a></div>
-                </div>
                 <div className="padding"></div>
                 <div className="reviews margin-top-bottom">
                     <h2> Reviews </h2>

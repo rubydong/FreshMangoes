@@ -2,8 +2,10 @@ package com.freshmangoes.app.user.data;
 
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.rating.data.Rating;
+
 import java.net.URL;
 import java.util.List;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,7 +16,7 @@ public class User {
   private String email;
   private String hash;
   private String displayName;
-  private userType type;
+  private UserType type;
   private URL profilePicture;
   private Integer numFollowers;
   private Integer numFollowing;

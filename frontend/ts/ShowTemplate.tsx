@@ -1,7 +1,10 @@
 import * as React from "react";
-import { Mangoes } from "./Mangoes";
+import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
-import { parseDate, parseMedia }  from "../../helperFunctions.js";
+import { parseDate, parseMedia }  from "../helperFunctions.js";
+import { PhotoComponent } from './components/PhotoComponent';
+import { VideoComponent } from './components/VideoComponent';
+import { CastComponent } from './components/CastComponent';
 
 export class ShowTemplate extends React.Component {
     state = {
@@ -49,16 +52,6 @@ export class ShowTemplate extends React.Component {
             return <span key={i}> {genre}{i < this.state.genres.length - 1 ? ', ' : ''}</span>
         });
 
-        const photos = this.state.photos.map((photo, i) => {
-            let newUrl = parseMedia(photo);
-            return <img src={newUrl} key={i}/>
-        });
-
-        const videos = this.state.videos.map((video, i) => {
-            let newUrl = parseMedia(video);
-            return <video controls> <source src={newUrl} type="video/mp4" key={i}/> </video>
-        });
-       
         const seasons = this.state.seasons.map((season, i) => {
             let newUrl = parseMedia(season.summaryPhoto);
            
@@ -67,16 +60,6 @@ export class ShowTemplate extends React.Component {
                 <b><a href={"/season/" + season.id}>{season.metadata.name}</a></b> <br/>
                 {season.metadata.summary}
                 </div>
-        });
-
-        const cast = this.state.cast.map((castPerson, i) => {
-            let newUrl = parseMedia(castPerson.profilePhoto);
-            let role = Object.keys(castPerson.roles[this.state.name])[0];
-            return <div className="cast-person" key={i}>
-                <img src={newUrl} className="img-align-left"/>
-                <b><a href={"../celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
-                <i>{role}</i>
-            </div>
         });
 
         return (
@@ -116,29 +99,16 @@ export class ShowTemplate extends React.Component {
                     </div>
                 </div>
                 
-                <div className="photos padding-top margin-top-bottom-">
-                    <h2> Photos </h2> <p/> <hr/>
-                    <div className="photos-inner"> {photos} </div>     
-                </div>
-                
-                <div className="margin-top-bottom">
-                    <h2> Videos </h2> <hr/>
-                    <div className="videos"> {videos} </div>
-                </div>
+               
+                <PhotoComponent data-photos={this.state.photos}/>
+                <VideoComponent data-videos={this.state.videos}/>  
                 
                 <div className="seasons margin-top-bottom">
                     <h2> Seasons </h2> <hr/>
                     {seasons}
                 </div>
                 
-                <div className="casts margin-top-bottom"> 
-                    <h2>Cast</h2> <hr/>
-                    <div className="flex-center">
-                        {cast}
-                    </div>
-                    <p/>
-                    <div className="align-right"><a href="">View All Cast</a></div>
-                </div>
+                <CastComponent data-cast={this.state.cast} data-name={this.state.name}/>
             </div>
 		</div>
 

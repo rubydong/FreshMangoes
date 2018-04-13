@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Mangoes } from "./Mangoes";
+import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
-import { parseIndexMedia }  from "../../helperFunctions.js";
+import { parseIndexMedia }  from "../helperFunctions.js";
 
 export class IndexTemplate extends React.Component {
     state = {
@@ -59,6 +59,7 @@ export class IndexTemplate extends React.Component {
 
         return (
         <div>
+            
             <img id="poster" src={this.state.poster}/>
             <div className="content">
                 <div className="margin-top-bottom spotlight">

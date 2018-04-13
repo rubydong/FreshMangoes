@@ -2,13 +2,17 @@ package com.freshmangoes.app.interested;
 
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.interested.service.InterestsService;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class InterestsController {
 
   @Autowired
@@ -63,7 +67,7 @@ public class InterestsController {
     return new ResponseEntity(status);
   }
 
-  @PostMapping(Constants.REMOVE_FROM_INTERESTED_MAPPING)
+  @PostMapping(Constants.REMOVE_FROM_DISINTERESTED_MAPPING)
   public ResponseEntity removeFromDisinterestedList(@PathVariable final Integer contentId) {
     final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
     final HttpStatus status;

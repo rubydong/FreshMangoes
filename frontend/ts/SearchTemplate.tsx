@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Mangoes } from "./Mangoes";
+import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
-import { parseMedia }  from "../../helperFunctions.js";
+import { parseMedia }  from "../helperFunctions.js";
 
 export class SearchTemplate extends React.Component {
     state = {

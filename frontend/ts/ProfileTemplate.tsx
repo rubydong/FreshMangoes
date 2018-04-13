@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Mangoes } from "./Mangoes";
+import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
-import { parseProfileMedia }  from "../../helperFunctions.js";
+import { parseProfileMedia }  from "../helperFunctions.js";
 
 export class ProfileTemplate extends React.Component {
     state = {

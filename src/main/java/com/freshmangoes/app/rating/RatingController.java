@@ -1,15 +1,21 @@
 package com.freshmangoes.app.rating;
 
 import com.freshmangoes.app.common.data.Constants;
+import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.service.RatingService;
-import com.freshmangoes.app.user.data.userType;
+import com.freshmangoes.app.user.data.UserType;
+
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class RatingController {
   @Autowired
   private RatingService ratingService;
@@ -17,16 +23,31 @@ public class RatingController {
   @Autowired
   private HttpSession session;
 
-  @PostMapping(Constants.RATING_MAPPING)
-  public ResponseEntity addRating(@PathVariable final Integer contentId,
-                                  @RequestParam final Integer score,
-                                  @RequestParam final String body) {
-    boolean result = ratingService.addToRating(contentId,
-                                               score,
-                                               userType.AUDIENCE,
-                                               (Integer) session.getAttribute(Constants.USER_ID),
-                                               body);
-    return result ? ResponseEntity.ok("Rating added successfully")
-                  : ResponseEntity.status(490).body("Something went wrong");
+  @PostMapping(Constants.ADD_RATING_MAPPING)
+  public ResponseEntity addRating(@RequestBody final Map<String, String> body,
+                                  @PathVariable final Integer contentId) {
+    Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+
+    if (userId == null) {
+      return ResponseEntity.badRequest().build();
+    } else {
+      return ratingService.addToRating(contentId,
+                                       Integer.parseInt(body.get(Constants.SCORE)),
+                                       UserType.AUDIENCE,
+                                       userId,
+                                       body.get(Constants.BODY))
+             ? ResponseEntity.ok("Rating added successfully.")
+             : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not added successfully.");
+    }
+  }
+
+  @GetMapping(Constants.GET_RATING_BY_CONTENT_ID_MAPPING)
+  public List<Rating> getRatingByContentId(@PathVariable final Integer contentId) {
+    return ratingService.getRatingByContentId(contentId);
+  }
+
+  @GetMapping(Constants.GET_RATING_BY_REVIEWER_ID_MAPPING)
+  public List<Rating> getRatingByReviewerId(@PathVariable final Integer reviewerId) {
+    return ratingService.getRatingByReviewerId(reviewerId);
   }
 }

@@ -1,6 +1,7 @@
 package com.freshmangoes.app.follow.service;
 
 import com.freshmangoes.app.follow.repository.FollowRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

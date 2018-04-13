@@ -3,7 +3,8 @@ package com.freshmangoes.app.home.service;
 import com.freshmangoes.app.content.data.ContentMetadata;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Show;
-import com.freshmangoes.app.home.data.IndexPageItems;
+import com.freshmangoes.app.home.data.SpotlightItems;
+
 import com.google.common.collect.ImmutableList;
 
 import java.net.MalformedURLException;
@@ -12,11 +13,11 @@ import java.net.URL;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HomeServiceImpl implements HomeService {
+public class SpotlightServiceImpl implements SpotlightService {
   // Decide how to categorize Movies/Shows
-  public IndexPageItems getIndexPageItems() {
+  public SpotlightItems getIndexPageItems() {
     try {
-      return IndexPageItems
+      return SpotlightItems
           .builder()
           .posterImage(new URL("https://images/greatestshowmanbanner.jpg"))
           .openingMovies(new ImmutableList.Builder<Movie>()

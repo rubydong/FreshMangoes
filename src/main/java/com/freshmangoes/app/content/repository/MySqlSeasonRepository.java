@@ -1,7 +1,7 @@
 package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.ContentMetadata;
-import com.freshmangoes.app.content.data.contentType;
+import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.content.data.Season;
 import com.google.common.collect.ImmutableList;
 import org.springframework.stereotype.Repository;
@@ -16,7 +16,7 @@ public class MySqlSeasonRepository implements SeasonRepository {
     return Season
      .builder()
      .id(id)
-     .type(contentType.SEASON)
+     .type(ContentType.SEASON)
      .contentMetadata(ContentMetadata
       .builder()
       .audienceScore(25.2)

@@ -2,8 +2,11 @@ package com.freshmangoes.app.content.data;
 
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.rating.data.Rating;
+
 import java.net.URL;
+
 import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +14,7 @@ import lombok.Setter;
 @Setter
 public abstract class Content {
   private Integer id;
-  private contentType type;
+  private ContentType type;
   private Media media;
   private ContentMetadata metadata;
   private URL summaryPhoto;
