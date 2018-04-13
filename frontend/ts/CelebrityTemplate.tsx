@@ -2,7 +2,7 @@ import * as React from "react";
 import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
 import { parseDate }  from "../helperFunctions.js";
-import {PhotoComponent} from './components/PhotoComponent'
+import { PhotoComponent } from './components/PhotoComponent'
 
 export class CelebrityTemplate extends React.Component {
     state = {

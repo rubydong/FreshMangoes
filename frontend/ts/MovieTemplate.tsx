@@ -2,7 +2,9 @@ import * as React from "react";
 import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
 import { parseMedia, parseDate }  from "../helperFunctions.js";
-import {PhotoComponent} from './components/PhotoComponent'
+import { PhotoComponent } from './components/PhotoComponent';
+import { VideoComponent } from './components/VideoComponent';
+import { CastComponent } from './components/CastComponent';
 
 export class MovieTemplate extends React.Component {
     state = {
@@ -69,21 +71,6 @@ export class MovieTemplate extends React.Component {
             return <span key={i}> {genre}{i < this.state.genres.length - 1 ? ', ' : ''}</span>
         });
 
-        const videos = this.state.videos.map((video, i) => {
-            let newUrl = parseMedia(video);
-            return <video controls> <source src={newUrl} type="video/mp4" key={i}/> </video>
-        });
-        
-        const cast = this.state.cast.map((castPerson, i) => {
-            let newUrl = parseMedia(castPerson.profilePhoto);
-            let role = Object.keys(castPerson.roles[this.state.name])[0];
-            return <div className="cast-person" key={i}>
-                <img src={newUrl} className="img-align-left"/>
-                <b><a href={"../celebrity/" + castPerson.id}>{castPerson.name}</a></b>  <br/> 
-                <i>{role}</i>
-            </div>
-        });
-
         return (
             
         <div>
@@ -124,21 +111,9 @@ export class MovieTemplate extends React.Component {
                 </div>
                 
                 <PhotoComponent data-photos={this.state.photos}/>   
+                <VideoComponent data-videos={this.state.videos}/>  
+                <CastComponent data-cast={this.state.cast} data-name={this.state.name}/>
                 
-                <div className="margin-top-bottom">
-                    <h2> Trailers </h2> <hr/>
-                    <div className="videos"> {videos} </div>
-                </div>
-                
-                <div className="casts margin-top-bottom"> 
-                    <h2>Cast</h2>
-                    <hr/>
-                    <div className="flex-center">
-                        {cast}
-                    </div>
-                    <p/>
-                    <div className="align-right"><a href="">View All Cast</a></div>
-                </div>
                 <div className="padding"></div>
                 <div className="reviews margin-top-bottom">
                     <h2> Reviews </h2>
