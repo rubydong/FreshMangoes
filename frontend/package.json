@@ -6,7 +6,14 @@
   "scripts": {
     "build": "node_modules/.bin/webpack",
     "bs": "npm run build && npm run start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +30,7 @@
   "devDependencies": {
     "awesome-typescript-loader": "^4.0.1",
     "css-loader": "^0.28.11",
+    "gts": "^0.5.4",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.3",
     "typescript": "^2.8.1",
