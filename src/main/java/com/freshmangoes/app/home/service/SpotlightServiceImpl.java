@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SpotlightServiceImpl implements SpotlightService {
   // Decide how to categorize Movies/Shows
+
+  @Override
   public SpotlightItems getIndexPageItems() {
     try {
       return SpotlightItems
@@ -300,6 +302,11 @@ public class SpotlightServiceImpl implements SpotlightService {
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
+    return null;
+  }
+
+  @Override
+  public SpotlightItems getSpotlightItems() {
     return null;
   }
 }

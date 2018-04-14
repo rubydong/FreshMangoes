@@ -4,4 +4,6 @@ import com.freshmangoes.app.home.data.SpotlightItems;
 
 public interface SpotlightService {
   SpotlightItems getIndexPageItems();
+
+  SpotlightItems getSpotlightItems();
 }

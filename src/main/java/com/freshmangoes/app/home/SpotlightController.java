@@ -18,4 +18,8 @@ public class SpotlightController {
     return spotlightService.getIndexPageItems();
   }
 
+  @GetMapping(Constants.SPOTLIGHT_MAPPING)
+  public SpotlightItems getSpotlightItems() {
+    return spotlightService.getSpotlightItems();
+  }
 }
