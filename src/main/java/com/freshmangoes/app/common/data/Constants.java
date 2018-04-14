@@ -7,7 +7,13 @@ public class Constants {
   public static final String REGISTER_MAPPING = "/register";
   public static final String CURRENT_USER_MAPPING = "/getCurrentUser";
   public static final String SEARCH_MAPPING = "/search";
-  public static final String CELEBRITY_MAPPING = "/celebrity/{id}";
+
+  public static final String GET_CELEBRITY_MAPPING = "/celebrity/{id}";
+  public static final String GET_ALL_CELEBRITY_MAPPING = "/celebrity/a/{id}";
+  public static final String GET_ALL_CELEBRITY_BY_KEYWORD_MAPPING = "/celebrity/search";
+  public static final String INSERT_CELEBRITY_MAPPING = "/celebrity/add";
+  public static final String CHECK_CELEBRITY_EXISTS_MAPPING = "/celebrity/exists/{id}";
+  public static final String DELETE_CELEBRITY_MAPPING = "/celebrity/delete/{id}";
 
   public static final String MOVIE_MAPPING = "/movie/{id}";
   public static final String SHOW_MAPPING = "/show/{id}";
