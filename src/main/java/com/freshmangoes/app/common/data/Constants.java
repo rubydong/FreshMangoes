@@ -32,6 +32,8 @@ public class Constants {
   public static final String PROFILE_MAPPING = "/profile/{userId}";
   public static final String FOLLOW_MAPPING = "/follow/{userId}";
   public static final String UNFOLLOW_MAPPING = "/unfollow/{userId}";
+  public static final String GET_FOLLOWERS_MAPPING = "/followers/{userId}";
+  public static final String GET_FOLLOWING_MAPPING = "/following/{userId}";
 
   public static final String USER_ID = "userId";
   public static final String OTHER_USER_ID = "otherUserId";

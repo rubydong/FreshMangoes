@@ -42,7 +42,7 @@ public class CelebrityController {
   }
 
   @GetMapping(Constants.CHECK_CELEBRITY_EXISTS_MAPPING)
-  public ResponseEntity checkCelebrityExists(@PathVariable final Integer id) {
+  public ResponseEntity checkCelebrityExists(@PathVariable("id") final Integer id) {
     return celebrityService.celebrityExists(id)
            ? ResponseEntity.status(HttpStatus.OK).build()
            : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
