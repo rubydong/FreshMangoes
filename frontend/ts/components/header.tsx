@@ -7,7 +7,7 @@ export class Header extends React.Component {
     }
     
     logout = event => {
-        this.setState({ email: event.target.value });
+        this.setState({ email: event.target.value, currentUser: -1 });
         axios.post('http://localhost:9000/api/logout', {})
         .then(res => {
         });

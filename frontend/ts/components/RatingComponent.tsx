@@ -21,9 +21,9 @@ export class RatingComponent extends React.Component {
         const title = this.props['data-name'];
         const ratings = this.props['data-ratings'].map((rating, i) => {
             return <div className={"review " + (i%2==0 ? "pull-right" : "pull-left")}>
-                    <b><a href="">Matthew Rozsa</a></b> 
+                    <b><a href={'../profile/' + rating.reviewerId}>{rating.username}</a></b> 
                     <span className="align-right"> <Mangoes data-rating={rating.score}/></span> <br/>
-                    <i> {title} </i> <hr/>
+                    <i> <a href={'../' + rating.contentType.toLowerCase() + '/' + rating.contentId}> {title} </a></i> <hr/>
                     "{rating.body}"
                 </div>
         });

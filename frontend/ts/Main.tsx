@@ -5,7 +5,7 @@ import { MovieTemplate } from "./templates/MovieTemplate";
 import { ShowTemplate } from "./templates/ShowTemplate";
 import { CelebrityTemplate } from "./templates/CelebrityTemplate";
 import { SearchTemplate } from "./SearchTemplate";
-import { ProfileTemplate } from "./ProfileTemplate";
+import { ProfileTemplate } from "./templates/ProfileTemplate";
 import { SpotlightTemplate } from "./SpotlightTemplate";
 
 const Main = () => (
