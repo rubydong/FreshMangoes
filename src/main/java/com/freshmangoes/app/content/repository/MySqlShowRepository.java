@@ -28,7 +28,7 @@ public class MySqlShowRepository implements ShowRepository {
      .add(Rating
       .builder()
       .id(3)
-      .type(UserType.AUDIENCE)
+      .userType(UserType.AUDIENCE)
       .body("Could be better")
       .score(79)
       .contentId(id)
@@ -36,7 +36,7 @@ public class MySqlShowRepository implements ShowRepository {
      .add(Rating
       .builder()
       .id(4)
-      .type(UserType.CRITIC)
+      .userType(UserType.CRITIC)
       .body("Best thriller of all time")
       .score(96)
       .contentId(id)
