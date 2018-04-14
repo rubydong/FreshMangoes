@@ -15,11 +15,11 @@ export class ContentMetadata {
   audienceScore : number;
   maturityRating : string;
   genres: string[];
-  runtime: number;
+  runTime: number;
   summary: string;
   cast: Celebrity[];
   releaseDate: Date;
-  studioNetwork: String;
+  studio: String;
 
   constructor() {
     this.name = "";
@@ -27,11 +27,11 @@ export class ContentMetadata {
     this.audienceScore = 0;
     this.maturityRating = "";
     this.genres = [];
-    this.runtime = 0;
+    this.runTime = 0;
     this.summary = "";
     this.cast = [];
     this.releaseDate = null;
-    this.studioNetwork = null;
+    this.studio = null;
   }
 }
 
