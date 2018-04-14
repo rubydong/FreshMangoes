@@ -1,6 +1,5 @@
 import * as React from "react";
 import axios from "axios";
-import { parseMedia, parseDate }  from "../../helperFunctions.js";
 import { ContentMetadata, Movie } from '../types/content';
 import { PhotoComponent } from '../components/PhotoComponent';
 import { VideoComponent } from '../components/VideoComponent';

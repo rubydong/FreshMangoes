@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { IndexTemplate } from "./IndexTemplate";
 import { MovieTemplate } from "./templates/MovieTemplate";
 import { ShowTemplate } from "./templates/ShowTemplate";
-import { CelebrityTemplate } from "./CelebrityTemplate";
+import { CelebrityTemplate } from "./templates/CelebrityTemplate";
 import { SearchTemplate } from "./SearchTemplate";
 import { ProfileTemplate } from "./ProfileTemplate";
 import { SpotlightTemplate } from "./SpotlightTemplate";

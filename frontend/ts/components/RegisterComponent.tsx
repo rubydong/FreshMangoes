@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 
-export class RegisterTemplate extends React.Component {
+export class RegisterComponent extends React.Component {
     state = {
         email: '',
         displayName: '',

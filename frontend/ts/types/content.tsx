@@ -11,9 +11,9 @@ export enum ContentType {
 
 export class ContentMetadata {
   name: string;
-  mangoScore : number;
-  audienceScore : number;
-  maturityRating : string;
+  mangoScore: number;
+  audienceScore: number;
+  maturityRating: string;
   genres: string[];
   runTime: number;
   summary: string;

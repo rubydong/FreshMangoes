@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import { parseMedia, parseDate }  from "../../helperFunctions.js";
+import { parseMedia }  from "../../helperFunctions.js";
 import { ContentMetadata, Show } from '../types/content';
 import { PhotoComponent } from '../components/PhotoComponent';
 import { VideoComponent } from '../components/VideoComponent';
@@ -28,10 +28,6 @@ export class ShowTemplate extends React.Component {
     }
 
     render() {
-        const genres = this.state.metadata.genres.map((genre, i) => {
-            return <span key={i}> {genre}{i < this.state.metadata.genres.length - 1 ? ', ' : ''}</span>
-        });
-
         const seasons = this.state.seasons.map((season, i) => {
             let newUrl = parseMedia(season.summaryPhoto);
             return <div className="season">
@@ -40,8 +36,6 @@ export class ShowTemplate extends React.Component {
                 {season.metadata.summary}
                 </div>
         });
-
-        const summaryPhoto = parseMedia(this.state.summaryPhoto);
 
         return (
         <div>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 
-export class LoginTemplate extends React.Component {
+export class LoginComponent extends React.Component {
     state = {
         email: '',
         password: '',
