@@ -7,15 +7,15 @@ export class Header extends React.Component {
     }
     
     logout = event => {
-        this.setState({ email: event.target.value });
-        axios.post('http://localhost:9000/api/logout', {})
+        this.setState({ email: event.target.value, currentUser: -1 });
+        axios.post(window.location.origin + '/api/logout', {})
         .then(res => {
         });
     }
 
     componentWillMount() {
         let currentComponent = this;
-        axios.get("http://localhost:9000/api/getCurrentUser")
+        axios.get(window.location.origin + '/api/getCurrentUser')
         .then(function (response) {
             currentComponent.setState({ 
                 currentUser: response.data.userId,

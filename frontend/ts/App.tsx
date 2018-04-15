@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Header } from './components/Header'
-import { LoginTemplate } from './LoginTemplate';
-import { RegisterTemplate } from './RegisterTemplate';
+import { LoginComponent } from './components/LoginComponent';
+import { RegisterComponent } from './components/RegisterComponent';
 import Main from './Main'
 
 const App = () => (
   <div>
     <Header />
-    <LoginTemplate />
-    <RegisterTemplate/>
+    <LoginComponent />
+    <RegisterComponent/>
     <Main />
   </div>
 )

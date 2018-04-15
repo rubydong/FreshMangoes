@@ -23,7 +23,7 @@ public class RatingServiceImpl implements RatingService {
                                           .builder()
                                           .contentId(contentId)
                                           .score(score)
-                                          .type(type)
+                                          .userType(type)
                                           .reviewerId(reviewerId)
                                           .body(body)
                                           .build());

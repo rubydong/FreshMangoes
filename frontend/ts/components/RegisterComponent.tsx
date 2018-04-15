@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 
-export class RegisterTemplate extends React.Component {
+export class RegisterComponent extends React.Component {
     state = {
         email: '',
         displayName: '',
@@ -35,7 +35,7 @@ export class RegisterTemplate extends React.Component {
     };
 
     console.log(registerInfo);
-    axios.post('http://localhost:9000/api/register', registerInfo)
+    axios.post(window.location.origin + '/api/register', registerInfo)
         .then(res => {
             console.log(res);
             window.location.reload();

@@ -22,13 +22,25 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MySqlCelebrityRepository implements CelebrityRepository {
+
+  @Override
+  public Boolean existsById(Integer id) {
+    return true;
+  }
+
+  @Override
+  public void deleteById(final Integer id) {
+    return;
+  }
+
   /**
    * Returns a Celebrity object. The id argument is obtained from the mapping.
    *
    * @param id the id associated with the current celebrity being viewed
    * @return the celebrity with the given id
    */
-  public Celebrity findCelebrityById(final int id) {
+  @Override
+  public Celebrity findById(final Integer id) {
     try {
       ArrayList <String> roles = new ArrayList<>();
       roles.add("T'Challa");
@@ -157,5 +169,15 @@ public class MySqlCelebrityRepository implements CelebrityRepository {
       e.printStackTrace();
     }
     return celebrities;
+  }
+
+  @Override
+  public Celebrity save(Celebrity celebrity) {
+    return null;
+  }
+
+  @Override
+  public List<Celebrity> findAllById(Integer id) {
+    return null;
   }
 }

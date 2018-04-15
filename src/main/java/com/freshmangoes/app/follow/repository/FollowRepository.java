@@ -1,10 +1,17 @@
 package com.freshmangoes.app.follow.repository;
 
+import com.freshmangoes.app.user.data.User;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface FollowRepository {
-  public boolean save(int userId, int otherUserId);
+  Boolean save(Integer userId, Integer otherUserId);
 
-  public boolean delete(int userId, int otherUserId);
+  Boolean delete(Integer userId, Integer otherUserId);
+
+  List<User> findAllFollowing(Integer id);
+
+  List<User> findAllFollowers(Integer id);
 }

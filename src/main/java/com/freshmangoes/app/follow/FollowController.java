@@ -27,16 +27,20 @@ public class FollowController {
   public ResponseEntity follow(@RequestBody final Map<String, String> body,
                                @PathVariable("userId") final Integer userId) {
     final HttpStatus status;
+    Integer savedUserId = (Integer) session.getAttribute(Constants.USER_ID);
 
-    boolean success = followService.followUser(
-        Integer.parseInt(body.get(Constants.OTHER_USER_ID)), userId);
-    if (success) {
-      session.setAttribute(Constants.OTHER_USER_ID, userId);
-      status = HttpStatus.OK;
+    if (savedUserId != null && savedUserId.equals(userId)) {
+      boolean success = followService.followUser(
+       Integer.parseInt(body.get(Constants.OTHER_USER_ID)), userId);
+      if (success) {
+        session.setAttribute(Constants.OTHER_USER_ID, userId);
+        status = HttpStatus.OK;
+      } else {
+        status = HttpStatus.BAD_REQUEST;
+      }
     } else {
       status = HttpStatus.BAD_REQUEST;
     }
-
     return new ResponseEntity(status);
   }
 
@@ -44,16 +48,42 @@ public class FollowController {
   public ResponseEntity unfollow(@RequestBody final Map<String, String> body,
                                  @PathVariable("userId") final Integer userId) {
     final HttpStatus status;
+    Integer savedUserId = (Integer) session.getAttribute(Constants.USER_ID);
 
-    boolean success = followService.unfollowUser(
-        Integer.parseInt(body.get(Constants.OTHER_USER_ID)), userId);
-    if (success) {
-      session.setAttribute(Constants.OTHER_USER_ID, userId);
-      status = HttpStatus.OK;
+    if (savedUserId != null && savedUserId.equals(userId)) {
+      boolean success = followService.unfollowUser(
+       Integer.parseInt(body.get(Constants.OTHER_USER_ID)), userId);
+      if (success) {
+        session.setAttribute(Constants.OTHER_USER_ID, userId);
+        status = HttpStatus.OK;
+      } else {
+        status = HttpStatus.BAD_REQUEST;
+      }
     } else {
       status = HttpStatus.BAD_REQUEST;
     }
-
     return new ResponseEntity(status);
+  }
+
+  @GetMapping(Constants.GET_FOLLOWERS_MAPPING)
+  public ResponseEntity getFollowers(@PathVariable("userId") final Integer userId) {
+    Integer savedUserId = (Integer) session.getAttribute(Constants.USER_ID);
+
+    if (savedUserId != null && savedUserId.equals(userId)) {
+      return ResponseEntity.status(HttpStatus.OK).body(followService.followers(userId));
+    } else {
+      return ResponseEntity.badRequest().build();
+    }
+  }
+
+  @GetMapping(Constants.GET_FOLLOWING_MAPPING)
+  public ResponseEntity getFollowing(@PathVariable("userId") final Integer userId) {
+    Integer savedUserId = (Integer) session.getAttribute(Constants.USER_ID);
+
+    if (savedUserId != null && savedUserId.equals(userId)) {
+      return ResponseEntity.status(HttpStatus.OK).body(followService.following(userId));
+    } else {
+      return ResponseEntity.badRequest().build();
+    }
   }
 }

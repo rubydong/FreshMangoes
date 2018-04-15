@@ -24,23 +24,50 @@ public class MySqlMovieRepository implements MovieRepository {
 
   @Override
   public Movie findMovieById(final int id) {
-    // Return filler data for now
     List<Rating> ratings = new ImmutableList.Builder<Rating>()
      .add(Rating
       .builder()
-      .id(1)
-      .type(UserType.AUDIENCE)
-      .body("Good movie, would recommend to other people")
-      .score(89)
+      .id(0)
+      .reviewerId(1331)
       .contentId(id)
+      .body("I like the action part of the film.")
+      .score(89)
+      .contentType(ContentType.MOVIE)
+      .userType(UserType.AUDIENCE)
+      .username("Ruby Dong")
+      .build())
+     .add(Rating
+      .builder()
+      .id(1)
+      .reviewerId(1332)
+      .contentId(id)
+      .body("I'm not really into superhero movies.")
+      .score(69)
+      .contentType(ContentType.MOVIE)
+      .userType(UserType.AUDIENCE)
+      .username("Norman Le")
       .build())
      .add(Rating
       .builder()
       .id(2)
-      .type(UserType.CRITIC)
-      .body("Overhyped, generic superhero movie")
-      .score(60)
+      .reviewerId(1333)
       .contentId(id)
+      .body("Kendrick Lamar is my favorite rapper.")
+      .score(100)
+      .contentType(ContentType.MOVIE)
+      .userType(UserType.AUDIENCE)
+      .username("Romin Persaud")
+      .build())
+     .add(Rating
+      .builder()
+      .id(3)
+      .reviewerId(1334)
+      .contentId(id)
+      .body("The ending song was the only thing good about the film.")
+      .score(71)
+      .contentType(ContentType.MOVIE)
+      .userType(UserType.AUDIENCE)
+      .username("Jack Zheng")
       .build())
      .build();
 
@@ -66,7 +93,7 @@ public class MySqlMovieRepository implements MovieRepository {
           .id(0)
           .type(CelebrityType.ACTOR)
           .profilePhoto(new URL("https://images/movie/cast1.png"))
-          .roles(new ImmutableMap.Builder<String, Pair<String,Movie>>()
+          .roles(new ImmutableMap.Builder<String, Pair<String, Movie>>()
            .put("Black Panther",
             new Pair<String, Movie>("T'Challa/Black Panther", Movie.builder().build()))
            .build())
@@ -77,7 +104,7 @@ public class MySqlMovieRepository implements MovieRepository {
           .id(1)
           .type(CelebrityType.ACTOR)
           .profilePhoto(new URL("https://images/movie/cast2.png"))
-          .roles(new ImmutableMap.Builder<String, Pair<String,Movie>>()
+          .roles(new ImmutableMap.Builder<String, Pair<String, Movie>>()
            .put("Black Panther",
             new Pair<String, Movie>("Erik Killmonger", Movie.builder().build()))
            .build())
@@ -88,7 +115,7 @@ public class MySqlMovieRepository implements MovieRepository {
           .id(2)
           .type(CelebrityType.ACTOR)
           .profilePhoto(new URL("https://images/movie/cast3.png"))
-          .roles(new ImmutableMap.Builder<String, Pair<String,Movie>>()
+          .roles(new ImmutableMap.Builder<String, Pair<String, Movie>>()
            .put("Black Panther",
             new Pair<String, Movie>("Nakia", Movie.builder().build()))
            .build())
@@ -99,7 +126,7 @@ public class MySqlMovieRepository implements MovieRepository {
           .id(3)
           .type(CelebrityType.ACTOR)
           .profilePhoto(new URL("https://images/movie/cast4.png"))
-          .roles(new ImmutableMap.Builder<String, Pair<String,Movie>>()
+          .roles(new ImmutableMap.Builder<String, Pair<String, Movie>>()
            .put("Black Panther",
             new Pair<String, Movie>("Okoye", Movie.builder().build()))
            .build())
@@ -109,7 +136,7 @@ public class MySqlMovieRepository implements MovieRepository {
           .name("Martin Freeman")
           .id(4)
           .type(CelebrityType.ACTOR)
-          .roles(new ImmutableMap.Builder<String, Pair<String,Movie>>()
+          .roles(new ImmutableMap.Builder<String, Pair<String, Movie>>()
            .put("Black Panther",
             new Pair<String, Movie>("Everett K. Ross", Movie.builder().build()))
            .build())
@@ -121,7 +148,7 @@ public class MySqlMovieRepository implements MovieRepository {
           .id(5)
           .type(CelebrityType.ACTOR)
           .profilePhoto(new URL("https://images/movie/cast6.png"))
-          .roles(new ImmutableMap.Builder<String, Pair<String,Movie>>()
+          .roles(new ImmutableMap.Builder<String, Pair<String, Movie>>()
            .put("Black Panther",
             new Pair<String, Movie>("W'Kabi", Movie.builder().build()))
            .build())

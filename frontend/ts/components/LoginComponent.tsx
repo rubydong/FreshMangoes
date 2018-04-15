@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 
-export class LoginTemplate extends React.Component {
+export class LoginComponent extends React.Component {
     state = {
         email: '',
         password: '',
@@ -25,7 +25,7 @@ export class LoginTemplate extends React.Component {
 
     console.log(loginInfo);
 
-    axios.post('http://localhost:9000/api/login', loginInfo)
+    axios.post(window.location.origin + '/api/login', loginInfo)
         .then(res => {
         console.log(res);
         console.log(res.data);
