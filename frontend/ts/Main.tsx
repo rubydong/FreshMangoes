@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Switch, Route } from 'react-router-dom'
-import { IndexTemplate } from "./IndexTemplate";
+import { IndexTemplate } from "./templates/IndexTemplate";
 import { MovieTemplate } from "./templates/MovieTemplate";
 import { ShowTemplate } from "./templates/ShowTemplate";
 import { CelebrityTemplate } from "./templates/CelebrityTemplate";

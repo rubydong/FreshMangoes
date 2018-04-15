@@ -15,7 +15,6 @@ export class Mangoes extends React.Component {
         }
 
         return (
-            
             <span className="rating tiny-margin-right">
                 {mangoes}
             </span>

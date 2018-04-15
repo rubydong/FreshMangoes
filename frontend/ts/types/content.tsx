@@ -85,3 +85,23 @@ export class Search {
     this.results = 0;
   }
 }
+
+export class Spotlight {
+  posterImage: string;
+  openingMovies: Movie[];
+  topBoxOfficeMovies: Movie[];
+  comingSoonMovies: Movie[];
+  newShows: Show[];
+  mostPopularShows: Show[];
+  topDVDStreamingShows: Show[];
+
+  constructor() {
+    this.posterImage = "";
+    this.openingMovies = [];
+    this.topBoxOfficeMovies = [];
+    this.comingSoonMovies = [];
+    this.newShows = [];
+    this.mostPopularShows = [];
+    this.topDVDStreamingShows = [];
+  }
+}

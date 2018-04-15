@@ -14,15 +14,11 @@ export class SummaryComponent extends React.Component {
             
                 <div className="plot">
                     <b> MangoMeter <span className="med-margin-right"></span> Audience Score</b> <br/>
-
                     <Mangoes data-rating={this.props['data-mango']}/>
                     {this.props['data-mango']}%
-                    
                     <span className="med-margin-right"></span>
-
                     <Mangoes data-rating={this.props['data-audience']}/>
                     {this.props['data-audience']}% <p/>
-                    
                     <b>About Movie</b> <br/> 
                     {this.props['data-plot']} <p/> 
                 </div>

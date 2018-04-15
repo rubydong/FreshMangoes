@@ -55,6 +55,7 @@ export class ShowTemplate extends React.Component {
                     <h2> Seasons </h2> <hr/>
                     {seasons}
                 </div>
+                
                 <CastComponent data-cast={this.state.metadata.cast} data-name={this.state.metadata.name}/>
             </div>
 		</div>

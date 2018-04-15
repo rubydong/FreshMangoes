@@ -24,7 +24,7 @@ a,.summary h2, .filmography h4, .episode b {
 	color: #759BBA;
 }
 
-a:hover {
+.btn-link:hover, a:hover {
 	text-decoration: none;
 	color: #B3B3B3;
 	transition: 300ms ease-in-out;
@@ -535,6 +535,17 @@ h5 span {
 .navbar-brand img{
 	width: 150px;
 }
+
+.btn-link {
+	background:none;
+	color: #759BBA;
+	border: none;
+}
+
+.btn-link:focus,.btn-link:active {
+	outline: none !important;
+	box-shadow: none;
+ }
 
 .btn-outline-success.focus, .btn-outline-success:focus {
 	box-shadow: none;
