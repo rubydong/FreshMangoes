@@ -18,7 +18,7 @@ export class MovieTemplate extends React.Component {
 
     async componentWillMount() {
         try {
-            const response = await axios.get('http://localhost:9000/api' + window.location.pathname);
+            const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
             console.log(response.data);
             this.setState(response.data);
         } catch (err) {

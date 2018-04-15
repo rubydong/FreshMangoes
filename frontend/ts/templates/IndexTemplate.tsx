@@ -2,7 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import { parseMedia }  from "../../helperFunctions.js";
 import { Spotlight } from "../types/content";
-import { SpotlightComponent } from "../components/SpotlightComponent";
+import { IndexComponent } from "../components/IndexComponent";
 
 export class IndexTemplate extends React.Component {
     state : Spotlight;
@@ -14,7 +14,7 @@ export class IndexTemplate extends React.Component {
 
     async componentWillMount() {
         try {
-            const response = await axios.get("http://localhost:9000/api/index")
+            const response = await axios.get(window.location.origin + '/api/index')
             this.setState(response.data);
         } catch (err) {
             console.log(err);
@@ -25,7 +25,7 @@ export class IndexTemplate extends React.Component {
         return (
         <div>
             <img id="poster" src={parseMedia(this.state.posterImage)}/>
-            <SpotlightComponent data-spotlight={this.state}/>
+            <IndexComponent data-spotlight={this.state}/>
         </div>
     )}
 }

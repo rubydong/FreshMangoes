@@ -5,7 +5,6 @@ export class FilmographyComponent extends React.Component {
         const filmsObject = this.props['data-roles'];
         const films = Object.keys(this.props['data-roles']);
         
-
         const filmography = films.map((film) => {
             let title = film;
             let role = Object.keys(filmsObject[title])[0];

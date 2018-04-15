@@ -9,7 +9,7 @@ export class SpotlightDetailComponent extends React.Component {
             const newUrl = parseMedia(content.summaryPhoto);
             return <div className="movieshow" key={content.id}>
                 <img src={newUrl}/> <br/>
-                <a href={"/movie/" + content.id}> {content.metadata.name}</a> <br/>
+                <a href={"/" + (content.type != null ? content.type.toLowerCase() : 'movie') + "/" + content.id}> {content.metadata.name}</a> <br/>
                 <Mangoes data-rating={content.metadata.mangoScore}/> <br/>
                 {content.metadata.mangoScore}%
             </div>     

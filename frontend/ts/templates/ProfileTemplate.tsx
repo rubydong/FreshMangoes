@@ -17,8 +17,8 @@ export class ProfileTemplate extends React.Component {
     componentWillMount() {
         let currentComponent = this;
         axios.all([
-            axios.get("http://localhost:9000/api" + window.location.pathname),
-            axios.get("http://localhost:9000/api/getCurrentUser")
+            axios.get(window.location.origin + '/api' + window.location.pathname),
+            axios.get(window.location.origin + '/api/getCurrentUser')
         ]).then(axios.spread(function(profile, currentUser) {
             currentComponent.state.currentUser = currentUser.data.userId;
             currentComponent.setState(profile.data);

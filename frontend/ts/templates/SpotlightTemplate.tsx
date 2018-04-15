@@ -14,7 +14,7 @@ export class SpotlightTemplate extends React.Component {
 
     async componentWillMount() {
         try {
-            const response = await axios.get("http://localhost:9000/api/index")
+            const response = await axios.get(window.location.origin + '/api/index')
             this.state.selectedContent = response.data.openingMovies;
             this.state.selectedTitle = 'Opening This Week';
             this.setState(response.data);

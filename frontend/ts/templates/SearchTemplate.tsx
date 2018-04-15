@@ -14,7 +14,7 @@ export class SearchTemplate extends React.Component {
 
     async componentWillMount() {
         try {
-            const response = await axios.get("http://localhost:9000/api/search?query=black")
+            const response = await axios.get(window.location.origin + '/api/search?query=black')
             console.log(response.data);
             this.state.results = response.data.celebrities.length + response.data.shows.length + response.data.movies.length;
             this.setState(response.data);

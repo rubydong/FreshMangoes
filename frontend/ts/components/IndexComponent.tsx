@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Mangoes } from "../components/Mangoes";
 import { parseMedia }  from "../../helperFunctions.js";
+import { INDEX_CONTENT } from "../../GlobalVariables";
 
-export class SpotlightComponent extends React.Component {
+export class IndexComponent extends React.Component {
     state = {
         selectedMovies: [],
         selectedShows: []
@@ -21,7 +22,9 @@ export class SpotlightComponent extends React.Component {
     }
 
     render() {
-        const selectedMovies = (this.state.selectedMovies.length != 0 ? this.state.selectedMovies : this.props['data-spotlight'].openingMovies).map((content) => {
+        console.log(INDEX_CONTENT);
+        console.log((this.state.selectedMovies.length != 0 ? this.state.selectedMovies : this.props['data-spotlight'].openingMovies).slice(0,INDEX_CONTENT));
+        const selectedMovies = (this.state.selectedMovies.length != 0 ? this.state.selectedMovies : this.props['data-spotlight'].openingMovies).slice(0,INDEX_CONTENT).map((content) => {
             const newUrl = parseMedia(content.summaryPhoto);
             return <div className="movieshow" key={content.id}>
                 <img src={newUrl}/> <br/>
@@ -31,7 +34,7 @@ export class SpotlightComponent extends React.Component {
             </div>     
         }); 
 
-        const selectedShows = (this.state.selectedShows.length != 0 ? this.state.selectedShows : this.props['data-spotlight'].newShows).map((content) => {
+        const selectedShows = (this.state.selectedShows.length != 0 ? this.state.selectedShows : this.props['data-spotlight'].newShows).slice(0,INDEX_CONTENT).map((content) => {
             const newUrl = parseMedia(content.summaryPhoto);
             return <div className="movieshow" key={content.id}>
                 <img src={newUrl}/> <br/>
