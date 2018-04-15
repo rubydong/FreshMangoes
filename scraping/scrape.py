@@ -14,11 +14,14 @@ def make_request(url, params):
     res = None
 
     while True:
-        res = requests.get(url, params)
-        if res.status_code != 200:
-            time.sleep(10)
-        else:
-            break
+        try:
+            res = requests.get(url, params)
+            if res.status_code != 200:
+                time.sleep(10)
+            else:
+                break
+        except Exception:
+            time.sleep(60)
 
     return res.json()
 
