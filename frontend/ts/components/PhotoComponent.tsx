@@ -4,7 +4,7 @@ import { parseMedia }  from "../../helperFunctions.js";
 export class PhotoComponent extends React.Component {
     render() {
         const photos = this.props['data-photos'].map((photo, i) => {
-            let newUrl = parseMedia(photo);
+            let newUrl = this.props['data-actual-url'] == 'true' ? photo : parseMedia(photo);
             return <img src={newUrl} key={i}/>
         });
 

@@ -71,3 +71,17 @@ export class Show extends Content {
     this.seasons = [];
   }
 }
+
+export class Search {
+  celebrities: Celebrity[];
+  movies: Movie[];
+  shows: Show[];
+  results: number;
+
+  constructor() {
+    this.celebrities = [];
+    this.movies = [];
+    this.shows = [];
+    this.results = 0;
+  }
+}

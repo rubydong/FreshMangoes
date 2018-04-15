@@ -32,7 +32,7 @@ export class CelebrityTemplate extends React.Component {
                                 data-highest-name={this.state.highestRated.metadata.name} data-highest-score={this.state.highestRated.metadata.mangoScore}
                                 data-lowest-name={this.state.lowestRated.metadata.name} data-lowest-score={this.state.lowestRated.metadata.mangoScore}
                                 data-birthday={this.state.birthday} data-birthplace={this.state.birthplace} data-biography={this.state.biography}/>
-                <PhotoComponent data-photos={this.state.media.photos}/> 
+                <PhotoComponent data-photos={this.state.media.photos} data-actual-url="true"/> 
                 <FilmographyComponent data-roles={this.state.roles}/>
                 
             </div>

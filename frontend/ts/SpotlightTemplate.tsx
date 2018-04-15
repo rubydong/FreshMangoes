@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Mangoes } from "./components/Mangoes";
 import axios from "axios";
-import { parseIndexMedia }  from "../helperFunctions.js";
+import { parseMedia }  from "../helperFunctions.js";
 
 export class SpotlightTemplate extends React.Component {
     state = {
@@ -20,7 +20,7 @@ export class SpotlightTemplate extends React.Component {
         .then(function (response) {
             currentComponent.setState(
                 { 
-                    poster: parseIndexMedia(response.data.posterImage),
+                    poster: parseMedia(response.data.posterImage),
                     opening: response.data.openingMovies,
                     topBoxOffice: response.data.topBoxOfficeMovies,
                     comingSoon: response.data.comingSoonMovies,
@@ -38,7 +38,7 @@ export class SpotlightTemplate extends React.Component {
     
     render() {
         const opening = this.state.opening.map((content) => {
-            const newUrl = parseIndexMedia(content.summaryPhoto);
+            const newUrl = parseMedia(content.summaryPhoto);
             return <div className="movieshow" key={content.id}>
                 <img src={newUrl}/> <br/>
                 <a href={"/movie/" + content.id}> {content.metadata.name}</a> <br/>

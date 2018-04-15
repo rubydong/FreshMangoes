@@ -1,5 +1,4 @@
 import * as React from "react";
-import { parseProfileMedia}  from "../../helperFunctions.js";
 
 export class ProfileInfoComponent extends React.Component {
 
