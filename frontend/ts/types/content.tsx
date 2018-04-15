@@ -91,17 +91,25 @@ export class Spotlight {
   openingMovies: Movie[];
   topBoxOfficeMovies: Movie[];
   comingSoonMovies: Movie[];
+  certifiedFreshMovies: Movie[];
   newShows: Show[];
   mostPopularShows: Show[];
   topDVDStreamingShows: Show[];
+  certifiedFreshTV: Show[];
+  selectedContent: Content[];
+  selectedTitle: string; 
 
   constructor() {
     this.posterImage = "";
     this.openingMovies = [];
     this.topBoxOfficeMovies = [];
     this.comingSoonMovies = [];
+    this.certifiedFreshMovies = [];
     this.newShows = [];
     this.mostPopularShows = [];
     this.topDVDStreamingShows = [];
+    this.certifiedFreshTV = [];
+    this.selectedContent = [];
+    this.selectedTitle = "";
   }
 }

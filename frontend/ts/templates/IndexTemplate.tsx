@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Mangoes } from "../components/Mangoes";
 import axios from "axios";
 import { parseMedia }  from "../../helperFunctions.js";
 import { Spotlight } from "../types/content";

@@ -6,7 +6,7 @@ import { ShowTemplate } from "./templates/ShowTemplate";
 import { CelebrityTemplate } from "./templates/CelebrityTemplate";
 import { SearchTemplate } from "./templates/SearchTemplate";
 import { ProfileTemplate } from "./templates/ProfileTemplate";
-import { SpotlightTemplate } from "./SpotlightTemplate";
+import { SpotlightTemplate } from "./templates/SpotlightTemplate";
 
 const Main = () => (
   <main>
