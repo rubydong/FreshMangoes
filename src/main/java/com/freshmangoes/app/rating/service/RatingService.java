@@ -10,6 +10,7 @@ public interface RatingService {
                       Integer score,
                       UserType type,
                       Integer reviewerId,
+                      String username,
                       String body);
 
   boolean editRating(Integer ratingId,

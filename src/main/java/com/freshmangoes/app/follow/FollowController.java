@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.freshmangoes.app.user.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class FollowController {
   public ResponseEntity follow(@RequestBody final Map<String, String> body,
                                @PathVariable("userId") final Integer userId) {
     final HttpStatus status;
-    Integer savedUserId = (Integer) session.getAttribute(Constants.USER_ID);
+    Integer savedUserId = ((User)session.getAttribute(Constants.USER_ID)).getId();
 
     if (savedUserId != null && savedUserId.equals(userId)) {
       boolean success = followService.followUser(
@@ -48,7 +49,7 @@ public class FollowController {
   public ResponseEntity unfollow(@RequestBody final Map<String, String> body,
                                  @PathVariable("userId") final Integer userId) {
     final HttpStatus status;
-    Integer savedUserId = (Integer) session.getAttribute(Constants.USER_ID);
+    Integer savedUserId = ((User)session.getAttribute(Constants.USER_ID)).getId();
 
     if (savedUserId != null && savedUserId.equals(userId)) {
       boolean success = followService.unfollowUser(
@@ -67,7 +68,7 @@ public class FollowController {
 
   @GetMapping(Constants.GET_FOLLOWERS_MAPPING)
   public ResponseEntity getFollowers(@PathVariable("userId") final Integer userId) {
-    Integer savedUserId = (Integer) session.getAttribute(Constants.USER_ID);
+    Integer savedUserId = ((User)session.getAttribute(Constants.USER_ID)).getId();
 
     if (savedUserId != null && savedUserId.equals(userId)) {
       return ResponseEntity.status(HttpStatus.OK).body(followService.followers(userId));
@@ -78,7 +79,7 @@ public class FollowController {
 
   @GetMapping(Constants.GET_FOLLOWING_MAPPING)
   public ResponseEntity getFollowing(@PathVariable("userId") final Integer userId) {
-    Integer savedUserId = (Integer) session.getAttribute(Constants.USER_ID);
+    Integer savedUserId = ((User)session.getAttribute(Constants.USER_ID)).getId();
 
     if (savedUserId != null && savedUserId.equals(userId)) {
       return ResponseEntity.status(HttpStatus.OK).body(followService.following(userId));

@@ -8,9 +8,11 @@ import com.freshmangoes.app.content.data.ContentMetadata;
 import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.rating.data.Rating;
+import com.freshmangoes.app.rating.repository.RatingRepository;
 import com.freshmangoes.app.user.data.UserType;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.net.MalformedURLException;
@@ -21,6 +23,10 @@ import java.util.List;
 
 @Repository
 public class MySqlMovieRepository implements MovieRepository {
+  // for code review only
+  @Autowired
+  RatingRepository ratingRepository;
+  // end
 
   @Override
   public Movie findMovieById(final int id) {
@@ -69,6 +75,9 @@ public class MySqlMovieRepository implements MovieRepository {
       .userType(UserType.AUDIENCE)
       .username("Jack Zheng")
       .build())
+     // for code review
+     .addAll(ratingRepository.findByContentId(id))
+     // end
      .build();
 
 

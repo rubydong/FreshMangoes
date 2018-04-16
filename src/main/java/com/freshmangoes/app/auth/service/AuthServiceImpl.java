@@ -16,13 +16,13 @@ public class AuthServiceImpl implements AuthService {
   private UserRepository userRepository;
 
   @Override
-  public Integer loginUser(final String email, final String password) {
+  public User loginUser(final String email, final String password) {
     final User user = userRepository.findByEmail(email);
     if (user == null) {
       return null;
     } else {
       final String hash = user.getHash();
-      return passwordEncoder.matches(password, hash) ? user.getId() : null;
+      return passwordEncoder.matches(password, hash) ? user : null;
     }
   }
 
