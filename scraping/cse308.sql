@@ -1,4 +1,4 @@
-drop database cse308;
+drop database IF EXISTS cse308;
 create database cse308 CHARACTER set utf8mb4 collate utf8mb4_unicode_ci;
 use cse308;
 
