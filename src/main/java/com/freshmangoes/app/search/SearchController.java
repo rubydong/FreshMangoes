@@ -14,7 +14,7 @@ public class SearchController {
   private SearchService searchService;
 
   @GetMapping(Constants.SEARCH_MAPPING)
-  public SearchResult doGet(@RequestParam("query") final String searchQuery) {
+  public SearchResult doGet(@PathVariable final String searchQuery) {
     return searchService.searchByKeyword(searchQuery);
   }
 }

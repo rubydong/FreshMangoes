@@ -11,29 +11,29 @@ import java.util.List;
 public class CelebrityServiceImpl implements CelebrityService {
 
   @Autowired
-  private CelebrityRepository mySQLCelebrityRepository;
+  private CelebrityRepository celebrityRepository;
 
   public Celebrity getCelebrity(final Integer id) {
-    return mySQLCelebrityRepository.findById(id);
+    return celebrityRepository.findById(id);
   }
 
   public List<Celebrity> getAllCelebrityById(final Integer id) {
-    return mySQLCelebrityRepository.findAllById(id);
+    return celebrityRepository.findAllById(id);
   }
 
   public List<Celebrity> getAllCelebrityLikeKeyword(final String searchQuery) {
-    return mySQLCelebrityRepository.findAllLikeKeyword(searchQuery);
+    return celebrityRepository.findAllLikeKeyword(searchQuery);
   }
 
   public Celebrity insertCelebrity(final Celebrity celebrity) {
-    return mySQLCelebrityRepository.save(celebrity);
+    return celebrityRepository.save(celebrity);
   }
 
   public Boolean celebrityExists(final Integer id) {
-    return mySQLCelebrityRepository.existsById(id);
+    return celebrityRepository.existsById(id);
   }
 
   public void deleteCelebrity(final Integer id) {
-    mySQLCelebrityRepository.deleteById(id);
+    celebrityRepository.deleteById(id);
   }
 }

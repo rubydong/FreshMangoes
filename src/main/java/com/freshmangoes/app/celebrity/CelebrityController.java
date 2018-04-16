@@ -3,14 +3,16 @@ package com.freshmangoes.app.celebrity;
 import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.celebrity.service.CelebrityService;
 import com.freshmangoes.app.common.data.Constants;
-
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CelebrityController {
@@ -29,23 +31,22 @@ public class CelebrityController {
   }
 
   @GetMapping(Constants.GET_ALL_CELEBRITY_BY_KEYWORD_MAPPING)
-  public List<Celebrity> searchCelebrityByKeyword(
-   @RequestParam(value = "searchQuery") final String searchQuery) {
+  public List<Celebrity> searchCelebrityByKeyword(@PathVariable final String searchQuery) {
     return celebrityService.getAllCelebrityLikeKeyword(searchQuery);
   }
 
   @PostMapping(Constants.INSERT_CELEBRITY_MAPPING)
   public ResponseEntity insertCelebrity(@RequestBody final Map<String, String> body) {
     return celebrityService.insertCelebrity(Celebrity.builder().build()) == null
-           ? ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
-           : ResponseEntity.status(HttpStatus.OK).build();
+        ? ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
+        : ResponseEntity.status(HttpStatus.OK).build();
   }
 
   @GetMapping(Constants.CHECK_CELEBRITY_EXISTS_MAPPING)
-  public ResponseEntity checkCelebrityExists(@PathVariable("id") final Integer id) {
+  public ResponseEntity checkCelebrityExists(@PathVariable final Integer id) {
     return celebrityService.celebrityExists(id)
-           ? ResponseEntity.status(HttpStatus.OK).build()
-           : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        ? ResponseEntity.status(HttpStatus.OK).build()
+        : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
   }
 
   @PostMapping(Constants.DELETE_CELEBRITY_MAPPING)

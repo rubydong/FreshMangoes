@@ -1,7 +1,13 @@
 package com.freshmangoes.app.content.service;
 
-import com.freshmangoes.app.content.data.*;
-import com.freshmangoes.app.content.repository.*;
+import com.freshmangoes.app.content.data.Episode;
+import com.freshmangoes.app.content.data.Movie;
+import com.freshmangoes.app.content.data.Season;
+import com.freshmangoes.app.content.data.Show;
+import com.freshmangoes.app.content.repository.EpisodeRepository;
+import com.freshmangoes.app.content.repository.MovieRepository;
+import com.freshmangoes.app.content.repository.SeasonRepository;
+import com.freshmangoes.app.content.repository.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,30 +15,30 @@ import org.springframework.stereotype.Service;
 public class ContentServiceImpl implements ContentService {
 
   @Autowired
-  private ShowRepository mySQLShowRepository;
+  private ShowRepository showRepository;
 
   @Autowired
-  private MovieRepository mySQLMovieRepository;
+  private MovieRepository movieRepository;
 
   @Autowired
-  private SeasonRepository mySQLSeasonRepository;
+  private SeasonRepository seasonRepository;
 
   @Autowired
-  private EpisodeRepository mySQLEpisodeRepository;
+  private EpisodeRepository episodeRepository;
 
   public Movie findMovieById(final int id) {
-    return mySQLMovieRepository.findMovieById(id);
+    return movieRepository.findMovieById(id);
   }
 
   public Show findShowById(final int id) {
-    return mySQLShowRepository.findShowById(id);
+    return showRepository.findShowById(id);
   }
 
   public Season findSeasonById(final int id) {
-    return mySQLSeasonRepository.findSeasonById(id);
+    return seasonRepository.findSeasonById(id);
   }
 
   public Episode findEpisodeById(final int id) {
-    return mySQLEpisodeRepository.findEpisodeById(id);
+    return episodeRepository.findEpisodeById(id);
   }
 }

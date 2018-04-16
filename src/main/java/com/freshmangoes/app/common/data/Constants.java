@@ -6,7 +6,7 @@ public class Constants {
   public static final String LOGOUT_MAPPING = "/logout";
   public static final String REGISTER_MAPPING = "/register";
   public static final String CURRENT_USER_MAPPING = "/getCurrentUser";
-  public static final String SEARCH_MAPPING = "/search";
+  public static final String SEARCH_MAPPING = "/search/{searchQuery}";
   public static final String SPOTLIGHT_MAPPING = "/spotlightItems";
 
   public static final String GET_CELEBRITY_MAPPING = "/celebrity/{id}";
@@ -25,7 +25,7 @@ public class Constants {
   public static final String EDIT_RATING_MAPPING = "/rating/e/{ratingId}";
   public static final String DELETE_RATING_MAPPING = "/rating/delete/{id}";
   public static final String GET_RATING_BY_CONTENT_ID_MAPPING = "/rating/search/cid/{contentId}";
-  public static final String GET_RATING_BY_REVIEWER_ID_MAPPING =  "/rating/search/rid/{reviewerId}";
+  public static final String GET_RATING_BY_REVIEWER_ID_MAPPING = "/rating/search/rid/{reviewerId}";
 
   public static final String ADD_TO_INTERESTED_MAPPING = "/interested/add/{contentId}";
   public static final String REMOVE_FROM_INTERESTED_MAPPING = "/interested/remove/{contentId}";
@@ -37,6 +37,8 @@ public class Constants {
   public static final String UNFOLLOW_MAPPING = "/unfollow/{userId}";
   public static final String GET_FOLLOWERS_MAPPING = "/followers/{userId}";
   public static final String GET_FOLLOWING_MAPPING = "/following/{userId}";
+
+  public static final String APPLICATION_JSON = "application/json";
 
   public static final String USER_ID = "userId";
   public static final String OTHER_USER_ID = "otherUserId";

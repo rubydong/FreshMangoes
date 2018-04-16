@@ -1,7 +1,8 @@
 package com.freshmangoes.app.content.repository;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public interface ContentRepository {
-  default Boolean existsById(Integer id) {
-    return true;
-  }
+  Boolean existsById(Integer id);
 }

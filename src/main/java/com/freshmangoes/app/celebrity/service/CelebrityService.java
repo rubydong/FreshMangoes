@@ -1,7 +1,6 @@
 package com.freshmangoes.app.celebrity.service;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
-
 import java.util.List;
 
 public interface CelebrityService {

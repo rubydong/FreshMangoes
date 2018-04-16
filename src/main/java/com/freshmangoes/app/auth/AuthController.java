@@ -4,14 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.freshmangoes.app.auth.service.AuthService;
 import com.freshmangoes.app.common.data.Constants;
+import com.freshmangoes.app.user.data.User;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
-
-import com.freshmangoes.app.user.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -60,13 +63,13 @@ public class AuthController {
     return new ResponseEntity((userId != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
   }
 
-  @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = "application/json")
+  @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)
   public String currentUser() {
-    final Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
+    final User user = ((User) session.getAttribute(Constants.USER_ID));
     final ObjectNode rootNode = mapper.createObjectNode();
 
-    if (userId != null) {
-      rootNode.put(Constants.USER_ID, userId);
+    if (user != null) {
+      rootNode.put(Constants.USER_ID, user.getId());
     }
 
     return rootNode.toString();

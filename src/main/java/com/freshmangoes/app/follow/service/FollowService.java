@@ -1,7 +1,6 @@
 package com.freshmangoes.app.follow.service;
 
 import com.freshmangoes.app.user.data.User;
-
 import java.util.List;
 
 public interface FollowService {

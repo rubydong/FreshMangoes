@@ -10,21 +10,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class SearchServiceImpl implements SearchService {
   @Autowired
-  private CelebrityRepository mySQLCelebrityRepository;
+  private CelebrityRepository celebrityRepository;
 
   @Autowired
-  private MovieRepository mySQLMovieRepository;
+  private MovieRepository movieRepository;
 
   @Autowired
-  private ShowRepository mySQLShowRepository;
+  private ShowRepository showRepository;
 
   public SearchResult searchByKeyword(final String searchQuery) {
-      return SearchResult
-              .builder()
-              .movies(mySQLMovieRepository.findAllMoviesLikeKeyword(searchQuery))
-              .shows(mySQLShowRepository.findAllShowsLikeKeyword(searchQuery))
-              .celebrities(mySQLCelebrityRepository.findAllLikeKeyword(searchQuery))
-              .build();
+    return SearchResult
+        .builder()
+        .movies(movieRepository.findAllMoviesLikeKeyword(searchQuery))
+        .shows(showRepository.findAllShowsLikeKeyword(searchQuery))
+        .celebrities(celebrityRepository.findAllLikeKeyword(searchQuery))
+        .build();
   }
 
 }

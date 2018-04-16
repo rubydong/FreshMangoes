@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthServiceImpl implements AuthService {
-
   @Autowired
   private PasswordEncoder passwordEncoder;
 
@@ -30,11 +29,10 @@ public class AuthServiceImpl implements AuthService {
   public Integer registerUser(final String email, final String password, final String displayName) {
     final String hash = passwordEncoder.encode(password);
     final User user = User.builder()
-        .email(email)
-        .hash(hash)
-        .displayName(displayName)
-        .build();
+                          .email(email)
+                          .hash(hash)
+                          .displayName(displayName)
+                          .build();
     return userRepository.save(user).getId();
   }
-
 }

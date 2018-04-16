@@ -1,12 +1,10 @@
 package com.freshmangoes.app.follow.service;
 
 import com.freshmangoes.app.follow.repository.FollowRepository;
-
 import com.freshmangoes.app.user.data.User;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class FollowServiceImpl implements FollowService {
@@ -15,12 +13,20 @@ public class FollowServiceImpl implements FollowService {
 
   @Override
   public Boolean followUser(final Integer userId, final Integer otherUserId) {
-    return followRepository.save(userId, otherUserId);
+    if (userId.equals(otherUserId)) {
+      return false;
+    } else {
+      return followRepository.save(userId, otherUserId);
+    }
   }
 
   @Override
   public Boolean unfollowUser(final Integer userId, final Integer otherUserId) {
-    return followRepository.delete(userId, otherUserId);
+    if (userId.equals(otherUserId)) {
+      return false;
+    } else {
+      return followRepository.delete(userId, otherUserId);
+    }
   }
 
   @Override

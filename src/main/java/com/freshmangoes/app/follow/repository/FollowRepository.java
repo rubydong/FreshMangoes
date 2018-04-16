@@ -1,9 +1,8 @@
 package com.freshmangoes.app.follow.repository;
 
 import com.freshmangoes.app.user.data.User;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FollowRepository {

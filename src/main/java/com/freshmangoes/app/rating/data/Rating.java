@@ -2,7 +2,6 @@ package com.freshmangoes.app.rating.data;
 
 import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.user.data.UserType;
-
 import lombok.Builder;
 import lombok.Data;
 

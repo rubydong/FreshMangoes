@@ -5,16 +5,18 @@ import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.service.RatingService;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.data.UserType;
-
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RatingController {
@@ -29,17 +31,17 @@ public class RatingController {
                                   @PathVariable final Integer contentId) {
     User user = (User) session.getAttribute(Constants.USER_ID);
 
-      if (user == null) {
-        return ResponseEntity.badRequest().build();
-      } else {
+    if (user == null) {
+      return ResponseEntity.badRequest().build();
+    } else {
       return ratingService.addToRating(contentId,
-                                       Integer.parseInt(body.get(Constants.SCORE)),
-                                       UserType.AUDIENCE,
-                                       user.getId(),
-                                       user.getDisplayName(),
-                                       body.get(Constants.BODY))
-             ? ResponseEntity.ok("Rating added successfully.")
-             : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not added successfully.");
+          Integer.parseInt(body.get(Constants.SCORE)),
+          UserType.AUDIENCE,
+          user.getId(),
+          user.getDisplayName(),
+          body.get(Constants.BODY))
+          ? ResponseEntity.ok("Rating added successfully.")
+          : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not added successfully.");
     }
   }
 
@@ -55,7 +57,7 @@ public class RatingController {
 
   @DeleteMapping(Constants.DELETE_RATING_MAPPING)
   public ResponseEntity deleteRating(@PathVariable final Integer id) {
-    Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
+    Integer userId = ((User) session.getAttribute(Constants.USER_ID)).getId();
 
     if (userId == null) {
       return ResponseEntity.badRequest().build();
@@ -68,16 +70,16 @@ public class RatingController {
   @PostMapping(Constants.EDIT_RATING_MAPPING)
   public ResponseEntity editRating(@RequestBody final Map<String, String> body,
                                    @PathVariable final Integer ratingId) {
-    Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
+    Integer userId = ((User) session.getAttribute(Constants.USER_ID)).getId();
 
     if (userId == null) {
       return ResponseEntity.badRequest().build();
     } else {
       return ratingService.editRating(ratingId,
-                                      Integer.parseInt(body.get(Constants.SCORE)),
-                                      body.get(Constants.BODY))
-             ? ResponseEntity.ok("Rating edited successfully.")
-             : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not edited successfully.");
+          Integer.parseInt(body.get(Constants.SCORE)),
+          body.get(Constants.BODY))
+          ? ResponseEntity.ok("Rating edited successfully.")
+          : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not edited successfully.");
     }
   }
 }
