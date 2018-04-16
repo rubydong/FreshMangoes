@@ -53,7 +53,7 @@ public class RatingController {
     return ratingService.getRatingByReviewerId(reviewerId);
   }
 
-  @PostMapping(Constants.DELETE_RATING_MAPPING)
+  @@DeleteMapping(Constants.DELETE_RATING_MAPPING)
   public ResponseEntity deleteRating(@PathVariable final Integer id) {
     Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
 
