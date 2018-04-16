@@ -8,6 +8,20 @@ export class RatingComponent extends React.Component {
     state = {
         score: 5,
         body: '',
+        currentUser: -1
+    }
+    
+    componentWillMount() {
+        let currentComponent = this;
+        axios.get(window.location.origin + '/api/getCurrentUser')
+        .then(function (response) {
+            currentComponent.setState({ 
+                currentUser: response.data.userId,
+            });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
     handleMangoChange = event => {
@@ -23,7 +37,7 @@ export class RatingComponent extends React.Component {
     addReview = event => {
         event.preventDefault();
         const rating = {
-            score: this.state.score,
+            score: this.state.score * 20,
             body: this.state.body
         };
   
@@ -35,13 +49,26 @@ export class RatingComponent extends React.Component {
         })
     }
 
+    deleteReview(reviewId) { 
+        axios.delete(window.location.origin + '/api/rating/delete/' + reviewId)
+            .then(res => {
+            console.log(res);
+            console.log(res.data);
+            window.location.reload();
+        })
+    }
+
     render() {
+        console.log(this.state.currentUser);
         const title = this.props['data-name'];
         const ratings = this.props['data-ratings'].map((rating, i) => {
-            return <div className={"review " + (i%2==0 ? "pull-right" : "pull-left")}>
+            return <div className={"review " + (i%2==0 ? "pull-left" : "pull-right")}>
                     <b><a href={'../profile/' + rating.reviewerId}>{rating.username}</a></b> 
                     <span className="align-right"> <Mangoes data-rating={rating.score}/></span> <br/>
-                    <i> <a href={'../' + rating.contentType.toLowerCase() + '/' + rating.contentId}> {title} </a></i> <hr/>
+                    <i> <a href={'../' + rating.contentType.toLowerCase() + '/' + rating.contentId}> {title} </a></i> 
+                    { this.state.currentUser == rating.reviewerId 
+                    ? <span className="align-right"><img src="../../images/trash.png" onClick={() =>this.deleteReview(rating.id)}/></span> : ''}
+                    <hr/>
                     "{rating.body}"
                 </div>
         });

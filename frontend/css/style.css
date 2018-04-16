@@ -223,7 +223,7 @@ a,.summary h2, .filmography h4, .episode b {
 	padding: 20px;
 }
 
-.rating img {
+.rating img, .review img {
 	width: 16px !important;
 	height: 16px !important;
 	margin: -1px !important;

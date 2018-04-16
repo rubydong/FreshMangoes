@@ -56,7 +56,6 @@ export class Header extends React.Component {
                     <form className="form-inline my-2 my-lg-0">
                         <input aria-label="Search" className="form-control mr-sm-2" type="search"/>
                         <a href="/search?query=black" className="btn btn-primary">Search</a>
-                        {/* <button className="btn" type="submit">Search</button> */}
                     </form>
                 </div>
             </nav>
