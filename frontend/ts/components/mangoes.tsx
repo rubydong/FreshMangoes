@@ -1,4 +1,5 @@
 import * as React from "react";
+import { MANGO_COLOR, MANGO_BW } from "../../GlobalVariables";
 
 export class Mangoes extends React.Component {
     render() {
@@ -7,11 +8,11 @@ export class Mangoes extends React.Component {
         let mangoes = [];
        
         for (let i = 0; i < rating; i++) {
-            mangoes.push(<img src="http://i67.tinypic.com/lazqr.jpg"/>);
+            mangoes.push(<img src={MANGO_COLOR}/>);
         }
 
         for (let i = 0; i < 5 - rating; i++) {
-            mangoes.push(<img src="http://i63.tinypic.com/2gxecgl.png" />);
+            mangoes.push(<img src={MANGO_BW} />);
         }
 
         return (

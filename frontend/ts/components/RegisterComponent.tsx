@@ -34,10 +34,8 @@ export class RegisterComponent extends React.Component {
         password: this.state.password,
     };
 
-    console.log(registerInfo);
     axios.post(window.location.origin + '/api/register', registerInfo)
         .then(res => {
-            console.log(res);
             window.location.reload();
         })
         .catch(err => {

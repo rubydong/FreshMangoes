@@ -19,7 +19,6 @@ export class MovieTemplate extends React.Component {
     async componentWillMount() {
         try {
             const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
-            console.log(response.data);
             this.setState(response.data);
         } catch (err) {
             console.log(err);
@@ -32,17 +31,22 @@ export class MovieTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <SummaryComponent data-title={this.state.metadata.name} data-image={this.state.summaryPhoto} data-mango={this.state.metadata.mangoScore} 
-                                      data-audience={this.state.metadata.audienceScore} data-plot={this.state.metadata.summary} />
-                    <DetailsComponent data-rating={this.state.metadata.maturityRating} data-genres={this.state.metadata.genres} data-directors='Ryan Coogler'
-                                      data-writers='Ryan Coogler' data-theaters={this.state.metadata.releaseDate} data-runtime={this.state.metadata.runTime}
+                    <SummaryComponent data-title={this.state.metadata.name} 
+                                      data-image={this.state.summaryPhoto} 
+                                      data-mango={this.state.metadata.mangoScore} 
+                                      data-audience={this.state.metadata.audienceScore} 
+                                      data-plot={this.state.metadata.summary} />
+                    <DetailsComponent data-rating={this.state.metadata.maturityRating} 
+                                      data-genres={this.state.metadata.genres}
+                                      data-theaters={this.state.metadata.releaseDate} 
+                                      data-runtime={this.state.metadata.runTime}
                                       data-studio={this.state.metadata.studio} />
                 </div>
                 <PhotoComponent data-photos={this.state.media.photos}/>   
                 <VideoComponent data-videos={this.state.media.videos}/>  
                 <CastComponent data-cast={this.state.metadata.cast} data-name={this.state.metadata.name}/>
                 <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} 
-                                 data-id={this.state.id} data-review-style='fancy'/>
+                                 data-id={this.state.id}/>
             </div>
 		</div>
         );

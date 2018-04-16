@@ -18,7 +18,6 @@ export class SpotlightTemplate extends React.Component {
             this.state.selectedContent = response.data.openingMovies;
             this.state.selectedTitle = 'Opening This Week';
             this.setState(response.data);
-            console.log(this.state);
         } catch (err) {
             console.log(err);
         }

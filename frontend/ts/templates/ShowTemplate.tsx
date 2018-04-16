@@ -20,7 +20,6 @@ export class ShowTemplate extends React.Component {
     async componentDidMount() {
       try {
         const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
-        console.log(response.data);
         this.setState(response.data);
       } catch (err) {
         console.log(err);
@@ -42,10 +41,14 @@ export class ShowTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <SummaryComponent data-title={this.state.metadata.name} data-image={this.state.summaryPhoto} data-mango={this.state.metadata.mangoScore} 
-                                      data-audience={this.state.metadata.audienceScore} data-plot={this.state.metadata.summary}/>
-                    <DetailsComponent data-genres={this.state.metadata.genres} data-producers='Matt Duffer, Ross Duffer, Shawn Levy, Dan Cohen, Karl Gajdusek'
-                                      data-premiere={this.state.metadata.releaseDate} data-network={this.state.metadata.studio}/>
+                    <SummaryComponent data-title={this.state.metadata.name} 
+                                      data-image={this.state.summaryPhoto} 
+                                      data-mango={this.state.metadata.mangoScore} 
+                                      data-audience={this.state.metadata.audienceScore} 
+                                      data-plot={this.state.metadata.summary}/>
+                    <DetailsComponent data-genres={this.state.metadata.genres}
+                                      data-premiere={this.state.metadata.releaseDate} 
+                                      data-network={this.state.metadata.studio}/>
                 </div>
 
                 <PhotoComponent data-photos={this.state.media.photos}/>

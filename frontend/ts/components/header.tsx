@@ -1,5 +1,6 @@
 import * as React from "react";
 import axios from "axios";
+import { LOGO } from "../../GlobalVariables";
 
 export class Header extends React.Component {
     state = {
@@ -33,7 +34,7 @@ export class Header extends React.Component {
         return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="/"><img src="http://i68.tinypic.com/14iq5vl.png"/></a> 
+                <a className="navbar-brand" href="/"><img src={LOGO}/></a> 
                 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" className="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
                 <span className="navbar-toggler-icon"></span></button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">

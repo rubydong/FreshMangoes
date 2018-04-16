@@ -21,11 +21,8 @@ export class LoginComponent extends React.Component {
             email: this.state.email,
             password: this.state.password
         };
-        console.log(loginInfo);
         axios.post(window.location.origin + '/api/login', loginInfo)
             .then(res => {
-            console.log(res);
-            console.log(res.data);
             window.location.reload();
         })
     }

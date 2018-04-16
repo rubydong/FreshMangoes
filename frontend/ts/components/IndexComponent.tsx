@@ -11,19 +11,15 @@ export class IndexComponent extends React.Component {
 
     setSelectedMovieContent(content) {
         this.state.selectedMovies = content;
-        console.log(this.state);
         this.forceUpdate()
     }
 
     setSelectedShowContent(content) {
         this.state.selectedShows = content;
-        console.log(this.state);
         this.forceUpdate()
     }
 
     render() {
-        console.log(INDEX_CONTENT);
-        console.log((this.state.selectedMovies.length != 0 ? this.state.selectedMovies : this.props['data-spotlight'].openingMovies).slice(0,INDEX_CONTENT));
         const selectedMovies = (this.state.selectedMovies.length != 0 ? this.state.selectedMovies : this.props['data-spotlight'].openingMovies).slice(0,INDEX_CONTENT).map((content) => {
             const newUrl = parseMedia(content.summaryPhoto);
             return <div className="movieshow" key={content.id}>
@@ -38,7 +34,7 @@ export class IndexComponent extends React.Component {
             const newUrl = parseMedia(content.summaryPhoto);
             return <div className="movieshow" key={content.id}>
                 <img src={newUrl}/> <br/>
-                <a href={"/movie/" + content.id}> {content.metadata.name}</a> <br/>
+                <a href={"/show/" + content.id}> {content.metadata.name}</a> <br/>
                 <Mangoes data-rating={content.metadata.mangoScore}/> <br/>
                 {content.metadata.mangoScore}%
             </div>     
@@ -61,7 +57,7 @@ export class IndexComponent extends React.Component {
                 </div>
 
                 <div className="margin-top-bottom spotlight">
-                    <h2> Movies Spotlight </h2>	<hr/>
+                    <h2> Shows Spotlight </h2>	<hr/>
                     <ul className="list-inline align-center spotlight-nav">
                         <button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].newShows)}>New Shows</button>
                         <li><button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].mostPopularShows)}>Most Popular</button></li>		

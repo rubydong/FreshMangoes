@@ -16,7 +16,6 @@ export class CelebrityTemplate extends React.Component {
     async componentWillMount() {
         try {
             const response = await axios.get(window.location.origin + '/api' + window.location.pathname)
-            console.log(response.data);
             this.setState(response.data);
         } catch (err) {
             console.log(err);

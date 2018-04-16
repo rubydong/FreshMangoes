@@ -26,12 +26,10 @@ export class RatingComponent extends React.Component {
 
     handleMangoChange = event => {
         this.setState({ score: event.target.value });
-        console.log(event.target.value)
     }
 
     handleBodyChange = event => {
         this.setState({ body: event.target.value });
-        console.log(event.target.value)
     }
 
     addReview = event => {
@@ -43,8 +41,6 @@ export class RatingComponent extends React.Component {
   
         axios.post(window.location.origin + '/api/rating/' + this.props['data-id'], rating)
             .then(res => {
-            console.log(res);
-            console.log(res.data);
             window.location.reload();
         })
     }
@@ -52,14 +48,11 @@ export class RatingComponent extends React.Component {
     deleteReview(reviewId) { 
         axios.delete(window.location.origin + '/api/rating/delete/' + reviewId)
             .then(res => {
-            console.log(res);
-            console.log(res.data);
             window.location.reload();
         })
     }
 
     render() {
-        console.log(this.state.currentUser);
         const title = this.props['data-name'];
         const ratings = this.props['data-ratings'].map((rating, i) => {
             return <div className={"review " + (i%2==0 ? "pull-left" : "pull-right")}>
