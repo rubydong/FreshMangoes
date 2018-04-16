@@ -1,11 +1,13 @@
 .gradle
 .idea
+__pycache__/
 build/
 out/
 dist/
 node_modules
 venv
 movies/
+celebrities/
 
 # Ignore Gradle GUI config
 gradle-app.setting

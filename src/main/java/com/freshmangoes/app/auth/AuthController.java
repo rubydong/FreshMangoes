@@ -6,6 +6,8 @@ import com.freshmangoes.app.auth.service.AuthService;
 import com.freshmangoes.app.common.data.Constants;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
+import com.freshmangoes.app.user.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +28,13 @@ public class AuthController {
   @PostMapping(Constants.LOGIN_MAPPING)
   public ResponseEntity login(@RequestBody final Map<String, String> body) {
     final HttpStatus status;
-    final Integer userId;
+    final User user;
 
-    userId = authService.loginUser(body.get(Constants.EMAIL),
-                                   body.get(Constants.PASSWORD));
+    user = authService.loginUser(body.get(Constants.EMAIL),
+                                 body.get(Constants.PASSWORD));
 
-    if (userId != null) {
-      session.setAttribute(Constants.USER_ID, userId);
+    if (user != null) {
+      session.setAttribute(Constants.USER_ID, user);
       status = HttpStatus.OK;
     } else {
       status = HttpStatus.BAD_REQUEST;
@@ -60,7 +62,7 @@ public class AuthController {
 
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = "application/json")
   public String currentUser() {
-    final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+    final Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
     final ObjectNode rootNode = mapper.createObjectNode();
 
     if (userId != null) {

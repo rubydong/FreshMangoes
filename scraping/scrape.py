@@ -1,34 +1,11 @@
 import os
-import json
-import requests
-import time
+from helpers import *
 
 tmdb_api_key = "b1e9f3b916bba0f268a7aa6793d6a240"
 tmdb_url = "https://api.themoviedb.org/3"
 
 omdb_api_key = "aebea659"
 omdb_url = "http://www.omdbapi.com"
-
-
-def make_request(url, params):
-    res = None
-
-    while True:
-        try:
-            res = requests.get(url, params)
-            if res.status_code != 200:
-                time.sleep(10)
-            else:
-                break
-        except Exception:
-            time.sleep(60)
-
-    return res.json()
-
-
-def save_json(filename, data):
-    with open(filename, 'w') as fp:
-        json.dump(data, fp)
 
 
 def scrape(base_url, params, content_id, location):
@@ -47,7 +24,13 @@ def scrape(base_url, params, content_id, location):
 
 
 def scrape_celebrities():
-    pass
+    params = {"api_key": tmdb_api_key}
+    for type in ["movies", "shows", "seasons", "episodes"]:
+        for credits_file in os.listdir(f"{type}/credits"):
+            credits = load_json(os.path.join(f"{type}/credits", credits_file))
+            for member in credits["cast"] + credits["crew"]:
+                person = make_request(f"{tmdb_url}/person/{member['id']}", params)
+                save_json(f"celebrities/{member['id']}.json", person)
 
 
 def scrape_shows(num_shows):

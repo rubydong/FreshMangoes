@@ -1,5 +1,6 @@
 package com.freshmangoes.app.rating.service;
 
+import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.repository.RatingRepository;
 import com.freshmangoes.app.user.data.UserType;
@@ -18,15 +19,26 @@ public class RatingServiceImpl implements RatingService {
                              final Integer score,
                              final UserType type,
                              final Integer reviewerId,
+                             final String username,
                              final String body) {
     return ratingRepository.insertRating(Rating
                                           .builder()
                                           .contentId(contentId)
+                                          .contentType(ContentType.MOVIE)
                                           .score(score)
                                           .userType(type)
                                           .reviewerId(reviewerId)
+                                          .username(username)
                                           .body(body)
                                           .build());
+  }
+
+  public boolean editRating(final Integer ratingId,
+                            final Integer score,
+                            final String body) {
+    return ratingRepository.editRating(ratingId,
+                                       score,
+                                       body);
   }
 
   public List<Rating> getRatingByContentId(final Integer contentId) {
@@ -35,5 +47,9 @@ public class RatingServiceImpl implements RatingService {
 
   public List<Rating> getRatingByReviewerId(final Integer reviewerId) {
     return ratingRepository.findByReviewerId(reviewerId);
+  }
+
+  public void deleteRating(final Integer id) {
+    ratingRepository.deleteRating(id);
   }
 }

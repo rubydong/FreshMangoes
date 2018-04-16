@@ -3,6 +3,7 @@ package com.freshmangoes.app.rating;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.service.RatingService;
+import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.data.UserType;
 
 import java.util.List;
@@ -26,15 +27,16 @@ public class RatingController {
   @PostMapping(Constants.ADD_RATING_MAPPING)
   public ResponseEntity addRating(@RequestBody final Map<String, String> body,
                                   @PathVariable final Integer contentId) {
-    Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+    User user = (User) session.getAttribute(Constants.USER_ID);
 
-    if (userId == null) {
-      return ResponseEntity.badRequest().build();
-    } else {
+      if (user == null) {
+        return ResponseEntity.badRequest().build();
+      } else {
       return ratingService.addToRating(contentId,
                                        Integer.parseInt(body.get(Constants.SCORE)),
                                        UserType.AUDIENCE,
-                                       userId,
+                                       user.getId(),
+                                       user.getDisplayName(),
                                        body.get(Constants.BODY))
              ? ResponseEntity.ok("Rating added successfully.")
              : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not added successfully.");
@@ -49,5 +51,33 @@ public class RatingController {
   @GetMapping(Constants.GET_RATING_BY_REVIEWER_ID_MAPPING)
   public List<Rating> getRatingByReviewerId(@PathVariable final Integer reviewerId) {
     return ratingService.getRatingByReviewerId(reviewerId);
+  }
+
+  @PostMapping(Constants.DELETE_RATING_MAPPING)
+  public ResponseEntity deleteRating(@PathVariable final Integer id) {
+    Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
+
+    if (userId == null) {
+      return ResponseEntity.badRequest().build();
+    } else {
+      ratingService.deleteRating(id);
+      return ResponseEntity.ok("Rating successfully deleted.");
+    }
+  }
+
+  @PostMapping(Constants.EDIT_RATING_MAPPING)
+  public ResponseEntity editRating(@RequestBody final Map<String, String> body,
+                                   @PathVariable final Integer ratingId) {
+    Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
+
+    if (userId == null) {
+      return ResponseEntity.badRequest().build();
+    } else {
+      return ratingService.editRating(ratingId,
+                                      Integer.parseInt(body.get(Constants.SCORE)),
+                                      body.get(Constants.BODY))
+             ? ResponseEntity.ok("Rating edited successfully.")
+             : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not edited successfully.");
+    }
   }
 }

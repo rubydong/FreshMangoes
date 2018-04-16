@@ -5,6 +5,7 @@ import com.freshmangoes.app.interested.service.InterestsService;
 
 import javax.servlet.http.HttpSession;
 
+import com.freshmangoes.app.user.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class InterestsController {
 
   @PostMapping(Constants.ADD_TO_INTERESTED_MAPPING)
   public ResponseEntity addToInterestedList(@PathVariable final Integer contentId) {
-    final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+    final Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
     final HttpStatus status;
 
     if (userId == null) {
@@ -39,7 +40,7 @@ public class InterestsController {
 
   @PostMapping(Constants.REMOVE_FROM_INTERESTED_MAPPING)
   public ResponseEntity removeFromInterestedList(@PathVariable final Integer contentId) {
-    final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+    final Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
     final HttpStatus status;
 
     if (userId == null) {
@@ -54,7 +55,7 @@ public class InterestsController {
 
   @PostMapping(Constants.ADD_TO_DISINTERESTED_MAPPING)
   public ResponseEntity addToDisinterestedList(@PathVariable final Integer contentId) {
-    final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+    final Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
     final HttpStatus status;
 
     if (userId == null) {
@@ -69,7 +70,7 @@ public class InterestsController {
 
   @PostMapping(Constants.REMOVE_FROM_DISINTERESTED_MAPPING)
   public ResponseEntity removeFromDisinterestedList(@PathVariable final Integer contentId) {
-    final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+    final Integer userId = ((User)session.getAttribute(Constants.USER_ID)).getId();
     final HttpStatus status;
 
     if (userId == null) {

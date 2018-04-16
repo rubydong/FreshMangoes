@@ -10,7 +10,14 @@ public interface RatingService {
                       Integer score,
                       UserType type,
                       Integer reviewerId,
+                      String username,
                       String body);
+
+  boolean editRating(Integer ratingId,
+                     Integer score,
+                     String body);
+
+  void deleteRating(Integer id);
 
   List<Rating> getRatingByContentId(Integer contentId);
 
