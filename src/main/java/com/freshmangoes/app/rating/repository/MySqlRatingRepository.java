@@ -16,16 +16,32 @@ public class MySqlRatingRepository implements RatingRepository {
     ratingMap = new HashMap<>();
     ratingCount = 0;
 
-    ratingMap.put(ratingCount, Rating.builder().id(ratingCount++).body("haha LOL").contentId(1337).reviewerId(90).build());
-    ratingMap.put(ratingCount, Rating.builder().id(ratingCount++).body("haha LOL2").contentId(1337).reviewerId(91).build());
-    ratingMap.put(ratingCount, Rating.builder().id(ratingCount++).body("haha LOL3").contentId(1337).reviewerId(92).build());
-    ratingMap.put(ratingCount, Rating.builder().id(ratingCount++).body("haha LOL4").contentId(1337).reviewerId(90).build());
+//    ratingMap.put(ratingCount, Rating.builder().id(ratingCount++).body("haha LOL").contentId(1337).reviewerId(90).build());
+//    ratingMap.put(ratingCount, Rating.builder().id(ratingCount++).body("haha LOL2").contentId(1337).reviewerId(91).build());
+//    ratingMap.put(ratingCount, Rating.builder().id(ratingCount++).body("haha LOL3").contentId(1337).reviewerId(92).build());
+//    ratingMap.put(ratingCount, Rating.builder().id(ratingCount++).body("haha LOL4").contentId(1337).reviewerId(90).build());
   }
 
   public boolean insertRating(final Rating rating) {
     rating.setId(ratingCount++);
     ratingMap.put(rating.getId(), rating);
     return true;
+  }
+
+  public boolean editRating(final Integer ratingId,
+                            final Integer score,
+                            final String body) {
+    Rating rating = ratingMap.getOrDefault(ratingId, null);
+    if (rating == null) {
+      return false;
+    }
+    rating.setScore(score);
+    rating.setBody(body);
+    return true;
+  }
+
+  public void deleteRating(final Integer id) {
+    ratingMap.remove(id);
   }
 
   public List<Rating> findByReviewerId(final Integer reviewerId) {

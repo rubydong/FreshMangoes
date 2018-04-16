@@ -28,9 +28,9 @@ public class RatingController {
                                   @PathVariable final Integer contentId) {
     Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
 
-    if (userId == null) {
-      return ResponseEntity.badRequest().build();
-    } else {
+      if (userId == null) {
+        return ResponseEntity.badRequest().build();
+      } else {
       return ratingService.addToRating(contentId,
                                        Integer.parseInt(body.get(Constants.SCORE)),
                                        UserType.AUDIENCE,
@@ -49,5 +49,33 @@ public class RatingController {
   @GetMapping(Constants.GET_RATING_BY_REVIEWER_ID_MAPPING)
   public List<Rating> getRatingByReviewerId(@PathVariable final Integer reviewerId) {
     return ratingService.getRatingByReviewerId(reviewerId);
+  }
+
+  @PostMapping(Constants.DELETE_RATING_MAPPING)
+  public ResponseEntity deleteRating(@PathVariable final Integer id) {
+    Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+
+    if (userId == null) {
+      return ResponseEntity.badRequest().build();
+    } else {
+      ratingService.deleteRating(id);
+      return ResponseEntity.ok("Rating successfully deleted.");
+    }
+  }
+
+  @PostMapping(Constants.EDIT_RATING_MAPPING)
+  public ResponseEntity editRating(@RequestBody final Map<String, String> body,
+                                   @PathVariable final Integer ratingId) {
+    Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
+
+    if (userId == null) {
+      return ResponseEntity.badRequest().build();
+    } else {
+      return ratingService.editRating(ratingId,
+                                      Integer.parseInt(body.get(Constants.SCORE)),
+                                      body.get(Constants.BODY))
+             ? ResponseEntity.ok("Rating edited successfully.")
+             : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not edited successfully.");
+    }
   }
 }

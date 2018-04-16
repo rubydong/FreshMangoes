@@ -12,6 +12,12 @@ public interface RatingService {
                       Integer reviewerId,
                       String body);
 
+  boolean editRating(Integer ratingId,
+                     Integer score,
+                     String body);
+
+  void deleteRating(Integer id);
+
   List<Rating> getRatingByContentId(Integer contentId);
 
   List<Rating> getRatingByReviewerId(Integer reviewerId);
