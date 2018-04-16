@@ -1,6 +1,7 @@
 .gradle
 .idea
 __pycache__/
+bin/
 build/
 out/
 dist/
