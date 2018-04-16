@@ -2,6 +2,7 @@ package com.freshmangoes.app.rating;
 
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.helpers.Helpers;
+import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.service.RatingService;
 import com.freshmangoes.app.user.data.User;
@@ -43,6 +44,7 @@ public class RatingController {
        .contentId(contentId)
        .score(Integer.parseInt(body.get(Constants.SCORE)))
        .userType(UserType.AUDIENCE)
+       .contentType(ContentType.MOVIE)
        .reviewerId(user.getId())
        .username(user.getDisplayName())
        .body(body.get(Constants.BODY))
