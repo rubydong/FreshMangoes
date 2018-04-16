@@ -1,16 +1,18 @@
-import json
 import os
 import pymysql
+from helpers import *
 
-DETAILS = 'movies/details'
-MORE_DETAILS = 'movies/moredetails'
-PHOTOS = 'movies/images'
-VIDEO = 'movies/videos'
+MOVIE_DETAILS = 'movies/details'
+MOVIE_MORE_DETAILS = 'movies/moredetails'
+MOVIE_PHOTOS = 'movies/images'
+MOVIE_VIDEO = 'movies/videos'
 BASE_PHOTO_URL = 'https://image.tmdb.org/t/p/original'
 BASE_VIDEO_URL = 'https://www.youtube.com/embed/'
 
+CELEBRITIES = 'celebrities'
+
 INSERT_CAST = 'insert into `Casted` values(%s, %s, %s)'
-INSERT_CELEBRITY = 'insert into `Celebrities` (birthday, birthplace, biography, celebrity_name, celebrity_type, ' \
+INSERT_CELEBRITY = 'insert into `Celebrities` (birthday, birthplace, biography, celebrity_name, id, ' \
                    'profile_picture) values(%s, %s, %s, %s, %s, %s)'
 INSERT_CONTENT = 'insert into `Content` (content_type, metadata_id, summary_photo) values(%s, %s, %s)'
 INSERT_CONTENT_MEDIA = 'insert into `ContentMedia` (content_id, media_id) values(%s, %s)'
@@ -24,22 +26,42 @@ connection = pymysql.connect(host='localhost',
                              user='root',
                              db='cse308',
                              charset='utf8mb4',
+                             autocommit=True,
                              cursorclass=pymysql.cursors.DictCursor)
 
+cursor = connection.cursor()
 
-def load_json(filename):
-    with open(filename) as data_file:
-        data = json.load(data_file)
-    return data
+
+def insert_celebrities():
+    celebrities_dir = os.listdir(CELEBRITIES)
+    for filename in celebrities_dir:
+        celebrity_details = load_json(os.path.join(CELEBRITIES, filename))
+        print(celebrity_details)
+        profile_photo_id = None
+        if celebrity_details.get("profile_path", None) is not None:
+            cursor.execute(INSERT_MEDIA, (BASE_PHOTO_URL + celebrity_details["profile_path"], 0))
+            profile_photo_id = cursor.lastrowid
+
+        birthday = celebrity_details.get("birthday", None)
+        if birthday is not None:
+            if len(birthday) < 10:
+                birthday = None
+
+        cursor.execute(INSERT_CELEBRITY, (birthday,
+                                          celebrity_details.get("place_of_birth", "Unknown"),
+                                          celebrity_details.get("biography", ""),
+                                          celebrity_details["name"],
+                                          celebrity_details["id"],
+                                          profile_photo_id))
 
 
 def insert_movies():
-    movies_dir = os.listdir(DETAILS)
+    movies_dir = os.listdir(MOVIE_DETAILS)
     for filename in movies_dir:
-        movie_details = load_json(os.path.join(DETAILS, filename))
-        movie_more_details = load_json(os.path.join(MORE_DETAILS, filename))
-        movie_photos = load_json(os.path.join(PHOTOS, filename))
-        movie_videos = load_json(os.path.join(VIDEO, filename))
+        movie_details = load_json(os.path.join(MOVIE_DETAILS, filename))
+        movie_more_details = load_json(os.path.join(MOVIE_MORE_DETAILS, filename))
+        movie_photos = load_json(os.path.join(MOVIE_PHOTOS, filename))
+        movie_videos = load_json(os.path.join(MOVIE_VIDEO, filename))
 
         audience_score = 0
         content_name = movie_details["title"]
@@ -71,43 +93,36 @@ def insert_movies():
         content_videos = []
         content_videos += [BASE_VIDEO_URL + result["key"] for result in movie_videos["results"]]
 
-        with connection.cursor() as cursor:
-            cursor.execute(INSERT_METADATA, (audience_score,
-                                             content_name,
-                                             mango_score,
-                                             maturity_rating,
-                                             release_date,
-                                             runtime,
-                                             studio_network,
-                                             summary))
-            connection.commit()
-            content_metadata_id = cursor.lastrowid
+        cursor.execute(INSERT_METADATA, (audience_score,
+                                         content_name,
+                                         mango_score,
+                                         maturity_rating,
+                                         release_date,
+                                         runtime,
+                                         studio_network,
+                                         summary))
+        content_metadata_id = cursor.lastrowid
 
-            cursor.execute(INSERT_MEDIA, (movie_more_details.get("Poster", "N/A"), 0))
-            connection.commit()
-            summary_photo_id = cursor.lastrowid
+        cursor.execute(INSERT_MEDIA, (movie_more_details.get("Poster", "N/A"), 0))
+        summary_photo_id = cursor.lastrowid
 
-            cursor.execute(INSERT_CONTENT, (0,
-                                            content_metadata_id,
-                                            summary_photo_id))
-            connection.commit()
-            content_id = cursor.lastrowid
+        cursor.execute(INSERT_CONTENT, (0,
+                                        content_metadata_id,
+                                        summary_photo_id))
+        content_id = cursor.lastrowid
 
-            for photo in content_photos:
-                cursor.execute(INSERT_MEDIA, (photo, 0))
-                connection.commit()
-                cursor.execute(INSERT_CONTENT_MEDIA, (content_id, cursor.lastrowid))
-                connection.commit()
+        for photo in content_photos:
+            cursor.execute(INSERT_MEDIA, (photo, 0))
+            cursor.execute(INSERT_CONTENT_MEDIA, (content_id, cursor.lastrowid))
 
-            for video in content_videos:
-                cursor.execute(INSERT_MEDIA, (video, 1))
-                connection.commit()
-                cursor.execute(INSERT_CONTENT_MEDIA, (content_id, cursor.lastrowid))
-                connection.commit()
+        for video in content_videos:
+            cursor.execute(INSERT_MEDIA, (video, 1))
+            cursor.execute(INSERT_CONTENT_MEDIA, (content_id, cursor.lastrowid))
 
 
 def main():
-    insert_movies()
+    insert_celebrities()
+    # insert_movies()
 
 
 if __name__ == "__main__":

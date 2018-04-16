@@ -29,11 +29,10 @@ CREATE TABLE Followings(
 );
 
 CREATE TABLE Celebrities(
-  birthday DATE NOT NULL,
-  birthplace VARCHAR(30),
+  birthday DATE,
+  birthplace TINYTEXT,
   biography TEXT,
   celebrity_name VARCHAR(50) NOT NULL DEFAULT '',
-  celebrity_type TINYINT,
   id INT AUTO_INCREMENT,
   profile_picture INT,
   PRIMARY KEY (id),
@@ -108,8 +107,17 @@ CREATE TABLE Disinterests(
 
 CREATE TABLE Casted(
   celebrity_id INT,
-  character_name VARCHAR (256),
+  character_name VARCHAR(256),
   content_id INT,
+  PRIMARY KEY(celebrity_id, content_id),
+  FOREIGN KEY(celebrity_id) REFERENCES Celebrities(id),
+  FOREIGN KEY(content_id) REFERENCES Content(id)
+);
+
+CREATE TABLE Crew(
+  celebrity_id INT,
+  content_id INT,
+  job VARCHAR(256),
   PRIMARY KEY(celebrity_id, content_id),
   FOREIGN KEY(celebrity_id) REFERENCES Celebrities(id),
   FOREIGN KEY(content_id) REFERENCES Content(id)
