@@ -2,16 +2,19 @@ import os
 import pymysql
 from helpers import *
 
+MOVIE_CREDITS = 'movies/credits'
 MOVIE_DETAILS = 'movies/details'
 MOVIE_MORE_DETAILS = 'movies/moredetails'
 MOVIE_PHOTOS = 'movies/images'
 MOVIE_VIDEO = 'movies/videos'
+
 BASE_PHOTO_URL = 'https://image.tmdb.org/t/p/original'
 BASE_VIDEO_URL = 'https://www.youtube.com/embed/'
 
 CELEBRITIES = 'celebrities'
 
-INSERT_CAST = 'insert into `Casted` values(%s, %s, %s)'
+INSERT_CAST = 'insert into `Casted` (celebrity_id, content_id, character_name) values(%s, %s, %s)'
+INSERT_CREW = 'insert into `Crew` (celebrity_id, content_id, job) values(%s, %s, %s)'
 INSERT_CELEBRITY = 'insert into `Celebrities` (birthday, birthplace, biography, celebrity_name, id, ' \
                    'profile_picture) values(%s, %s, %s, %s, %s, %s)'
 INSERT_CONTENT = 'insert into `Content` (content_type, metadata_id, summary_photo) values(%s, %s, %s)'
@@ -62,6 +65,7 @@ def insert_movies():
         movie_more_details = load_json(os.path.join(MOVIE_MORE_DETAILS, filename))
         movie_photos = load_json(os.path.join(MOVIE_PHOTOS, filename))
         movie_videos = load_json(os.path.join(MOVIE_VIDEO, filename))
+        movie_credits = load_json(os.path.join(MOVIE_CREDITS, filename))
 
         audience_score = 0
         content_name = movie_details["title"]
@@ -119,10 +123,16 @@ def insert_movies():
             cursor.execute(INSERT_MEDIA, (video, 1))
             cursor.execute(INSERT_CONTENT_MEDIA, (content_id, cursor.lastrowid))
 
+        for cast_member in movie_credits["cast"]:
+            cursor.execute(INSERT_CAST, (cast_member["id"], content_id, cast_member["character"]))
+
+        for crew_member in movie_credits["crew"]:
+            cursor.execute(INSERT_CREW, (crew_member["id"], content_id, crew_member["job"]))
+
 
 def main():
     insert_celebrities()
-    # insert_movies()
+    insert_movies()
 
 
 if __name__ == "__main__":
