@@ -41,7 +41,8 @@ export class MovieTemplate extends React.Component {
                 <PhotoComponent data-photos={this.state.media.photos}/>   
                 <VideoComponent data-videos={this.state.media.videos}/>  
                 <CastComponent data-cast={this.state.metadata.cast} data-name={this.state.metadata.name}/>
-                <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-review-style='fancy'/>
+                <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} 
+                                 data-id={this.state.id} data-review-style='fancy'/>
             </div>
 		</div>
         );
