@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.freshmangoes.app.auth.service.AuthService;
 import com.freshmangoes.app.common.data.Constants;
+import com.freshmangoes.app.common.helpers.Helpers;
 import com.freshmangoes.app.user.data.User;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -65,7 +66,7 @@ public class AuthController {
 
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)
   public String currentUser() {
-    final User user = ((User) session.getAttribute(Constants.USER_ID));
+    final User user = Helpers.getAuthenticatedUser(session);
     final ObjectNode rootNode = mapper.createObjectNode();
 
     if (user != null) {

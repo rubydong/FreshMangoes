@@ -32,7 +32,7 @@ public class FollowController {
 
     if (user != null) {
       status = followService.followUser(user.getId(), userId) ? HttpStatus.OK
-          : HttpStatus.BAD_REQUEST;
+                                                              : HttpStatus.BAD_REQUEST;
     } else {
       status = HttpStatus.BAD_REQUEST;
     }
@@ -47,7 +47,7 @@ public class FollowController {
 
     if (user != null) {
       status = followService.unfollowUser(user.getId(), userId) ? HttpStatus.OK
-          : HttpStatus.BAD_REQUEST;
+                                                                : HttpStatus.BAD_REQUEST;
     } else {
       status = HttpStatus.BAD_REQUEST;
     }

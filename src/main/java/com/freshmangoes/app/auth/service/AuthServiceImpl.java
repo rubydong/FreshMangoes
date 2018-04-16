@@ -17,10 +17,12 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public User loginUser(final String email, final String password) {
     final User user = userRepository.findByEmail(email);
+    final String hash;
+
     if (user == null) {
       return null;
     } else {
-      final String hash = user.getHash();
+      hash = user.getHash();
       return passwordEncoder.matches(password, hash) ? user : null;
     }
   }

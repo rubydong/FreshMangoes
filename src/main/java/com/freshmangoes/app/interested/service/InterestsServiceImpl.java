@@ -16,11 +16,7 @@ public class InterestsServiceImpl implements InterestsService {
 
   @Override
   public Boolean addToInterestedList(final Integer userId, final Integer contentId) {
-    if (!contentRepository.existsById(contentId)) {
-      return false;
-    } else {
-      return userRepository.updateInterestedList(userId, contentId, true);
-    }
+    return userRepository.updateInterestedList(userId, contentId, true);
   }
 
   @Override
@@ -30,11 +26,7 @@ public class InterestsServiceImpl implements InterestsService {
 
   @Override
   public Boolean addToDisinterestedList(final Integer userId, final Integer contentId) {
-    if (!contentRepository.existsById(contentId)) {
-      return false;
-    } else {
-      return userRepository.updateDisinterestedList(userId, contentId, true);
-    }
+    return userRepository.updateDisinterestedList(userId, contentId, true);
   }
 
   @Override
