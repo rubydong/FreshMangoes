@@ -16,5 +16,5 @@ public class SpotlightItems {
   private List<Movie> comingSoonMovies;
   private List<Show> newShows;
   private List<Show> mostPopularShows;
-  private List<Show> topDVDStreamingShows;
+  private List<Show> topDvdStreamingShows;
 }

@@ -252,7 +252,7 @@ public class SpotlightServiceImpl implements SpotlightService {
                       .build())
                   .build())
               .build())
-          .topDVDStreamingShows(new ImmutableList.Builder<Show>()
+          .topDvdStreamingShows(new ImmutableList.Builder<Show>()
               .add(Show
                   .builder()
                   .id(20)

@@ -2,10 +2,9 @@ package com.freshmangoes.app.celebrity.service;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.celebrity.repository.CelebrityRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CelebrityServiceImpl implements CelebrityService {
