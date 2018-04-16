@@ -5,10 +5,10 @@ export class LoginComponent extends React.Component {
     state = {
         email: '',
         password: '',
-      }
+    }
     
     handleEmailChange = event => {
-    this.setState({ email: event.target.value });
+        this.setState({ email: event.target.value });
     }
 
     handlePasswordChange = event => {
@@ -16,21 +16,18 @@ export class LoginComponent extends React.Component {
     }
 
     handleSubmit = event => {
-    event.preventDefault();
-
-    const loginInfo = {
-        email: this.state.email,
-        password: this.state.password
-    };
-
-    console.log(loginInfo);
-
-    axios.post(window.location.origin + '/api/login', loginInfo)
-        .then(res => {
-        console.log(res);
-        console.log(res.data);
-        window.location.reload();
-      })
+        event.preventDefault();
+        const loginInfo = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        console.log(loginInfo);
+        axios.post(window.location.origin + '/api/login', loginInfo)
+            .then(res => {
+            console.log(res);
+            console.log(res.data);
+            window.location.reload();
+        })
     }
 
     render() {
@@ -44,7 +41,6 @@ export class LoginComponent extends React.Component {
                             <input type="text" className="form-control" onChange={this.handleEmailChange}/>
                             Password
                             <input type="password" className="form-control" onChange={this.handlePasswordChange}/>
-            
                             <button type="submit" className="btn btn-primary">Login</button>
                         </form>
                     </div>
