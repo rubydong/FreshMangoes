@@ -29,11 +29,23 @@ public class RatingServiceImpl implements RatingService {
                                           .build());
   }
 
+  public boolean editRating(final Integer ratingId,
+                            final Integer score,
+                            final String body) {
+    return ratingRepository.editRating(ratingId,
+                                       score,
+                                       body);
+  }
+
   public List<Rating> getRatingByContentId(final Integer contentId) {
     return ratingRepository.findByContentId(contentId);
   }
 
   public List<Rating> getRatingByReviewerId(final Integer reviewerId) {
     return ratingRepository.findByReviewerId(reviewerId);
+  }
+
+  public void deleteRating(final Integer id) {
+    ratingRepository.deleteRating(id);
   }
 }
