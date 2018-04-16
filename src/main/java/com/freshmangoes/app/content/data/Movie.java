@@ -9,6 +9,9 @@ import java.util.List;
 
 import lombok.Builder;
 
+import javax.persistence.Entity;
+
+//@Entity (name = "Movie")
 public class Movie extends Content {
   @Builder
   public Movie(Integer id,
@@ -18,10 +21,10 @@ public class Movie extends Content {
                List<Rating> ratings,
                URL summaryPhoto) {
     super.setId(id);
-    super.setMedia(media);
+//    super.setMedia(media);
     super.setType(type);
     super.setMetadata(contentMetadata);
-    super.setSummaryPhoto(summaryPhoto);
-    super.setRatings(ratings);
+//    super.setSummaryPhoto(summaryPhoto);
+//    super.setRatings(ratings);
   }
 }

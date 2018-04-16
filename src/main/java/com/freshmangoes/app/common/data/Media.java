@@ -4,12 +4,19 @@ import java.net.URL;
 
 import java.util.List;
 
+import com.freshmangoes.app.content.data.Content;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.persistence.*;
+
+@Entity
 @Data
 @Builder
 public class Media {
-  private List<URL> photos;
-  private List<URL> videos;
+  @Id
+  private int id;
+  private URL path;
+  @Column(name = "media_type")
+  private MediaType type;
 }

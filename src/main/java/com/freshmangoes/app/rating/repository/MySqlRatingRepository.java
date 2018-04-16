@@ -46,13 +46,13 @@ public class MySqlRatingRepository implements RatingRepository {
 
   public List<Rating> findByReviewerId(final Integer reviewerId) {
     return ratingMap.values().stream()
-     .filter(r -> r.getReviewerId().equals(reviewerId))
+//     .filter(r -> r.getReviewerId().equals(reviewerId))
      .collect(Collectors.toList());
   }
 
   public List<Rating> findByContentId(final Integer contentId) {
     return ratingMap.values().stream()
-     .filter(r -> r.getContentId().equals(contentId))
+//     .filter(r -> r.getContentId().equals(contentId))
      .collect(Collectors.toList());
   }
 }

@@ -10,23 +10,6 @@ import org.springframework.stereotype.Repository;
 public class MySqlEpisodeRepository implements EpisodeRepository {
   @Override
   public Episode findEpisodeById(final int id) {
-    // Return filler data for now
-    return Episode
-     .builder()
-     .id(id)
-     .type(ContentType.EPISODE)
-     .contentMetadata(ContentMetadata
-      .builder()
-      .audienceScore(25.2)
-      .genres(new ImmutableList.Builder<String>()
-       .add("Tragedy")
-       .build())
-      .mangoScore(22.5)
-      .maturityRating("R")
-      .name("Tokyo Ghoul")
-      .runTime(160)
-      .summary("Cannabalistic edgelords")
-      .build())
-     .build();
+    return null;
   }
 }

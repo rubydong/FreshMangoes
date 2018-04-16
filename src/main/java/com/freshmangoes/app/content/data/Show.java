@@ -11,6 +11,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+
+//@Entity(name = "Show")
 @Getter
 @Setter
 public class Show extends Content {
@@ -25,11 +28,11 @@ public class Show extends Content {
               List<Rating> ratings,
               URL summaryPhoto) {
     super.setId(id);
-    super.setMedia(media);
+//    super.setMedia(media);
     super.setMetadata(contentMetadata);
     super.setType(type);
-    super.setSummaryPhoto(summaryPhoto);
-    super.setRatings(ratings);
+//    super.setSummaryPhoto(summaryPhoto);
+//    super.setRatings(ratings);
     this.seasons = seasons;
   }
 }

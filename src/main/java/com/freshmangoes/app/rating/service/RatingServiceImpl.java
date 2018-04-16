@@ -21,10 +21,10 @@ public class RatingServiceImpl implements RatingService {
                              final String body) {
     return ratingRepository.insertRating(Rating
                                           .builder()
-                                          .contentId(contentId)
+//                                          .contentId(contentId)
                                           .score(score)
-                                          .userType(type)
-                                          .reviewerId(reviewerId)
+//                                          .userType(type)
+//                                          .reviewerId(reviewerId)
                                           .body(body)
                                           .build());
   }

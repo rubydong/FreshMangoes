@@ -8,26 +8,37 @@ import com.freshmangoes.app.content.data.Movie;
 import java.net.URL;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
 @Builder
 @AllArgsConstructor
+@Entity
+@Table(name = "Celebrities")
 public class Celebrity {
   //Todo Split this to break circular dependency
+  @Id
+  @GeneratedValue
   private Integer id;
-  private CelebrityType type;
-  private URL profilePhoto;
   private Date birthday;
+
+  @Column(name = "celebrity_name")
   private String name;
   private String birthplace;
   private String biography;
-  private Media media;
-  private Map<String, Pair<String,Movie>> roles;
-  private Content highestRated;
-  private Content lowestRated;
+
+  @OneToOne
+  @JoinColumn(name = "profile_picture")
+  private Media profilePicture;
+
+  @OneToMany
+  @JoinTable(name = "CelebrityMedia")
+  private List<Media> media;
 }

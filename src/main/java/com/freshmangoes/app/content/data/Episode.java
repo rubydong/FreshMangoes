@@ -9,6 +9,9 @@ import java.util.List;
 
 import lombok.Builder;
 
+import javax.persistence.Entity;
+
+//@Entity (name = "Episode")
 public class Episode extends Content {
   @Builder
   public Episode(Integer id,
@@ -16,12 +19,12 @@ public class Episode extends Content {
                  Media media,
                  ContentMetadata contentMetadata,
                  List<Rating> ratings,
-                 URL summaryPhoto) {
+                 URL summary) {
     super.setId(id);
-    super.setMedia(media);
+    //super.setMedia(media);
     super.setType(type);
     super.setMetadata(contentMetadata);
-    super.setSummaryPhoto(summaryPhoto);
-    super.setRatings(ratings);
+    //super.setSummaryPhoto(summaryPictur);
+//    super.setRatings(ratings);
   }
 }

@@ -9,6 +9,9 @@ import java.util.List;
 
 import lombok.Builder;
 
+import javax.persistence.Entity;
+
+//@Entity (name = "Season")
 public class Season extends Content {
   private List<Episode> episodes;
 
@@ -21,11 +24,11 @@ public class Season extends Content {
                 List<Rating> ratings,
                 URL summaryPhoto) {
     super.setId(id);
-    super.setMedia(media);
+//    super.setMedia(media);
     super.setMetadata(contentMetadata);
     super.setType(type);
-    super.setSummaryPhoto(summaryPhoto);
-    super.setRatings(ratings);
+//    super.setSummaryPhoto(summaryPhoto);
+//    super.setRatings(ratings);
     this.episodes = episodes;
   }
 }
