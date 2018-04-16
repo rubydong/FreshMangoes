@@ -17,7 +17,6 @@ export class SearchTemplate extends React.Component {
             const response = await axios.get(window.location.origin + '/api/search?query=black')
             this.state.results = response.data.celebrities.length + response.data.shows.length + response.data.movies.length;
             this.setState(response.data);
-            
         } catch (err) {
             console.log(err);
         }

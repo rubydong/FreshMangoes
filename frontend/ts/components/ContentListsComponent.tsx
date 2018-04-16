@@ -11,23 +11,20 @@ export class ContentListsComponent extends React.Component {
         const isCelebrity = this.props['data-title'] == 'Celebrities';
         const isSearch = this.props['data-search'] == 'true';
 
-        const contentList = this
-            .props['data-content']
-            .slice(0, CONTENT_LISTS)
-            .map((content, i) => {
-                let url = isCelebrity
-                    ? "/celebrity/" + content.id
-                    : "/" + content.type.toLowerCase() + "/" + content.id;
-                let newUrl = !isCelebrity
-                    ? parseMedia(content.summaryPhoto)
-                    : parseMedia(content.profilePhoto);
-                return <div className="search-item">
-                    <img src={newUrl}/> {x}
-                    <div className="text">
-                        <a href={url}>{isCelebrity ? content.name : content.metadata.name}</a>
-                    </div>
+        const contentList = this.props['data-content'].slice(0, CONTENT_LISTS).map((content, i) => {
+            let url = isCelebrity
+                ? "/celebrity/" + content.id
+                : "/" + content.type.toLowerCase() + "/" + content.id;
+            let newUrl = !isCelebrity
+                ? parseMedia(content.summaryPhoto)
+                : parseMedia(content.profilePhoto);
+            return <div className="search-item">
+                <img src={newUrl}/> {x}
+                <div className="text">
+                    <a href={url}>{isCelebrity ? content.name : content.metadata.name}</a>
                 </div>
-            });
+            </div>
+        });
 
         return (
             <div>
