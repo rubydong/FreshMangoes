@@ -6,7 +6,7 @@ import java.util.List;
 public interface RatingRepository {
   boolean insertRating(Rating rating);
 
-  boolean editRating(Integer ratingId, Integer score, String body);
+  boolean editRating(Rating rating);
 
   void deleteRating(Integer id);
 

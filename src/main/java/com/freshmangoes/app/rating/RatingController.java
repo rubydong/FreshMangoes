@@ -1,13 +1,16 @@
 package com.freshmangoes.app.rating;
 
 import com.freshmangoes.app.common.data.Constants;
+import com.freshmangoes.app.common.helpers.Helpers;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.service.RatingService;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.data.UserType;
+
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,20 +32,23 @@ public class RatingController {
   @PostMapping(Constants.ADD_RATING_MAPPING)
   public ResponseEntity addRating(@RequestBody final Map<String, String> body,
                                   @PathVariable final Integer contentId) {
-    User user = (User) session.getAttribute(Constants.USER_ID);
+    final HttpStatus status;
+    final User user = Helpers.getAuthenticatedUser(session);
 
     if (user == null) {
-      return ResponseEntity.badRequest().build();
+      status = HttpStatus.BAD_REQUEST;
     } else {
-      return ratingService.addToRating(contentId,
-          Integer.parseInt(body.get(Constants.SCORE)),
-          UserType.AUDIENCE,
-          user.getId(),
-          user.getDisplayName(),
-          body.get(Constants.BODY))
-          ? ResponseEntity.ok("Rating added successfully.")
-          : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not added successfully.");
+      status = ratingService.addRating(Rating
+       .builder()
+       .contentId(contentId)
+       .score(Integer.parseInt(body.get(Constants.SCORE)))
+       .userType(UserType.AUDIENCE)
+       .reviewerId(user.getId())
+       .username(user.getDisplayName())
+       .body(body.get(Constants.BODY))
+       .build()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
+    return ResponseEntity.status(status).build();
   }
 
   @GetMapping(Constants.GET_RATING_BY_CONTENT_ID_MAPPING)
@@ -57,29 +63,37 @@ public class RatingController {
 
   @DeleteMapping(Constants.DELETE_RATING_MAPPING)
   public ResponseEntity deleteRating(@PathVariable final Integer id) {
-    Integer userId = ((User) session.getAttribute(Constants.USER_ID)).getId();
+    final HttpStatus status;
+    final User user = Helpers.getAuthenticatedUser(session);
 
-    if (userId == null) {
-      return ResponseEntity.badRequest().build();
+    if (user == null) {
+      status = HttpStatus.BAD_REQUEST;
     } else {
       ratingService.deleteRating(id);
-      return ResponseEntity.ok("Rating successfully deleted.");
+      status = HttpStatus.OK;
     }
+    return ResponseEntity.status(status).build();
   }
 
   @PostMapping(Constants.EDIT_RATING_MAPPING)
   public ResponseEntity editRating(@RequestBody final Map<String, String> body,
                                    @PathVariable final Integer ratingId) {
-    Integer userId = ((User) session.getAttribute(Constants.USER_ID)).getId();
+    final HttpStatus status;
+    final User user = Helpers.getAuthenticatedUser(session);
 
-    if (userId == null) {
-      return ResponseEntity.badRequest().build();
+    if (user == null) {
+      status = HttpStatus.BAD_REQUEST;
     } else {
-      return ratingService.editRating(ratingId,
-          Integer.parseInt(body.get(Constants.SCORE)),
-          body.get(Constants.BODY))
-          ? ResponseEntity.ok("Rating edited successfully.")
-          : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not edited successfully.");
+      status = ratingService.editRating(Rating
+       .builder()
+       .id(ratingId)
+       .score(Integer.parseInt(body.get(Constants.SCORE)))
+       .userType(UserType.AUDIENCE)
+       .reviewerId(user.getId())
+       .username(user.getDisplayName())
+       .body(body.get(Constants.BODY))
+       .build()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
+    return ResponseEntity.status(status).build();
   }
 }

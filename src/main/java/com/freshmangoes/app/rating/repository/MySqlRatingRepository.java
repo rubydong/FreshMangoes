@@ -28,15 +28,14 @@ public class MySqlRatingRepository implements RatingRepository {
     return true;
   }
 
-  public boolean editRating(final Integer ratingId,
-                            final Integer score,
-                            final String body) {
-    Rating rating = ratingMap.getOrDefault(ratingId, null);
-    if (rating == null) {
-      return false;
+  public boolean editRating(final Rating rating) {
+    Rating old_rating = ratingMap.getOrDefault(rating.getId(), null);
+
+    if (old_rating == null) {
+      return insertRating(rating);
     }
-    rating.setScore(score);
-    rating.setBody(body);
+    rating.setContentId(old_rating.getContentId());
+    ratingMap.put(rating.getId(), rating);
     return true;
   }
 

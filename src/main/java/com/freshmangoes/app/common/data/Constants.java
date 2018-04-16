@@ -6,7 +6,7 @@ public class Constants {
   public static final String LOGOUT_MAPPING = "/logout";
   public static final String REGISTER_MAPPING = "/register";
   public static final String CURRENT_USER_MAPPING = "/getCurrentUser";
-  public static final String SEARCH_MAPPING = "/search/{searchQuery}";
+  public static final String SEARCH_MAPPING = "/search";
   public static final String SPOTLIGHT_MAPPING = "/spotlightItems";
 
   public static final String GET_CELEBRITY_MAPPING = "/celebrity/{id}";

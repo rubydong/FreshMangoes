@@ -15,30 +15,12 @@ public class RatingServiceImpl implements RatingService {
   @Autowired
   private RatingRepository ratingRepository;
 
-  public boolean addToRating(final Integer contentId,
-                             final Integer score,
-                             final UserType type,
-                             final Integer reviewerId,
-                             final String username,
-                             final String body) {
-    return ratingRepository.insertRating(Rating
-                                          .builder()
-                                          .contentId(contentId)
-                                          .contentType(ContentType.MOVIE)
-                                          .score(score)
-                                          .userType(type)
-                                          .reviewerId(reviewerId)
-                                          .username(username)
-                                          .body(body)
-                                          .build());
+  public boolean addRating(final Rating rating) {
+    return ratingRepository.insertRating(rating);
   }
 
-  public boolean editRating(final Integer ratingId,
-                            final Integer score,
-                            final String body) {
-    return ratingRepository.editRating(ratingId,
-                                       score,
-                                       body);
+  public boolean editRating(final Rating rating) {
+    return ratingRepository.editRating(rating);
   }
 
   public List<Rating> getRatingByContentId(final Integer contentId) {
