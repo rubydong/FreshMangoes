@@ -34,7 +34,7 @@ public class MySqlMovieRepository implements MovieRepository {
      .add(Rating
       .builder()
       .id(0)
-      .reviewerId(1331)
+      .reviewerId(22)
       .contentId(id)
       .body("I like the action part of the film.")
       .score(89)
