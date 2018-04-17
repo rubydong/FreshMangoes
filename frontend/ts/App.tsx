@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Header } from './components/Header'
+import { Header } from './components/Header';
 import { LoginComponent } from './components/LoginComponent';
 import { RegisterComponent } from './components/RegisterComponent';
-import Main from './Main'
+import Main from './Main';
 
 const App = () => (
   <div>

@@ -1,7 +1,14 @@
 body {
 	color: #252627;
 }
-
+@media (min-width: 992px) {
+	.navbar span {
+		justify-content: center;
+		display: flex;
+		flex-flow: row;
+		flex-wrap: wrap;
+	}
+}
 .content {
 	width: 80%;
 	margin: 0 auto;

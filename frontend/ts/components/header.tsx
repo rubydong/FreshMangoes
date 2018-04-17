@@ -43,11 +43,11 @@ export class Header extends React.Component {
                         <li className="nav-item"> <a className="nav-link" href="/spotlight">Spotlight</a> </li>
             
                         {isLoggedIn
-                        ? <span className="flex-center">
+                        ? <span>
                             <li className="nav-item"> <a className="nav-link" href={profileUrl}>Profile</a> </li>
                             <li className="nav-item"> <a className="nav-link" href="" onClick={this.logout}>Sign out</a> </li> 
                           </span>
-                        : <span className="flex-center">
+                        : <span>
                             <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#login-modal">Login</a></li> 
                             <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#register-modal">Register</a></li>
                           </span>
