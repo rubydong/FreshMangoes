@@ -426,7 +426,7 @@ video {
 	background: white;
 }
 
-.profile .bio img {
+.profile-picture {
 	width: 100%;
 	height: 300px;
 	object-fit: cover;

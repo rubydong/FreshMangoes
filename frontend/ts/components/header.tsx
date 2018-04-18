@@ -45,7 +45,9 @@ export class Header extends React.Component {
                         {isLoggedIn
                         ? <span>
                             <li className="nav-item"> <a className="nav-link" href={profileUrl}>Profile</a> </li>
+                            <li className="nav-item"> <a className="nav-link" href="/settings">Settings</a> </li>
                             <li className="nav-item"> <a className="nav-link" href="" onClick={this.logout}>Sign out</a> </li> 
+                            
                           </span>
                         : <span>
                             <li className="nav-item"> <a className="nav-link register-login" href="" data-toggle="modal" data-target="#login-modal">Login</a></li> 
