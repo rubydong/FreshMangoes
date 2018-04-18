@@ -60,7 +60,7 @@ export class RatingComponent extends React.Component {
                     <span className="align-right"> <Mangoes data-rating={rating.score}/></span> <br/>
                     <i> <a href={'../' + rating.contentType.toLowerCase() + '/' + rating.contentId}> {title} </a></i> 
                     { this.state.currentUser == rating.reviewerId 
-                    ? <span className="align-right"><img src="../../images/trash.png" onClick={() =>this.deleteReview(rating.id)}/></span> : ''}
+                    ? <span className="align-right"><img src="../../images/icons/trash.png" onClick={() =>this.deleteReview(rating.id)}/></span> : ''}
                     <hr/>
                     "{rating.body}"
                 </div>
