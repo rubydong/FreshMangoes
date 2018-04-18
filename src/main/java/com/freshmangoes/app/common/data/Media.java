@@ -1,17 +1,18 @@
 package com.freshmangoes.app.common.data;
 
 import java.net.URL;
-
-import java.util.List;
-
-import com.freshmangoes.app.content.data.Content;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import lombok.Builder;
 import lombok.Data;
-
-import javax.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Media {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +27,4 @@ public class Media {
     this.path = path;
     this.type = mediaType;
   }
-
-  private Media() {};
 }

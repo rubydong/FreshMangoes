@@ -123,7 +123,7 @@ CREATE TABLE Crew(
   FOREIGN KEY(content_id) REFERENCES Content(id)
 );
 
-CREATE TABLE Season(
+CREATE TABLE Show_Seasons(
   season_id INT,
   show_id INT,
   PRIMARY KEY(show_id, season_id),
@@ -131,7 +131,7 @@ CREATE TABLE Season(
   FOREIGN KEY(season_id) REFERENCES Content(id)
 );
 
-CREATE TABLE Episode(
+CREATE TABLE Season_Episodes(
   episode_id INT,
   season_id INT,
   PRIMARY KEY(season_id, episode_id),

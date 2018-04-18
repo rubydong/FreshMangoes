@@ -11,39 +11,28 @@ import org.springframework.stereotype.Service;
 public class InterestsServiceImpl implements InterestsService {
 
   @Autowired
-  private MovieRepository mySQLMovieRepository;
-
-  @Autowired
-  private ShowRepository mySQLShowRepository;
+  private MovieRepository movieRepository;
 
   @Autowired
   private UserRepository userRepository;
 
   @Override
   public Boolean addToInterestedList(final Integer userId, final Integer contentId) {
-    if (!mySQLMovieRepository.existsById(contentId)) {
-      return false;
-    } else {
-      return userRepository.updateInterestedList(userId, contentId, true);
-    }
+    return null;
   }
 
   @Override
   public Boolean removeFromInterestedList(final Integer userId, final Integer contentId) {
-    return userRepository.updateInterestedList(userId, contentId, false);
+    return null;
   }
 
   @Override
   public Boolean addToDisinterestedList(final Integer userId, final Integer contentId) {
-    if (!mySQLMovieRepository.existsById(contentId)) {
-      return false;
-    } else {
-      return userRepository.updateDisinterestedList(userId, contentId, true);
-    }
+    return null;
   }
 
   @Override
   public Boolean removeFromDisinterestedList(final Integer userId, final Integer contentId) {
-    return userRepository.updateDisinterestedList(userId, contentId, false);
+    return null;
   }
 }

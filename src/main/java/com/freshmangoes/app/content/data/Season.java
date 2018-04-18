@@ -9,10 +9,12 @@ import java.util.List;
 
 import lombok.Builder;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 //@Entity (name = "Season")
 public class Season extends Content {
+  @OneToMany
+  @JoinTable(name = "Season_Episodes")
   private List<Episode> episodes;
 
   @Builder
@@ -31,4 +33,8 @@ public class Season extends Content {
 //    super.setRatings(ratings);
     this.episodes = episodes;
   }
+
+  @ManyToOne
+  @JoinColumn(name = "season_id")
+  private Show show;
 }

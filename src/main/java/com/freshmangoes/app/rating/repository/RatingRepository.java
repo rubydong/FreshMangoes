@@ -1,10 +1,11 @@
 package com.freshmangoes.app.rating.repository;
 
 import com.freshmangoes.app.rating.data.Rating;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface RatingRepository {
+public interface RatingRepository extends CrudRepository<Rating, Integer> {
   boolean insertRating(Rating rating);
 
   boolean editRating(Integer ratingId,

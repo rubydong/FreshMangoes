@@ -11,12 +11,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-//@Entity(name = "Show")
+@Entity(name = "Show")
 @Getter
 @Setter
 public class Show extends Content {
+  @JoinTable(name = "Show_Seasons")
+  @OneToMany
   private List<Season> seasons;
 
   @Builder
@@ -32,7 +34,7 @@ public class Show extends Content {
     super.setMetadata(contentMetadata);
     super.setType(type);
 //    super.setSummaryPhoto(summaryPhoto);
-//    super.setRatings(ratings);
+    super.setRatings(ratings);
     this.seasons = seasons;
   }
 }
