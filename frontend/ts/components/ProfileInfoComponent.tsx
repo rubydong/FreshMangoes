@@ -31,16 +31,24 @@ export class ProfileInfoComponent extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const loginInfo = {
+        const editProfileInfo = {
             newFile: this.state.newEmail,
             newEmail: this.state.newPassword,
             newPassword: this.state.newPassword,
             oldPassword: this.state.oldPassword
         };
         console.log(this.state);
-        axios.post(window.location.origin + '/api/login', loginInfo)
+        axios.post(window.location.origin + '/api/editProfile/0', editProfileInfo)
             .then(res => {
             // window.location.reload();
+        })
+    }
+
+    deleteAccount () {
+        axios.post(window.location.origin + '/api/deleteUser/0')
+            .then(res => {
+            // window.location.reload();
+            //logout
         })
     }
 
@@ -80,6 +88,10 @@ export class ProfileInfoComponent extends React.Component {
                             <input type="password" className="form-control" onChange={this.handleVerifyPasswordChange}/>
                             <button type="submit" className="btn btn-primary">Make Changes</button>
                         </form>
+                       
+                        <span className="center-text">OR</span>
+                        <button type="submit" className="btn btn primary" onClick={this.deleteAccount}> Delete Account </button>
+                       
                     </div>
                 </div>
 		    </div>

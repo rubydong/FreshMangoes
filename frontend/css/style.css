@@ -85,6 +85,9 @@ a,.summary h2, .filmography h4, .episode b {
 	text-align: right;
 }
 
+.center-text {
+	text-align: center;
+}
 
 .box-shadow, .review, .showtime li, .search-criteria, .search-results{
 	box-shadow: 4px 4px 5px 0px rgba(209,209,209, 0.3);

@@ -5,6 +5,7 @@ export class LoginComponent extends React.Component {
     state = {
         email: '',
         password: '',
+        forgotEmail: ''
     }
     
     handleEmailChange = event => {
@@ -27,6 +28,22 @@ export class LoginComponent extends React.Component {
         })
     }
 
+    handleForgotEmailChange = event => {
+        this.setState({ forgotEmail: event.target.value });
+    }
+
+    handleForgotPassword = event => {
+        event.preventDefault();
+        const emailInfo = {
+            forgotEmail: this.state.email
+        };
+
+        axios.post(window.location.origin + '/api/forgotPassword', emailInfo)
+            .then(res => {
+            window.location.reload();
+        })
+    }
+
     render() {
         return (
             <div id="login-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -39,6 +56,15 @@ export class LoginComponent extends React.Component {
                             Password
                             <input type="password" className="form-control" onChange={this.handlePasswordChange}/>
                             <button type="submit" className="btn btn-primary">Login</button>
+                        </form>
+
+                        <p/><p/>
+
+                        <h2>Forgot Your Password?</h2>
+                        <form onSubmit={this.handleForgotPassword}> 
+                            Email
+                            <input type="text" className="form-control" onChange={this.handleForgotEmailChange}/>
+                            <button type="submit" className="btn btn-primary">Email the Password</button>
                         </form>
                     </div>
                 </div>
