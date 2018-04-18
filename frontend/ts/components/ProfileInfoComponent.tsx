@@ -38,14 +38,14 @@ export class ProfileInfoComponent extends React.Component {
             oldPassword: this.state.oldPassword
         };
         console.log(this.state);
-        axios.post(window.location.origin + '/api/editProfile/0', editProfileInfo)
+        axios.post(window.location.origin + '/api/editProfile/' + this.props['data-current-user'], editProfileInfo)
             .then(res => {
             // window.location.reload();
         })
     }
 
     deleteAccount () {
-        axios.post(window.location.origin + '/api/deleteUser/0')
+        axios.post(window.location.origin + '/api/deleteUser/' +  + this.props['data-current-user'])
             .then(res => {
             // window.location.reload();
             //logout

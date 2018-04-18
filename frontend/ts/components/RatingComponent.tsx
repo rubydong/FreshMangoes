@@ -45,12 +45,24 @@ export class RatingComponent extends React.Component {
         })
     }
 
+    editReview(reviewId) {
+        console.log('this id is ' + reviewId);
+    }
+
     deleteReview(reviewId) { 
         axios.delete(window.location.origin + '/api/rating/delete/' + reviewId)
             .then(res => {
             window.location.reload();
         })
     }
+
+    reportReview(reviewId) {
+        axios.post(window.location.origin + '/api/rating/report/' + reviewId)
+            .then(res => {
+            window.location.reload();
+        })
+    }
+
 
     render() {
         const title = this.props['data-name'];
@@ -60,7 +72,12 @@ export class RatingComponent extends React.Component {
                     <span className="align-right"> <Mangoes data-rating={rating.score}/></span> <br/>
                     <i> <a href={'../' + rating.contentType.toLowerCase() + '/' + rating.contentId}> {title} </a></i> 
                     { this.state.currentUser == rating.reviewerId 
-                    ? <span className="align-right"><img src="../../images/icons/trash.png" onClick={() =>this.deleteReview(rating.id)}/></span> : ''}
+                    ? <span className="align-right">
+                        <img src="../../images/icons/pencil.png" onClick={() => this.editReview(rating.id)}/>
+                        <img src="../../images/icons/trash.png" onClick={() => this.deleteReview(rating.id)}/>
+                      </span> 
+                    : <span className="align-right"> <img src="../../images/icons/flag.png" onClick={() => this.reportReview(rating.id)}/> </span>
+                    }
                     <hr/>
                     "{rating.body}"
                 </div>
@@ -73,26 +90,26 @@ export class RatingComponent extends React.Component {
                 <span className="align-right small-padding-top"> <a href="" data-toggle="modal" data-target="#rating-modal">Add a Rating</a>  | <a href="">View All Reviews </a> </span>
     
                 <div id="rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                        <h2>Add Rating</h2>
-                        <form onSubmit={this.addReview}>
-                            Rating out of five
-                            <select className="form-control" onChange={this.handleMangoChange}>
-                                <option value="5">Five Mangoes</option>
-                                <option value="4">Four Mangoes</option>
-                                <option value="3">Three Mangoes</option>
-                                <option value="2">Two Mangoes</option>
-                                <option value="1">One Mango</option>
-                            </select>
-                            <p/><p/>
-                            Review
-                            <textarea className="form-control" onChange={this.handleBodyChange}></textarea>
-                            <p/><p/>
-                            <button type="submit" className="btn btn-primary">Submit Review</button>
-                        </form>
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <h2>Add Rating</h2>
+                            <form onSubmit={this.addReview}>
+                                Rating out of five
+                                <select className="form-control" onChange={this.handleMangoChange}>
+                                    <option value="5">Five Mangoes</option>
+                                    <option value="4">Four Mangoes</option>
+                                    <option value="3">Three Mangoes</option>
+                                    <option value="2">Two Mangoes</option>
+                                    <option value="1">One Mango</option>
+                                </select>
+                                <p/><p/>
+                                Review
+                                <textarea className="form-control" onChange={this.handleBodyChange}></textarea>
+                                <p/><p/>
+                                <button type="submit" className="btn btn-primary">Submit Review</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         );
