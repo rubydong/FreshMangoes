@@ -7,24 +7,15 @@ import java.net.URL;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 
-//@Entity (name = "Movie")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie extends Content {
-  @Builder
-  public Movie(Integer id,
-               ContentType type,
-               Media media,
-               ContentMetadata contentMetadata,
-               List<Rating> ratings,
-               URL summaryPhoto) {
-    super.setId(id);
-//    super.setMedia(media);
-    super.setType(type);
-    super.setMetadata(contentMetadata);
-//    super.setSummaryPhoto(summaryPhoto);
-//    super.setRatings(ratings);
-  }
+
 }

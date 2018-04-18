@@ -7,15 +7,16 @@ import java.net.URL;
 
 import java.util.List;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity(name = "Show")
+@Builder
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Show extends Content {
   @JoinTable(name = "Show_Seasons")
   @OneToMany

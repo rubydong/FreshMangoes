@@ -1,29 +1,24 @@
 package com.freshmangoes.app.celebrity.data;
 
 import com.freshmangoes.app.common.data.Media;
-import com.freshmangoes.app.common.data.Pair;
-import com.freshmangoes.app.content.data.Content;
-import com.freshmangoes.app.content.data.Movie;
-
-import java.net.URL;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "Celebrities")
 public class Celebrity {
-  //Todo Split this to break circular dependency
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
@@ -42,5 +37,4 @@ public class Celebrity {
   @JoinTable(name = "CelebrityMedia")
   private List<Media> media;
 
-  private Celebrity() {};
 }

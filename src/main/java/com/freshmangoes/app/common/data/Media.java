@@ -6,13 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Builder
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Media {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +24,4 @@ public class Media {
   @Column(name = "media_type")
   private MediaType type;
 
-  @Builder
-  public Media(Integer id, URL path, MediaType mediaType) {
-    this.id = id;
-    this.path = path;
-    this.type = mediaType;
-  }
 }

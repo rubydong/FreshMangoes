@@ -7,11 +7,15 @@ import java.net.URL;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-//@Entity (name = "Season")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Season extends Content {
   @OneToMany
   @JoinTable(name = "Season_Episodes")
@@ -34,7 +38,4 @@ public class Season extends Content {
     this.episodes = episodes;
   }
 
-  @ManyToOne
-  @JoinColumn(name = "season_id")
-  private Show show;
 }
