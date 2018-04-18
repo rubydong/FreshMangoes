@@ -6,34 +6,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CelebrityServiceImpl implements CelebrityService {
 
   @Autowired
-  private CelebrityRepository mySQLCelebrityRepository;
+  private CelebrityRepository celebrityRepository;
 
   public Celebrity getCelebrity(final Integer id) {
-    return mySQLCelebrityRepository.findById(id);
+    Optional<Celebrity> celebrity = celebrityRepository.findById(id);
+    return celebrity.orElse(null);
   }
 
-  public List<Celebrity> getAllCelebrityById(final Integer id) {
-    return mySQLCelebrityRepository.findAllById(id);
-  }
-
-  public List<Celebrity> getAllCelebrityLikeKeyword(final String searchQuery) {
-    return mySQLCelebrityRepository.findAllLikeKeyword(searchQuery);
-  }
-
+//  public List<Celebrity> getAllCelebrityById(final Integer id) {
+//    return celebrityRepository.findAllById(id);
+//  }
+//
+//  public List<Celebrity> getAllCelebrityLikeKeyword(final String searchQuery) {
+//    return celebrityRepository.findAllLikeKeyword(searchQuery);
+//  }
+//
   public Celebrity insertCelebrity(final Celebrity celebrity) {
-    return mySQLCelebrityRepository.save(celebrity);
+    return celebrityRepository.save(celebrity);
   }
-
-  public Boolean celebrityExists(final Integer id) {
-    return mySQLCelebrityRepository.existsById(id);
-  }
-
-  public void deleteCelebrity(final Integer id) {
-    mySQLCelebrityRepository.deleteById(id);
-  }
+//
+//  public Boolean celebrityExists(final Integer id) {
+//    return celebrityRepository.existsById(id);
+//  }
+//
+//  public void deleteCelebrity(final Integer id) {
+//    celebrityRepository.deleteById(id);
+//  }
 }

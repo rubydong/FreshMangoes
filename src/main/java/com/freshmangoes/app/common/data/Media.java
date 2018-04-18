@@ -12,11 +12,20 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Builder
 public class Media {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   private URL path;
   @Column(name = "media_type")
   private MediaType type;
+
+  @Builder
+  public Media(Integer id, URL path, MediaType mediaType) {
+    this.id = id;
+    this.path = path;
+    this.type = mediaType;
+  }
+
+  private Media() {};
 }

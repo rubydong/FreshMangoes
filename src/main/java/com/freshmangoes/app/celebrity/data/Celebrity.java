@@ -25,7 +25,7 @@ import javax.persistence.*;
 public class Celebrity {
   //Todo Split this to break circular dependency
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private Date birthday;
 
@@ -38,7 +38,9 @@ public class Celebrity {
   @JoinColumn(name = "profile_picture")
   private Media profilePicture;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "CelebrityMedia")
   private List<Media> media;
+
+  private Celebrity() {};
 }

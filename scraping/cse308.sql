@@ -39,7 +39,7 @@ CREATE TABLE Celebrities(
   FOREIGN KEY(profile_picture) REFERENCES Media(id)
 );
 
-CREATE Table CelebrityMedia(
+CREATE Table Celebrity_Media(
   celebrity_id INT,
   media_id INT,
   PRIMARY KEY (celebrity_id, media_id),
@@ -47,7 +47,7 @@ CREATE Table CelebrityMedia(
   FOREIGN KEY (media_id) REFERENCES Media(id)
 );
 
-CREATE TABLE ContentMetadata(
+CREATE TABLE Content_Metadata(
   audience_score REAL(5,2) NOT NULL DEFAULT -1,
   content_name VARCHAR(200),
   id INT AUTO_INCREMENT,
@@ -66,11 +66,11 @@ CREATE TABLE Content(
   metadata_id INT,
   summary_photo INT,
   PRIMARY KEY(id),
-  FOREIGN KEY(metadata_id) REFERENCES ContentMetaData(id),
+  FOREIGN KEY(metadata_id) REFERENCES Content_MetaData(id),
   FOREIGN KEY(summary_photo) REFERENCES Media(id)
 );
 
-CREATE Table ContentMedia(
+CREATE Table Content_Media(
   content_id INT,
   media_id INT,
   PRIMARY KEY (content_id, media_id),
@@ -85,7 +85,7 @@ CREATE TABLE Ratings(
   score TINYINT,
   user_id INT,
   PRIMARY KEY (id),
-  FOREIGN KEY(content_id) REFERENCES ContentMetaData(id),
+  FOREIGN KEY(content_id) REFERENCES Content_MetaData(id),
   FOREIGN KEY(user_id) REFERENCES Users(id)
 );
 

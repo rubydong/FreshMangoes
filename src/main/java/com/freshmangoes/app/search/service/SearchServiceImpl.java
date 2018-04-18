@@ -19,12 +19,13 @@ public class SearchServiceImpl implements SearchService {
   private ShowRepository mySQLShowRepository;
 
   public SearchResult searchByKeyword(final String searchQuery) {
-      return SearchResult
-              .builder()
-              .movies(mySQLMovieRepository.findAllMoviesLikeKeyword(searchQuery))
-              .shows(mySQLShowRepository.findAllShowsLikeKeyword(searchQuery))
-              .celebrities(mySQLCelebrityRepository.findAllLikeKeyword(searchQuery))
-              .build();
+    return null;
+//      return SearchResult
+//              .builder()
+//              .movies(mySQLMovieRepository.findAllMoviesLikeKeyword(searchQuery))
+//              .shows(mySQLShowRepository.findAllShowsLikeKeyword(searchQuery))
+//              .celebrities(mySQLCelebrityRepository.findAllLikeKeyword(searchQuery))
+//              .build();
   }
 
 }
