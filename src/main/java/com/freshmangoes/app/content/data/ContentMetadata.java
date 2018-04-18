@@ -1,7 +1,5 @@
 package com.freshmangoes.app.content.data;
 
-import com.freshmangoes.app.celebrity.data.Celebrity;
-
 import java.util.Date;
 import java.util.List;
 
