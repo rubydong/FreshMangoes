@@ -65,6 +65,7 @@ CREATE TABLE Content(
   id INT AUTO_INCREMENT,
   metadata_id INT,
   summary_photo INT,
+  ctype TEXT,
   PRIMARY KEY(id),
   FOREIGN KEY(metadata_id) REFERENCES Content_MetaData(id),
   FOREIGN KEY(summary_photo) REFERENCES Media(id)
@@ -88,6 +89,14 @@ CREATE TABLE Ratings(
   FOREIGN KEY(content_id) REFERENCES Content_MetaData(id),
   FOREIGN KEY(user_id) REFERENCES Users(id)
 );
+
+-- CREATE TABLE Content_Ratings(
+-- content_id INT,
+-- rating_id INT,
+-- PRIMARY KEY(content_id, rating_id),
+-- FOREIGN KEY(content_id) REFERENCES Content(id),
+-- FOREIGN KEY(rating_id) REFERENCES Ratings(id)
+-- );
 
 CREATE TABLE Interests(
   content_id INT,

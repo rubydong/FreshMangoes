@@ -8,5 +8,5 @@ import java.util.List;
 public interface ShowRepository extends CrudRepository<Show, Integer> {
   Show findShowById(int id);
 
-  List<Show> findAllShowsLikeKeyword(String searchQuery);
+//  List<Show> findAllShowsLikeKeyword(String searchQuery);
 }

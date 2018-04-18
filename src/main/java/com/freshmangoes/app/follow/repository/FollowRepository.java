@@ -8,11 +8,11 @@ import java.util.List;
 
 @Repository
 public interface FollowRepository extends CrudRepository<User, Integer> {
-  Boolean save(Integer userId, Integer otherUserId);
+//  Boolean save(Integer userId, Integer otherUserId);
+//
+//  Boolean delete(Integer userId, Integer otherUserId);
 
-  Boolean delete(Integer userId, Integer otherUserId);
-
-  List<User> findAllFollowing(Integer id);
-
-  List<User> findAllFollowers(Integer id);
+//  List<User> findAllFollowing(Integer id);
+//
+//  List<User> findAllFollowers(Integer id);
 }

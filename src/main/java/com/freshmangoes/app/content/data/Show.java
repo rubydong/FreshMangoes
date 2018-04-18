@@ -11,14 +11,21 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity(name = "Show")
+@Entity
 @Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorValue("Show")
 public class Show extends Content {
-  @JoinTable(name = "Show_Seasons")
+  @JoinTable(
+      name = "Show_seasons",
+      joinColumns =
+      @JoinColumn(name = "season_id", referencedColumnName = "id"),
+      inverseJoinColumns =
+      @JoinColumn(name = "show_id", referencedColumnName = "id")
+  )
   @OneToMany
   private List<Season> seasons;
 
@@ -31,10 +38,10 @@ public class Show extends Content {
               List<Rating> ratings,
               URL summaryPhoto) {
     super.setId(id);
-//    super.setMedia(media);
+    super.setMedia(null);
     super.setMetadata(contentMetadata);
     super.setType(type);
-//    super.setSummaryPhoto(summaryPhoto);
+    super.setSummaryPhoto(null);
     super.setRatings(ratings);
     this.seasons = seasons;
   }

@@ -5,6 +5,8 @@ import com.freshmangoes.app.content.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ContentServiceImpl implements ContentService {
 
@@ -29,7 +31,8 @@ public class ContentServiceImpl implements ContentService {
   }
 
   public Season findSeasonById(final int id) {
-    return seasonRepository.findSeasonById(id);
+    Optional<Season> o = seasonRepository.findById(id);
+    return o.orElse(null);
   }
 
   public Episode findEpisodeById(final int id) {

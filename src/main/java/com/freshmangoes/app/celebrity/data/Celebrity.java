@@ -1,11 +1,13 @@
 package com.freshmangoes.app.celebrity.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.freshmangoes.app.common.data.Media;
 
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
+import com.freshmangoes.app.content.data.Content;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,5 +38,10 @@ public class Celebrity {
   @OneToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "CelebrityMedia")
   private List<Media> media;
+
+//  @ManyToOne
+//  @JoinTable(name = "Casted")
+//  @JsonIgnore
+//  private Content content;
 
 }

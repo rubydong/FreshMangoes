@@ -7,18 +7,26 @@ import java.net.URL;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Entity
 @Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorValue("Season")
 public class Season extends Content {
   @OneToMany
-  @JoinTable(name = "Season_Episodes")
+  @JoinTable(
+      name = "Season_Episodes",
+      joinColumns =
+      @JoinColumn(name = "season_id", referencedColumnName = "id"),
+      inverseJoinColumns =
+      @JoinColumn(name = "episode_id", referencedColumnName = "id")
+  )
   private List<Episode> episodes;
 
   @Builder
@@ -30,12 +38,11 @@ public class Season extends Content {
                 List<Rating> ratings,
                 URL summaryPhoto) {
     super.setId(id);
-//    super.setMedia(media);
+    super.setMedia(null);
     super.setMetadata(contentMetadata);
     super.setType(type);
-//    super.setSummaryPhoto(summaryPhoto);
-//    super.setRatings(ratings);
+    super.setSummaryPhoto(null);
+    super.setRatings(ratings);
     this.episodes = episodes;
   }
-
 }

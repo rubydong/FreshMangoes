@@ -21,8 +21,8 @@ public class SearchServiceImpl implements SearchService {
   public SearchResult searchByKeyword(final String searchQuery) {
       return SearchResult
               .builder()
-              .movies(movieRepository.findAllMoviesLikeKeyword(searchQuery))
-              .shows(showRepository.findAllShowsLikeKeyword(searchQuery))
+//              .movies(movieRepository.findAllMoviesLikeKeyword(searchQuery))
+//              .shows(showRepository.findAllShowsLikeKeyword(searchQuery))
 //              .celebrities(celebrityRepository.findAllLikeKeyword(searchQuery))
               .build();
   }
