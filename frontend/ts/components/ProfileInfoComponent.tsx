@@ -3,10 +3,14 @@ import axios from "axios";
 
 export class ProfileInfoComponent extends React.Component {
     state = {
+        newDisplayName: '',
         newFile: null,
         newEmail: '',
         newPassword: '',
         oldPassword: ''
+    }
+    handleDisplayNameChange = event => {
+        this.setState({ newDisplayName: event.target.value });
     }
     
     handleFileChange = event => {
@@ -64,6 +68,8 @@ export class ProfileInfoComponent extends React.Component {
                     <div className="modal-content">
                         <h2>Edit Profile</h2>
                         <form onSubmit={this.handleSubmit}>
+                            New Display Name
+                            <input type="text" className="form-control" onChange={this.handleDisplayNameChange}/>
                             Choose New  Profile Picture
                             <input type="file" className="form-control" onChange={this.handleFileChange}/>
                             New Email
