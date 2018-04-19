@@ -8,7 +8,8 @@ export class RatingComponent extends React.Component {
     state = {
         score: 5,
         body: '',
-        currentUser: -1
+        currentUser: -1, 
+        currentReviewId: -1,
     }
     
     componentWillMount() {
@@ -33,20 +34,25 @@ export class RatingComponent extends React.Component {
     }
 
     addReview = event => {
-        event.preventDefault();
         const rating = {
             score: this.state.score * 20,
             body: this.state.body
         };
   
-        axios.post(window.location.origin + '/api/rating/' + this.props['data-id'], rating)
-            .then(res => {
-            window.location.reload();
-        })
+        axios.post(window.location.origin + '/api/rating/' + this.props['data-id'], rating);
     }
 
-    editReview(reviewId) {
-        console.log('this id is ' + reviewId);
+    editReview = event => {
+        const rating = {
+            score: this.state.score * 20,
+            body: this.state.body,
+            id: this.state.currentReviewId
+        };
+        console.log(rating);
+
+        axios.post(window.location.origin + '/api/editRating/' + rating.id, rating)
+            .then(res => {
+        })
     }
 
     deleteReview(reviewId) { 
@@ -73,13 +79,36 @@ export class RatingComponent extends React.Component {
                     <i> <a href={'../' + rating.contentType.toLowerCase() + '/' + rating.contentId}> {title} </a></i> 
                     { this.state.currentUser == rating.reviewerId 
                     ? <span className="align-right">
-                        <img src="../../images/icons/pencil.png" onClick={() => this.editReview(rating.id)}/>
+                        <img src="../../images/icons/pencil.png" data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
                         <img src="../../images/icons/trash.png" onClick={() => this.deleteReview(rating.id)}/>
                       </span> 
                     : <span className="align-right"> <img src="../../images/icons/flag.png" onClick={() => this.reportReview(rating.id)}/> </span>
                     }
                     <hr/>
                     "{rating.body}"
+
+                    <div id="edit-rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div className="modal-dialog modal-lg">
+                            <div className="modal-content">
+                                <h2>Edit Rating</h2>
+                                <form onSubmit={this.editReview}>
+                                    Rating out of five
+                                    <select className="form-control" onChange={this.handleMangoChange}>
+                                        <option value="5">Five Mangoes</option>
+                                        <option value="4">Four Mangoes</option>
+                                        <option value="3">Three Mangoes</option>
+                                        <option value="2">Two Mangoes</option>
+                                        <option value="1">One Mango</option>
+                                    </select>
+                                    <p/><p/>
+                                    Review
+                                    <textarea className="form-control" onChange={this.handleBodyChange}></textarea>
+                                    <p/><p/>
+                                    <button type="submit" className="btn btn-primary">Confirm Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
         });
 
