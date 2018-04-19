@@ -65,6 +65,10 @@ a,.summary h2, .filmography h4, .episode b {
 	margin-right: 15px;
 }
 
+.big-margin-right {
+	margin-right: 10%;
+}
+
 .align-right {
 	clear: both;
 	float: right;
@@ -98,6 +102,10 @@ a,.summary h2, .filmography h4, .episode b {
 	display: flex;
 	flex-flow: row;
 	flex-wrap: wrap;
+}
+
+.clear-both {
+	clear: both;
 }
 
 /* header */
@@ -535,6 +543,27 @@ h5 span {
 	text-align: left;
 	padding: 2px;
 }
+
+/* Critics */
+.top-critic {
+	float: left;
+}
+
+.top-critic img {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+}
+
+#critics .review {
+	width: 100%;
+	margin: 5px 0;
+}
+.split-half {
+	width: 45%;
+	float: left;
+}
+
 
 /* bootstrap rewrite */
 

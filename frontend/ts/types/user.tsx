@@ -20,5 +20,16 @@ export class User {
         this.disinterestedList = [];
         this.currentUser = -1;
     }
-  }
-  
+}
+
+export class Critics {
+    critics: User [];
+    applicationName: string;
+    applicationProfile: string;
+
+    constructor() {
+        this.critics = [];
+        this.applicationName = "";
+        this.applicationProfile = "";
+    }
+}

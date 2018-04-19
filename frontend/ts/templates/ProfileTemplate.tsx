@@ -22,8 +22,7 @@ export class ProfileTemplate extends React.Component {
             axios.get(window.location.origin + '/api/getCurrentUser')
         ]).then(axios.spread(function(profile, currentUser) {
             currentComponent.state.currentUser = currentUser.data.userId;
-            currentComponent.setState(profile.data);
-            
+            currentComponent.setState(profile.data); 
         }))
     }
 
@@ -36,7 +35,6 @@ export class ProfileTemplate extends React.Component {
                     <ProfileInfoComponent data-name={this.state.displayName} data-profile-picture={this.state.profilePicture}
                                           data-followers={this.state.numFollowers} data-following={this.state.numFollowing}
                                           data-current-user={this.state.currentUser}/>
-                    
                     <div className="right">
                         <ProfileReviewComponent data-name={this.state.displayName}/>
                         <ContentListsComponent data-title='Interested' data-content={this.state.interestedList} data-current-user={this.state.currentUser}/>

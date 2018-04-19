@@ -7,6 +7,7 @@ import { CelebrityTemplate } from "./templates/CelebrityTemplate";
 import { SearchTemplate } from "./templates/SearchTemplate";
 import { ProfileTemplate } from "./templates/ProfileTemplate";
 import { SpotlightTemplate } from "./templates/SpotlightTemplate";
+import { CriticsTemplate } from "./templates/CriticsTemplate";
 
 const Main = () => (
   <main>
@@ -19,6 +20,7 @@ const Main = () => (
       <Route path="/search" component={SearchTemplate}/>
       <Route path="/profile/:id" component={ProfileTemplate}/>
       <Route path="/spotlight" component={SpotlightTemplate}/>
+      <Route path="/critics" component={CriticsTemplate}/>
     </Switch>
   </main>
 )

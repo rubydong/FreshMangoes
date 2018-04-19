@@ -41,7 +41,8 @@ export class Header extends React.Component {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item"> <a className="nav-link" href="/">Home</a> </li>
                         <li className="nav-item"> <a className="nav-link" href="/spotlight">Spotlight</a> </li>
-            
+                        <li className="nav-item"> <a className="nav-link" href="/critics">Critics</a> </li>
+                        
                         {isLoggedIn
                         ? <span>
                             <li className="nav-item"> <a className="nav-link" href={profileUrl}>Profile</a> </li>
