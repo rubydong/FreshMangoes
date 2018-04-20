@@ -24,20 +24,23 @@ public class ContentController {
     return contentService.findMovieById(id);
   }
 
-//  @GetMapping(Constants.SHOW_MAPPING)
-//  public Show getShow(@PathVariable final int id) {
-//    return contentService.findShowById(id);
-//  }
+  @GetMapping(Constants.SHOW_MAPPING)
+  public Show getShow(@PathVariable final int id) {
+    return contentService.findShowById(id);
+  }
 
   @GetMapping(Constants.SEASON_MAPPING)
-  public Season getSeason(@PathVariable final int seasonId) {
+  public Season getSeason(@PathVariable("showId") final int showId,
+                          @PathVariable("seasonId") final int seasonId) {
     Season s = contentService.findSeasonById(seasonId);
     s.setRatings(ratingService.findByContentId(seasonId));
     return s;
   }
 
-//  @GetMapping(Constants.EPISODE_MAPPING)
-//  public Episode getEpisode(@PathVariable final int episodeId) {
-//    return contentService.findEpisodeById(episodeId);
-//  }
+  @GetMapping(Constants.EPISODE_MAPPING)
+  public Episode getEpisode(@PathVariable("showId") final int showId,
+                            @PathVariable("seasonId") final int seasonId,
+                            @PathVariable("episodeId") final int episodeId) {
+    return contentService.findEpisodeById(episodeId);
+  }
 }

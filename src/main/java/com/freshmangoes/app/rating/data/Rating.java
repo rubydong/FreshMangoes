@@ -1,15 +1,8 @@
 package com.freshmangoes.app.rating.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.freshmangoes.app.content.data.Content;
-import com.freshmangoes.app.content.data.ContentType;
-import com.freshmangoes.app.user.data.User;
-import com.freshmangoes.app.user.data.UserType;
-
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 
 @Entity(name = "Ratings")
 @Data

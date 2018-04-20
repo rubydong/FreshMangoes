@@ -1,18 +1,11 @@
-
 package com.freshmangoes.app.content.data;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.rating.data.Rating;
-
-import java.net.URL;
 import java.util.List;
 import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -53,5 +46,4 @@ public abstract class Content {
   @JsonInclude()
   @Transient
   private List<Celebrity> crew;
-
 }
