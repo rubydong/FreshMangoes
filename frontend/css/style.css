@@ -27,10 +27,14 @@ h2 {
 b, i {
 	color: #5E5E5E;
 }
+
 a,.summary h2, .filmography h4, .episode b {
 	color: #759BBA;
 }
 
+.page-background-color {
+	background-color: #FAFAFA;
+}
 .btn-link:hover, a:hover {
 	text-decoration: none;
 	color: #B3B3B3;
@@ -397,11 +401,6 @@ video {
 }
 
 /* profile */
-
-.profile, .search {
-	background-color: #FAFAFA;
-}
-
 .header-hr{
 	margin-top: 0px;
 }
@@ -566,7 +565,7 @@ h5 span {
 
 /* Create Form */
 #create-form {
-	margin: 0 auto;
+	margin-left: 25%;
 }
 
 /* bootstrap rewrite */

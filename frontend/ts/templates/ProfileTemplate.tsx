@@ -31,7 +31,6 @@ export class ProfileTemplate extends React.Component {
             <div className="profile">
                 <hr className="header-hr"/>
                 <div className="content">
-                    
                     <ProfileInfoComponent data-name={this.state.displayName} data-profile-picture={this.state.profilePicture}
                                           data-followers={this.state.numFollowers} data-following={this.state.numFollowing}
                                           data-current-user={this.state.currentUser}/>
