@@ -1,13 +1,18 @@
 package com.freshmangoes.app.rating.service;
 
 import com.freshmangoes.app.rating.data.Rating;
+import org.springframework.data.jpa.repository.Query;
+
 import java.util.List;
 
 public interface RatingService {
   Rating addRating(Rating rating);
 
-//  List<Rating> findByContentId(Integer contentId);
+  Rating editRating(Integer userId, Rating rating);
 
+  List<Rating> findByContentId(Integer contentId);
 
-//  List<Rating> findByUserId(Integer reviewerId);
+  List<Rating> findByUserId(Integer userId);
+
+  void deleteRating(Integer userId, Integer ratingId);
 }

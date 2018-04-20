@@ -17,8 +17,29 @@ public class RatingServiceImpl implements RatingService {
            : null;
   }
 
-//  public List<Rating> findByUserId(final Integer reviewerId) {
-//    return ratingRepository.findByUserId(reviewerId);
-//  }
+  public Rating editRating(final Integer userId, final Rating rating) {
+    Rating existingRating = ratingRepository.existsByUserId(userId);
+    if (existingRating == null) {
+      return null;
+    }
+    existingRating.setBody(rating.getBody());
+    existingRating.setScore(rating.getScore());
+    return existingRating;
+  }
 
+  public List<Rating> findByContentId(final Integer contentId) {
+    return ratingRepository.findRatingByContentId(contentId);
+  }
+
+  public List<Rating> findByUserId(final Integer userId) {
+    return ratingRepository.findRatingByUserId(userId);
+  }
+
+  public void deleteRating(final Integer userId, final Integer ratingId) {
+    Rating rating = ratingRepository.findById(ratingId).orElse(null);
+    if (rating == null || !rating.getUserId().equals(userId)) {
+      return;
+    }
+    ratingRepository.deleteById(ratingId);
+  }
 }

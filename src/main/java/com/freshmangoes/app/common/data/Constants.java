@@ -25,7 +25,7 @@ public class Constants {
   public static final String EDIT_RATING_MAPPING = "/rating/e/{ratingId}";
   public static final String DELETE_RATING_MAPPING = "/rating/delete/{id}";
   public static final String GET_RATING_BY_CONTENT_ID_MAPPING = "/rating/search/cid/{contentId}";
-  public static final String GET_RATING_BY_REVIEWER_ID_MAPPING = "/rating/search/rid/{reviewerId}";
+  public static final String GET_RATING_BY_USER_ID_MAPPING = "/rating/search/uid/{userId}";
 
   public static final String ADD_TO_INTERESTED_MAPPING = "/interested/add/{contentId}";
   public static final String REMOVE_FROM_INTERESTED_MAPPING = "/interested/remove/{contentId}";
