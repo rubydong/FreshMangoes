@@ -22,6 +22,9 @@ public class Rating {
   @Column (name = "content_id")
   private Integer contentId;
 
+  @Column(name = "user_id")
+  private Integer userId;
+
   @JsonInclude()
   @Transient
   private String contentName;

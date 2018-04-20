@@ -22,7 +22,7 @@ public class RatingController {
 
   @Autowired
   private HttpSession session;
-//
+
 //  @PostMapping(Constants.ADD_RATING_MAPPING)
 //  public ResponseEntity addRating(@RequestBody final Map<String, String> body,
 //                                  @PathVariable final Integer contentId) {
@@ -31,7 +31,7 @@ public class RatingController {
 //      if (userId == null) {
 //        return ResponseEntity.badRequest().build();
 //      } else {
-//      return ratingService.addToRating(contentId,
+//      return ratingService.addRating(contentId,
 //                                       Integer.parseInt(body.get(Constants.SCORE)),
 //                                       UserType.AUDIENCE,
 //                                       userId,
@@ -40,7 +40,7 @@ public class RatingController {
 //             : ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rating was not added successfully.");
 //    }
 //  }
-//
+
   @GetMapping(Constants.GET_RATING_BY_CONTENT_ID_MAPPING)
   public List<Rating> getRatingByContentId(@PathVariable final Integer contentId) {
     return ratingService.findByContentId(contentId);

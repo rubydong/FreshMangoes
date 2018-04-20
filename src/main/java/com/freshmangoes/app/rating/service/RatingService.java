@@ -8,5 +8,8 @@ import java.util.List;
 public interface RatingService {
   List<Rating> findByContentId(Integer contentId);
 
+  Rating addRating(Rating rating);
+
+
 //  List<Rating> findByUserId(Integer reviewerId);
 }

@@ -18,6 +18,12 @@ public class RatingServiceImpl implements RatingService {
     return ratingRepository.findByContentId(contentId);
   }
 
+  public Rating addRating(final Rating rating) {
+    return ratingRepository.existsByUserId(rating.getUserId()) == null
+           ? ratingRepository.save(rating)
+           : null;
+  }
+
 //  public List<Rating> findByUserId(final Integer reviewerId) {
 //    return ratingRepository.findByUserId(reviewerId);
 //  }
