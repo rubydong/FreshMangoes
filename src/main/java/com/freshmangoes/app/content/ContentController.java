@@ -35,7 +35,7 @@ public class ContentController {
   public Season getSeason(@PathVariable("showId") final int showId,
                           @PathVariable("seasonId") final int seasonId) {
     Season s = contentService.findSeasonById(seasonId);
-    s.setRatings(ratingService.findByContentId(seasonId));
+//    s.setRatings(ratingService.findByContentId(seasonId));
     return s;
   }
 
