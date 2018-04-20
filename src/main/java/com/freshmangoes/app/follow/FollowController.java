@@ -24,44 +24,44 @@ public class FollowController {
 
   @Autowired
   private HttpSession session;
-//
-//  @PostMapping(Constants.FOLLOW_MAPPING)
-//  public ResponseEntity follow(@PathVariable final Integer userId) {
-//    final HttpStatus status;
-//    final User user = Helpers.getAuthenticatedUser(session);
-//
-//    if (user != null) {
-//      status = followService.followUser(user.getId(), userId) ? HttpStatus.OK
-//                                                              : HttpStatus.BAD_REQUEST;
-//    } else {
-//      status = HttpStatus.BAD_REQUEST;
-//    }
-//
-//    return new ResponseEntity(status);
-//  }
-//
-//  @PostMapping(Constants.UNFOLLOW_MAPPING)
-//  public ResponseEntity unfollow(@PathVariable final Integer userId) {
-//    final HttpStatus status;
-//    final User user = Helpers.getAuthenticatedUser(session);
-//
-//    if (user != null) {
-//      status = followService.unfollowUser(user.getId(), userId) ? HttpStatus.OK
-//                                                                : HttpStatus.BAD_REQUEST;
-//    } else {
-//      status = HttpStatus.BAD_REQUEST;
-//    }
-//
-//    return new ResponseEntity(status);
-//  }
-//
-//  @GetMapping(Constants.GET_FOLLOWERS_MAPPING)
-//  public List<User> getFollowers(@PathVariable final Integer userId) {
-//    return followService.followers(userId);
-//  }
-//
-//  @GetMapping(Constants.GET_FOLLOWING_MAPPING)
-//  public List<User> getFollowing(@PathVariable final Integer userId) {
-//    return followService.following(userId);
-//  }
+
+  @PostMapping(Constants.FOLLOW_MAPPING)
+  public ResponseEntity follow(@PathVariable final Integer userId) {
+    final HttpStatus status;
+    final User user = Helpers.getAuthenticatedUser(session);
+
+    if (user != null) {
+      status = followService.followUser(user.getId(), userId) ? HttpStatus.OK
+                                                              : HttpStatus.BAD_REQUEST;
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+
+    return new ResponseEntity(status);
+  }
+
+  @PostMapping(Constants.UNFOLLOW_MAPPING)
+  public ResponseEntity unfollow(@PathVariable final Integer userId) {
+    final HttpStatus status;
+    final User user = Helpers.getAuthenticatedUser(session);
+
+    if (user != null) {
+      status = followService.unfollowUser(user.getId(), userId) ? HttpStatus.OK
+                                                                : HttpStatus.BAD_REQUEST;
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+
+    return new ResponseEntity(status);
+  }
+
+  @GetMapping(Constants.GET_FOLLOWERS_MAPPING)
+  public List<User> getFollowers(@PathVariable final Integer userId) {
+    return followService.followers(userId);
+  }
+
+  @GetMapping(Constants.GET_FOLLOWING_MAPPING)
+  public List<User> getFollowing(@PathVariable final Integer userId) {
+    return followService.following(userId);
+  }
 }
