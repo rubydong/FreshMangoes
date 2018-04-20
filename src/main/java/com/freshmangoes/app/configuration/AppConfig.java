@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,5 +20,11 @@ public class AppConfig {
   @Bean
   public ObjectMapper objectMapper() {
     return new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
+  }
+
+  @Bean
+  public JavaMailSender mailSender() {
+    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+    return mailSender;
   }
 }
