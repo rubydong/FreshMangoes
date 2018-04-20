@@ -24,8 +24,8 @@ public class UserServiceImpl implements UserService {
     final User user = userRepository.findById(userId).orElse(null);
     if (user != null) {
       user.setHash(null);
-      user.setNumFollowers(userRepository.countFollowers(userId));
-      user.setNumFollowing(userRepository.countFollowing(userId));
+      user.setNumFollowers(followRepository.countFollowers(userId));
+      user.setNumFollowing(followRepository.countFollowing(userId));
       user.setInterestedList(userRepository.getInterestsByUserId(userId));
       user.setDisinterestedList(userRepository.getDisinterestsByUserId(userId));
       user.setRatings(ratingRepository.findByUserId(userId));
