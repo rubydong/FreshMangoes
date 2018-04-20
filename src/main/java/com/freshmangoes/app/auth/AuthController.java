@@ -6,6 +6,7 @@ import com.freshmangoes.app.auth.service.AuthService;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.helpers.Helpers;
 import com.freshmangoes.app.user.data.User;
+import com.freshmangoes.app.verification.service.VerificationService;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
   @Autowired
   private AuthService authService;
+
+  @Autowired
+  private VerificationService verificationService;
 
   @Autowired
   private HttpSession session;
@@ -55,13 +59,22 @@ public class AuthController {
 
   @PostMapping(Constants.REGISTER_MAPPING)
   public ResponseEntity register(@RequestBody final Map<String, String> body) {
+    final HttpStatus status;
     final Integer userId;
+    final String email = body.get(Constants.EMAIL);
 
-    userId = authService.registerUser(body.get(Constants.EMAIL),
+    userId = authService.registerUser(email,
                                       body.get(Constants.PASSWORD),
                                       body.get(Constants.DISPLAY_NAME));
 
-    return new ResponseEntity((userId != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+    if (userId != null) {
+      status = (verificationService.sendVerificationEmail(email, userId)) ? HttpStatus.OK
+                                                                          : HttpStatus.BAD_REQUEST;
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+
+    return new ResponseEntity(status);
   }
 
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)

@@ -44,4 +44,5 @@ public class User {
   @OneToMany
   @JoinColumn(name = "user_id")
   private List<Rating> ratings;
+  private Boolean verified;
 }
