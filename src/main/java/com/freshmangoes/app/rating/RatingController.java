@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RatingController {
-//  @Autowired
-//  private RatingService ratingService;
-//
-//  @Autowired
-//  private HttpSession session;
+  @Autowired
+  private RatingService ratingService;
+
+  @Autowired
+  private HttpSession session;
 //
 //  @PostMapping(Constants.ADD_RATING_MAPPING)
 //  public ResponseEntity addRating(@RequestBody final Map<String, String> body,
@@ -41,16 +41,16 @@ public class RatingController {
 //    }
 //  }
 //
-//  @GetMapping(Constants.GET_RATING_BY_CONTENT_ID_MAPPING)
-//  public List<Rating> getRatingByContentId(@PathVariable final Integer contentId) {
-//    return ratingService.getRatingByContentId(contentId);
-//  }
-//
+  @GetMapping(Constants.GET_RATING_BY_CONTENT_ID_MAPPING)
+  public List<Rating> getRatingByContentId(@PathVariable final Integer contentId) {
+    return ratingService.findByContentId(contentId);
+  }
+
 //  @GetMapping(Constants.GET_RATING_BY_REVIEWER_ID_MAPPING)
 //  public List<Rating> getRatingByReviewerId(@PathVariable final Integer reviewerId) {
-//    return ratingService.getRatingByReviewerId(reviewerId);
+//    return ratingService.findByUserId(reviewerId);
 //  }
-//
+
 //  @PostMapping(Constants.DELETE_RATING_MAPPING)
 //  public ResponseEntity deleteRating(@PathVariable final Integer id) {
 //    Integer userId = (Integer) session.getAttribute(Constants.USER_ID);

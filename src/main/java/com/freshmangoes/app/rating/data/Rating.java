@@ -6,33 +6,23 @@ import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.data.UserType;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Ratings")
 @Data
 @Builder
 @Getter
 @Setter
 @Table(name = "Ratings")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Rating {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-
-//  @ManyToOne
-//  @JoinColumn(name = "content_id", referencedColumnName = "id")
-//  @JsonIgnore
-//  private Content content;
-//
-//  @ManyToOne
-//  @JoinColumn(name = "user_id")
-//  @JsonIgnore
-//  private User reviewer;
   private Integer score;
   private String body;
+  
 }

@@ -2,6 +2,8 @@
 package com.freshmangoes.app.content.data;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.common.data.Media;
@@ -17,7 +19,6 @@ import lombok.Setter;
 @Entity(name = "Content")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "ctype")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "content_id")
 @Table(name = "Content")
 @Getter
 @Setter
@@ -41,16 +42,16 @@ public abstract class Content {
   @JoinColumn(name = "metadata_id")
   private ContentMetadata metadata;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id")
+  @JsonInclude()
+  @Transient
   private List<Rating> ratings;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id")
-  private List<Celebrity> cast;
-
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id")
-  private List<Celebrity> crew;
+//  @JsonInclude()
+//  @Transient
+//  private List<Celebrity> cast;
+//
+//  @JsonInclude()
+//  @Transient
+//  private List<Celebrity> crew;
 
 }

@@ -6,6 +6,7 @@ import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Season;
 import com.freshmangoes.app.content.data.Show;
 import com.freshmangoes.app.content.service.ContentService;
+import com.freshmangoes.app.rating.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ public class ContentController {
 
   @Autowired
   private ContentService contentService;
+
+  @Autowired
+  private RatingService ratingService;
 
   @GetMapping(Constants.MOVIE_MAPPING)
   public Movie getMovie(@PathVariable final int id) {
@@ -27,8 +31,9 @@ public class ContentController {
 
   @GetMapping(Constants.SEASON_MAPPING)
   public Season getSeason(@PathVariable final int seasonId) {
-    System.out.println("season mapping");
-    return contentService.findSeasonById(seasonId);
+    Season s = contentService.findSeasonById(seasonId);
+    s.setRatings(ratingService.findByContentId(seasonId));
+    return s;
   }
 
 //  @GetMapping(Constants.EPISODE_MAPPING)
