@@ -23,4 +23,11 @@ public interface FollowRepository extends CrudRepository<User, Integer> {
   @Query(value = "SELECT u.display_name, u.profile_picture, u.id FROM Users u"
           + "JOIN Followings f WHERE f.followee_id = ?1", nativeQuery = true)
   List<User> findAllFollowers(Integer id);
+
+  @Query(value = "SELECT COUNT(*) AS Num_Followers FROM Followings WHERE followee_id = ?1", nativeQuery = true)
+  Integer countFollowers(Integer userId);
+
+  @Query(value = "SELECT COUNT(*) AS Num_Following FROM Followings WHERE follower_id = ?1", nativeQuery = true)
+  Integer countFollowing(Integer userId);
+
 }

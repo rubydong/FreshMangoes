@@ -1,7 +1,9 @@
 package com.freshmangoes.app.content.data;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,8 +29,10 @@ public class ContentMetadata {
   @Column(name = "studio_network")
   private String studio;
 
-//  @JoinTable(name = "content_genre")
-//  private List<String> genres;
+  @ElementCollection
+  @CollectionTable(name = "content_genre", joinColumns = @JoinColumn(name = "metadata_id"))
+  @Column(name = "genre_id")
+  private List<Integer> genres;
 
   private Integer runtime;
 

@@ -19,6 +19,7 @@ public abstract class Content {
   @Id
   @GeneratedValue
   private Integer id;
+
   @Enumerated
   @Column(name = "content_type", columnDefinition = "tinyint")
   private ContentType type;

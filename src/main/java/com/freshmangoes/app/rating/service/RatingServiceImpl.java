@@ -32,7 +32,7 @@ public class RatingServiceImpl implements RatingService {
   }
 
   public List<Rating> findByUserId(final Integer userId) {
-    return ratingRepository.findRatingByUserId(userId);
+    return ratingRepository.findByUserId(userId);
   }
 
   public void deleteRating(final Integer userId, final Integer ratingId) {
