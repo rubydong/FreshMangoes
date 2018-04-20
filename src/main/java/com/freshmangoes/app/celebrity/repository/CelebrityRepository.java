@@ -1,18 +1,19 @@
 package com.freshmangoes.app.celebrity.repository;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
+import com.freshmangoes.app.common.data.Media;
+
 import java.util.List;
 
-public interface CelebrityRepository {
-  Boolean existsById(Integer id);
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
-  void deleteById(Integer id);
+public interface CelebrityRepository extends CrudRepository<Celebrity, Integer> {
+  @Query(value = "SELECT * FROM Celebrity_Media WHERE celebrity_id = ?1", nativeQuery = true)
+  List<Media> findMediaByContentId(Integer id);
 
-  Celebrity findById(Integer id);
+  @Query(value = "SELECT c.* FROM Celebrities c "
+      + "JOIN Casted ca on c.id = ca.celebrity_id and content_id = ?1", nativeQuery = true)
+  List<Celebrity> findCelebrityByContentId(Integer id);
 
-  Celebrity save(Celebrity celebrity);
-
-  List<Celebrity> findAllById(Integer id);
-
-  List<Celebrity> findAllLikeKeyword(String searchQuery);
 }

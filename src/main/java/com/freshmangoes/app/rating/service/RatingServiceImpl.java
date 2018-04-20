@@ -11,23 +11,35 @@ public class RatingServiceImpl implements RatingService {
   @Autowired
   private RatingRepository ratingRepository;
 
-  public boolean addRating(final Rating rating) {
-    return ratingRepository.insertRating(rating);
+  public Rating addRating(final Rating rating) {
+    return ratingRepository.existsByUserId(rating.getUserId()) == null
+           ? ratingRepository.save(rating)
+           : null;
   }
 
-  public boolean editRating(final Rating rating) {
-    return ratingRepository.editRating(rating);
+  public Rating editRating(final Integer userId, final Rating rating) {
+    Rating existingRating = ratingRepository.existsByUserId(userId);
+    if (existingRating == null) {
+      return null;
+    }
+    existingRating.setBody(rating.getBody());
+    existingRating.setScore(rating.getScore());
+    return existingRating;
   }
 
-  public List<Rating> getRatingByContentId(final Integer contentId) {
-    return ratingRepository.findByContentId(contentId);
+  public List<Rating> findByContentId(final Integer contentId) {
+    return ratingRepository.findRatingByContentId(contentId);
   }
 
-  public List<Rating> getRatingByReviewerId(final Integer reviewerId) {
-    return ratingRepository.findByReviewerId(reviewerId);
+  public List<Rating> findByUserId(final Integer userId) {
+    return ratingRepository.findByUserId(userId);
   }
 
-  public void deleteRating(final Integer id) {
-    ratingRepository.deleteRating(id);
+  public void deleteRating(final Integer userId, final Integer ratingId) {
+    Rating rating = ratingRepository.findById(ratingId).orElse(null);
+    if (rating == null || !rating.getUserId().equals(userId)) {
+      return;
+    }
+    ratingRepository.deleteById(ratingId);
   }
 }

@@ -19,7 +19,7 @@ public class AuthServiceImpl implements AuthService {
     final User user = userRepository.findByEmail(email);
     final String hash;
 
-    if (user == null) {
+    if (user == null || !user.getVerified()) {
       return null;
     } else {
       hash = user.getHash();
@@ -30,11 +30,13 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public Integer registerUser(final String email, final String password, final String displayName) {
     final String hash = passwordEncoder.encode(password);
-    final User user = User.builder()
-                          .email(email)
-                          .hash(hash)
-                          .displayName(displayName)
-                          .build();
-    return userRepository.save(user).getId();
+    final User user = userRepository.save(User.builder()
+                                              .email(email)
+                                              .hash(hash)
+                                              .displayName(displayName)
+                                              .verified(false)
+                                              .build()
+                                          );
+    return (user != null) ? user.getId() : null;
   }
 }

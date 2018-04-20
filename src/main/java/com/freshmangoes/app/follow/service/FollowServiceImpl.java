@@ -15,18 +15,18 @@ public class FollowServiceImpl implements FollowService {
   public Boolean followUser(final Integer userId, final Integer otherUserId) {
     if (userId.equals(otherUserId)) {
       return false;
-    } else {
-      return followRepository.save(userId, otherUserId);
     }
+    followRepository.saveFollowing(userId, otherUserId);
+    return true;
   }
 
   @Override
   public Boolean unfollowUser(final Integer userId, final Integer otherUserId) {
     if (userId.equals(otherUserId)) {
       return false;
-    } else {
-      return followRepository.delete(userId, otherUserId);
     }
+    followRepository.deleteFollowing(userId, otherUserId);
+    return true;
   }
 
   @Override

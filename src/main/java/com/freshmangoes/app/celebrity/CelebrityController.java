@@ -3,8 +3,6 @@ package com.freshmangoes.app.celebrity;
 import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.celebrity.service.CelebrityService;
 import com.freshmangoes.app.common.data.Constants;
-import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 
 @RestController
 public class CelebrityController {
@@ -26,27 +36,25 @@ public class CelebrityController {
   }
 
   @GetMapping(Constants.GET_ALL_CELEBRITY_MAPPING)
-  public List<Celebrity> getAllCelebrity(@PathVariable final Integer id) {
-    return celebrityService.getAllCelebrityById(id);
-  }
-
-  @GetMapping(Constants.GET_ALL_CELEBRITY_BY_KEYWORD_MAPPING)
-  public List<Celebrity> searchCelebrityByKeyword(@PathVariable final String searchQuery) {
-    return celebrityService.getAllCelebrityLikeKeyword(searchQuery);
+  public List<Celebrity> getCelebrityByContentId(@PathVariable final Integer id) {
+    return celebrityService.findByContentId(id);
   }
 
   @PostMapping(Constants.INSERT_CELEBRITY_MAPPING)
   public ResponseEntity insertCelebrity(@RequestBody final Map<String, String> body) {
-    return celebrityService.insertCelebrity(Celebrity.builder().build()) == null
+    Calendar cal = Calendar.getInstance();
+    cal.set(Calendar.YEAR, Integer.parseInt(body.get("Year")));
+    cal.set(Calendar.MONTH, Integer.parseInt(body.get("Month")));
+    cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(body.get("Day")));
+    Date dateRepresentation = cal.getTime();
+
+    return celebrityService.insertCelebrity(Celebrity
+        .builder()
+        .name(body.get("Name"))
+        .birthday(dateRepresentation)
+        .build()) == null
         ? ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
         : ResponseEntity.status(HttpStatus.OK).build();
-  }
-
-  @GetMapping(Constants.CHECK_CELEBRITY_EXISTS_MAPPING)
-  public ResponseEntity checkCelebrityExists(@PathVariable final Integer id) {
-    return celebrityService.celebrityExists(id)
-        ? ResponseEntity.status(HttpStatus.OK).build()
-        : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
   }
 
   @PostMapping(Constants.DELETE_CELEBRITY_MAPPING)

@@ -18,9 +18,9 @@ INSERT_CREW = 'insert into `Crew` (celebrity_id, content_id, job) values(%s, %s,
 INSERT_CELEBRITY = 'insert into `Celebrities` (birthday, birthplace, biography, celebrity_name, id, ' \
                    'profile_picture) values(%s, %s, %s, %s, %s, %s)'
 INSERT_CONTENT = 'insert into `Content` (content_type, metadata_id, summary_photo) values(%s, %s, %s)'
-INSERT_CONTENT_MEDIA = 'insert into `ContentMedia` (content_id, media_id) values(%s, %s)'
+INSERT_CONTENT_MEDIA = 'insert into `Content_Media` (content_id, media_id) values(%s, %s)'
 INSERT_MEDIA = 'insert into `Media` (path, media_type) values(%s, %s)'
-INSERT_METADATA = 'insert into `ContentMetadata` (audience_score, content_name, mango_score, maturity_rating, ' \
+INSERT_METADATA = 'insert into `Content_Metadata` (audience_score, content_name, mango_score, maturity_rating, ' \
                   'release_date, runtime, studio_network, summary) values(%s, %s, %s, %s, %s, %s, %s, %s)'
 INSERT_SEASON = 'insert into `Seasons` (show_id, season_id) values(%s, %s)'
 INSERT_EPISODE = 'insert into `Episodes` (season_id, episode_id) values(%s, %s)'

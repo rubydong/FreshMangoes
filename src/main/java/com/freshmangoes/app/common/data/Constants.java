@@ -5,6 +5,8 @@ public class Constants {
   public static final String LOGIN_MAPPING = "/login";
   public static final String LOGOUT_MAPPING = "/logout";
   public static final String REGISTER_MAPPING = "/register";
+  public static final String VERIFY_MAPPING = "/verify/{verificationKey}";
+  public static final String RESEND_MAPPING = "/resendverification";
   public static final String CURRENT_USER_MAPPING = "/getCurrentUser";
   public static final String SEARCH_MAPPING = "/search";
   public static final String SPOTLIGHT_MAPPING = "/spotlightItems";
@@ -12,20 +14,19 @@ public class Constants {
   public static final String GET_CELEBRITY_MAPPING = "/celebrity/{id}";
   public static final String GET_ALL_CELEBRITY_MAPPING = "/celebrity/a/{id}";
   public static final String GET_ALL_CELEBRITY_BY_KEYWORD_MAPPING = "/celebrity/search";
-  public static final String INSERT_CELEBRITY_MAPPING = "/celebrity/add";
-  public static final String CHECK_CELEBRITY_EXISTS_MAPPING = "/celebrity/exists/{id}";
-  public static final String DELETE_CELEBRITY_MAPPING = "/celebrity/delete/{id}";
+  public static final String INSERT_CELEBRITY_MAPPING = "/add/celebrity";
+  public static final String DELETE_CELEBRITY_MAPPING = "/delete/celebrity/{id}";
 
   public static final String MOVIE_MAPPING = "/movie/{id}";
   public static final String SHOW_MAPPING = "/show/{id}";
-  public static final String SEASON_MAPPING = "/show/*/{seasonId}";
-  public static final String EPISODE_MAPPING = "/show/*/*/{episodeId}";
+  public static final String SEASON_MAPPING = "/show/{showId}/{seasonId}";
+  public static final String EPISODE_MAPPING = "/show/{showId}/{seasonId}/{episodeId}";
 
   public static final String ADD_RATING_MAPPING = "/rating/{contentId}";
   public static final String EDIT_RATING_MAPPING = "/rating/e/{ratingId}";
   public static final String DELETE_RATING_MAPPING = "/rating/delete/{id}";
   public static final String GET_RATING_BY_CONTENT_ID_MAPPING = "/rating/search/cid/{contentId}";
-  public static final String GET_RATING_BY_REVIEWER_ID_MAPPING = "/rating/search/rid/{reviewerId}";
+  public static final String GET_RATING_BY_USER_ID_MAPPING = "/rating/search/uid/{userId}";
 
   public static final String ADD_TO_INTERESTED_MAPPING = "/interested/add/{contentId}";
   public static final String REMOVE_FROM_INTERESTED_MAPPING = "/interested/remove/{contentId}";

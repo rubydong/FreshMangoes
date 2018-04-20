@@ -1,18 +1,20 @@
 package com.freshmangoes.app.celebrity.service;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
+import com.freshmangoes.app.common.data.Media;
+
 import java.util.List;
 
 public interface CelebrityService {
   Celebrity getCelebrity(Integer id);
 
-  List<Celebrity> getAllCelebrityById(Integer id);
-
-  List<Celebrity> getAllCelebrityLikeKeyword(String searchQuery);
-
   Celebrity insertCelebrity(Celebrity celebrity);
 
-  Boolean celebrityExists(Integer id);
+  List<Media> findMediaByCelebrityId(Integer id);
 
   void deleteCelebrity(Integer id);
+
+  List<Celebrity> findByContentId(Integer id);
+
+//  List<Celebrity> findByNameLike(String searchQuery);
 }
