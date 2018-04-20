@@ -51,7 +51,7 @@ public class VerificationServiceImpl implements VerificationService {
     userId = verificationRepository.findByVerificationKey(verificationKey);
 
     if (userId != null) {
-      user = userRepository.findById(userId);
+      user = userRepository.findById(userId).get();
       user.setVerified(true);
       userRepository.save(user);
       verificationRepository.deleteByVerificationKey(verificationKey);
