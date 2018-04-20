@@ -4,7 +4,8 @@ import { LOGO } from "../../GlobalVariables";
 
 export class Header extends React.Component {
     state = {
-        currentUser: -1
+        currentUser: -1,
+        searchQueries: ''
     }
     
     logout = event => {
@@ -13,6 +14,17 @@ export class Header extends React.Component {
         .then(res => {
         });
     }
+
+    handleSearchChange = event => {
+        this.setState({searchQueries: event.target.value});
+        console.log(this.state);
+    }
+
+    // searchQueries () {
+    //     event.preventDefault();
+    //     window.location.assign("/search?q=" + this.state.searchQueries);  
+    //     console.log('i"m searching');
+    // }
 
     componentWillMount() {
         let currentComponent = this;
@@ -57,8 +69,8 @@ export class Header extends React.Component {
                         
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                        <input aria-label="Search" className="form-control mr-sm-2" type="search"/>
-                        <a href="/search?query=black" className="btn btn-primary">Search</a>
+                        <input aria-label="Search" className="form-control mr-sm-2" type="search" onChange={this.handleSearchChange}/>
+                        <a className="btn btn-primary" href={"/search?query=" + this.state.searchQueries}>Search</a>
                     </form>
                 </div>
             </nav>

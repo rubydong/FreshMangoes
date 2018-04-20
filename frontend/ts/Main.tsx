@@ -10,6 +10,7 @@ import { SpotlightTemplate } from "./templates/SpotlightTemplate";
 import { CriticsTemplate } from "./templates/CriticsTemplate";
 import { CreatePagesTemplate } from "./templates/CreatePagesTemplate";
 import { ReportsTemplate } from "./templates/ReportsTemplate";
+import { VerifyTemplate } from "./templates/VerifyTemplate";
 
 const Main = () => (
   <main>
@@ -19,12 +20,13 @@ const Main = () => (
       <Route path='/movie/:id' component={MovieTemplate}/>
       <Route path='/show/:id' component={ShowTemplate}/>
       <Route path="/celebrity/:id" component={CelebrityTemplate}/>
-      <Route path="/search" component={SearchTemplate}/>
+      <Route path="/search*" component={SearchTemplate}/>
       <Route path="/profile/:id" component={ProfileTemplate}/>
       <Route path="/spotlight" component={SpotlightTemplate}/>
       <Route path="/critics" component={CriticsTemplate}/>
       <Route path="/create" component={CreatePagesTemplate}/>
       <Route path="/reports" component={ReportsTemplate}/>
+      <Route path="/verify/:id" component={VerifyTemplate}/>
     </Switch>
   </main>
 )
