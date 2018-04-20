@@ -1,10 +1,8 @@
 package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.Movie;
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-public interface MovieRepository {
-  Movie findMovieById(int id);
+public interface MovieRepository extends CrudRepository<Movie, Integer> {
 
-  List<Movie> findAllMoviesLikeKeyword(String searchQuery);
 }

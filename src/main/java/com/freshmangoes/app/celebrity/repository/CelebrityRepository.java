@@ -1,18 +1,8 @@
 package com.freshmangoes.app.celebrity.repository;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-public interface CelebrityRepository {
-  Boolean existsById(Integer id);
+public interface CelebrityRepository extends CrudRepository<Celebrity, Integer> {
 
-  void deleteById(Integer id);
-
-  Celebrity findById(Integer id);
-
-  Celebrity save(Celebrity celebrity);
-
-  List<Celebrity> findAllById(Integer id);
-
-  List<Celebrity> findAllLikeKeyword(String searchQuery);
 }

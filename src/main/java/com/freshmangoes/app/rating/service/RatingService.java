@@ -4,13 +4,10 @@ import com.freshmangoes.app.rating.data.Rating;
 import java.util.List;
 
 public interface RatingService {
-  boolean addRating(Rating rating);
+  Rating addRating(Rating rating);
 
-  boolean editRating(Rating rating);
+//  List<Rating> findByContentId(Integer contentId);
 
-  void deleteRating(Integer id);
 
-  List<Rating> getRatingByContentId(Integer contentId);
-
-  List<Rating> getRatingByReviewerId(Integer reviewerId);
+//  List<Rating> findByUserId(Integer reviewerId);
 }

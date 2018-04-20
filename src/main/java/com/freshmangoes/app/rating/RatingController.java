@@ -30,72 +30,67 @@ public class RatingController {
   @Autowired
   private HttpSession session;
 
-  @PostMapping(Constants.ADD_RATING_MAPPING)
-  public ResponseEntity addRating(@RequestBody final Map<String, String> body,
-                                  @PathVariable final Integer contentId) {
-    final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
-
-    if (user == null) {
-      status = HttpStatus.BAD_REQUEST;
-    } else {
-      status = ratingService.addRating(Rating
-       .builder()
-       .contentId(contentId)
-       .score(Integer.parseInt(body.get(Constants.SCORE)))
-       .userType(UserType.AUDIENCE)
-       .contentType(ContentType.MOVIE)
-       .reviewerId(user.getId())
-       .username(user.getDisplayName())
-       .body(body.get(Constants.BODY))
-       .build()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-    }
-    return ResponseEntity.status(status).build();
-  }
-
-  @GetMapping(Constants.GET_RATING_BY_CONTENT_ID_MAPPING)
-  public List<Rating> getRatingByContentId(@PathVariable final Integer contentId) {
-    return ratingService.getRatingByContentId(contentId);
-  }
-
-  @GetMapping(Constants.GET_RATING_BY_REVIEWER_ID_MAPPING)
-  public List<Rating> getRatingByReviewerId(@PathVariable final Integer reviewerId) {
-    return ratingService.getRatingByReviewerId(reviewerId);
-  }
-
-  @DeleteMapping(Constants.DELETE_RATING_MAPPING)
-  public ResponseEntity deleteRating(@PathVariable final Integer id) {
-    final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
-
-    if (user == null) {
-      status = HttpStatus.BAD_REQUEST;
-    } else {
-      ratingService.deleteRating(id);
-      status = HttpStatus.OK;
-    }
-    return ResponseEntity.status(status).build();
-  }
-
-  @PostMapping(Constants.EDIT_RATING_MAPPING)
-  public ResponseEntity editRating(@RequestBody final Map<String, String> body,
-                                   @PathVariable final Integer ratingId) {
-    final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
-
-    if (user == null) {
-      status = HttpStatus.BAD_REQUEST;
-    } else {
-      status = ratingService.editRating(Rating
-       .builder()
-       .id(ratingId)
-       .score(Integer.parseInt(body.get(Constants.SCORE)))
-       .userType(UserType.AUDIENCE)
-       .reviewerId(user.getId())
-       .username(user.getDisplayName())
-       .body(body.get(Constants.BODY))
-       .build()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-    }
-    return ResponseEntity.status(status).build();
-  }
+//  @PostMapping(Constants.ADD_RATING_MAPPING)
+//  public ResponseEntity addRating(@RequestBody final Map<String, String> body,
+//                                  @PathVariable final Integer contentId) {
+//    final HttpStatus status;
+//    final User user = Helpers.getAuthenticatedUser(session);
+//
+//    if (user == null) {
+//      status = HttpStatus.BAD_REQUEST;
+//    } else {
+//      status = ratingService.addRating(Rating
+//       .builder()
+//       .contentId(contentId)
+//       .score(Integer.parseInt(body.get(Constants.SCORE)))
+//       .userType(UserType.AUDIENCE)
+//       .contentType(ContentType.MOVIE)
+//       .reviewerId(user.getId())
+//       .username(user.getDisplayName())
+//       .body(body.get(Constants.BODY))
+//       .build()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+//    }
+//    return ResponseEntity.status(status).build();
+//  }
+//
+//  @GetMapping(Constants.GET_RATING_BY_CONTENT_ID_MAPPING)
+//  public List<Rating> getRatingByContentId(@PathVariable final Integer contentId) {
+//    return ratingService.findByContentId(contentId);
+//  }
+//
+//  @DeleteMapping(Constants.DELETE_RATING_MAPPING)
+//  public ResponseEntity deleteRating(@PathVariable final Integer id) {
+//    final HttpStatus status;
+//    final User user = Helpers.getAuthenticatedUser(session);
+//
+//    if (user == null) {
+//      status = HttpStatus.BAD_REQUEST;
+//    } else {
+//      ratingService.deleteRating(id);
+//      status = HttpStatus.OK;
+//    }
+//    return ResponseEntity.status(status).build();
+//  }
+//
+//  @PostMapping(Constants.EDIT_RATING_MAPPING)
+//  public ResponseEntity editRating(@RequestBody final Map<String, String> body,
+//                                   @PathVariable final Integer ratingId) {
+//    final HttpStatus status;
+//    final User user = Helpers.getAuthenticatedUser(session);
+//
+//    if (user == null) {
+//      status = HttpStatus.BAD_REQUEST;
+//    } else {
+//      status = ratingService.editRating(Rating
+//       .builder()
+//       .id(ratingId)
+//       .score(Integer.parseInt(body.get(Constants.SCORE)))
+//       .userType(UserType.AUDIENCE)
+//       .reviewerId(user.getId())
+//       .username(user.getDisplayName())
+//       .body(body.get(Constants.BODY))
+//       .build()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+//    }
+//    return ResponseEntity.status(status).build();
+//  }
 }

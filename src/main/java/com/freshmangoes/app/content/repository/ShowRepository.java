@@ -1,10 +1,8 @@
 package com.freshmangoes.app.content.repository;
 
 import com.freshmangoes.app.content.data.Show;
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ShowRepository {
-  Show findShowById(int id);
+public interface ShowRepository extends CrudRepository<Show, Integer> {
 
-  List<Show> findAllShowsLikeKeyword(String searchQuery);
 }

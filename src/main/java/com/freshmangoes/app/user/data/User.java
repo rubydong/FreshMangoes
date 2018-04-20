@@ -7,9 +7,14 @@ import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Builder
 @Data
+@Entity
+@Table(name = "Users")
 public class User {
+  @Id
   private Integer id;
   private String email;
   private String hash;
@@ -18,9 +23,24 @@ public class User {
   private URL profilePicture;
   private Integer numFollowers;
   private Integer numFollowing;
-  private List<Integer> followers;
-  private List<Integer> following;
+
+  @JoinTable(name = "Followings")
+  @OneToMany
+  private List<User> followers;
+
+  @JoinTable(name = "Followings")
+  @OneToMany
+  private List<User> following;
+
+  @JoinTable(name = "Interests")
+  @OneToMany
   private List<Content> interestedList;
+
+  @JoinTable(name = "Disinterests")
+  @OneToMany
   private List<Content> disinterestedList;
-  private List<Rating> reviews;
+
+  @OneToMany
+  @JoinColumn(name = "user_id")
+  private List<Rating> ratings;
 }

@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User getUser(final Integer userId) {
-    final User user = userRepository.findById(userId);
+    final User user = userRepository.findById(userId).orElse(null);
     if (user != null) {
       user.setHash(null);
     }

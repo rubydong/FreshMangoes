@@ -1,6 +1,6 @@
 package com.freshmangoes.app.interested.service;
 
-import com.freshmangoes.app.content.repository.ContentRepository;
+import com.freshmangoes.app.content.repository.MovieRepository;
 import com.freshmangoes.app.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,28 +9,28 @@ import org.springframework.stereotype.Service;
 public class InterestsServiceImpl implements InterestsService {
 
   @Autowired
-  private ContentRepository contentRepository;
+  private MovieRepository movieRepository;
 
   @Autowired
   private UserRepository userRepository;
 
   @Override
   public Boolean addToInterestedList(final Integer userId, final Integer contentId) {
-    return userRepository.updateInterestedList(userId, contentId, true);
+    return null;
   }
 
   @Override
   public Boolean removeFromInterestedList(final Integer userId, final Integer contentId) {
-    return userRepository.updateInterestedList(userId, contentId, false);
+    return null;
   }
 
   @Override
   public Boolean addToDisinterestedList(final Integer userId, final Integer contentId) {
-    return userRepository.updateDisinterestedList(userId, contentId, true);
+    return null;
   }
 
   @Override
   public Boolean removeFromDisinterestedList(final Integer userId, final Integer contentId) {
-    return userRepository.updateDisinterestedList(userId, contentId, false);
+    return null;
   }
 }

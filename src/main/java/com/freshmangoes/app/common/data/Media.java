@@ -1,15 +1,27 @@
 package com.freshmangoes.app.common.data;
 
 import java.net.URL;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import java.util.List;
+import lombok.*;
 
-import lombok.Builder;
-import lombok.Data;
-
-@Data
 @Builder
+@Entity
+@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Media {
-  private List<URL> photos;
-  private List<URL> videos;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+  private URL path;
+  @Column(name = "media_type")
+  private MediaType type;
+
 }

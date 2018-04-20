@@ -1,3 +1,5 @@
+-- noinspection SqlNoDataSourceInspectionForFile
+
 drop database IF EXISTS cse308;
 create database cse308 CHARACTER set utf8mb4 collate utf8mb4_unicode_ci;
 use cse308;
@@ -39,7 +41,7 @@ CREATE TABLE Celebrities(
   FOREIGN KEY(profile_picture) REFERENCES Media(id)
 );
 
-CREATE Table CelebrityMedia(
+CREATE Table Celebrity_Media(
   celebrity_id INT,
   media_id INT,
   PRIMARY KEY (celebrity_id, media_id),
@@ -47,7 +49,7 @@ CREATE Table CelebrityMedia(
   FOREIGN KEY (media_id) REFERENCES Media(id)
 );
 
-CREATE TABLE ContentMetadata(
+CREATE TABLE Content_Metadata(
   audience_score REAL(5,2) NOT NULL DEFAULT -1,
   content_name VARCHAR(200),
   id INT AUTO_INCREMENT,
@@ -65,12 +67,13 @@ CREATE TABLE Content(
   id INT AUTO_INCREMENT,
   metadata_id INT,
   summary_photo INT,
+  ctype TEXT,
   PRIMARY KEY(id),
-  FOREIGN KEY(metadata_id) REFERENCES ContentMetaData(id),
+  FOREIGN KEY(metadata_id) REFERENCES Content_Metadata(id),
   FOREIGN KEY(summary_photo) REFERENCES Media(id)
 );
 
-CREATE Table ContentMedia(
+CREATE Table Content_Media(
   content_id INT,
   media_id INT,
   PRIMARY KEY (content_id, media_id),
@@ -85,7 +88,7 @@ CREATE TABLE Ratings(
   score TINYINT,
   user_id INT,
   PRIMARY KEY (id),
-  FOREIGN KEY(content_id) REFERENCES ContentMetaData(id),
+  FOREIGN KEY(content_id) REFERENCES Content(id),
   FOREIGN KEY(user_id) REFERENCES Users(id)
 );
 
@@ -123,7 +126,7 @@ CREATE TABLE Crew(
   FOREIGN KEY(content_id) REFERENCES Content(id)
 );
 
-CREATE TABLE Season(
+CREATE TABLE Show_Seasons(
   season_id INT,
   show_id INT,
   PRIMARY KEY(show_id, season_id),
@@ -131,7 +134,7 @@ CREATE TABLE Season(
   FOREIGN KEY(season_id) REFERENCES Content(id)
 );
 
-CREATE TABLE Episode(
+CREATE TABLE Season_Episodes(
   episode_id INT,
   season_id INT,
   PRIMARY KEY(season_id, episode_id),

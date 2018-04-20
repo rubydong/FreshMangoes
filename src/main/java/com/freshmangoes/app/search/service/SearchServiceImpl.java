@@ -19,12 +19,13 @@ public class SearchServiceImpl implements SearchService {
   private ShowRepository showRepository;
 
   public SearchResult searchByKeyword(final String searchQuery) {
-    return SearchResult
-        .builder()
-        .movies(movieRepository.findAllMoviesLikeKeyword(searchQuery))
-        .shows(showRepository.findAllShowsLikeKeyword(searchQuery))
-        .celebrities(celebrityRepository.findAllLikeKeyword(searchQuery))
-        .build();
+    return null;
+//    return SearchResult
+//        .builder()
+//        .movies(movieRepository.findAllMoviesLikeKeyword(searchQuery))
+//        .shows(showRepository.findAllShowsLikeKeyword(searchQuery))
+//        .celebrities(celebrityRepository.findAllLikeKeyword(searchQuery))
+//        .build();
   }
 
 }

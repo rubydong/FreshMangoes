@@ -1,19 +1,33 @@
 package com.freshmangoes.app.rating.data;
 
-import com.freshmangoes.app.content.data.ContentType;
-import com.freshmangoes.app.user.data.UserType;
 import lombok.Builder;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import javax.persistence.*;
+import lombok.*;
 
+@Entity(name = "Ratings")
 @Data
 @Builder
+@Getter
+@Setter
+@Table(name = "Ratings")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Rating {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-  private Integer contentId;
-  private Integer reviewerId;
   private Integer score;
   private String body;
-  private String username;
-  private UserType userType;
-  private ContentType contentType;
+
+  @Column (name = "content_id")
+  private Integer contentId;
+
+  @Column(name = "user_id")
+  private Integer userId;
+
+  @JsonInclude()
+  @Transient
+  private String contentName;
 }

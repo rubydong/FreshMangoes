@@ -11,23 +11,14 @@ public class RatingServiceImpl implements RatingService {
   @Autowired
   private RatingRepository ratingRepository;
 
-  public boolean addRating(final Rating rating) {
-    return ratingRepository.insertRating(rating);
+  public Rating addRating(final Rating rating) {
+    return ratingRepository.existsByUserId(rating.getUserId()) == null
+           ? ratingRepository.save(rating)
+           : null;
   }
 
-  public boolean editRating(final Rating rating) {
-    return ratingRepository.editRating(rating);
-  }
+//  public List<Rating> findByUserId(final Integer reviewerId) {
+//    return ratingRepository.findByUserId(reviewerId);
+//  }
 
-  public List<Rating> getRatingByContentId(final Integer contentId) {
-    return ratingRepository.findByContentId(contentId);
-  }
-
-  public List<Rating> getRatingByReviewerId(final Integer reviewerId) {
-    return ratingRepository.findByReviewerId(reviewerId);
-  }
-
-  public void deleteRating(final Integer id) {
-    ratingRepository.deleteRating(id);
-  }
 }

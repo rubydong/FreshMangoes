@@ -27,18 +27,18 @@ public class ContentServiceImpl implements ContentService {
   private EpisodeRepository episodeRepository;
 
   public Movie findMovieById(final int id) {
-    return movieRepository.findMovieById(id);
+    return movieRepository.findById(id).orElse(null);
   }
 
   public Show findShowById(final int id) {
-    return showRepository.findShowById(id);
+    return showRepository.findById(id).orElse(null);
   }
 
   public Season findSeasonById(final int id) {
-    return seasonRepository.findSeasonById(id);
+    return seasonRepository.findById(id).orElse(null);
   }
 
   public Episode findEpisodeById(final int id) {
-    return episodeRepository.findEpisodeById(id);
+    return episodeRepository.findById(id).orElse(null);
   }
 }
