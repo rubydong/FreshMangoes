@@ -564,6 +564,10 @@ h5 span {
 	float: left;
 }
 
+/* Create Form */
+#create-form {
+	margin: 0 auto;
+}
 
 /* bootstrap rewrite */
 

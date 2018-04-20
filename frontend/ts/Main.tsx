@@ -8,6 +8,8 @@ import { SearchTemplate } from "./templates/SearchTemplate";
 import { ProfileTemplate } from "./templates/ProfileTemplate";
 import { SpotlightTemplate } from "./templates/SpotlightTemplate";
 import { CriticsTemplate } from "./templates/CriticsTemplate";
+import { CreatePagesTemplate } from "./templates/CreatePagesTemplate";
+import { ReportsTemplate } from "./templates/ReportsTemplate";
 
 const Main = () => (
   <main>
@@ -21,6 +23,8 @@ const Main = () => (
       <Route path="/profile/:id" component={ProfileTemplate}/>
       <Route path="/spotlight" component={SpotlightTemplate}/>
       <Route path="/critics" component={CriticsTemplate}/>
+      <Route path="/create" component={CreatePagesTemplate}/>
+      <Route path="/reports" component={ReportsTemplate}/>
     </Switch>
   </main>
 )
