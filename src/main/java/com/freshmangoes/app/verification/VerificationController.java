@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,7 +24,7 @@ public class VerificationController {
   private HttpSession session;
 
   @PostMapping(Constants.VERIFY_MAPPING)
-  public ResponseEntity verify(@RequestParam final String verificationKey) {
+  public ResponseEntity verify(@PathVariable final String verificationKey) {
     final HttpStatus status;
     final User user;
 
