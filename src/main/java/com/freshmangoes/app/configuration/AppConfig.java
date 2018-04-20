@@ -11,8 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class AppConfig {
-
-  @Bean
+ @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
@@ -20,11 +19,5 @@ public class AppConfig {
   @Bean
   public ObjectMapper objectMapper() {
     return new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
-  }
-
-  @Bean
-  public JavaMailSender mailSender() {
-    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-    return mailSender;
   }
 }

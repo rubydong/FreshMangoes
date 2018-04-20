@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -78,34 +77,6 @@ public class AuthController {
     return new ResponseEntity(status);
   }
 
-  @PostMapping(Constants.VERIFY_MAPPING)
-  public ResponseEntity verify(@RequestParam final String verificationKey) {
-    final HttpStatus status;
-    final User user;
-
-    user = verificationService.verifyUser(verificationKey);
-
-    if (user != null) {
-      session.setAttribute(Constants.USER_ID, user);
-      status = HttpStatus.OK;
-    } else {
-      status = HttpStatus.BAD_REQUEST;
-    }
-
-    return new ResponseEntity(status);
-  }
-
-  @PostMapping(Constants.RESEND_MAPPING)
-  public ResponseEntity resendVerification(@RequestBody final Map<String, String> body) {
-    final HttpStatus status;
-    final String email;
-
-    email = body.get(Constants.EMAIL);
-    status = (verificationService.resendVerificationEmail(email)) ? HttpStatus.OK
-                                                                  : HttpStatus.BAD_REQUEST;
-    return new ResponseEntity(status);
-  }
-
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)
   public String currentUser() {
     final User user = Helpers.getAuthenticatedUser(session);
@@ -117,6 +88,4 @@ public class AuthController {
 
     return rootNode.toString();
   }
-
-
 }

@@ -23,7 +23,7 @@ public class VerificationServiceImpl implements VerificationService {
   public Boolean sendVerificationEmail(String email, Integer userId) {
     final String verificationKey = UUID.randomUUID().toString();
     if (verificationRepository.save(userId, verificationKey)) {
-      emailService.sendEmail(email, "", "");
+      emailService.sendEmail(email, "Verification Email", "Test");
       return true;
     } else {
       return false;
@@ -36,7 +36,7 @@ public class VerificationServiceImpl implements VerificationService {
     final String verificationKey = verificationRepository.findByUserId(user.getId());
 
     if (verificationKey != null) {
-      emailService.sendEmail(email, "", "");
+      emailService.sendEmail(email, "Resend Verification Email", "Test");
       return true;
     } else {
       return false;
