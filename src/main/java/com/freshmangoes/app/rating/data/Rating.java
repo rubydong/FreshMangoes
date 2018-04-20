@@ -1,6 +1,7 @@
 package com.freshmangoes.app.rating.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.user.data.User;
@@ -24,5 +25,11 @@ public class Rating {
   private Integer id;
   private Integer score;
   private String body;
-  
+
+  @Column (name = "content_id")
+  private Integer contentId;
+
+  @JsonInclude()
+  @Transient
+  private String contentName;
 }

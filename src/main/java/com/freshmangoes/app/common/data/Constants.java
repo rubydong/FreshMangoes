@@ -17,9 +17,9 @@ public class Constants {
   public static final String DELETE_CELEBRITY_MAPPING = "/celebrity/delete/{id}";
 
   public static final String MOVIE_MAPPING = "/movie/{id}";
-//  public static final String SHOW_MAPPING = "/show/{id}";
+  public static final String SHOW_MAPPING = "/show/{id}";
   public static final String SEASON_MAPPING = "/show/*/{seasonId}";
-//  public static final String EPISODE_MAPPING = "/show/*/*/{episodeId}";
+  public static final String EPISODE_MAPPING = "/show/*/*/{episodeId}";
 
   public static final String ADD_RATING_MAPPING = "/rating/{contentId}";
   public static final String EDIT_RATING_MAPPING = "/rating/e/{ratingId}";

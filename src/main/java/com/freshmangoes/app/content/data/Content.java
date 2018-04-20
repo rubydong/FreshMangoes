@@ -46,12 +46,12 @@ public abstract class Content {
   @Transient
   private List<Rating> ratings;
 
-//  @JsonInclude()
-//  @Transient
-//  private List<Celebrity> cast;
-//
-//  @JsonInclude()
-//  @Transient
-//  private List<Celebrity> crew;
+  @JsonInclude()
+  @Transient
+  private List<Celebrity> cast;
+
+  @JsonInclude()
+  @Transient
+  private List<Celebrity> crew;
 
 }

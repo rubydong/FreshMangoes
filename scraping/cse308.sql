@@ -1,3 +1,5 @@
+-- noinspection SqlNoDataSourceInspectionForFile
+
 drop database IF EXISTS cse308;
 create database cse308 CHARACTER set utf8mb4 collate utf8mb4_unicode_ci;
 use cse308;
@@ -67,7 +69,7 @@ CREATE TABLE Content(
   summary_photo INT,
   ctype TEXT,
   PRIMARY KEY(id),
-  FOREIGN KEY(metadata_id) REFERENCES Content(id),
+  FOREIGN KEY(metadata_id) REFERENCES Content_Metadata(id),
   FOREIGN KEY(summary_photo) REFERENCES Media(id)
 );
 
@@ -86,7 +88,7 @@ CREATE TABLE Ratings(
   score TINYINT,
   user_id INT,
   PRIMARY KEY (id),
-  FOREIGN KEY(content_id) REFERENCES Content_MetaData(id),
+  FOREIGN KEY(content_id) REFERENCES Content(id),
   FOREIGN KEY(user_id) REFERENCES Users(id)
 );
 
