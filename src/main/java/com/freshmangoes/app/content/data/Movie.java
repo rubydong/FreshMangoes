@@ -14,7 +14,7 @@ import lombok.Builder;
 @Entity
 @Builder
 @AllArgsConstructor
-@DiscriminatorValue(value = "movie")
+@DiscriminatorValue(value = ContentType.Values.MOVIE)
 public class Movie extends Content {
   @Builder
   public Movie(Integer id,

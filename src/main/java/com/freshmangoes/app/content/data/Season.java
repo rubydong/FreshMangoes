@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("Season")
+@DiscriminatorValue(ContentType.Values.SEASON)
 public class Season extends Content {
   @OneToMany
   @JoinTable(

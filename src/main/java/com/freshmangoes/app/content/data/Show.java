@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("Show")
+@DiscriminatorValue(ContentType.Values.SHOW)
 public class Show extends Content {
   @OneToMany
   @JoinTable(

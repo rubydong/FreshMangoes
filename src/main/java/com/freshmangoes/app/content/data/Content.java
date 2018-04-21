@@ -8,6 +8,7 @@ import com.freshmangoes.app.rating.data.Rating;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ import lombok.Setter;
 
 @Entity(name = "Content")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "ctype")
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER, name = "content_type", columnDefinition = "tinyint")
 @Table(name = "Content")
 @Getter
 @Setter
@@ -36,7 +37,7 @@ public abstract class Content {
   private Integer id;
 
   @Enumerated
-  @Column(name = "content_type", columnDefinition = "tinyint")
+  @Column(name = "content_type", insertable = false, updatable = false)
   private ContentType type;
 
   @OneToOne

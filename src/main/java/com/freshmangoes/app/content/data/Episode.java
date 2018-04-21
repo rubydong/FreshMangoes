@@ -9,7 +9,7 @@ import lombok.Builder;
 @Entity
 @Builder
 @AllArgsConstructor
-@DiscriminatorValue("Episode")
+@DiscriminatorValue(ContentType.Values.EPISODE)
 public class Episode extends Content {
 
 }
