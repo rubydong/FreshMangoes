@@ -31,14 +31,14 @@ export class SearchTemplate extends React.Component {
                 <SearchCriteriaComponent/>
 
                 <div className="search-results">
-                    <h4> {this.state.results} Results found for "Black"</h4> <hr/>
+                    <h4> {this.state.results} Results found for "{window.location.search.substring(7).replace("%20", " ")}"</h4> <hr/>
                     <ul className="list-inline">
                         <li className="underline"><a href="">All</a></li>
                         <li><a href="">Movies</a></li>		
                         <li><a href="">TV Shows</a></li>		
                         <li><a href="">Celebrities</a></li>
                     </ul>
-
+                    
                     <ContentListsComponent data-title='Movies' data-content={this.state.movies} data-search="true"/>
                     <ContentListsComponent data-title='TV Shows' data-content={this.state.shows} data-search="true"/>
                     <ContentListsComponent data-title='Celebrities' data-content={this.state.celebrities} data-search="true"/>
