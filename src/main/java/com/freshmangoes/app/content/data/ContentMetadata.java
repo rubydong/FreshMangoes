@@ -2,12 +2,19 @@ package com.freshmangoes.app.content.data;
 
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Entity
 @Data
@@ -24,6 +31,7 @@ public class ContentMetadata {
   @Column(name = "maturity_rating")
   private String maturityRating;
 
+  @Column(columnDefinition = "text")
   private String summary;
 
   @Column(name = "studio_network")
@@ -31,7 +39,7 @@ public class ContentMetadata {
 
   @ElementCollection
   @CollectionTable(name = "content_genre", joinColumns = @JoinColumn(name = "metadata_id"))
-  @Column(name = "genre_id")
+  @Column(name = "genre")
   private List<Integer> genres;
 
   private Integer runtime;

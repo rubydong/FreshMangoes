@@ -2,6 +2,7 @@ package com.freshmangoes.app.content.data;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 

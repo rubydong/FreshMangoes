@@ -38,9 +38,9 @@ public class RatingController {
     } else {
       status = ratingService.addRating(Rating
        .builder()
-       .contentId(contentId)
+       .content(null)
        .score(Integer.parseInt(body.get(Constants.SCORE)))
-       .userId(user.getId())
+       .user(null)
        .body(body.get(Constants.BODY))
        .build()) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
@@ -75,7 +75,7 @@ public class RatingController {
        .builder()
        .id(ratingId)
        .score(Integer.parseInt(body.get(Constants.SCORE)))
-       .userId(user.getId())
+       .user(null)
        .body(body.get(Constants.BODY))
        .build()) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }

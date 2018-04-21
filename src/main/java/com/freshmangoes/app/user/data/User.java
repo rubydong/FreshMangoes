@@ -6,13 +6,25 @@ import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.rating.data.Rating;
 
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 
 @Builder
 @Data
@@ -45,26 +57,57 @@ public class User {
   @Transient
   private Integer numFollowing;
 
-  @JsonInclude()
-  @Transient
+  @JoinTable(name = "following",
+      joinColumns = @JoinColumn(
+          name = "follower_id",
+          referencedColumnName = "id"
+      ),
+      inverseJoinColumns = @JoinColumn(
+          name = "followee_id",
+          referencedColumnName = "id"
+      ))
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<User> followers;
 
-  @JsonInclude()
-  @Transient
+  @JoinTable(name = "following",
+      joinColumns = @JoinColumn(
+          name = "followee_id",
+          referencedColumnName = "id"
+      ),
+      inverseJoinColumns = @JoinColumn(
+          name = "follower_id",
+          referencedColumnName = "id"
+      ))
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<User> following;
 
-  @JoinTable(name = "Interests")
-  @OneToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "interests",
+      joinColumns = @JoinColumn(
+          name = "user_id",
+          referencedColumnName = "id"
+      ),
+      inverseJoinColumns = @JoinColumn(
+          name = "content_id",
+          referencedColumnName = "id"
+      ))
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<Content> interestedList;
 
-  @JoinTable(name = "Disinterests")
-  @OneToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "disinterests",
+      joinColumns = @JoinColumn(
+          name = "user_id",
+          referencedColumnName = "id"
+      ),
+      inverseJoinColumns = @JoinColumn(
+          name = "content_id",
+          referencedColumnName = "id"
+      ))
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<Content> disinterestedList;
 
-  @JsonInclude()
-  @Transient
+  @OneToMany
+  @JoinColumn(name = "id")
   private List<Rating> ratings;
-
 
   private Boolean verified;
 }

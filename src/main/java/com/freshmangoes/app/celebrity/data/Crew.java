@@ -1,12 +1,9 @@
-package com.freshmangoes.app.rating.data;
+package com.freshmangoes.app.celebrity.data;
 
 import com.freshmangoes.app.content.data.Content;
-import com.freshmangoes.app.user.data.User;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -18,29 +15,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@Entity(name = "Ratings")
+@Entity(name = "Crew")
 @Data
 @Builder
 @Getter
 @Setter
-@Table(name = "Ratings")
+@Table(name = "Crew")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Rating {
+public class Crew {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue
   private Integer id;
 
-  @Column(name = "score")
-  private Integer score;
-
-  @Column(name = "body", columnDefinition = "text")
-  private String body;
+  @ManyToOne
+  private Celebrity celebrity;
 
   @ManyToOne
   private Content content;
 
-  @ManyToOne
-  private User user;
+  private String job;
 }

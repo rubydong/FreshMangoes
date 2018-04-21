@@ -12,10 +12,10 @@ public class Constants {
   public static final String SPOTLIGHT_MAPPING = "/spotlightItems";
 
   public static final String GET_CELEBRITY_MAPPING = "/celebrity/{id}";
-  public static final String GET_ALL_CELEBRITY_MAPPING = "/celebrity/a/{id}";
+  public static final String GET_ALL_CELEBRITY_MAPPING = "/celebrity/all/{id}";
   public static final String GET_ALL_CELEBRITY_BY_KEYWORD_MAPPING = "/celebrity/search";
-  public static final String INSERT_CELEBRITY_MAPPING = "/add/celebrity";
-  public static final String DELETE_CELEBRITY_MAPPING = "/delete/celebrity/{id}";
+  public static final String INSERT_CELEBRITY_MAPPING = "/celebrity/add";
+  public static final String DELETE_CELEBRITY_MAPPING = "/celebrity/delete/{id}";
 
   public static final String MOVIE_MAPPING = "/movie/{id}";
   public static final String SHOW_MAPPING = "/show/{id}";
@@ -23,7 +23,7 @@ public class Constants {
   public static final String EPISODE_MAPPING = "/show/{showId}/{seasonId}/{episodeId}";
 
   public static final String ADD_RATING_MAPPING = "/rating/{contentId}";
-  public static final String EDIT_RATING_MAPPING = "/rating/e/{ratingId}";
+  public static final String EDIT_RATING_MAPPING = "/rating/update/{ratingId}";
   public static final String DELETE_RATING_MAPPING = "/rating/delete/{id}";
   public static final String GET_RATING_BY_CONTENT_ID_MAPPING = "/rating/search/cid/{contentId}";
   public static final String GET_RATING_BY_USER_ID_MAPPING = "/rating/search/uid/{userId}";

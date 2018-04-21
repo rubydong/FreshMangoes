@@ -1,12 +1,25 @@
 package com.freshmangoes.app.celebrity.data;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.freshmangoes.app.common.data.Media;
+
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,7 +49,23 @@ public class Celebrity {
   @JoinColumn(name = "profile_picture")
   private Media profilePicture;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "Celebrity_Media")
+  @JoinTable(name = "celebrity_media",
+      joinColumns = @JoinColumn(
+          name = "celebrity_id",
+          referencedColumnName = "id"
+      ),
+      inverseJoinColumns = @JoinColumn(
+          name = "media_id",
+          referencedColumnName = "id"
+      ))
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<Media> media;
+
+  @OneToMany
+  @JoinColumn(name = "id")
+  private List<Cast> roles;
+
+  @OneToMany
+  @JoinColumn(name = "id")
+  private List<Crew> jobs;
 }

@@ -12,7 +12,7 @@ public class RatingServiceImpl implements RatingService {
   private RatingRepository ratingRepository;
 
   public Rating addRating(final Rating rating) {
-    return ratingRepository.existsByUserId(rating.getUserId()) == null
+    return ratingRepository.existsByUserId(rating.getUser().getId()) == null
            ? ratingRepository.save(rating)
            : null;
   }
@@ -37,7 +37,7 @@ public class RatingServiceImpl implements RatingService {
 
   public void deleteRating(final Integer userId, final Integer ratingId) {
     Rating rating = ratingRepository.findById(ratingId).orElse(null);
-    if (rating == null || !rating.getUserId().equals(userId)) {
+    if (rating == null || !rating.getUser().getId().equals(userId)) {
       return;
     }
     ratingRepository.deleteById(ratingId);

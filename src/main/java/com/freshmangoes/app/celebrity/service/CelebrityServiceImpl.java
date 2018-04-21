@@ -2,12 +2,9 @@ package com.freshmangoes.app.celebrity.service;
 
 import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.celebrity.repository.CelebrityRepository;
+import com.freshmangoes.app.common.data.Media;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.freshmangoes.app.common.data.Media;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
