@@ -77,12 +77,16 @@ export class Search {
   movies: Movie[];
   shows: Show[];
   results: number;
+  selectedContent: Content[];
+  selectedTitle: string;
 
   constructor() {
     this.celebrities = [];
     this.movies = [];
     this.shows = [];
     this.results = 0;
+    this.selectedContent = [];
+    this.selectedTitle = "";
   }
 }
 
