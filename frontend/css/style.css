@@ -35,6 +35,7 @@ a,.summary h2, .filmography h4, .episode b {
 .page-background-color {
 	background-color: #FAFAFA;
 }
+
 .btn-link:hover, a:hover {
 	text-decoration: none;
 	color: #B3B3B3;
