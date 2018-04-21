@@ -3,8 +3,18 @@ import {parseMedia} from "../../helperFunctions.js";
 import {Mangoes} from "./Mangoes";
 
 export class SummaryComponent extends React.Component {
-
     render() {
+        const list = [];
+        for (let i = 1; i <= this.props['data-list']; i++) {
+            list.push(
+                <option> 
+                    <a href={"./" + i}>
+                    {this.props['data-list-type'] == 'season' ? 'Season ' + i : 'Episode ' + i}
+                    </a>
+                </option>);
+        }
+        
+
         return (
             <div>
                 <img src={parseMedia(this.props['data-image'])} className="img-align-left"/>
@@ -13,6 +23,7 @@ export class SummaryComponent extends React.Component {
                 </div>
 
                 <div className="plot">
+                    { list.length != 0 ? <select className="form-control"> {list} </select> : ''} 
                     <b>
                         MangoMeter
                         <span className="med-margin-right"></span>

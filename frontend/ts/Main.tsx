@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom'
 import { IndexTemplate } from "./templates/IndexTemplate";
 import { MovieTemplate } from "./templates/MovieTemplate";
 import { ShowTemplate } from "./templates/ShowTemplate";
+import { SeasonTemplate } from "./templates/SeasonTemplate";
+import { EpisodeTemplate } from "./templates/EpisodeTemplate";
 import { CelebrityTemplate } from "./templates/CelebrityTemplate";
 import { SearchTemplate } from "./templates/SearchTemplate";
 import { ProfileTemplate } from "./templates/ProfileTemplate";
@@ -18,7 +20,9 @@ const Main = () => (
       <Route exact path='/' component={IndexTemplate}/>
       <Route exact path='/index' component={IndexTemplate}/>
       <Route path='/movie/:id' component={MovieTemplate}/>
-      <Route path='/show/:id' component={ShowTemplate}/>
+      <Route path='/show/:showid/:seasonid/:episodeid' component={EpisodeTemplate}/>
+      <Route path="/show/:showid/:seasonid" component={SeasonTemplate}/>
+      <Route path='/show/:id' component={ShowTemplate}/> 
       <Route path="/celebrity/:id" component={CelebrityTemplate}/>
       <Route path="/search*" component={SearchTemplate}/>
       <Route path="/profile/:id" component={ProfileTemplate}/>
@@ -27,8 +31,17 @@ const Main = () => (
       <Route path="/create" component={CreatePagesTemplate}/>
       <Route path="/reports" component={ReportsTemplate}/>
       <Route path="/verify/:id" component={VerifyTemplate}/>
+      <Route component={NoMatch}/>
     </Switch>
   </main>
 )
+
+const NoMatch = ({ location }) => (
+  <div>
+    <h3>
+      404 NOT FOUND <code>{location.pathname}</code>
+    </h3>
+  </div>
+);
 
 export default Main
