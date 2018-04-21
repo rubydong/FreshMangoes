@@ -40,6 +40,13 @@ public class Constants {
   public static final String GET_FOLLOWERS_MAPPING = "/followers/{userId}";
   public static final String GET_FOLLOWING_MAPPING = "/following/{userId}";
 
+  public static final String ADMIN_ADD_DETAIL_PAGE_MAPPING = "/admin/insert";
+  public static final String ADMIN_UPDATE_DETAIL_PAGE_MAPPING = "/admin/update";
+  public static final String ADMIN_DELETE_DETAIL_PAGE_MAPPING = "/admin/delete/{contentId}";
+  public static final String ADMIN_VIEW_REPORTS_MAPPING = "/admin/reports";
+  public static final String ADMIN_DELETE_RATING_MAPPING = "/admin/rating/delete/{ratingId}";
+  public static final String ADMIN_DELETE_USER_MAPPING = "/admin/user/delete/{userId}";
+
   public static final String APPLICATION_JSON = "application/json";
 
   public static final String USER_ID = "userId";
