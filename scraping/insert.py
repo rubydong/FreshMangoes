@@ -13,17 +13,18 @@ BASE_VIDEO_URL = 'https://www.youtube.com/embed/'
 
 CELEBRITIES = 'celebrities'
 
-INSERT_CAST = 'insert into `Casted` (celebrity_id, content_id, character_name) values(%s, %s, %s)'
-INSERT_CREW = 'insert into `Crew` (celebrity_id, content_id, job) values(%s, %s, %s)'
-INSERT_CELEBRITY = 'insert into `Celebrities` (birthday, birthplace, biography, celebrity_name, id, ' \
+INSERT_CAST = 'insert into `casted` (celebrity_id, content_id, role) values(%s, %s, %s)'
+INSERT_CREW = 'insert into `crew` (celebrity_id, content_id, job) values(%s, %s, %s)'
+INSERT_CELEBRITY = 'insert into `celebrities` (birthday, birthplace, biography, celebrity_name, id, ' \
                    'profile_picture) values(%s, %s, %s, %s, %s, %s)'
-INSERT_CONTENT = 'insert into `Content` (content_type, metadata_id, summary_photo) values(%s, %s, %s)'
-INSERT_CONTENT_MEDIA = 'insert into `Content_Media` (content_id, media_id) values(%s, %s)'
-INSERT_MEDIA = 'insert into `Media` (path, media_type) values(%s, %s)'
-INSERT_METADATA = 'insert into `Content_Metadata` (audience_score, content_name, mango_score, maturity_rating, ' \
+INSERT_CONTENT = 'insert into `content` (content_type, metadata_id, summary_photo) values(%s, %s, %s)'
+INSERT_CONTENT_MEDIA = 'insert into `content_media` (content_id, media_id) values(%s, %s)'
+INSERT_GENRE = 'insert into `content_genre` (genre, metadata_id) values(%s, %s)'
+INSERT_MEDIA = 'insert into `media` (path, media_type) values(%s, %s)'
+INSERT_METADATA = 'insert into `content_metadata` (audience_score, content_name, mango_score, maturity_rating, ' \
                   'release_date, runtime, studio_network, summary) values(%s, %s, %s, %s, %s, %s, %s, %s)'
-INSERT_SEASON = 'insert into `Seasons` (show_id, season_id) values(%s, %s)'
-INSERT_EPISODE = 'insert into `Episodes` (season_id, episode_id) values(%s, %s)'
+INSERT_SEASON = 'insert into `show_seasons` (show_id, season_id) values(%s, %s)'
+INSERT_EPISODE = 'insert into `season_episodes` (season_id, episode_id) values(%s, %s)'
 
 connection = pymysql.connect(host='localhost',
                              user='root',
@@ -39,8 +40,11 @@ def insert_celebrities():
     celebrities_dir = os.listdir(CELEBRITIES)
     for filename in celebrities_dir:
         celebrity_details = load_json(os.path.join(CELEBRITIES, filename))
-        print(celebrity_details)
         profile_photo_id = None
+
+        if celebrity_details.get("name", None) is None:
+            continue
+
         if celebrity_details.get("profile_path", None) is not None:
             cursor.execute(INSERT_MEDIA, (BASE_PHOTO_URL + celebrity_details["profile_path"], 0))
             profile_photo_id = cursor.lastrowid
@@ -114,6 +118,9 @@ def insert_movies():
                                         content_metadata_id,
                                         summary_photo_id))
         content_id = cursor.lastrowid
+
+        for genre in movie_details["genres"]:
+            cursor.execute(INSERT_GENRE, (genre["id"], content_metadata_id))
 
         for photo in content_photos:
             cursor.execute(INSERT_MEDIA, (photo, 0))

@@ -1,5 +1,6 @@
 package com.freshmangoes.app.rating.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.user.data.User;
 
@@ -13,14 +14,12 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Entity(name = "Ratings")
-@Data
 @Builder
 @Getter
 @Setter
@@ -29,7 +28,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Rating {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
   @Column(name = "score")
@@ -39,8 +38,11 @@ public class Rating {
   private String body;
 
   @ManyToOne
+  @JsonIgnoreProperties({"summaryPhoto", "media", "metadata", "ratings", "cast", "crew"})
   private Content content;
 
   @ManyToOne
+  @JsonIgnoreProperties({"id", "email", "hash", "numFollowers", "numFollowing",
+      "followers", "following", "interestedList", "disinterestedList", "verified", "ratings"})
   private User user;
 }

@@ -1,5 +1,6 @@
 package com.freshmangoes.app.content.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.freshmangoes.app.celebrity.data.Cast;
 import com.freshmangoes.app.celebrity.data.Crew;
 import com.freshmangoes.app.common.data.Media;
@@ -11,7 +12,9 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -33,7 +36,7 @@ import lombok.Setter;
 @Setter
 public abstract class Content {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
   @Enumerated
@@ -52,15 +55,15 @@ public abstract class Content {
   @JoinColumn(name = "metadata_id")
   private ContentMetadata metadata;
 
-  @OneToMany
-  @JoinColumn(name = "id")
+  @OneToMany(mappedBy = "content")
+  @JsonIgnoreProperties("content")
   private List<Rating> ratings;
 
-  @OneToMany
-  @JoinColumn(name = "id")
+  @OneToMany(mappedBy = "content")
+  @JsonIgnoreProperties("content")
   private List<Cast> cast;
 
-  @OneToMany
-  @JoinColumn(name = "id")
+  @OneToMany(mappedBy = "content")
+  @JsonIgnoreProperties("content")
   private List<Crew> crew;
 }

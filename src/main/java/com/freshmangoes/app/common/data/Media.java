@@ -24,7 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Media {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
   private URL path;
   @Column(name = "media_type")
