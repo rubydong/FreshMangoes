@@ -39,8 +39,16 @@ public interface UserRepository extends CrudRepository<User, Integer> {
   @Query(value = "DELETE FROM interests WHERE user_id=?1 and content_id=?2", nativeQuery = true)
   void deleteFromInterestedList(Integer userId, Integer contentId);
 
+  @Transactional
+  @Modifying
+  @Query(value = "INSERT INTO disinterests (user_id, content_id) VALUES (?1, ?2)", nativeQuery = true)
+  Integer addToDisinterestedList(Integer userId, Integer contentId);
 
-//  Boolean updateInterestedList(Integer userId, Integer contentId, Boolean present);
-//
-//  Boolean updateDisinterestedList(Integer userId, Integer contentId, Boolean present);
+  @Query(value = "SELECT user_id FROM disinterests WHERE user_id=?1 and content_id=?2", nativeQuery = true)
+  Integer isDisinterestedInContent(Integer userId, Integer contentId);
+
+  @Transactional
+  @Modifying
+  @Query(value = "DELETE FROM disinterests WHERE user_id=?1 and content_id=?2", nativeQuery = true)
+  void deleteFromDisinterestedList(Integer userId, Integer contentId);
 }
