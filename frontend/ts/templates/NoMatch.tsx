@@ -7,8 +7,7 @@ export class NoMatch extends React.Component {
                 <hr/>
                 <div className="content center-text">
                 <h1>There is nothing here!</h1>
-                <h2>How did you end up here? <br/>
-                Come, let's go back to the <a href="../">home page</a>.</h2>
+                <h3>How did you end up here? Come, let's go back to the <a href="../">home page</a>.</h3>
                 </div>
             </div>
         );
