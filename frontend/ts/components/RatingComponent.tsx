@@ -1,5 +1,5 @@
 import * as React from "react";
-import { parseMedia }  from "../../helperFunctions.js";
+import { parseMedia }  from "../../HelperFunctions.js";
 import { Mangoes } from "./Mangoes";
 import { Rating } from '../types/rating';
 import axios from "axios";
@@ -71,6 +71,7 @@ export class RatingComponent extends React.Component {
 
 
     render() {
+     
         const title = this.props['data-name'];
         const ratings = this.props['data-ratings'].map((rating, i) => {
             return <div className={"review " + (i%2==0 ? "pull-left" : "pull-right")}>
@@ -115,9 +116,9 @@ export class RatingComponent extends React.Component {
         return (
             <div className="reviews margin-top-bottom">
                 <h2> Reviews </h2> <hr/>
-                {ratings}
+                {ratings.length == 0 ? <div className="center-text">There are no reviews right now. You can be the first!</div> : ratings}
                 <span className="align-right small-padding-top"> <a href="" data-toggle="modal" data-target="#rating-modal">Add a Rating</a>  | <a href="">View All Reviews </a> </span>
-    
+                <div className="padding-top clear-both"></div>
                 <div id="rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">

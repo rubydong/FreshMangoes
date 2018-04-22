@@ -3,19 +3,19 @@ import axios from "axios";
 
 export class VerifyTemplate extends React.Component {
     async componentWillMount() {
-        axios.post(window.location.origin);
+        await axios.post(window.location.origin + '/api' + window.location.pathname);
     }
 
-    render() {
-        return (
-            <div>
-                <hr/>
-                <div className="content">
-                    <h1>Thanks for joining Fresh Mangoes!</h1>
-                    <h2>You are now verified.</h2>
+    render() {	
+        return (	
+            <div>	
+                <hr/>	
+                <div className="content">	
+                    <h1>Thanks for joining Fresh Mangoes!</h1>	
+                    <h3>You are now verified, go to the <a href="/../">home page.</a></h3>	
                 </div>
-            </div>
-        );
+
+            </div>	
+        );	
     }
-    
 }

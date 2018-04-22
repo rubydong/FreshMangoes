@@ -5,7 +5,7 @@ import { Mangoes } from "../components/Mangoes";
 import { ContentListsComponent } from '../components/ContentListsComponent';
 import { ProfileInfoComponent } from '../components/ProfileInfoComponent';
 import { ProfileReviewComponent } from '../components/ProfileReviewComponent';
-import { parseProfileMedia }  from '../../helperFunctions.js';
+import { parseProfileMedia }  from '../../HelperFunctions.js';
 
 export class ProfileTemplate extends React.Component {
     state : User;

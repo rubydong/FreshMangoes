@@ -15,9 +15,8 @@ export class ContentMetadata {
   audienceScore: number;
   maturityRating: string;
   genres: string[];
-  runTime: number;
+  runtime: number;
   summary: string;
-  cast: Celebrity[];
   releaseDate: Date;
   studio: String;
 
@@ -27,9 +26,8 @@ export class ContentMetadata {
     this.audienceScore = 0;
     this.maturityRating = "";
     this.genres = [];
-    this.runTime = 0;
+    this.runtime = 0;
     this.summary = "";
-    this.cast = [];
     this.releaseDate = null;
     this.studio = null;
   }
@@ -38,18 +36,22 @@ export class ContentMetadata {
 export class Content {
   id: number;
   type: ContentType;
-  media: Media;
+  media: Media[];
   metadata: ContentMetadata;
-  summaryPhoto : URL;
+  summaryPhoto : Media;
   ratings: Rating[];
+  cast: Celebrity[];
+  crew: Celebrity[];
 
   constructor() {
     this.id = 0;
     this.type = null;
-    this.media = new Media();
+    this.media = [];
     this.metadata = new ContentMetadata();
-    this.summaryPhoto = null;
+    this.summaryPhoto = new Media();
     this.ratings = [];
+    this.cast = [];
+    this.crew = [];
   }
 }
 

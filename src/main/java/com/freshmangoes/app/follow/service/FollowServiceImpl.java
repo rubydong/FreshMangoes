@@ -13,7 +13,7 @@ public class FollowServiceImpl implements FollowService {
 
   @Override
   public Boolean followUser(final Integer userId, final Integer otherUserId) {
-    if (userId.equals(otherUserId)) {
+    if (userId.equals(otherUserId) || followRepository.isFollowing(userId, otherUserId) != null) {
       return false;
     }
     followRepository.saveFollowing(userId, otherUserId);

@@ -1,5 +1,6 @@
 package com.freshmangoes.app.user.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.freshmangoes.app.common.data.Media;
@@ -35,7 +36,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Users")
 public class User {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String email;
   private String hash;
@@ -60,48 +61,40 @@ public class User {
 
   @JoinTable(name = "following",
       joinColumns = @JoinColumn(
-          name = "follower_id",
-          referencedColumnName = "id"
+          name = "follower_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "followee_id",
-          referencedColumnName = "id"
+          name = "followee_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   private List<User> followers;
 
   @JoinTable(name = "following",
       joinColumns = @JoinColumn(
-          name = "followee_id",
-          referencedColumnName = "id"
+          name = "followee_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "follower_id",
-          referencedColumnName = "id"
+          name = "follower_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   private List<User> following;
 
   @JoinTable(name = "interests",
       joinColumns = @JoinColumn(
-          name = "user_id",
-          referencedColumnName = "id"
+          name = "user_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "content_id",
-          referencedColumnName = "id"
+          name = "content_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   private List<Content> interestedList;
 
   @JoinTable(name = "disinterests",
       joinColumns = @JoinColumn(
-          name = "user_id",
-          referencedColumnName = "id"
+          name = "user_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "content_id",
-          referencedColumnName = "id"
+          name = "content_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   private List<Content> disinterestedList;
@@ -110,6 +103,10 @@ public class User {
   @JoinColumn(name = "id")
   @JsonIgnoreProperties("user")
   private List<Rating> ratings;
+
+  @JsonIgnore
+  @Column(name = "verification_key")
+  private String verificationKey;
 
   private Boolean verified;
 }

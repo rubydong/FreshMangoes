@@ -28,15 +28,14 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
-  public Integer registerUser(final String email, final String password, final String displayName) {
+  public User registerUser(final String email, final String password, final String displayName) {
     final String hash = passwordEncoder.encode(password);
     final User user = userRepository.save(User.builder()
                                               .email(email)
                                               .hash(hash)
                                               .displayName(displayName)
                                               .verified(false)
-                                              .build()
-                                          );
-    return (user != null) ? user.getId() : null;
+                                              .build());
+    return user;
   }
 }

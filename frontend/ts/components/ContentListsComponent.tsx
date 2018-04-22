@@ -1,6 +1,6 @@
 import * as React from "react";
-import {parseMedia} from "../../helperFunctions.js";
-import {CONTENT_LISTS} from "../../GlobalVariables";
+import {parseMedia} from "../../HelperFunctions.js";
+import {CONTENT_LIMIT} from "../../GlobalVariables";
 
 export class ContentListsComponent extends React.Component {
 
@@ -11,13 +11,13 @@ export class ContentListsComponent extends React.Component {
         const isCelebrity = this.props['data-title'] == 'Celebrities';
         const isSearch = this.props['data-search'] == 'true';
 
-        const contentList = this.props['data-content'].slice(0, CONTENT_LISTS).map((content, i) => {
+        const contentList = this.props['data-content'].slice(0, CONTENT_LIMIT).map((content, i) => {
             let url = isCelebrity
                 ? "/celebrity/" + content.id
                 : "/" + content.type.toLowerCase() + "/" + content.id;
             let newUrl = !isCelebrity
                 ? parseMedia(content.summaryPhoto)
-                : parseMedia(content.profilePhoto);
+                : parseMedia(content.profilePicture);
             return <div className="search-item">
                 <img src={newUrl}/> {x}
                 <div className="text">

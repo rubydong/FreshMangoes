@@ -3,7 +3,6 @@ package com.freshmangoes.app.verification.service;
 import com.freshmangoes.app.email.service.EmailService;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.repository.UserRepository;
-import com.freshmangoes.app.verification.repository.VerificationRepository;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,28 +15,22 @@ public class VerificationServiceImpl implements VerificationService {
   @Autowired
   private UserRepository userRepository;
 
-  @Autowired
-  private VerificationRepository verificationRepository;
-
   @Override
-  public Boolean sendVerificationEmail(String email, Integer userId) {
+  public Boolean sendVerificationEmail(final User user) {
     final String verificationKey = UUID.randomUUID().toString();
-    if (verificationRepository.save(userId, verificationKey)) {
-      emailService.sendEmail(email, "", "");
-      return true;
-    } else {
-      return false;
-    }
+    user.setVerificationKey(verificationKey);
+    userRepository.save(user);
+    return emailService.sendEmail(user.getEmail(), "Fresh Mangoes Verification", "Click this link to"
+        + "verify yourself please: http://localhost:9000/verify/" + verificationKey);
   }
 
   @Override
   public Boolean resendVerificationEmail(String email) {
     final User user = userRepository.findByEmail(email);
-    final String verificationKey = verificationRepository.findByUserId(user.getId());
 
-    if (verificationKey != null) {
-      emailService.sendEmail(email, "", "");
-      return true;
+    if (user != null) {
+      return emailService.sendEmail(email, "Fresh Mangoes Verification Resend", "Click this link to"
+          + "verify yourself please: http://localhost:9000/verify/" + user.getVerificationKey());
     } else {
       return false;
     }
@@ -48,14 +41,11 @@ public class VerificationServiceImpl implements VerificationService {
     final User user;
     final Integer userId;
 
-    userId = verificationRepository.findByVerificationKey(verificationKey);
+    user = userRepository.findByVerificationKey(verificationKey);
 
-    if (userId != null) {
-      user = userRepository.findById(userId).get();
+    if (user != null) {
       user.setVerified(true);
       userRepository.save(user);
-      verificationRepository.deleteByVerificationKey(verificationKey);
-      user.setHash(null);
       return user;
     } else {
       return null;

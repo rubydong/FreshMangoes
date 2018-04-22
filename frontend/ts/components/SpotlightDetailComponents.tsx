@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Mangoes } from "../components/Mangoes";
-import { parseMedia }  from "../../helperFunctions";
+import { parseMedia }  from "../../HelperFunctions";
 import { SPOTLIGHT_CONTENT } from "../../GlobalVariables";
 
 export class SpotlightDetailComponent extends React.Component {

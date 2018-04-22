@@ -1,53 +1,56 @@
 import { Media } from './media';
+import { Content } from './content';
 
-export enum CelebrityType {
+export enum CrewType {
     ACTOR,
     DIRECTOR,
     PRODUCER, 
     WRITER
 }
 
-export class Metadata {
-    name: string;
-    mangoScore: number;
+export class FilmRating {
+    highestRatedName: string;
+    highestRatedScore: number;
+    lowestRatedName: string;
+    lowestRatedScore: number;
 
     constructor() {
-        this.name = "";
-        this.mangoScore = 0;
+        this.highestRatedName = "";
+        this.highestRatedScore = 0;
+        this.lowestRatedName = "";
+        this.lowestRatedScore = 0;
     }
 }
-
-export class Rated {
-    id: number;
-    metadata: Metadata;
-    constructor() {
-        this.id = 0;
-        this.metadata = new Metadata();
-    }
-}
-
 
 export class Celebrity {
     name: string;
-    profilePhoto: URL;
+    profilePicture: Media;
     birthday: Date;
     birthplace: string;
     biography: string;
-    media: Media;
-    highestRated: Rated;
-    lowestRated: Rated;
-    roles: {}
+    media: Media[];
+    roles: Role[];
+    job: string;
+    
   
     constructor() {
         this.name = "";
-        this.profilePhoto = null;
-        this.birthday = null;
+        this.profilePicture = new Media();
+        this.birthday = new Date();
         this.birthplace = "";
         this.biography = "";
-        this.media = new Media();
-        this.highestRated = new Rated();
-        this.lowestRated = new Rated();
-        this.roles = {};
+        this.media = [];
+        this.roles = [];
+        this.job = "";
     }
-  }
-  
+}
+
+export class Role {
+    content: Content;
+    role: string;
+
+    constructor() {
+        this.content = null;
+        this.role = "";
+    }
+}
