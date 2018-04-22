@@ -2,7 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import { Search }  from "../types/content";
 import { SearchCriteriaComponent } from "../components/SearchCriteriaComponent";
-import { ContentListsComponent } from "../components/ContentListsComponent";
+import { SearchContentComponent } from "../components/SearchContentComponent";
 import { SpotlightDetailComponent } from "../components/SpotlightDetailComponents";
 
 export class SearchTemplate extends React.Component {
@@ -48,9 +48,9 @@ export class SearchTemplate extends React.Component {
                     
                     {this.state.selectedContent == [] || this.state.selectedContent == undefined
                     ? <div>
-                    <ContentListsComponent data-title='Movies' data-content={this.state.movies} data-search="true"/>
-                    <ContentListsComponent data-title='TV Shows' data-content={this.state.shows} data-search="true"/>
-                    <ContentListsComponent data-title='Celebrities' data-content={this.state.celebrities} data-search="true"/>
+                    <SearchContentComponent data-title='Movies' data-content={this.state.movies} data-search="true"/>
+                    <SearchContentComponent data-title='TV Shows' data-content={this.state.shows} data-search="true"/>
+                    <SearchContentComponent data-title='Celebrities' data-content={this.state.celebrities} data-search="true"/>
                     </div>
                     : <SpotlightDetailComponent data-content={this.state.selectedContent} data-title={this.state.selectedTitle}/>
                     }

@@ -14,7 +14,7 @@ export class ProfileInfoComponent extends React.Component {
     followUser () {
         axios.post(window.location.origin + '/api/follow/' + window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1))
         .then(res => {
-            console.log("following");
+            console.log(res);
         });
     }
     

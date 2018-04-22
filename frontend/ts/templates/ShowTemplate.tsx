@@ -34,7 +34,8 @@ export class ShowTemplate extends React.Component {
             <div className="content">
                 <div className="summary">
                     <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} />             
-                    <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} data-type={this.state.type}/>
+                    <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
+                                      data-id={this.state.id} data-type={this.state.type}/> 
                 </div>
                 <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>

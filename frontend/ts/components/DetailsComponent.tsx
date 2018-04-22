@@ -2,8 +2,22 @@ import * as React from "react";
 import { parseDate }  from "../../HelperFunctions";
 import { Mangoes } from "./Mangoes";
 import { GENRES_MAP } from "../../GlobalVariables";
+import axios from "axios";
 
 export class DetailsComponent extends React.Component {
+    addToInterested = event => {
+        axios.post(window.location.origin + '/api/interested/add/' + this.props['data-id'])
+            .then(res => {
+                console.log(res);
+        })
+    }
+    addToDisinterested = event => {
+        axios.post(window.location.origin + '/api/disinterested/add/' + this.props['data-id'])
+            .then(res => {
+                console.log(res);
+        })
+    }
+    
     render() {
         const metadata = this.props['data-metadata'];
         const crew = this.props['data-crew'];
@@ -48,8 +62,8 @@ export class DetailsComponent extends React.Component {
                 <b>Directed By:</b> {directorsFinal} <br/>
                 {writers.length != 0 ? <b>Written By:</b> : ''} {writersFinal} <p/>
 
-                <button className="btn small-margin-right"> Interested</button>
-                <button className="btn"> Uninterested</button>
+                <button className="btn small-margin-right" onClick={this.addToInterested}> Interested</button>
+                <button className="btn" onClick={this.addToDisinterested}> Uninterested</button>
             </div>
         );
     }
