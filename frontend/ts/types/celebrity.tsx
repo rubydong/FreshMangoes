@@ -1,4 +1,5 @@
 import { Media } from './media';
+import { Content } from './content';
 
 export enum CrewType {
     ACTOR,
@@ -36,7 +37,7 @@ export class Celebrity {
     media: Media[];
     highestRated: Rated;
     lowestRated: Rated;
-    role: string;
+    roles: Role[];
     job: string;
   
     constructor() {
@@ -48,7 +49,17 @@ export class Celebrity {
         this.media = [];
         this.highestRated = new Rated();
         this.lowestRated = new Rated();
-        this.role = "";
+        this.roles = [];
         this.job = "";
+    }
+}
+
+export class Role {
+    content: Content;
+    role: string;
+
+    constructor() {
+        this.content = null;
+        this.role = "";
     }
 }

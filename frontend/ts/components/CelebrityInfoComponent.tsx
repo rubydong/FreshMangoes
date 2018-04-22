@@ -4,29 +4,25 @@ import {Mangoes} from "../components/Mangoes";
 
 export class CelebrityInfoComponent extends React.Component {
     render() {
+        const state = this.props['data-state'];
         return (
             <div className="summary">
-                <img src={this.props['data-image']} className="img-align-left"/>
-                <h2>{this.props['data-name']}</h2>
-                <p/>
-                <b>Highest Rated:</b>
-                {this.props['data-highest-name']}
+                <img src={parseMedia(state.profilePicture)} className="img-align-left"/>
+                <h2>{state.name}</h2> <p/>
+
+                <b>Highest Rated:</b> {state.highestRated.metadata.name}
                 <span className="small-margin-right"></span>
-                <Mangoes data-rating={this.props['data-highest-score']}/> {this.props['data-highest-score']}%
+                <Mangoes data-rating={state.highestRated.metadata.mangoScore}/> {state.highestRated.metadata.mangoScore}%
                 <br/>
 
-                <b>Lowest Rated:</b>
-                {this.props['data-lowest-name']}
+                <b>Lowest Rated:</b> {state.lowestRated.metadata.name}
                 <span className="small-margin-right"></span>
-                <Mangoes data-rating={this.props['data-lowest-score']}/> {this.props['data-lowest-score']}%
+                <Mangoes data-rating={state.lowestRated.metadata.mangoScore}/> {state.lowestRated.metadata.mangoScore}%
                 <br/>
 
-                <b>Birthday:</b>
-                {parseDate(this.props['data-birthday'])}
-                <br/>
-                <b>Birthplace:</b>
-                {this.props['data-birthplace']}
-                <p/><p/> {this.props['data-biography']}
+                <b>Birthday:</b> {parseDate(state.birthday)} <br/>
+                <b>Birthplace:</b> {state.birthplace} <p/><p/> 
+                {state.biography}
             </div>
         );
     }
