@@ -18,7 +18,7 @@ export class CelebrityTemplate extends React.Component {
             const response = await axios.get(window.location.origin + '/api' + window.location.pathname)
             this.setState(response.data);
         } catch (err) {
-            console.log(err);
+            window.location.assign('/../404');
         }
     }
 
