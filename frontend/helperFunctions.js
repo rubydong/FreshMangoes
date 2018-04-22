@@ -1,7 +1,8 @@
 import { NO_USER_PHOTO } from "./GlobalVariables";
+import { isNullOrUndefined } from "util";
 
 export function parseMedia(media) {
-    return media ? media.path : NO_USER_PHOTO;
+    return (media && media.path != "") ? media.path : NO_USER_PHOTO;
 }
 
 export function parseDate(date) {

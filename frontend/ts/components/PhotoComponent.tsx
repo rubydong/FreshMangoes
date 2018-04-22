@@ -11,7 +11,7 @@ export class PhotoComponent extends React.Component {
         return (
             <div className="photos padding-top margin-top-bottom">
                 <h2> Photos </h2> <p/> <hr/>
-                <div className="photos-inner"> {photos} </div>
+            <div className="photos-inner"> {photos} </div>
             </div>
         );
     }

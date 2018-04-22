@@ -8,7 +8,7 @@ export class FilmographyComponent extends React.Component {
             
             return <tr>
                 <td>
-                    <a href={'../' + film.content.type + '/' + film.content.id}> {film.content.metadata.name} </a>
+                    <a href={'../' + film.content.type.toLowerCase() + '/' + film.content.id}> {film.content.metadata.name} </a>
                 </td>
                 <td>{film.content.metadata.mangoScore}%</td>
                 <td>{film.content.type}</td>

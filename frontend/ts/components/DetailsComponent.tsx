@@ -1,6 +1,7 @@
 import * as React from "react";
-import { parseDate }  from "../../HelperFunctions.js";
+import { parseDate }  from "../../HelperFunctions";
 import { Mangoes } from "./Mangoes";
+import { GENRES_MAP } from "../../GlobalVariables";
 
 export class DetailsComponent extends React.Component {
     render() {
@@ -9,7 +10,7 @@ export class DetailsComponent extends React.Component {
         const type = this.props['data-type'];
     
         const genres = metadata.genres.map((genre, i) => {
-            return <span> {genre}{i < metadata.genres.length - 1 ? ', ' : ''}</span>
+            return <span> {GENRES_MAP[genre]}{i < metadata.genres.length - 1 ? ', ' : ''}</span>
         });
 
         let directors = [];
