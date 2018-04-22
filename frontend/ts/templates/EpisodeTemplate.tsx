@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import { parseMedia }  from "../../HelperFunctions.js";
-import { ContentMetadata, Show } from '../types/content';
+import { ContentMetadata, Episode } from '../types/content';
 import { PhotoComponent } from '../components/PhotoComponent';
 import { VideoComponent } from '../components/VideoComponent';
 import { CastComponent } from '../components/CastComponent';
@@ -11,11 +11,11 @@ import { DetailsComponent } from "../components/DetailsComponent";
 import { EpisodeListComponent } from "../components/EpisodeListComponent";
 
 export class EpisodeTemplate extends React.Component {
-    state : Show;
+    state : Episode;
 
     constructor(props) {
       super(props);
-      this.state = new Show();
+      this.state = new Episode();
     }
 
     async componentDidMount() {
@@ -33,15 +33,8 @@ export class EpisodeTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <SummaryComponent data-title={this.state.metadata.name} 
-                                      data-image={this.state.summaryPhoto} 
-                                      data-mango={this.state.metadata.mangoScore} 
-                                      data-audience={this.state.metadata.audienceScore} 
-                                      data-plot={this.state.metadata.summary}
-                                      data-list={3} data-list-type="episode"/>
-                    <DetailsComponent data-genres={this.state.metadata.genres}
-                                      data-premiere={this.state.metadata.releaseDate} 
-                                      data-network={this.state.metadata.studio}/>
+                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-list={3} data-list-type="episode"/>             
+                    <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} data-type={this.state.type}/>
                 </div>
 
                 <PhotoComponent data-photos={this.state.media}/>
