@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public User getUser(final Integer userId) {
     final User user = userRepository.findById(userId).orElse(null);
+    user.setRatings(ratingRepository.findByUserId(userId));
     return user;
   }
 

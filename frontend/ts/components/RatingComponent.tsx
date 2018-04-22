@@ -36,10 +36,14 @@ export class RatingComponent extends React.Component {
     addReview = event => {
         const rating = {
             score: this.state.score * 20,
-            body: this.state.body
+            body: this.state.body,
+            type: (window.location.pathname.search("movie") == 1 ? "MOVIE" : "SHOW")
         };
   
-        axios.post(window.location.origin + '/api/rating/' + this.props['data-id'], rating);
+        axios.post(window.location.origin + '/api/rating/' + this.props['data-id'], rating)
+            .then(res => {
+                window.location.reload();
+            });
     }
 
     editReview = event => {
