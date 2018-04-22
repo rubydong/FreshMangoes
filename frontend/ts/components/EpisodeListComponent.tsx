@@ -4,6 +4,10 @@ import {Mangoes} from "../components/Mangoes";
 
 export class EpisodeListComponent extends React.Component {
     render() {
+		const episodes = this.props['data-episodes'].map((season, i) => {
+            return <div className="episode">
+                </div>
+        });
         return (
             <div className="episodes margin-top-bottom">
 				<h2> Episodes </h2> <hr/>

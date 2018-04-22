@@ -6,7 +6,23 @@ MOVIE_CREDITS = 'movies/credits'
 MOVIE_DETAILS = 'movies/details'
 MOVIE_MORE_DETAILS = 'movies/moredetails'
 MOVIE_PHOTOS = 'movies/images'
-MOVIE_VIDEO = 'movies/videos'
+MOVIE_VIDEOS = 'movies/videos'
+
+SHOWS_CREDITS = 'shows/credits'
+SHOWS_DETAILS = 'shows/details'
+SHOWS_MORE_DETAILS = 'shows/moredetails'
+SHOWS_PHOTOS = 'shows/images'
+SHOWS_VIDEOS = 'shows/videos'
+
+SEASONS_CREDITS = 'seasons/credits'
+SEASONS_DETAILS = 'seasons/details'
+SEASONS_PHOTOS = 'seasons/images'
+SEASONS_VIDEOS = 'seasons/videos'
+
+EPISODES_CREDITS = 'episodes/credits'
+EPISODES_DETAILS = 'episodes/details'
+EPISODES_PHOTOS = 'episodes/images'
+EPISODES_VIDEOS = 'episodes/videos'
 
 BASE_PHOTO_URL = 'https://image.tmdb.org/t/p/original'
 BASE_VIDEO_URL = 'https://www.youtube.com/embed/'
@@ -28,6 +44,7 @@ INSERT_EPISODE = 'insert into `season_episodes` (season_id, episode_id) values(%
 
 connection = pymysql.connect(host='localhost',
                              user='root',
+                             password='password',
                              db='cse308',
                              charset='utf8mb4',
                              autocommit=True,
@@ -62,21 +79,153 @@ def insert_celebrities():
                                           profile_photo_id))
 
 
+def insert_content(content_metadata, content_type, content_credits, content_details, content_more_details, content_photos,
+                   content_videos):
+
+    photos = []
+    photos += [BASE_PHOTO_URL + backdrop["file_path"] for backdrop in content_photos.get("backdrop", [])]
+    photos += [BASE_PHOTO_URL + poster["file_path"] for poster in content_photos.get("posters", [])]
+    photos += [BASE_PHOTO_URL + still["file_path"] for still in content_photos.get("stills", [])]
+
+    videos = []
+    videos += [BASE_VIDEO_URL + result["key"] for result in content_videos["results"]]
+
+    cursor.execute(INSERT_METADATA, content_metadata)
+    content_metadata_id = cursor.lastrowid
+
+    cursor.execute(INSERT_MEDIA, (content_more_details.get("Poster", "N/A"), 0))
+    summary_photo_id = cursor.lastrowid
+
+    cursor.execute(INSERT_CONTENT, (content_type,
+                                    content_metadata_id,
+                                    summary_photo_id))
+    content_id = cursor.lastrowid
+
+    for genre in content_details.get("genres", []):
+        cursor.execute(INSERT_GENRE, (genre["id"], content_metadata_id))
+
+    for photo in photos:
+        cursor.execute(INSERT_MEDIA, (photo, 0))
+        cursor.execute(INSERT_CONTENT_MEDIA, (content_id, cursor.lastrowid))
+
+    for video in videos:
+        cursor.execute(INSERT_MEDIA, (video, 1))
+        cursor.execute(INSERT_CONTENT_MEDIA, (content_id, cursor.lastrowid))
+
+    for cast_member in content_credits.get("cast", []) + content_credits.get("guest_stars", []):
+        cursor.execute(INSERT_CAST, (cast_member["id"], content_id, cast_member["character"]))
+
+    for crew_member in content_credits.get("crew", []):
+        cursor.execute(INSERT_CREW, (crew_member["id"], content_id, crew_member["job"]))
+
+    return content_id
+
+
+def insert_shows():
+    shows_dir = os.listdir(SHOWS_DETAILS)
+    for filename in shows_dir:
+        show_credits = load_json(os.path.join(SHOWS_CREDITS, filename))
+        show_details = load_json(os.path.join(SHOWS_DETAILS, filename))
+        show_more_details = load_json(os.path.join(SHOWS_MORE_DETAILS, filename))
+        show_photos = load_json(os.path.join(SHOWS_PHOTOS, filename))
+        show_videos = load_json(os.path.join(SHOWS_VIDEOS, filename))
+
+        mango_score = 0
+        maturity_rating = show_more_details.get("Rated", "NOT RATED")
+
+        runtime = show_more_details.get("Runtime", 0)
+        if runtime != 0:
+            if runtime == "N/A":
+                runtime = 0
+            else:
+                runtime = runtime.split()[0]
+
+        studio_network = show_details["networks"][0]["name"] if len(show_details["networks"]) > 0 else "Unavailable"
+
+        if "Error" not in show_more_details:
+            for rating in show_more_details["Ratings"]:
+                if rating["Source"] == "Rotten Tomatoes":
+                    mango_score = float(rating["Value"].strip("%"))
+
+        audience_score = show_more_details.get("Metascore", 0)
+        if audience_score == "N/A":
+            audience_score = 0
+        else:
+            audience_score = float(audience_score)
+
+        show_id = insert_content((audience_score,
+                                  show_details["name"],
+                                  mango_score,
+                                  maturity_rating,
+                                  show_details["first_air_date"],
+                                  runtime,
+                                  studio_network,
+                                  show_details["overview"]
+                                  ), 1, show_credits, show_details, show_more_details, show_photos, show_videos)
+
+        for season in range(1, show_details["number_of_seasons"] + 1):
+            season_filename = f"{show_details['id']}_{season}.json"
+
+            if not os.path.exists(os.path.join(SEASONS_DETAILS, season_filename)):
+                continue
+
+            season_credits = load_json(os.path.join(SEASONS_CREDITS, season_filename))
+            season_details = load_json(os.path.join(SEASONS_DETAILS, season_filename))
+            season_photos = load_json(os.path.join(SEASONS_PHOTOS, season_filename))
+            season_videos = load_json(os.path.join(SEASONS_VIDEOS, season_filename))
+            season_id = insert_content((
+                                        audience_score,
+                                        season_details["name"],
+                                        mango_score,
+                                        maturity_rating,
+                                        season_details["air_date"],
+                                        runtime,
+                                        studio_network,
+                                        season_details["overview"],
+                                        ), 2, season_credits, season_details, {}, season_photos, season_videos)
+
+            cursor.execute(INSERT_SEASON, (show_id, season_id))
+
+            for episode in range(1, len(season_details["episodes"]) + 1):
+                episode_filename = f"{show_details['id']}_{season}_{episode}.json"
+                print(episode_filename)
+
+                if not os.path.exists(os.path.join(EPISODES_DETAILS, episode_filename)):
+                    print("skipped")
+                    continue
+
+                episode_credits = load_json(os.path.join(EPISODES_CREDITS, episode_filename))
+                episode_details = load_json(os.path.join(EPISODES_DETAILS, episode_filename))
+                episode_photos = load_json(os.path.join(EPISODES_PHOTOS, episode_filename))
+                episode_videos = load_json(os.path.join(EPISODES_VIDEOS, episode_filename))
+                episode_id = insert_content((
+                                             audience_score,
+                                             episode_details["name"],
+                                             mango_score,
+                                             maturity_rating,
+                                             episode_details["air_date"],
+                                             runtime,
+                                             studio_network,
+                                             episode_details["overview"],
+                                             ), 3, episode_credits, episode_details, {}, episode_photos, episode_videos)
+
+                cursor.execute(INSERT_EPISODE, (season_id, episode_id))
+
+
 def insert_movies():
     movies_dir = os.listdir(MOVIE_DETAILS)
     for filename in movies_dir:
+        movie_credits = load_json(os.path.join(MOVIE_CREDITS, filename))
         movie_details = load_json(os.path.join(MOVIE_DETAILS, filename))
         movie_more_details = load_json(os.path.join(MOVIE_MORE_DETAILS, filename))
         movie_photos = load_json(os.path.join(MOVIE_PHOTOS, filename))
-        movie_videos = load_json(os.path.join(MOVIE_VIDEO, filename))
-        movie_credits = load_json(os.path.join(MOVIE_CREDITS, filename))
+        movie_videos = load_json(os.path.join(MOVIE_VIDEOS, filename))
 
-        audience_score = 0
-        content_name = movie_details["title"]
+        movie_name = movie_details["title"]
         mango_score = 0
         maturity_rating = movie_more_details.get("Rated", "NOT RATED")
         release_date = movie_details["release_date"]
-        runtime = movie_details.get("runtime", -1)
+        runtime = movie_details.get("runtime", 0)
         studio_network = movie_more_details.get("Production", "Unavailable")
         summary = movie_details["overview"]
 
@@ -85,61 +234,30 @@ def insert_movies():
                 if rating["Source"] == "Rotten Tomatoes":
                     mango_score = float(rating["Value"].strip("%"))
 
-            audience_score = movie_more_details.get("Metascore", 0)
-            if audience_score == "N/A":
-                audience_score = 0
-            else:
-                audience_score = float(audience_score)
+        audience_score = movie_more_details.get("Metascore", 0)
+        if audience_score == "N/A":
+            audience_score = 0
+        else:
+            audience_score = float(audience_score)
 
         if runtime is None:
             runtime = 0
 
-        content_photos = []
-        content_photos += [BASE_PHOTO_URL + backdrop["file_path"] for backdrop in movie_photos.get("backdrop", [])]
-        content_photos += [BASE_PHOTO_URL + poster["file_path"] for poster in movie_photos.get("posters", [])]
-
-        content_videos = []
-        content_videos += [BASE_VIDEO_URL + result["key"] for result in movie_videos["results"]]
-
-        cursor.execute(INSERT_METADATA, (audience_score,
-                                         content_name,
-                                         mango_score,
-                                         maturity_rating,
-                                         release_date,
-                                         runtime,
-                                         studio_network,
-                                         summary))
-        content_metadata_id = cursor.lastrowid
-
-        cursor.execute(INSERT_MEDIA, (movie_more_details.get("Poster", "N/A"), 0))
-        summary_photo_id = cursor.lastrowid
-
-        cursor.execute(INSERT_CONTENT, (0,
-                                        content_metadata_id,
-                                        summary_photo_id))
-        content_id = cursor.lastrowid
-
-        for genre in movie_details["genres"]:
-            cursor.execute(INSERT_GENRE, (genre["id"], content_metadata_id))
-
-        for photo in content_photos:
-            cursor.execute(INSERT_MEDIA, (photo, 0))
-            cursor.execute(INSERT_CONTENT_MEDIA, (content_id, cursor.lastrowid))
-
-        for video in content_videos:
-            cursor.execute(INSERT_MEDIA, (video, 1))
-            cursor.execute(INSERT_CONTENT_MEDIA, (content_id, cursor.lastrowid))
-
-        for cast_member in movie_credits["cast"]:
-            cursor.execute(INSERT_CAST, (cast_member["id"], content_id, cast_member["character"]))
-
-        for crew_member in movie_credits["crew"]:
-            cursor.execute(INSERT_CREW, (crew_member["id"], content_id, crew_member["job"]))
+        insert_content((audience_score,
+                        movie_name,
+                        mango_score,
+                        maturity_rating,
+                        release_date,
+                        runtime,
+                        studio_network,
+                        summary
+                        ), 0, movie_credits, movie_details, movie_more_details, movie_photos, movie_videos)
 
 
 def main():
     insert_celebrities()
     insert_movies()
+    insert_shows()
 
 
 if __name__ == "__main__":

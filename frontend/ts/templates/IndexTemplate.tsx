@@ -1,8 +1,9 @@
 import * as React from "react";
 import axios from "axios";
-import { parseMedia }  from "../../HelperFunctions.js";
+import { parseMedia }  from "../../HelperFunctions";
 import { Spotlight } from "../types/content";
 import { IndexComponent } from "../components/IndexComponent";
+import { HOME_PAGE_POSTER } from  "../../GlobalVariables";
 
 export class IndexTemplate extends React.Component {
     state : Spotlight;
@@ -24,7 +25,7 @@ export class IndexTemplate extends React.Component {
     render() {
         return (
         <div>
-            <img id="poster" src={parseMedia(this.state.posterImage)}/>
+            <img id="poster" src={HOME_PAGE_POSTER}/>
             <IndexComponent data-spotlight={this.state}/>
         </div>
     )}

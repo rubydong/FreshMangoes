@@ -25,6 +25,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 
 @Builder
@@ -34,6 +36,7 @@ import lombok.Setter;
 @Table(name = "Celebrities")
 @Getter
 @Setter
+@Indexed
 public class Celebrity {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,6 +46,8 @@ public class Celebrity {
   private Date birthday;
 
   @Column(name = "celebrity_name")
+
+  @Field
   private String name;
 
   private String birthplace;
