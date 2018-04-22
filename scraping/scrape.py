@@ -34,6 +34,17 @@ def scrape_celebrities():
                     save_json(f"celebrities/{member['id']}.json", person)
 
 
+def scrape_show_moredetails():
+    params = {"api_key": tmdb_api_key}
+    shows_dir = os.listdir("shows/details")
+    for filename in shows_dir:
+        show_id = os.path.splitext(filename)[0]
+        external_ids = make_request(f"{tmdb_url}/tv/{show_id}/external_ids", params)
+        if "imdb_id" in external_ids:
+            more_details = make_request(f"{omdb_url}", {"apikey": omdb_api_key, "i": external_ids["imdb_id"]})
+            save_json(f"shows/moredetails/{show_id}.json", more_details)
+
+
 def scrape_shows(num_shows):
     page = 1
     while num_shows > 0:
@@ -95,6 +106,7 @@ def main():
 
     scrape_movies(2000)
     scrape_shows(2000)
+    scrape_show_moredetails()
     scrape_celebrities()
 
 
