@@ -48,9 +48,12 @@ export class ContentListsComponent extends React.Component {
                             <div className="flex-center">
                                 {contentList}
                             </div>
-                            <span className="align-right">
+                            {contentList.length == 0 
+                            ? <div className="center-text"> You have not added anything to your list yet! </div>
+                            : <span className="align-right">
                                 <a href="">View All</a>
                             </span>
+                            }
                         </div>
                     </div>
                 }
