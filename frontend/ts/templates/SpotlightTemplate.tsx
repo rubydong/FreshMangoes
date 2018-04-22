@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import {parseMedia} from "../../helperFunctions.js";
+import {parseMedia} from "../../HelperFunctions.js";
 import {Spotlight} from "../types/content";
 import { SpotlightDetailComponent } from "../components/SpotlightDetailComponents";
 

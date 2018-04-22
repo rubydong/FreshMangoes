@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Mangoes } from "../components/Mangoes";
-import { parseMedia }  from "../../helperFunctions.js";
+import { parseMedia }  from "../../HelperFunctions.js";
 import { INDEX_LIMIT } from "../../GlobalVariables";
 
 export class IndexComponent extends React.Component {

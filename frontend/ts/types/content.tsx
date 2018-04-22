@@ -17,7 +17,6 @@ export class ContentMetadata {
   genres: string[];
   runtime: number;
   summary: string;
-  cast: Celebrity[];
   releaseDate: Date;
   studio: String;
 
@@ -29,7 +28,6 @@ export class ContentMetadata {
     this.genres = [];
     this.runtime = 0;
     this.summary = "";
-    this.cast = [];
     this.releaseDate = null;
     this.studio = null;
   }
@@ -43,6 +41,7 @@ export class Content {
   summaryPhoto : Media;
   ratings: Rating[];
   cast: Celebrity[];
+  crew: Celebrity[];
 
   constructor() {
     this.id = 0;
@@ -52,6 +51,7 @@ export class Content {
     this.summaryPhoto = new Media();
     this.ratings = [];
     this.cast = [];
+    this.crew = [];
   }
 }
 

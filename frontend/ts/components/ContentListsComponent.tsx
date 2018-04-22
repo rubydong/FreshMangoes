@@ -1,5 +1,5 @@
 import * as React from "react";
-import {parseMedia} from "../../helperFunctions.js";
+import {parseMedia} from "../../HelperFunctions.js";
 import {CONTENT_LIMIT} from "../../GlobalVariables";
 
 export class ContentListsComponent extends React.Component {

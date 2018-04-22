@@ -1,5 +1,5 @@
 import * as React from "react";
-import { parseMedia }  from "../../helperFunctions.js";
+import { parseMedia }  from "../../HelperFunctions.js";
 import { Mangoes } from "./Mangoes";
 import { Rating } from '../types/rating';
 import axios from "axios";

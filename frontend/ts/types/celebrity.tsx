@@ -1,6 +1,6 @@
 import { Media } from './media';
 
-export enum CelebrityType {
+export enum CrewType {
     ACTOR,
     DIRECTOR,
     PRODUCER, 
@@ -37,6 +37,7 @@ export class Celebrity {
     highestRated: Rated;
     lowestRated: Rated;
     role: string;
+    job: string;
   
     constructor() {
         this.name = "";
@@ -48,5 +49,6 @@ export class Celebrity {
         this.highestRated = new Rated();
         this.lowestRated = new Rated();
         this.role = "";
+        this.job = "";
     }
 }

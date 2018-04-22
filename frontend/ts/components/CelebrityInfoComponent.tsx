@@ -1,5 +1,5 @@
 import * as React from "react";
-import {parseMedia, parseDate} from "../../helperFunctions.js";
+import {parseMedia, parseDate} from "../../HelperFunctions.js";
 import {Mangoes} from "../components/Mangoes";
 
 export class CelebrityInfoComponent extends React.Component {

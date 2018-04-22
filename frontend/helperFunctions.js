@@ -1,7 +1,7 @@
-import { NO_USER } from "./GlobalVariables";
+import { NO_USER_PHOTO } from "./GlobalVariables";
 
 export function parseMedia(media) {
-    return media ? media.path : NO_USER;
+    return media ? media.path : NO_USER_PHOTO;
 }
 
 export function parseDate(date) {

@@ -1,8 +1,10 @@
 import * as React from "react";
 import {Mangoes} from "./Mangoes";
+import { parseMedia } from "../../HelperFunctions.js";
 
 export class SummaryComponent extends React.Component {
     render() {
+        const metadata = this.props['data-metadata'];
         const list = [];
         for (let i = 1; i <= this.props['data-list']; i++) {
             list.push(
@@ -13,12 +15,11 @@ export class SummaryComponent extends React.Component {
                 </option>);
         }
         
-
         return (
-            <div>
-                <img src={this.props['data-image']} className="img-align-left"/>
+            <div>        
+                <img src={parseMedia(this.props['data-image'])} className="img-align-left"/>
                 <div className="summary-title">
-                    <h2>{this.props['data-title']}</h2>
+                    <h2>{metadata.name}</h2>
                 </div>
 
                 <div className="plot">
@@ -29,12 +30,12 @@ export class SummaryComponent extends React.Component {
                         Audience Score
                     </b>
                     <br/>
-                    <Mangoes data-rating={this.props['data-mango']}/> {this.props['data-mango']}%
+                    <Mangoes data-rating={metadata.mangoScore}/> {metadata.mangoScore}%
                     <span className="med-margin-right"></span>
-                    <Mangoes data-rating={this.props['data-audience']}/> {this.props['data-audience']}%
+                    <Mangoes data-rating={metadata.audienceScore}/> {metadata.audienceScore}%
                     <p/>
                     <b>About Movie</b>
-                    <br/> {this.props['data-plot']}
+                    <br/> {metadata.summary}
                     <p/>
                 </div>
             </div>

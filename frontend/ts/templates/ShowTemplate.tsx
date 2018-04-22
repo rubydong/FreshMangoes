@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import { parseMedia }  from "../../helperFunctions.js";
+import { parseMedia }  from "../../HelperFunctions.js";
 import { ContentMetadata, Show } from '../types/content';
 import { PhotoComponent } from '../components/PhotoComponent';
 import { VideoComponent } from '../components/VideoComponent';
@@ -59,7 +59,7 @@ export class ShowTemplate extends React.Component {
                     {seasons}
                 </div>
                 
-                <CastComponent data-cast={this.state.metadata.cast} data-name={this.state.metadata.name}/>
+                <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
             </div>
 		</div>
 
