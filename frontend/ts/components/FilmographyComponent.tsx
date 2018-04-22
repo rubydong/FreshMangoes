@@ -3,9 +3,7 @@ import * as React from "react";
 export class FilmographyComponent extends React.Component {
     render() {
         const films = this.props['data-roles'];
-    
         const filmography = films.map((film) => {
-            
             return <tr>
                 <td>
                     <a href={'../' + film.content.type.toLowerCase() + '/' + film.content.id}> {film.content.metadata.name} </a>

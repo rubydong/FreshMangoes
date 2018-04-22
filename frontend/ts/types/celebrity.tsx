@@ -8,26 +8,19 @@ export enum CrewType {
     WRITER
 }
 
-export class Metadata {
-    name: string;
-    mangoScore: number;
+export class FilmRating {
+    highestRatedName: string;
+    highestRatedScore: number;
+    lowestRatedName: string;
+    lowestRatedScore: number;
 
     constructor() {
-        this.name = "";
-        this.mangoScore = 0;
+        this.highestRatedName = "";
+        this.highestRatedScore = 0;
+        this.lowestRatedName = "";
+        this.lowestRatedScore = 0;
     }
 }
-
-export class Rated {
-    id: number;
-    metadata: Metadata;
-    constructor() {
-        this.id = 0;
-        this.metadata = new Metadata();
-    }
-}
-
-
 export class Celebrity {
     name: string;
     profilePicture: Media;
@@ -35,10 +28,9 @@ export class Celebrity {
     birthplace: string;
     biography: string;
     media: Media[];
-    highestRated: Rated;
-    lowestRated: Rated;
     roles: Role[];
     job: string;
+    
   
     constructor() {
         this.name = "";
@@ -47,8 +39,6 @@ export class Celebrity {
         this.birthplace = "";
         this.biography = "";
         this.media = [];
-        this.highestRated = new Rated();
-        this.lowestRated = new Rated();
         this.roles = [];
         this.job = "";
     }
