@@ -43,8 +43,8 @@ public class InterestsController {
     final User user = Helpers.getAuthenticatedUser(session);
 
     if (user != null) {
-      status = interestsService.removeFromInterestedList(user.getId(), contentId) ? HttpStatus.OK
-          : HttpStatus.BAD_REQUEST;
+      status = HttpStatus.OK;
+      interestsService.removeFromInterestedList(user.getId(), contentId);
     } else {
       status = HttpStatus.BAD_REQUEST;
     }
@@ -73,8 +73,8 @@ public class InterestsController {
     final User user = Helpers.getAuthenticatedUser(session);
 
     if (user != null) {
-      status = interestsService.removeFromDisinterestedList(user.getId(), contentId) ? HttpStatus.OK
-          : HttpStatus.BAD_REQUEST;
+      status = HttpStatus.OK;
+      interestsService.removeFromDisinterestedList(user.getId(), contentId);
     } else {
       status = HttpStatus.BAD_REQUEST;
     }

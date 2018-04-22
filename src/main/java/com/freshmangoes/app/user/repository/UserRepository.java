@@ -2,8 +2,10 @@ package com.freshmangoes.app.user.repository;
 
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.user.data.User;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +25,29 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
   Optional<User> findById(Integer id);
 
+  @Transactional
+  @Modifying
+  @Query(value = "INSERT INTO interests (user_id, content_id) VALUES (?1, ?2)", nativeQuery = true)
+  Integer addToInterestedList(Integer userId, Integer contentId);
 
-//  Boolean updateInterestedList(Integer userId, Integer contentId, Boolean present);
-//
-//  Boolean updateDisinterestedList(Integer userId, Integer contentId, Boolean present);
+  @Query(value = "SELECT user_id FROM interests WHERE user_id=?1 and content_id=?2", nativeQuery = true)
+  Integer isInterestedInContent(Integer userId, Integer contentId);
+
+  @Transactional
+  @Modifying
+  @Query(value = "DELETE FROM interests WHERE user_id=?1 and content_id=?2", nativeQuery = true)
+  void deleteFromInterestedList(Integer userId, Integer contentId);
+
+  @Transactional
+  @Modifying
+  @Query(value = "INSERT INTO disinterests (user_id, content_id) VALUES (?1, ?2)", nativeQuery = true)
+  Integer addToDisinterestedList(Integer userId, Integer contentId);
+
+  @Query(value = "SELECT user_id FROM disinterests WHERE user_id=?1 and content_id=?2", nativeQuery = true)
+  Integer isDisinterestedInContent(Integer userId, Integer contentId);
+
+  @Transactional
+  @Modifying
+  @Query(value = "DELETE FROM disinterests WHERE user_id=?1 and content_id=?2", nativeQuery = true)
+  void deleteFromDisinterestedList(Integer userId, Integer contentId);
 }

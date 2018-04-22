@@ -22,14 +22,6 @@ public class UserServiceImpl implements UserService {
   @Override
   public User getUser(final Integer userId) {
     final User user = userRepository.findById(userId).orElse(null);
-    if (user != null) {
-      user.setHash(null);
-      user.setNumFollowers(followRepository.countFollowers(userId));
-      user.setNumFollowing(followRepository.countFollowing(userId));
-      user.setInterestedList(userRepository.getInterestsByUserId(userId));
-      user.setDisinterestedList(userRepository.getDisinterestsByUserId(userId));
-      user.setRatings(ratingRepository.findByUserId(userId));
-    }
     return user;
   }
 

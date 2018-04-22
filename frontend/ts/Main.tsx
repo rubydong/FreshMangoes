@@ -13,6 +13,7 @@ import { CriticsTemplate } from "./templates/CriticsTemplate";
 import { CreatePagesTemplate } from "./templates/CreatePagesTemplate";
 import { ReportsTemplate } from "./templates/ReportsTemplate";
 import { VerifyTemplate } from "./templates/VerifyTemplate";
+import { NoMatch } from "./templates/NoMatch";
 
 const Main = () => (
   <main>
@@ -31,17 +32,10 @@ const Main = () => (
       <Route path="/create" component={CreatePagesTemplate}/>
       <Route path="/reports" component={ReportsTemplate}/>
       <Route path="/verify/:id" component={VerifyTemplate}/>
+      <Route path="/404" component={NoMatch}/>
       <Route component={NoMatch}/>
     </Switch>
   </main>
 )
-
-const NoMatch = ({ location }) => (
-  <div>
-    <h3>
-      404 NOT FOUND <code>{location.pathname}</code>
-    </h3>
-  </div>
-);
 
 export default Main

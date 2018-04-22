@@ -61,48 +61,40 @@ public class User {
 
   @JoinTable(name = "following",
       joinColumns = @JoinColumn(
-          name = "follower_id",
-          referencedColumnName = "id"
+          name = "follower_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "followee_id",
-          referencedColumnName = "id"
+          name = "followee_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   private List<User> followers;
 
   @JoinTable(name = "following",
       joinColumns = @JoinColumn(
-          name = "followee_id",
-          referencedColumnName = "id"
+          name = "followee_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "follower_id",
-          referencedColumnName = "id"
+          name = "follower_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   private List<User> following;
 
   @JoinTable(name = "interests",
       joinColumns = @JoinColumn(
-          name = "user_id",
-          referencedColumnName = "id"
+          name = "user_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "content_id",
-          referencedColumnName = "id"
+          name = "content_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   private List<Content> interestedList;
 
   @JoinTable(name = "disinterests",
       joinColumns = @JoinColumn(
-          name = "user_id",
-          referencedColumnName = "id"
+          name = "user_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "content_id",
-          referencedColumnName = "id"
+          name = "content_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   private List<Content> disinterestedList;
