@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
   User findByEmail(String email);
@@ -18,11 +19,9 @@ public interface UserRepository extends CrudRepository<User, Integer> {
       + "JOIN Disinterests d on c.id = d.content_id and user_id = ?1", nativeQuery = true)
   List<Content> getDisinterestsByUserId(Integer userId);
 
-  @Query(value = "SELECT (id) FROM Users WHERE verification_key=?1", nativeQuery = true)
-  Integer findByVerificationKey(String verificationKey);
+  User findByVerificationKey(String verificationKey);
 
-  @Query(value = "SELECT (verification_key) FROM Users WHERE id=?1", nativeQuery = true)
-  String findByUserId(Integer userId);
+  Optional<User> findById(Integer id);
 
 
 //  Boolean updateInterestedList(Integer userId, Integer contentId, Boolean present);

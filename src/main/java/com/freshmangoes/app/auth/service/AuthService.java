@@ -5,5 +5,5 @@ import com.freshmangoes.app.user.data.User;
 public interface AuthService {
   User loginUser(String username, String password);
 
-  Integer registerUser(String displayName, String email, String password);
+  User registerUser(String displayName, String email, String password);
 }

@@ -3,7 +3,12 @@ import axios from "axios";
 
 export class VerifyTemplate extends React.Component {
     async componentWillMount() {
-        axios.post(window.location.origin);
+        try {
+            const response = await axios.post(window.location.origin + '/api' + window.location.pathname);
+            console.log(response);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     render() {

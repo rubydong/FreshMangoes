@@ -60,16 +60,16 @@ public class AuthController {
   @PostMapping(Constants.REGISTER_MAPPING)
   public ResponseEntity register(@RequestBody final Map<String, String> body) {
     final HttpStatus status;
-    final Integer userId;
+    final User user;
     final String email = body.get(Constants.EMAIL);
 
-    userId = authService.registerUser(email,
+    user = authService.registerUser(email,
                                       body.get(Constants.PASSWORD),
                                       body.get(Constants.DISPLAY_NAME));
 
-    if (userId != null) {
-      status = (verificationService.sendVerificationEmail(email, userId)) ? HttpStatus.OK
-                                                                          : HttpStatus.BAD_REQUEST;
+    if (user != null) {
+      status = (verificationService.sendVerificationEmail(user)) ? HttpStatus.OK
+                                                                 : HttpStatus.BAD_REQUEST;
     } else {
       status = HttpStatus.BAD_REQUEST;
     }
