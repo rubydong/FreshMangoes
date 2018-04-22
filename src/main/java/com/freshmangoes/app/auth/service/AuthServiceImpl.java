@@ -35,8 +35,7 @@ public class AuthServiceImpl implements AuthService {
                                               .hash(hash)
                                               .displayName(displayName)
                                               .verified(false)
-                                              .build()
-                                          );
+                                              .build());
     return (user != null) ? user.getId() : null;
   }
 }

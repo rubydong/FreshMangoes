@@ -1,5 +1,6 @@
 package com.freshmangoes.app.user.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.freshmangoes.app.common.data.Media;
@@ -35,7 +36,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Users")
 public class User {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String email;
   private String hash;
@@ -110,6 +111,10 @@ public class User {
   @JoinColumn(name = "id")
   @JsonIgnoreProperties("user")
   private List<Rating> ratings;
+
+  @JsonIgnore
+  @Column(name = "verification_key")
+  private String verificationKey;
 
   private Boolean verified;
 }
