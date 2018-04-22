@@ -16,21 +16,29 @@ public class InterestsServiceImpl implements InterestsService {
 
   @Override
   public Boolean addToInterestedList(final Integer userId, final Integer contentId) {
-    return null;
+    if (userRepository.isInterestedInContent(userId, contentId) == null) {
+      return userRepository.addToInterestedList(userId, contentId) == 1;
+    } else {
+      return false;
+    }
   }
 
   @Override
-  public Boolean removeFromInterestedList(final Integer userId, final Integer contentId) {
-    return null;
+  public void removeFromInterestedList(final Integer userId, final Integer contentId) {
+    userRepository.deleteFromInterestedList(userId, contentId);
   }
 
   @Override
   public Boolean addToDisinterestedList(final Integer userId, final Integer contentId) {
-    return null;
+    if (userRepository.isDisinterestedInContent(userId, contentId) == null) {
+      return userRepository.addToDisinterestedList(userId, contentId) == 1;
+    } else {
+      return false;
+    }
   }
 
   @Override
-  public Boolean removeFromDisinterestedList(final Integer userId, final Integer contentId) {
-    return null;
+  public void removeFromDisinterestedList(final Integer userId, final Integer contentId) {
+    userRepository.deleteFromDisinterestedList(userId, contentId);
   }
 }
