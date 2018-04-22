@@ -1,9 +1,16 @@
-export class Media {
-  photos: URL[];
-  videos: URL[];
+export enum MediaType {
+  PHOTO,
+  VIDEO
+}
 
+export class Media {
+  id: number;
+  path: string;
+  type: MediaType 
+  
   constructor() {
-    this.photos = [];
-    this.videos = [];
+    this.id = 0;
+    this.path = '';
+    this.type = null;
   }
 }

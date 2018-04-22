@@ -1,10 +1,7 @@
+import { NO_USER } from "./GlobalVariables";
+
 export function parseMedia(media) {
-    if (media == "" || media == null) return "";
-    if (media.includes("https"))
-        return "../" + media.substring(8);
-    if (media.includes("http"))
-        return "../" + media.substring(7);
-    return media;
+    return media ? media.path : NO_USER;
 }
 
 export function parseDate(date) {

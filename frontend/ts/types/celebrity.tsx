@@ -29,25 +29,24 @@ export class Rated {
 
 export class Celebrity {
     name: string;
-    profilePhoto: URL;
+    profilePicture: Media;
     birthday: Date;
     birthplace: string;
     biography: string;
-    media: Media;
+    media: Media[];
     highestRated: Rated;
     lowestRated: Rated;
-    roles: {}
+    role: string;
   
     constructor() {
         this.name = "";
-        this.profilePhoto = null;
-        this.birthday = null;
+        this.profilePicture = new Media();
+        this.birthday = new Date();
         this.birthplace = "";
         this.biography = "";
-        this.media = new Media();
+        this.media = [];
         this.highestRated = new Rated();
         this.lowestRated = new Rated();
-        this.roles = {};
+        this.role = "";
     }
-  }
-  
+}

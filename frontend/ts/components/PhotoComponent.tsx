@@ -1,12 +1,10 @@
 import * as React from "react";
-import { parseMedia }  from "../../helperFunctions.js";
-import { MEDIA_CONTENT } from "../../GlobalVariables";
+import { MEDIA_LIMIT } from "../../GlobalVariables";
 
 export class PhotoComponent extends React.Component {
     render() {
-        const photos = this.props['data-photos'].slice(0, MEDIA_CONTENT).map((photo, i) => {
-            let newUrl = this.props['data-actual-url'] == 'true' ? photo : parseMedia(photo);
-            return <img src={newUrl} key={i}/>
+        const photos = this.props['data-photos'].slice(0, MEDIA_LIMIT).map((photo, i) => {
+            return (photo.type == "PHOTO" ? <img src={photo.path} key={i}/> : '')
         });
 
         return (

@@ -1,5 +1,4 @@
 import * as React from "react";
-import {parseMedia} from "../../helperFunctions.js";
 import {Mangoes} from "./Mangoes";
 
 export class SummaryComponent extends React.Component {
@@ -17,7 +16,7 @@ export class SummaryComponent extends React.Component {
 
         return (
             <div>
-                <img src={parseMedia(this.props['data-image'])} className="img-align-left"/>
+                <img src={this.props['data-image']} className="img-align-left"/>
                 <div className="summary-title">
                     <h2>{this.props['data-title']}</h2>
                 </div>

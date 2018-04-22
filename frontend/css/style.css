@@ -317,10 +317,9 @@ select, option {
 	transition: 300ms ease-in-out;
 }
 
-video {
-	margin-bottom: 50px;
+iframe {
 	margin: 3px;
-	max-height: 200px;
+	border: none;
 }
 
 .videos {

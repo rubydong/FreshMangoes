@@ -44,8 +44,8 @@ export class SeasonTemplate extends React.Component {
                                       data-network={this.state.metadata.studio}/>
                 </div>
 
-                <PhotoComponent data-photos={this.state.media.photos}/>
-                <VideoComponent data-videos={this.state.media.videos}/>
+                <PhotoComponent data-photos={this.state.media}/>
+                <VideoComponent data-videos={this.state.media}/>
                 <EpisodeListComponent/>
                 <CastComponent data-cast={this.state.metadata.cast} data-name={this.state.metadata.name}/>
             </div>
