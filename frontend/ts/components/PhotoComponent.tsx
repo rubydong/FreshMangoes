@@ -1,5 +1,6 @@
 import * as React from "react";
 import { MEDIA_LIMIT } from "../../GlobalVariables";
+import { isNullOrUndefined } from "util";
 
 export class PhotoComponent extends React.Component {
     render() {
@@ -8,11 +9,11 @@ export class PhotoComponent extends React.Component {
             return <img src={photo.path} key={i}/>
         });
 
-        return (
-            <div className="photos padding-top margin-top-bottom">
+        return ( photos == isNullOrUndefined || photos.length == 0 ) 
+            ? ''
+            : <div className="photos margin-top-bottom">
                 <h2> Photos </h2> <p/> <hr/>
-            <div className="photos-inner"> {photos} </div>
-            </div>
-        );
+                <div className="photos-inner"> {photos} </div>
+              </div>;
     }
 }

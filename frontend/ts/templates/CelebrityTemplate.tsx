@@ -27,7 +27,7 @@ export class CelebrityTemplate extends React.Component {
             <div>
                 <hr/>
                 <div className="content" id="celebrity">
-                    <CelebrityInfoComponent data-state={this.state}/> 
+                    <CelebrityInfoComponent data-state={this.state}/>
                     <PhotoComponent data-photos={this.state.media}/>
                     <FilmographyComponent data-roles={this.state.roles}/>
                     

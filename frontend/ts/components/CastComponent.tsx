@@ -11,8 +11,9 @@ export class CastComponent extends React.Component {
             </div>
         });
 
-        return (
-            <div className="casts margin-top-bottom">
+        return (cast == null || cast.length == 0) 
+            ? ''
+            : <div className="casts margin-top-bottom">
                 <h2>Cast</h2>
                 <hr/>
                 <div className="flex-center">
@@ -22,7 +23,7 @@ export class CastComponent extends React.Component {
                 <div className="align-right">
                     <a href="">View All Cast</a>
                 </div>
-            </div>
-        );
+              </div>
+        ;
     }
 }

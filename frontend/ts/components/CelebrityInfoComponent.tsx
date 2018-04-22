@@ -43,6 +43,7 @@ export class CelebrityInfoComponent extends React.Component {
                 <b>Birthday:</b> {parseDate(state.birthday)} <br/>
                 <b>Birthplace:</b> {state.birthplace} <p/><p/> 
                 {state.biography}
+                <div className="clear-both"></div>
             </div>
         );
     }
