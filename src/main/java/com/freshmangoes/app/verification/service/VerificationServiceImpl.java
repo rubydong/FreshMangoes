@@ -16,25 +16,21 @@ public class VerificationServiceImpl implements VerificationService {
   private UserRepository userRepository;
 
   @Override
-  public Boolean sendVerificationEmail(String email, Integer userId) {
+  public Boolean sendVerificationEmail(final User user) {
     final String verificationKey = UUID.randomUUID().toString();
-    final User user = userRepository.findById(userId).get();
     user.setVerificationKey(verificationKey);
     userRepository.save(user);
-    emailService.sendEmail(email, "Fresh Mangoes Verification", "Click this link to"
+    return emailService.sendEmail(user.getEmail(), "Fresh Mangoes Verification", "Click this link to"
         + "verify yourself please: http://localhost:9000/verify/" + verificationKey);
-    return true;
   }
 
   @Override
   public Boolean resendVerificationEmail(String email) {
     final User user = userRepository.findByEmail(email);
-    final String verificationKey = userRepository.findByUserId(user.getId());
 
-    if (verificationKey != null) {
-      emailService.sendEmail(email, "Fresh Mangoes Verification Resend", "Click this link to"
-          + "verify yourself please: http://localhost:9000/verify/" + verificationKey);
-      return true;
+    if (user != null) {
+      return emailService.sendEmail(email, "Fresh Mangoes Verification Resend", "Click this link to"
+          + "verify yourself please: http://localhost:9000/verify/" + user.getVerificationKey());
     } else {
       return false;
     }
@@ -45,10 +41,9 @@ public class VerificationServiceImpl implements VerificationService {
     final User user;
     final Integer userId;
 
-    userId = userRepository.findByVerificationKey(verificationKey);
+    user = userRepository.findByVerificationKey(verificationKey);
 
-    if (userId != null) {
-      user = userRepository.findById(userId).get();
+    if (user != null) {
       user.setVerified(true);
       userRepository.save(user);
       return user;

@@ -1,20 +1,29 @@
 package com.freshmangoes.app.follow.repository;
 
 import com.freshmangoes.app.user.data.User;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
 public interface FollowRepository extends CrudRepository<User, Integer> {
 
+  @Transactional
+  @Modifying
   @Query(value = "INSERT into Following (followee_id, follower_id) VALUES (?2, ?1)", nativeQuery = true)
   void saveFollowing(Integer followerId, Integer followeeId);
 
-  @Query(value = "DELETE FROM Following WHERE followee_id=?2 AND followerId=?1", nativeQuery = true)
-  void deleteFollowing(Integer followerId, Integer followeeeId);
+  @Query(value = "SELECT followee_id FROM Following WHERE followee_id=?2 AND follower_id=?1", nativeQuery = true)
+  Integer isFollowing(Integer followerId, Integer followeeId);
+
+  @Transactional
+  @Modifying
+  @Query(value = "DELETE FROM Following WHERE followee_id=?2 AND follower_id=?1", nativeQuery = true)
+  void deleteFollowing(Integer followerId, Integer followeeId);
 
   @Query(value = "SELECT u.display_name, u.profile_picture, u.id FROM Users u"
           + "JOIN Following f WHERE f.follower_id = ?1", nativeQuery = true)
