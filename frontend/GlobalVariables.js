@@ -7,6 +7,8 @@ export const MANGO_COLOR = "http://i67.tinypic.com/lazqr.jpg";
 export const MANGO_BW = "http://i63.tinypic.com/2gxecgl.png";
 export const LOGO = "http://i68.tinypic.com/14iq5vl.png";
 export const NO_USER_PHOTO = "http://i67.tinypic.com/2a4z1x2.png";
+export const HOME_PAGE_POSTER = "http://i68.tinypic.com/dr729i.jpg";
+
 export const GENRES_MAP = {
     28: 'Action',
     10759: 'Action & Adventure',
