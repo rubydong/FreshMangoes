@@ -21,6 +21,7 @@ export class FilmRating {
         this.lowestRatedScore = 0;
     }
 }
+
 export class Celebrity {
     name: string;
     profilePicture: Media;

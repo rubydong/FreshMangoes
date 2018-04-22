@@ -21,7 +21,7 @@ export class MovieTemplate extends React.Component {
             const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
             this.setState(response.data);
         } catch (err) {
-            console.log(err);
+            window.location.assign('/../404');
         }
     }
 
@@ -34,6 +34,7 @@ export class MovieTemplate extends React.Component {
                     <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} />             
                     <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} data-type={this.state.type}/>
                 </div>
+                <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>   
                 <VideoComponent data-videos={this.state.media}/>  
                 <CastComponent data-cast={this.state.cast}/>

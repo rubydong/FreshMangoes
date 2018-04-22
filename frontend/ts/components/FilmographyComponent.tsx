@@ -13,23 +13,23 @@ export class FilmographyComponent extends React.Component {
                 <td>{film.role}</td>
             </tr>
         });
-
-        return (
-            <div className="filmography margin-top-bottom">
-                <h2> Filmography </h2>
-                <hr/>
-                <table className="table">
-                    <thead className="thead-light">
-                        <tr>
-                            <th>Title</th>
-                            <th>Rating</th>
-                            <th>Type</th>
-                            <th>Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>{filmography}</tbody>
-                </table>
-            </div>
-        );
+        return (filmography == null || filmography.length == 0) 
+            ? ''
+            :   <div className="filmography margin-top-bottom">
+                    <h2> Filmography </h2>
+                    <hr/>
+                    <table className="table">
+                        <thead className="thead-light">
+                            <tr>
+                                <th>Title</th>
+                                <th>Rating</th>
+                                <th>Type</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>{filmography}</tbody>
+                    </table>
+                </div>
+            ;
     }
 }
