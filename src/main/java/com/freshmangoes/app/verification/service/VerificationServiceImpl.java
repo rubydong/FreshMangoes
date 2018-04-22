@@ -21,7 +21,8 @@ public class VerificationServiceImpl implements VerificationService {
     final User user = userRepository.findById(userId).get();
     user.setVerificationKey(verificationKey);
     userRepository.save(user);
-    emailService.sendEmail(email, "", "");
+    emailService.sendEmail(email, "Fresh Mangoes Verification", "Click this link to"
+        + "verify yourself please: http://localhost:9000/verify/" + verificationKey);
     return true;
   }
 
@@ -31,7 +32,8 @@ public class VerificationServiceImpl implements VerificationService {
     final String verificationKey = userRepository.findByUserId(user.getId());
 
     if (verificationKey != null) {
-      emailService.sendEmail(email, "", "");
+      emailService.sendEmail(email, "Fresh Mangoes Verification Resend", "Click this link to"
+          + "verify yourself please: http://localhost:9000/verify/" + verificationKey);
       return true;
     } else {
       return false;
@@ -49,7 +51,6 @@ public class VerificationServiceImpl implements VerificationService {
       user = userRepository.findById(userId).get();
       user.setVerified(true);
       userRepository.save(user);
-      user.setHash(null);
       return user;
     } else {
       return null;
