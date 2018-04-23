@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 public class Helpers {
   public static User getAuthenticatedUser(HttpSession session) {
-    return (User) session.getAttribute(Constants.USER_ID);
+    User user = (User) session.getAttribute(Constants.USER_ID);
+    return user;
   }
 }

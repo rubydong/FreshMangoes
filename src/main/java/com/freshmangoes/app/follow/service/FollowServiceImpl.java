@@ -28,14 +28,4 @@ public class FollowServiceImpl implements FollowService {
     followRepository.deleteFollowing(userId, otherUserId);
     return true;
   }
-
-  @Override
-  public List<User> followers(final Integer id) {
-    return followRepository.findAllFollowers(id);
-  }
-
-  @Override
-  public List<User> following(final Integer id) {
-    return followRepository.findAllFollowing(id);
-  }
 }
