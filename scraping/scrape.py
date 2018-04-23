@@ -28,7 +28,7 @@ def scrape_celebrities():
     for type in ["movies", "shows", "seasons", "episodes"]:
         for credits_file in os.listdir(f"{type}/credits"):
             credits = load_json(os.path.join(f"{type}/credits", credits_file))
-            for member in credits["cast"] + credits["crew"]:
+            for member in credits.get("cast", []) + credits.get("crew", []) + credits.get("guest_stars", []):
                 if not os.path.isfile(f"celebrities/{member['id']}.json"):
                     person = make_request(f"{tmdb_url}/person/{member['id']}", params)
                     save_json(f"celebrities/{member['id']}.json", person)
