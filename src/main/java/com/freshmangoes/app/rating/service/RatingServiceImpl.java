@@ -29,18 +29,19 @@ public class RatingServiceImpl implements RatingService {
         rating.setContent(showRepository.findById(contentId).orElse(null));
         break;
     }
-    return ratingRepository.existsByUserId(rating.getUser().getId()) == null
+    return ratingRepository.existsByUserId(rating.getUser().getId(), contentId) == null
            ? ratingRepository.save(rating)
            : null;
   }
 
   public Rating editRating(final Integer userId, final Rating rating) {
-    Rating existingRating = ratingRepository.existsByUserId(userId);
+    Rating existingRating = ratingRepository.findById(rating.getId()).orElse(null);
     if (existingRating == null) {
       return null;
     }
     existingRating.setBody(rating.getBody());
     existingRating.setScore(rating.getScore());
+    ratingRepository.save(existingRating);
     return existingRating;
   }
 

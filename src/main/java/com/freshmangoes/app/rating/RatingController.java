@@ -80,8 +80,9 @@ public class RatingController {
        Rating
        .builder()
        .id(ratingId)
+       .content(null)
        .score(Integer.parseInt(body.get(Constants.SCORE)))
-       .user(null)
+       .user(user)
        .body(body.get(Constants.BODY))
        .build()) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
