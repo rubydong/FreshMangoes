@@ -10,20 +10,14 @@ export class Header extends React.Component {
     
     logout = event => {
         this.setState({ email: event.target.value, currentUser: -1 });
-        axios.post(window.location.origin + '/api/logout', {})
-        .then(res => {
+        axios.post(window.location.origin + '/api/logout').then(res => {
+            window.location.assign("/../");
         });
     }
 
     handleSearchChange = event => {
         this.setState({searchQueries: event.target.value});
     }
-
-    // searchQueries () {
-    //     event.preventDefault();
-    //     window.location.assign("/search?q=" + this.state.searchQueries);  
-    //     console.log('i"m searching');
-    // }
 
     componentWillMount() {
         let currentComponent = this;
