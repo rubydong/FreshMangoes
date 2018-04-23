@@ -56,11 +56,11 @@ export class LoginComponent extends React.Component {
 
                         <p/><p/>
 
-                        <h2>Forgot Your Password?</h2>
+                        <h2>Resend Verification Email?</h2>
                         <form onSubmit={this.handleForgotPassword}> 
                             Email
                             <input type="text" className="form-control" onChange={this.handleForgotEmailChange}/>
-                            <button type="submit" className="btn btn-primary">Email the Password</button>
+                            <button type="submit" className="btn btn-primary">Email the Verification Key</button>
                         </form>
                     </div>
                 </div>

@@ -78,7 +78,14 @@ public class AuthController {
   }
 
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)
-  public User currentUser() {
-    return Helpers.getAuthenticatedUser(session);
+  public String currentUser() {
+    final User user = Helpers.getAuthenticatedUser(session);
+    final ObjectNode rootNode = mapper.createObjectNode();
+
+    if (user != null) {
+      rootNode.put(Constants.USER_ID, user.getId());
+    }
+
+    return rootNode.toString();
   }
 }

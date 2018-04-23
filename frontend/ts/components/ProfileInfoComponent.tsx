@@ -73,8 +73,8 @@ export class ProfileInfoComponent extends React.Component {
                 <h2>{this.props['data-name']}</h2>
                 <div className="bio box-shadow">
                     <img className="profile-picture" src={parseMedia(this.props['data-profile-picture'])}/>                    
-                    <b>Followers:</b> <a href="">{this.props['data-followers'].length}</a> <br/>
-                    <b>Following:</b> <a href="">{this.props['data-following'].length}</a> 
+                    <b>Followers:</b> <a href="">{this.props['data-followers'] ? this.props['data-followers'].length : 0}</a> <br/>
+                    <b>Following:</b> <a href="">{this.props['data-following'] ? this.props['data-following'].length : 0}</a> 
                     <p/>
                     {editOrFollowButton}
                 </div>
