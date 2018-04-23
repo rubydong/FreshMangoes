@@ -4,7 +4,10 @@ import com.freshmangoes.app.admin.data.Report;
 import com.freshmangoes.app.admin.service.AdminService;
 import com.freshmangoes.app.common.data.Constants;
 import java.util.Map;
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
   @Autowired
   private AdminService adminService;
+
+  @Autowired
+  private EntityManager entityManager;
 
   @Autowired
   private HttpSession session;
@@ -112,5 +118,12 @@ public class AdminController {
     }
 
     return ResponseEntity.status(status).build();
+  }
+
+  @PostMapping(Constants.ADMIN_REINDEX_MAPPING)
+  public ResponseEntity reindexDatabase() throws InterruptedException {
+    FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+    fullTextEntityManager.createIndexer().startAndWait();
+    return new ResponseEntity(HttpStatus.OK);
   }
 }

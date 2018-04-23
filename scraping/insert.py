@@ -93,8 +93,11 @@ def insert_content(content_metadata, content_type, content_credits, content_deta
     cursor.execute(INSERT_METADATA, content_metadata)
     content_metadata_id = cursor.lastrowid
 
-    cursor.execute(INSERT_MEDIA, (content_more_details.get("Poster", "N/A"), 0))
-    summary_photo_id = cursor.lastrowid
+    if "Poster" in content_more_details:
+        cursor.execute(INSERT_MEDIA, (content_more_details["Poster"], 0))
+        summary_photo_id = cursor.lastrowid
+    else:
+        summary_photo_id = None
 
     cursor.execute(INSERT_CONTENT, (content_type,
                                     content_metadata_id,

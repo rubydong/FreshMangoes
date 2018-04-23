@@ -1,5 +1,12 @@
 import { Content } from './content';
 
+export class Rating {
+    id: number;
+    score: number;
+    body: string;
+    content: Content;
+}
+
 export class User {
     id: number;
     displayName: string;
@@ -9,6 +16,7 @@ export class User {
     interestedList: Content[];
     disinterestedList: Content[];
     currentUser: number;
+    ratings: Rating[];
 
     constructor() {
         this.id = 0;
@@ -19,6 +27,7 @@ export class User {
         this.interestedList = [];
         this.disinterestedList = [];
         this.currentUser = -1;
+        this.ratings = [];
     }
 }
 

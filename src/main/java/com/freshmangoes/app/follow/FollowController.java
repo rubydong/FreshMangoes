@@ -54,14 +54,4 @@ public class FollowController {
 
     return new ResponseEntity(status);
   }
-
-  @GetMapping(Constants.GET_FOLLOWERS_MAPPING)
-  public List<User> getFollowers(@PathVariable final Integer userId) {
-    return followService.followers(userId);
-  }
-
-  @GetMapping(Constants.GET_FOLLOWING_MAPPING)
-  public List<User> getFollowing(@PathVariable final Integer userId) {
-    return followService.following(userId);
-  }
 }
