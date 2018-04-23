@@ -34,11 +34,7 @@ export class LoginComponent extends React.Component {
 
     handleForgotPassword = event => {
         event.preventDefault();
-        const emailInfo = {
-            forgotEmail: this.state.email
-        };
-
-        axios.post(window.location.origin + '/api/forgotPassword', emailInfo)
+        axios.post(window.location.origin + '/api/resendverification', {email: this.state.forgotEmail})
             .then(res => {
             window.location.reload();
         })

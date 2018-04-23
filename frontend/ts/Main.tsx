@@ -14,6 +14,7 @@ import { CreatePagesTemplate } from "./templates/CreatePagesTemplate";
 import { ReportsTemplate } from "./templates/ReportsTemplate";
 import { VerifyTemplate } from "./templates/VerifyTemplate";
 import { NoMatch } from "./templates/NoMatch";
+import { TosTemplate } from "./templates/TosTemplate";
 
 const Main = () => (
   <main>
@@ -32,6 +33,7 @@ const Main = () => (
       <Route path="/create" component={CreatePagesTemplate}/>
       <Route path="/reports" component={ReportsTemplate}/>
       <Route path="/verify/:id" component={VerifyTemplate}/>
+      <Route path="/tos" component={TosTemplate}/>
       <Route path="/404" component={NoMatch}/>
       <Route component={NoMatch}/>
     </Switch>

@@ -14,7 +14,7 @@ export class ProfileInfoComponent extends React.Component {
     followUser () {
         axios.post(window.location.origin + '/api/follow/' + window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1))
         .then(res => {
-            console.log(res);
+            window.location.reload();
         });
     }
     
@@ -62,6 +62,7 @@ export class ProfileInfoComponent extends React.Component {
     }
 
     render() {
+        console.log(this.props['data-following']);
         const sameUser = ("/profile/" + this.props['data-current-user']) == window.location.pathname;
         const editOrFollowButton = sameUser 
             ? <button className="btn" data-toggle="modal" data-target="#profile-modal">Edit Profile</button> 
@@ -72,8 +73,8 @@ export class ProfileInfoComponent extends React.Component {
                 <h2>{this.props['data-name']}</h2>
                 <div className="bio box-shadow">
                     <img className="profile-picture" src={parseMedia(this.props['data-profile-picture'])}/>                    
-                    <b>Followers:</b> <a href="">{this.props['data-followers'] ? this.props['data-followers'].length : 0}</a> <br/>
-                    <b>Following:</b> <a href="">{this.props['data-following'] ? this.props['data-following'].length : 0}</a> 
+                    <b>Followers:</b> <a href="">{this.props['data-followers'].length}</a> <br/>
+                    <b>Following:</b> <a href="">{this.props['data-following'].length}</a> 
                     <p/>
                     {editOrFollowButton}
                 </div>

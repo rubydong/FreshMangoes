@@ -3,10 +3,10 @@ import { Media } from './media';
 import { Rating } from './rating';
 
 export enum ContentType {
-  MOVIE,
-  SHOW,
-  SEASON,
-  EPISODE
+  MOVIE = "MOVIE",
+  SHOW = "SHOW",
+  SEASON = "SEASON",
+  EPISODE = "EPISODE"
 }
 
 export class ContentMetadata {
@@ -76,16 +76,14 @@ export class Show extends Content {
 
 export class Search {
   celebrities: Celebrity[];
-  movies: Movie[];
-  shows: Show[];
+  content: Content[];
   results: number;
   selectedContent: Content[];
   selectedTitle: string;
 
   constructor() {
     this.celebrities = [];
-    this.movies = [];
-    this.shows = [];
+    this.content = [];
     this.results = 0;
     this.selectedContent = [];
     this.selectedTitle = "";

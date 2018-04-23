@@ -47,6 +47,7 @@ export class Header extends React.Component {
                         <li className="nav-item"> <a className="nav-link" href="/">Home</a> </li>
                         <li className="nav-item"> <a className="nav-link" href="/spotlight">Spotlight</a> </li>
                         <li className="nav-item"> <a className="nav-link" href="/critics">Critics</a> </li>
+                        <li className="nav-item"> <a className="nav-link" href="/tos">Terms & Services</a></li>
                         {/* <li className="nav-item"> <a className="nav-link" href="/create">Create Page</a> </li>
                         <li className="nav-item"> <a className="nav-link" href="/reports">View Reports</a> </li> */}
                         {isLoggedIn
