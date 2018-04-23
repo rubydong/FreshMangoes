@@ -1,8 +1,8 @@
 package com.freshmangoes.app.search.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.freshmangoes.app.celebrity.data.Celebrity;
-import com.freshmangoes.app.content.data.Movie;
-import com.freshmangoes.app.content.data.Show;
+import com.freshmangoes.app.content.data.Content;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,8 @@ import lombok.Data;
 @Data
 @Builder
 public class SearchResult {
+  @JsonIgnoreProperties({"birthday", "birthplace", "biography", "media", "roles", "jobs"})
   List<Celebrity> celebrities;
-  List<Movie> movies;
-  List<Show> shows;
+  @JsonIgnoreProperties({"media", "ratings", "cast", "crew"})
+  List<Content> content;
 }

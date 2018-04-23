@@ -1,6 +1,6 @@
-package com.freshmangoes.app.celebrity.repository;
+package com.freshmangoes.app.content.repository;
 
-import com.freshmangoes.app.celebrity.data.Celebrity;
+import com.freshmangoes.app.content.data.Content;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -14,18 +14,23 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Transactional
-public class CelebritySearch {
+public class ContentSearch {
   @Autowired
   private EntityManager entityManager;
 
-  public List<Celebrity> search(String text) {
+  public List<Content> search(String text) {
     FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
     QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
                                                      .buildQueryBuilder()
-                                                     .forEntity(Celebrity.class)
+                                                     .forEntity(Content.class)
                                                      .get();
-    Query query = queryBuilder.keyword().fuzzy().onField("name").matching(text).createQuery();
-    FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(query, Celebrity.class);
+    Query query = queryBuilder.keyword()
+                              .fuzzy()
+                              .onField("metadata.name")
+                              .matching(text)
+                              .createQuery();
+
+    FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(query, Content.class);
     fullTextQuery.setMaxResults(10);
     return fullTextQuery.getResultList();
   }

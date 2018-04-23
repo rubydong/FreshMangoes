@@ -9,12 +9,14 @@ import javax.persistence.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import org.hibernate.search.annotations.Indexed;
 
 
 @Entity
 @Builder
 @AllArgsConstructor
 @DiscriminatorValue(value = ContentType.Values.MOVIE)
+@Indexed(index = "Content")
 public class Movie extends Content {
   @Builder
   public Movie(Integer id,

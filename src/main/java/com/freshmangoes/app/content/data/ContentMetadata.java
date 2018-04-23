@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.search.annotations.Field;
 
 
 @Entity
@@ -23,12 +25,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Embeddable
 public class ContentMetadata {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
 
   @Column(name = "content_name")
+  @Field
   private String name;
 
   @Column(name = "maturity_rating")

@@ -15,6 +15,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.annotations.Indexed;
 
 
 @Entity
@@ -24,6 +25,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @DiscriminatorValue(ContentType.Values.SHOW)
+@Indexed(index = "Content")
 public class Show extends Content {
   @OneToMany
   @JoinTable(

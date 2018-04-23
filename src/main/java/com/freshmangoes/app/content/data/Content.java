@@ -12,7 +12,6 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,12 +25,15 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 
 @Entity(name = "Content")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER, name = "content_type", columnDefinition = "tinyint")
 @Table(name = "Content")
+@Indexed(index = "Content")
 @Getter
 @Setter
 public abstract class Content {
@@ -53,6 +55,7 @@ public abstract class Content {
 
   @OneToOne
   @JoinColumn(name = "metadata_id")
+  @IndexedEmbedded
   private ContentMetadata metadata;
 
   @OneToMany(mappedBy = "content")
