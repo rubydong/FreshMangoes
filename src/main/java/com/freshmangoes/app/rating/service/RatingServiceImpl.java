@@ -1,5 +1,8 @@
 package com.freshmangoes.app.rating.service;
 
+import com.freshmangoes.app.content.data.ContentType;
+import com.freshmangoes.app.content.repository.MovieRepository;
+import com.freshmangoes.app.content.repository.ShowRepository;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.repository.RatingRepository;
 import java.util.List;
@@ -11,19 +14,34 @@ public class RatingServiceImpl implements RatingService {
   @Autowired
   private RatingRepository ratingRepository;
 
-  public Rating addRating(final Rating rating) {
-    return ratingRepository.existsByUserId(rating.getUser().getId()) == null
+  @Autowired
+  private MovieRepository movieRepository;
+
+  @Autowired
+  private ShowRepository showRepository;
+
+  public Rating addRating(final Integer contentId, final ContentType contentType, final Rating rating) {
+    switch (contentType) {
+      case MOVIE:
+        rating.setContent(movieRepository.findById(contentId).orElse(null));
+        break;
+      case SHOW:
+        rating.setContent(showRepository.findById(contentId).orElse(null));
+        break;
+    }
+    return ratingRepository.existsByUserId(rating.getUser().getId(), contentId) == null
            ? ratingRepository.save(rating)
            : null;
   }
 
   public Rating editRating(final Integer userId, final Rating rating) {
-    Rating existingRating = ratingRepository.existsByUserId(userId);
+    Rating existingRating = ratingRepository.findById(rating.getId()).orElse(null);
     if (existingRating == null) {
       return null;
     }
     existingRating.setBody(rating.getBody());
     existingRating.setScore(rating.getScore());
+    ratingRepository.save(existingRating);
     return existingRating;
   }
 

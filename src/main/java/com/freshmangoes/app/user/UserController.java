@@ -16,7 +16,8 @@ public class UserController {
 
   @GetMapping(Constants.PROFILE_MAPPING)
   public User getProfile(@PathVariable final int userId) {
-    return userService.getUser(userId);
+    User user = userService.getUser(userId);
+    return user;
   }
 
 }

@@ -24,21 +24,25 @@ import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Builder
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "Users")
+@Getter
+@Setter
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String email;
+
+  @JsonIgnore
   private String hash;
 
   @Column(name = "display_name")
@@ -67,6 +71,7 @@ public class User {
           name = "followee_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
+  @JsonIgnoreProperties({"followers", "following", "interestedList", "disinterestedList", "ratings", "email"})
   private List<User> followers;
 
   @JoinTable(name = "following",
@@ -77,6 +82,7 @@ public class User {
           name = "follower_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
+  @JsonIgnoreProperties({"followers", "following", "interestedList", "disinterestedList", "ratings", "email"})
   private List<User> following;
 
   @JoinTable(name = "interests",
@@ -101,7 +107,7 @@ public class User {
 
   @OneToMany
   @JoinColumn(name = "id")
-  @JsonIgnoreProperties("user")
+//  @JsonIgnoreProperties(value = {"user"})
   private List<Rating> ratings;
 
   @JsonIgnore

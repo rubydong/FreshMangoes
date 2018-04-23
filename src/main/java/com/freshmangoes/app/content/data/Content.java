@@ -59,7 +59,7 @@ public abstract class Content {
   private ContentMetadata metadata;
 
   @OneToMany(mappedBy = "content")
-  @JsonIgnoreProperties("content")
+//  @JsonIgnoreProperties(value = {"content", "user"})
   private List<Rating> ratings;
 
   @OneToMany(mappedBy = "content")

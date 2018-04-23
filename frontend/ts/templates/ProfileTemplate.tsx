@@ -35,10 +35,11 @@ export class ProfileTemplate extends React.Component {
                                           data-followers={this.state.numFollowers} data-following={this.state.numFollowing}
                                           data-current-user={this.state.currentUser}/>
                     <div className="right">
-                        <ProfileReviewComponent data-name={this.state.displayName}/>
+                        <ProfileReviewComponent data-name={this.state.displayName} data-current-user={this.state.currentUser} data-reviews={this.state.ratings}/>
                         <ContentListsComponent data-title='Interested' data-content={this.state.interestedList} data-current-user={this.state.currentUser}/>
                         <ContentListsComponent data-title='Not Interested' data-content={this.state.disinterestedList} data-current-user={this.state.currentUser}/>
                     </div>
+                    <div className="clear-both padding-top"></div>
                 </div>
             </div>
         );

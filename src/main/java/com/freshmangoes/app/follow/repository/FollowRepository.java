@@ -25,14 +25,6 @@ public interface FollowRepository extends CrudRepository<User, Integer> {
   @Query(value = "DELETE FROM Following WHERE followee_id=?2 AND follower_id=?1", nativeQuery = true)
   void deleteFollowing(Integer followerId, Integer followeeId);
 
-  @Query(value = "SELECT u.display_name, u.profile_picture, u.id FROM Users u"
-          + "JOIN Following f WHERE f.follower_id = ?1", nativeQuery = true)
-  List<User> findAllFollowing(Integer id);
-
-  @Query(value = "SELECT u.display_name, u.profile_picture, u.id FROM Users u"
-          + "JOIN Following f WHERE f.followee_id = ?1", nativeQuery = true)
-  List<User> findAllFollowers(Integer id);
-
   @Query(value = "SELECT COUNT(*) AS Num_Followers FROM Following WHERE followee_id = ?1", nativeQuery = true)
   Integer countFollowers(Integer userId);
 

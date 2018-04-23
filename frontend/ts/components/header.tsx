@@ -10,20 +10,14 @@ export class Header extends React.Component {
     
     logout = event => {
         this.setState({ email: event.target.value, currentUser: -1 });
-        axios.post(window.location.origin + '/api/logout', {})
-        .then(res => {
+        axios.post(window.location.origin + '/api/logout').then(res => {
+            window.location.assign("/../");
         });
     }
 
     handleSearchChange = event => {
         this.setState({searchQueries: event.target.value});
     }
-
-    // searchQueries () {
-    //     event.preventDefault();
-    //     window.location.assign("/search?q=" + this.state.searchQueries);  
-    //     console.log('i"m searching');
-    // }
 
     componentWillMount() {
         let currentComponent = this;
@@ -53,8 +47,8 @@ export class Header extends React.Component {
                         <li className="nav-item"> <a className="nav-link" href="/">Home</a> </li>
                         <li className="nav-item"> <a className="nav-link" href="/spotlight">Spotlight</a> </li>
                         <li className="nav-item"> <a className="nav-link" href="/critics">Critics</a> </li>
-                        <li className="nav-item"> <a className="nav-link" href="/create">Create Page</a> </li>
-                        <li className="nav-item"> <a className="nav-link" href="/reports">View Reports</a> </li>
+                        {/* <li className="nav-item"> <a className="nav-link" href="/create">Create Page</a> </li>
+                        <li className="nav-item"> <a className="nav-link" href="/reports">View Reports</a> </li> */}
                         {isLoggedIn
                         ? <span>
                             <li className="nav-item"> <a className="nav-link" href={profileUrl}>Profile</a> </li>

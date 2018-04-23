@@ -28,7 +28,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Rating {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column(name = "score")
@@ -38,11 +38,11 @@ public class Rating {
   private String body;
 
   @ManyToOne
-  @JsonIgnoreProperties({"summaryPhoto", "media", "metadata", "ratings", "cast", "crew"})
+  @JsonIgnoreProperties({"summaryPhoto", "media", "ratings", "cast", "crew"})
   private Content content;
 
   @ManyToOne
-  @JsonIgnoreProperties({"id", "email", "hash", "numFollowers", "numFollowing",
+  @JsonIgnoreProperties({"email", "hash", "numFollowers", "numFollowing",
       "followers", "following", "interestedList", "disinterestedList", "verified", "ratings"})
   private User user;
 }

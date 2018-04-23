@@ -7,8 +7,4 @@ public interface FollowService {
   Boolean followUser(Integer userId, Integer otherUserId);
 
   Boolean unfollowUser(Integer userId, Integer otherUserId);
-
-  List<User> followers(Integer id);
-
-  List<User> following(Integer id);
 }

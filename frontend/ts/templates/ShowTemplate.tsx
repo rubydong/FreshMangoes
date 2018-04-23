@@ -8,6 +8,7 @@ import { CastComponent } from '../components/CastComponent';
 import { RatingComponent } from '../components/RatingComponent';
 import { SummaryComponent } from "../components/SummaryComponent";  
 import { DetailsComponent } from "../components/DetailsComponent";
+import { SeasonListComponent } from "../components/SeasonListComponent";
 
 export class ShowTemplate extends React.Component {
     state : Show;
@@ -27,38 +28,19 @@ export class ShowTemplate extends React.Component {
     }
 
     render() {
-        const seasons = this.state.seasons.map((season, i) => {
-            let newUrl = parseMedia(season.summaryPhoto);
-            return <div className="season">
-                <img src={newUrl}/>
-                <b><a href={"/season/" + season.id}>{season.metadata.name}</a></b> <br/>
-                {season.metadata.summary}
-                </div>
-        });
-
         return (
         <div>
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <SummaryComponent data-title={this.state.metadata.name} 
-                                      data-image={this.state.summaryPhoto} 
-                                      data-mango={this.state.metadata.mangoScore} 
-                                      data-audience={this.state.metadata.audienceScore} 
-                                      data-plot={this.state.metadata.summary}/>
-                    <DetailsComponent data-genres={this.state.metadata.genres}
-                                      data-premiere={this.state.metadata.releaseDate} 
-                                      data-network={this.state.metadata.studio}/>
+                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} />             
+                    <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
+                                      data-id={this.state.id} data-type={this.state.type}/> 
                 </div>
-
+                <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>
                 <VideoComponent data-videos={this.state.media}/>
-
-                <div className="seasons margin-top-bottom">
-                    <h2> Seasons </h2> <hr/>
-                    {seasons}
-                </div>
-                
+                <SeasonListComponent data-seasons={this.state.seasons}/>
                 <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
             </div>
 		</div>
