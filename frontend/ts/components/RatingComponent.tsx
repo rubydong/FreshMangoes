@@ -54,7 +54,7 @@ export class RatingComponent extends React.Component {
         };
         console.log(rating);
 
-        axios.post(window.location.origin + '/api/editRating/' + rating.id, rating)
+        axios.post(window.location.origin + '/api/rating/update/' + rating.id, rating)
             .then(res => {
         })
     }
@@ -79,10 +79,10 @@ export class RatingComponent extends React.Component {
         const title = this.props['data-name'];
         const ratings = this.props['data-ratings'].map((rating, i) => {
             return <div className={"review " + (i%2==0 ? "pull-left" : "pull-right")}>
-                    <b><a href={'../profile/' + rating.reviewerId}>{rating.username}</a></b> 
+                    <b><a href={'../profile/' + rating.reviewerId}>{rating.user.displayName}</a></b>
                     <span className="align-right"> <Mangoes data-rating={rating.score}/></span> <br/>
-                    <i> <a href={'../' + rating.contentType.toLowerCase() + '/' + rating.contentId}> {title} </a></i> 
-                    { this.state.currentUser == rating.reviewerId 
+                    <i> <a href={'../' + rating.content.type.toLowerCase() + '/' + rating.content.id}> {title} </a></i>
+                    { this.state.currentUser == rating.user.id
                     ? <span className="align-right">
                         <img src="../../images/icons/pencil.png" data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
                         <img src="../../images/icons/trash.png" onClick={() => this.deleteReview(rating.id)}/>
