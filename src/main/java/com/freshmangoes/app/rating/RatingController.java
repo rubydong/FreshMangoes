@@ -2,6 +2,9 @@ package com.freshmangoes.app.rating;
 
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.helpers.Helpers;
+import com.freshmangoes.app.content.data.ContentType;
+import com.freshmangoes.app.content.repository.MovieRepository;
+import com.freshmangoes.app.content.service.ContentService;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.service.RatingService;
 import com.freshmangoes.app.user.data.User;
@@ -36,11 +39,14 @@ public class RatingController {
     if (user == null) {
       status = HttpStatus.BAD_REQUEST;
     } else {
-      status = ratingService.addRating(Rating
+      status = ratingService.addRating(
+       contentId,
+       body.get("type").equals("MOVIE") ? ContentType.MOVIE : ContentType.SHOW,
+       Rating
        .builder()
        .content(null)
        .score(Integer.parseInt(body.get(Constants.SCORE)))
-       .user(null)
+       .user(user)
        .body(body.get(Constants.BODY))
        .build()) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
@@ -82,13 +88,13 @@ public class RatingController {
     return ResponseEntity.status(status).build();
   }
 
-  @GetMapping(Constants.GET_RATING_BY_CONTENT_ID_MAPPING)
-  public List<Rating> getRatingByUserId(@PathVariable final Integer contentId) {
-    return ratingService.findByContentId(contentId);
+  @GetMapping(Constants.GET_RATING_BY_USER_ID_MAPPING)
+  public List<Rating> getRatingByUserId(@PathVariable final Integer userId) {
+    return ratingService.findByUserId(userId);
   }
 
-  @GetMapping(Constants.GET_RATING_BY_USER_ID_MAPPING)
-  public List<Rating> getRatingByContentId(@PathVariable final Integer userId) {
-    return ratingService.findByContentId(userId);
+  @GetMapping(Constants.GET_RATING_BY_CONTENT_ID_MAPPING)
+  public List<Rating> getRatingByContentId(@PathVariable final Integer contentId) {
+    return ratingService.findByContentId(contentId);
   }
 }
