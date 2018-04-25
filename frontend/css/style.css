@@ -33,6 +33,7 @@ a,.summary h2, .filmography h4, .episode b {
 }
 
 .page-background-color {
+	min-height: 90vh;
 	background-color: #FAFAFA;
 }
 

@@ -17,6 +17,14 @@ export class ProfileInfoComponent extends React.Component {
             window.location.reload();
         });
     }
+
+    unfollowUser () {
+        axios.post(window.location.origin + '/api/unfollow/' + window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1))
+        .then(res => {
+            console.log(res);
+            // window.location.reload();
+        });
+    }
     
     handleDisplayNameChange = event => {
         this.setState({ newDisplayName: event.target.value });
@@ -46,7 +54,6 @@ export class ProfileInfoComponent extends React.Component {
             newPassword: this.state.newPassword,
             oldPassword: this.state.oldPassword
         };
-        console.log(this.state);
         axios.post(window.location.origin + '/api/editProfile/' + this.props['data-current-user'], editProfileInfo)
             .then(res => {
             // window.location.reload();
@@ -62,19 +69,28 @@ export class ProfileInfoComponent extends React.Component {
     }
 
     render() {
-        console.log(this.props['data-following']);
-        const sameUser = ("/profile/" + this.props['data-current-user']) == window.location.pathname;
+        const state = this.props['data-state'];
+        const sameUser = ("/profile/" + state.currentUser) == window.location.pathname;    
+        let alreadyFollowed = false;
+        for (let i = 0; i < state.followers.length; i++) {
+            if (state.followers[i].id == state.currentUser) {
+                alreadyFollowed = true;
+                break;
+            }
+        }
         const editOrFollowButton = sameUser 
             ? <button className="btn" data-toggle="modal" data-target="#profile-modal">Edit Profile</button> 
-            : <button className="btn" onClick={this.followUser}>Follow</button>;
+            : (alreadyFollowed 
+                ? <button className="btn" onClick={this.unfollowUser}>Unfollow</button> 
+                : <button className="btn" onClick={this.followUser}>Follow</button>);
         
         return (
             <div className="left">
-                <h2>{this.props['data-name']}</h2>
+                <h2>{state.displayName}</h2>
                 <div className="bio box-shadow">
-                    <img className="profile-picture" src={parseMedia(this.props['data-profile-picture'])}/>                    
-                    <b>Followers:</b> <a href="">{this.props['data-followers'] ? this.props['data-followers'].length : 0}</a> <br/>
-                    <b>Following:</b> <a href="">{this.props['data-following'] ? this.props['data-following'].length : 0}</a> 
+                    <img className="profile-picture" src={parseMedia(state.profilePicture)}/>                    
+                    <b>Followers:</b> <a href="">{state.followers.length}</a> <br/>
+                    <b>Following:</b> <a href="">{state.following.length}</a> 
                     <p/>
                     {editOrFollowButton}
                 </div>

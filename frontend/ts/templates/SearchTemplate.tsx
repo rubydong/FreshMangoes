@@ -17,11 +17,7 @@ export class SearchTemplate extends React.Component {
         try {
             const response = await axios.get(window.location.origin + '/api/search' + window.location.search);
             this.state.results = response.data.celebrities.length + response.data.content.length;
-            console.log(response.data);
-            console.log(response.data.content);
             this.setState(response.data);
-            console.log(this.state.content);
-            console.log(this.state.content.filter(content => content.type === ContentType.MOVIE))
         } catch (err) {
             console.log(err);
         }
@@ -35,7 +31,7 @@ export class SearchTemplate extends React.Component {
 
     render() {
         return (
-        <div className="search">
+        <div className="search page-background-color">
             <hr className="header-hr"/>
             <div className="content">
                 
@@ -58,7 +54,8 @@ export class SearchTemplate extends React.Component {
                     {/* </div>
                     : <SpotlightDetailComponent data-content={this.state.selectedContent} data-title={this.state.selectedTitle}/>
                     } */}
-                </div>			
+                </div>		
+                <div className="clear-both"></div>	
             </div>
         </div>
         );

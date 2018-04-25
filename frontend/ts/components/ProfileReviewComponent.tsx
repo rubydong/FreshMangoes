@@ -3,9 +3,6 @@ import { Mangoes } from "./Mangoes";
 
 export class ProfileReviewComponent extends React.Component {
     render() {
-        console.log(this.props['data-reviews']);
-        console.log(this.props['data-current-user']);
-
         const reviews = this.props['data-reviews'].map((review) => {
             return <div className="review">
                 <b> <a href="">{this.props['data-name']}</a> </b>
@@ -25,7 +22,7 @@ export class ProfileReviewComponent extends React.Component {
         return <div>
             <h2> Reviews </h2>
             <div className="profile-reviews list-group">
-            {reviews.length != 0 ? reviews : <div className="center-text">You have not reviewed anything yet!</div>}
+            {reviews.length != 0 ? reviews : <div className="interests box-shadow">You have not reviewed anything yet!</div>}
             </div>
         </div>
     }

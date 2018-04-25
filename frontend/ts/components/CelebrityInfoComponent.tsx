@@ -16,12 +16,10 @@ export class CelebrityInfoComponent extends React.Component {
         let roles = state.roles;
         for (let i = 0; i < roles.length; i++) {
             if (i == 0 ||roles[i].content.metadata.mangoScore > this.state.highestRatedScore) {
-                console.log('higher');
                 this.state.highestRatedName = roles[i].content.metadata.name;
                 this.state.highestRatedScore = roles[i].content.metadata.mangoScore;
             } 
             if (i == 0 || roles[i].content.metadata.mangoScore < this.state.lowestRatedScore) {
-                console.log('lower');
                 this.state.lowestRatedName = roles[i].content.metadata.name;
                 this.state.lowestRatedScore = roles[i].content.metadata.mangoScore;
             }

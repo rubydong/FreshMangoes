@@ -75,7 +75,6 @@ export class RatingComponent extends React.Component {
 
 
     render() {
-        console.log(this.state.currentUser)
         const title = this.props['data-name'];
         const ratings = this.props['data-ratings'].map((rating, i) => {
             return <div className={"review " + (i%2==0 ? "pull-left" : "pull-right")}>

@@ -13,6 +13,8 @@ export class User {
     profilePicture: string;
     numFollowers: number;
     numFollowing: number;
+    followers: User [];
+    following: User [];
     interestedList: Content[];
     disinterestedList: Content[];
     currentUser: number;
@@ -24,6 +26,8 @@ export class User {
         this.profilePicture = "";
         this.numFollowers = 0;
         this.numFollowing = 0;
+        this.followers = [];
+        this.following = [];
         this.interestedList = [];
         this.disinterestedList = [];
         this.currentUser = -1;
