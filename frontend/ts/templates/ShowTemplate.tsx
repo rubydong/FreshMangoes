@@ -8,7 +8,7 @@ import { CastComponent } from '../components/CastComponent';
 import { RatingComponent } from '../components/RatingComponent';
 import { SummaryComponent } from "../components/SummaryComponent";  
 import { DetailsComponent } from "../components/DetailsComponent";
-import { SeasonListComponent } from "../components/SeasonListComponent";
+import { SeasonEpisodeListComponent } from "../components/SeasonEpisodeListComponent";
 
 export class ShowTemplate extends React.Component {
     state : Show;
@@ -40,7 +40,7 @@ export class ShowTemplate extends React.Component {
                 <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>
                 <VideoComponent data-videos={this.state.media}/>
-                <SeasonListComponent data-seasons={this.state.seasons}/>
+                <SeasonEpisodeListComponent data-id={this.state.id} data-list={this.state.seasons} data-type="season"/>
                 <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
             </div>
 		</div>

@@ -8,7 +8,7 @@ import { CastComponent } from '../components/CastComponent';
 import { RatingComponent } from '../components/RatingComponent';
 import { SummaryComponent } from "../components/SummaryComponent";  
 import { DetailsComponent } from "../components/DetailsComponent";
-import { EpisodeListComponent } from "../components/EpisodeListComponent";
+import { SeasonEpisodeListComponent } from "../components/SeasonEpisodeListComponent";
 
 export class SeasonTemplate extends React.Component {
     state : Season;
@@ -22,6 +22,8 @@ export class SeasonTemplate extends React.Component {
       try {
         const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
         this.setState(response.data);
+        // console.log(response);
+        // console.log(this.state.episodes);
       } catch (err) {
         console.log(err);
       }
@@ -39,7 +41,7 @@ export class SeasonTemplate extends React.Component {
                 </div>
                 <PhotoComponent data-photos={this.state.media}/>
                 <VideoComponent data-videos={this.state.media}/>
-                <EpisodeListComponent data-episodes={this.state.episodes}/>
+                <SeasonEpisodeListComponent data-list={this.state.episodes} data-type="episode"/>
                 <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
             </div>
 		</div>
