@@ -37,7 +37,7 @@ export class InterestsListComponent extends React.Component {
         return (
             <div>
                 <div>
-                    <h2 className="padding-top"> {this.props['data-title']} </h2>
+                    <h2 className={this.props['data-title'] == "Interested" ? '' : 'padding-top'}> {this.props['data-title']} </h2>
                     <div className="interests box-shadow">
                         <div className="flex-center"> {contentList} </div>
                         {contentList.length == 0 
