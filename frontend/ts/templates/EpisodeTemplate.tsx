@@ -8,7 +8,6 @@ import { CastComponent } from '../components/CastComponent';
 import { RatingComponent } from '../components/RatingComponent';
 import { SummaryComponent } from "../components/SummaryComponent";  
 import { DetailsComponent } from "../components/DetailsComponent";
-import { EpisodeListComponent } from "../components/EpisodeListComponent";
 
 export class EpisodeTemplate extends React.Component {
     state : Episode;
@@ -39,7 +38,6 @@ export class EpisodeTemplate extends React.Component {
 
                 <PhotoComponent data-photos={this.state.media}/>
                 <VideoComponent data-videos={this.state.media}/>
-                <EpisodeListComponent/>
                 <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
             </div>
 		</div>

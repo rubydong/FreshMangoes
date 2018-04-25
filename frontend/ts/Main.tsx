@@ -22,8 +22,8 @@ const Main = () => (
       <Route exact path='/' component={IndexTemplate}/>
       <Route exact path='/index' component={IndexTemplate}/>
       <Route path='/movie/:id' component={MovieTemplate}/>
-      <Route path='/show/:showid/:seasonid/:episodeid' component={EpisodeTemplate}/>
-      <Route path="/show/:showid/:seasonid" component={SeasonTemplate}/>
+      <Route path='/show/:showid/season/:seasonid/episode/:episodeid' component={EpisodeTemplate}/>
+      <Route path="/show/:showid/season/:seasonid" component={SeasonTemplate}/>
       <Route path='/show/:id' component={ShowTemplate}/> 
       <Route path="/celebrity/:id" component={CelebrityTemplate}/>
       <Route path="/search*" component={SearchTemplate}/>

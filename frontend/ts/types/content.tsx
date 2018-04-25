@@ -63,6 +63,11 @@ export class Episode extends Content {
 
 export class Season extends Content {
   episodes: Episode[];
+
+  constructor() {
+    super();
+    this.episodes = [];
+  }
 }
 
 export class Show extends Content {
