@@ -76,11 +76,12 @@ export class RatingComponent extends React.Component {
 
     render() {
         const title = this.props['data-name'];
+        const isProfile = this.props['data-rating-type']=='profile';
         const ratings = this.props['data-ratings'].map((rating, i) => {
             return <div className={"review " + (i%2==0 ? "pull-left" : "pull-right")}>
                     <b><a href={'../profile/' + rating.user.id}>{rating.user.displayName}</a></b>
                     <span className="align-right"> <Mangoes data-rating={rating.score}/></span> <br/>
-                    <i> <a href={'../' + rating.content.type.toLowerCase() + '/' + rating.content.id}> {title} </a></i>
+                    <i> <a href={'../' + rating.content.type.toLowerCase() + '/' + rating.content.id}> {title || rating.content.metadata.name} </a></i>
                     { this.state.currentUser == rating.user.id
                     ? <span className="align-right">
                         <img src="/../../images/pencil.png" data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
@@ -118,9 +119,9 @@ export class RatingComponent extends React.Component {
 
         return (
             <div className="reviews margin-top-bottom">
-                <h2> Reviews </h2> <hr/>
+                <h2> Reviews </h2> {isProfile ? '' : <hr/>}
                 {ratings.length == 0 ? <div className="center-text">There are no reviews right now. You can be the first!</div> : ratings}
-                <span className="align-right small-padding-top"> <a href="" data-toggle="modal" data-target="#rating-modal">Add a Rating</a>  | <a href="">View All Reviews </a> </span>
+                {isProfile ? '' : <span className="align-right small-padding-top"> <a href="" data-toggle="modal" data-target="#rating-modal">Add a Rating</a>  | <a href="">View All Reviews </a> </span>}
                 <div className="padding-top clear-both"></div>
                 <div id="rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">

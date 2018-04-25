@@ -4,7 +4,7 @@ import { User} from '../types/user';
 import { Mangoes } from "../components/Mangoes";
 import { InterestsListComponent } from '../components/InterestsListComponent';
 import { ProfileInfoComponent } from '../components/ProfileInfoComponent';
-import { ProfileReviewComponent } from '../components/ProfileReviewComponent';
+import { RatingComponent } from '../components/RatingComponent';
 import { parseProfileMedia }  from '../../HelperFunctions.js';
 
 export class ProfileTemplate extends React.Component {
@@ -35,7 +35,7 @@ export class ProfileTemplate extends React.Component {
                 <div className="content">
                     <ProfileInfoComponent data-state={this.state}/>
                     <div className="right">
-                        <ProfileReviewComponent data-name={this.state.displayName} data-current-user={this.state.currentUser} data-reviews={this.state.ratings}/>
+                        <RatingComponent data-ratings={this.state.ratings} data-id={this.state.id} data-rating-type="profile"/>
                         <InterestsListComponent data-title='Interested' data-content={this.state.interestedList} data-current-user={this.state.currentUser}/>
                         <InterestsListComponent data-title='Not Interested' data-content={this.state.disinterestedList} data-current-user={this.state.currentUser}/>
                     </div>
