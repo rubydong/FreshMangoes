@@ -12,6 +12,6 @@ import lombok.Data;
 public class SearchResult {
   @JsonIgnoreProperties({"birthday", "birthplace", "biography", "media", "roles", "jobs"})
   List<Celebrity> celebrities;
-  @JsonIgnoreProperties({"media", "ratings", "cast", "crew"})
+  @JsonIgnoreProperties({"seasons", "episodes", "media", "ratings", "cast", "crew"})
   List<Content> content;
 }
