@@ -84,7 +84,6 @@ def insert_content(content_metadata, content_type, content_credits, content_deta
 
     photos = []
     photos += [BASE_PHOTO_URL + backdrop["file_path"] for backdrop in content_photos.get("backdrop", [])]
-    photos += [BASE_PHOTO_URL + poster["file_path"] for poster in content_photos.get("posters", [])]
     photos += [BASE_PHOTO_URL + still["file_path"] for still in content_photos.get("stills", [])]
 
     videos = []
@@ -93,11 +92,13 @@ def insert_content(content_metadata, content_type, content_credits, content_deta
     cursor.execute(INSERT_METADATA, content_metadata)
     content_metadata_id = cursor.lastrowid
 
+    summary_photo_id = None
     if "Poster" in content_more_details:
         cursor.execute(INSERT_MEDIA, (content_more_details["Poster"], 0))
         summary_photo_id = cursor.lastrowid
-    else:
-        summary_photo_id = None
+    elif content_photos.get("posters"):
+        cursor.execute(INSERT_MEDIA, (content_photos.get("posters")[0]["file_path"], 0))
+        summary_photo_id = cursor.lastrowid
 
     cursor.execute(INSERT_CONTENT, (content_type,
                                     content_metadata_id,
@@ -191,10 +192,8 @@ def insert_shows():
 
             for episode in range(1, len(season_details["episodes"]) + 1):
                 episode_filename = f"{show_details['id']}_{season}_{episode}.json"
-                print(episode_filename)
 
                 if not os.path.exists(os.path.join(EPISODES_DETAILS, episode_filename)):
-                    print("skipped")
                     continue
 
                 episode_credits = load_json(os.path.join(EPISODES_CREDITS, episode_filename))
