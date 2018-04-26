@@ -27,6 +27,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 
 @Builder
@@ -102,11 +103,11 @@ public class User {
       inverseJoinColumns = @JoinColumn(
           name = "content_id"
       ))
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.REMOVE)
   private List<Content> disinterestedList;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "id")
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//  @JoinColumn(name = "id")
 //  @JsonIgnoreProperties(value = {"user"})
   private List<Rating> ratings;
 
