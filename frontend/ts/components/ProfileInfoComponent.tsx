@@ -25,14 +25,14 @@ export class ProfileInfoComponent extends React.Component {
             // window.location.reload();
         });
     }
-    
+
     handleDisplayNameChange = event => {
         this.setState({ newDisplayName: event.target.value });
     }
-    
+
     handleFileChange = event => {
         this.setState({ newFile: event.target.files[0] });
-        
+
     }
     handleEmailChange = event => {
         this.setState({ newEmail: event.target.value });
@@ -61,16 +61,16 @@ export class ProfileInfoComponent extends React.Component {
     }
 
     deleteAccount () {
-        axios.post(window.location.origin + '/api/deleteUser/' +  + this.props['data-current-user'])
+        axios.post(window.location.origin + '/api/profile/delete/' + this.props['data-current-user'])
             .then(res => {
-            // window.location.reload();
+            window.location.reload();
             //logout
         })
     }
 
     render() {
         const state = this.props['data-state'];
-        const sameUser = ("/profile/" + state.currentUser) == window.location.pathname;    
+        const sameUser = ("/profile/" + state.currentUser) == window.location.pathname;
         let alreadyFollowed = false;
         for (let i = 0; i < state.followers.length; i++) {
             if (state.followers[i].id == state.currentUser) {
@@ -78,23 +78,23 @@ export class ProfileInfoComponent extends React.Component {
                 break;
             }
         }
-        const editOrFollowButton = sameUser 
-            ? <button className="btn" data-toggle="modal" data-target="#profile-modal">Edit Profile</button> 
-            : (alreadyFollowed 
-                ? <button className="btn" onClick={this.unfollowUser}>Unfollow</button> 
+        const editOrFollowButton = sameUser
+            ? <button className="btn" data-toggle="modal" data-target="#profile-modal">Edit Profile</button>
+            : (alreadyFollowed
+                ? <button className="btn" onClick={this.unfollowUser}>Unfollow</button>
                 : <button className="btn" onClick={this.followUser}>Follow</button>);
-        
+
         return (
             <div className="left">
                 <h2>{state.displayName}</h2>
                 <div className="bio box-shadow">
-                    <img className="profile-picture" src={parseMedia(state.profilePicture)}/>                    
+                    <img className="profile-picture" src={parseMedia(state.profilePicture)}/>
                     <b>Followers:</b> <a href="">{state.followers.length}</a> <br/>
-                    <b>Following:</b> <a href="">{state.following.length}</a> 
+                    <b>Following:</b> <a href="">{state.following.length}</a>
                     <p/>
                     {editOrFollowButton}
                 </div>
-                
+
 
                 <div id="profile-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-lg">
@@ -113,10 +113,10 @@ export class ProfileInfoComponent extends React.Component {
                             <input type="password" className="form-control" onChange={this.handleVerifyPasswordChange}/>
                             <button type="submit" className="btn btn-primary">Make Changes</button>
                         </form>
-                       
+
                         <span className="center-text">OR</span>
                         <button type="submit" className="btn btn primary" onClick={this.deleteAccount}> Delete Account </button>
-                       
+
                     </div>
                 </div>
 		    </div>

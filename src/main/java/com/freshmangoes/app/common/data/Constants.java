@@ -34,11 +34,18 @@ public class Constants {
   public static final String ADD_TO_DISINTERESTED_MAPPING = "/disinterested/add/{contentId}";
   public static final String REMOVE_FROM_DISINTERESTED_MAPPING =
       "/disinterested/remove/{contentId}";
+
+  public static final String DELETE_ACCOUNT_MAPPING = "/profile/delete/{userId}";
   public static final String PROFILE_MAPPING = "/profile/{userId}";
   public static final String FOLLOW_MAPPING = "/follow/{userId}";
   public static final String UNFOLLOW_MAPPING = "/unfollow/{userId}";
   public static final String GET_FOLLOWERS_MAPPING = "/followers/{userId}";
   public static final String GET_FOLLOWING_MAPPING = "/following/{userId}";
+  public static final String CHANGE_PASSWORD_MAPPING = "/profile/password/reset";
+  public static final String CHANGE_PICTURE_MAPPING = "/profile/picture/update";
+  public static final String CHANGE_EMAIL_MAPPING = "/profile/email/reset";
+  public static final String FORGOT_PASSWORD_MAPPING = "/forgotpassword";
+
 
   public static final String ADMIN_ADD_DETAIL_PAGE_MAPPING = "/admin/insert";
   public static final String ADMIN_UPDATE_DETAIL_PAGE_MAPPING = "/admin/update";
@@ -57,4 +64,5 @@ public class Constants {
   public static final String PASSWORD = "password";
   public static final String BODY = "body";
   public static final String SCORE = "score";
+
 }
