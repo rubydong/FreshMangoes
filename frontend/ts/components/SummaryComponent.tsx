@@ -14,10 +14,7 @@ export class SummaryComponent extends React.Component {
                     </a>
                 </option>);
         }
-        
-        console.log(this.props['data-image']);
-        console.log(this.props['data-media']);
-        console.log(this.props['data-media'][0]);
+
         return (
             <div>        
                 <img src={parseMoreMedia(this.props['data-image'], this.props['data-media'])} className="img-align-left"/>

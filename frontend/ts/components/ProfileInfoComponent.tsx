@@ -32,6 +32,7 @@ export class ProfileInfoComponent extends React.Component {
     
     handleFileChange = event => {
         this.setState({ newFile: event.target.files[0] });
+        console.log(event.target.files[0]); 
         
     }
     handleEmailChange = event => {

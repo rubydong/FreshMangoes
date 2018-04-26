@@ -2,6 +2,7 @@ export const INDEX_LIMIT = 4;
 export const MEDIA_LIMIT = 4;
 export const VIDEO_LIMIT = 3;
 export const CONTENT_LIMIT = 8;
+export const SEARCH_SELECTED_LIMIT = 16;
 export const CAST_LIMIT = 9;
 export const MANGO_COLOR = "http://i67.tinypic.com/lazqr.jpg";
 export const MANGO_BW = "http://i63.tinypic.com/2gxecgl.png";
