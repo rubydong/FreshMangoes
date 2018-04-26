@@ -22,8 +22,6 @@ export class DetailsComponent extends React.Component {
         const metadata = this.props['data-metadata'];
         const crew = this.props['data-crew'];
         const type = this.props['data-type'];
-        console.log(crew);
-    
         const genres = metadata.genres.map((genre, i) => {
             return <span> {GENRES_MAP[genre]}{i < metadata.genres.length - 1 ? ', ' : ''}</span>
         });

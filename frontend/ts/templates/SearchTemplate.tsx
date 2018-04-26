@@ -30,7 +30,9 @@ export class SearchTemplate extends React.Component {
     }
 
     render() {
-        console.log(this.state.selectedContent);
+        const movies = this.state.content.filter(c => c.type == ContentType.MOVIE);
+        const shows = this.state.content.filter(c => c.type == ContentType.SHOW);
+        
         return (
         <div className="search page-background-color">
             <hr className="header-hr"/>
@@ -41,8 +43,8 @@ export class SearchTemplate extends React.Component {
                     <h4> {this.state.results} Results found for "{window.location.search.substring(7).replace("%20", " ")}"</h4> <hr/>
                     <ul className="list-inline">
                         <li><button className="btn-link" onClick={() => this.setSelectedContent([], 'All')}>All</button></li>
-                        <li><button className="btn-link" onClick={() => this.setSelectedContent(this.state.content.filter(c => c.type == ContentType.MOVIE), 'Movies')}>Movies</button></li>		
-                        <li><button className="btn-link" onClick={() => this.setSelectedContent(this.state.content.filter(c => c.type == ContentType.SHOW), 'Tv Shows')}>TV Shows</button></li>		
+                        <li><button className="btn-link" onClick={() => this.setSelectedContent(movies, 'Movies')}>Movies</button></li>		
+                        <li><button className="btn-link" onClick={() => this.setSelectedContent(shows, 'Tv Shows')}>TV Shows</button></li>		
                         <li><button className="btn-link" onClick={() => this.setSelectedContent(this.state.celebrities, 'Celebrities')}>Celebrities</button></li>
                     </ul>
                     
