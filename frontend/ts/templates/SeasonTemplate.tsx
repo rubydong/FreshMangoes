@@ -36,8 +36,7 @@ export class SeasonTemplate extends React.Component {
             <div className="content">
                 <div className="summary">
                     <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media} data-list-type="Season"/>             
-                    <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
-                                                    data-id={this.state.id} data-type={this.state.type}/>
+                    <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} data-id={this.state.id} data-type={this.state.type}/>
                 </div>
                 <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>
