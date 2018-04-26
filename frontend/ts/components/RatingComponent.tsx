@@ -67,7 +67,7 @@ export class RatingComponent extends React.Component {
     }
 
     reportReview(reviewId) {
-        axios.post(window.location.origin + '/api/rating/report/' + reviewId)
+        axios.post(window.location.origin + '/api/rating/flag/' + reviewId)
             .then(res => {
             window.location.reload();
         })
@@ -87,11 +87,23 @@ export class RatingComponent extends React.Component {
                         <img src="/../../images/pencil.png" data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
                         <img src="/../../images/trash.png" onClick={() => this.deleteReview(rating.id)}/>
                       </span> 
-                    : <span className="align-right"> <img src="/../../images/flag.png" onClick={() => this.reportReview(rating.id)}/> </span>
+                    : <span className="align-right"> <img src="/../../images/flag.png" data-toggle="modal" data-target="#report-rating-modal"/> </span>
                     }
                     <hr/>
                     "{rating.body}"
-
+                    <div id="report-rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div className="modal-dialog modal-lg">
+                            <div className="modal-content">
+                                <h2>Report Rating</h2>
+                                <form onSubmit={this.reportReview}>
+                                    <input type="radio" name="report"/> Unwanted commercial content or spam <br/>
+                                    <input type="radio" name="report"/> Hate speech or graphic violence <br/>
+                                    <input type="radio" name="report"/> Pornography or sexually explicit material <br/>
+                                    <button type="submit" className="btn btn-primary">Report</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <div id="edit-rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-lg">
                             <div className="modal-content">
@@ -120,7 +132,7 @@ export class RatingComponent extends React.Component {
         return (
             <div className="reviews margin-top-bottom">
                 <h2> Reviews </h2> {isProfile ? '' : <hr/>}
-                {ratings.length == 0 ? <div className="interests box-shadow center-text">There are no reviews right now. You can be the first!</div> : ratings}
+                {ratings.length == 0 ? <div className={isProfile ? 'interests box-shadow center-text' : 'center-text'}>There are no reviews right now. You can be the first!</div> : ratings}
                 {isProfile ? '' : <span className="align-right small-padding-top"> <a href="" data-toggle="modal" data-target="#rating-modal">Add a Rating</a>  | <a href="">View All Reviews </a> </span>}
                 <div className="padding-top clear-both"></div>
                 <div id="rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

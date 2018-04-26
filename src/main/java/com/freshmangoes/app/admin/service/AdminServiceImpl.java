@@ -6,6 +6,7 @@ import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Show;
 import com.freshmangoes.app.content.repository.MovieRepository;
 import com.freshmangoes.app.content.repository.ShowRepository;
+import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.repository.RatingRepository;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.data.UserType;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -61,8 +63,8 @@ public class AdminServiceImpl implements AdminService {
   }
 
   @Override
-  public Report getReport() {
-    return null;
+  public List<Rating> getReport() {
+    return ratingRepository.findFlaggedRatings();
   }
 
   @Override
@@ -77,11 +79,7 @@ public class AdminServiceImpl implements AdminService {
 
   @Override
   public Boolean isAuthenticatedAdmin(final HttpSession session) {
-    final Integer userId = (Integer) session.getAttribute(Constants.USER_ID);
-    if (userId == null) {
-      return false;
-    }
-    final User user = userRepository.findById(userId).orElse(null);
+    final User user = (User) session.getAttribute(Constants.USER_ID);
     return (user != null && user.getType() == UserType.ADMIN);
   }
 }

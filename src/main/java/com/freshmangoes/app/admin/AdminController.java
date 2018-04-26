@@ -3,9 +3,13 @@ package com.freshmangoes.app.admin;
 import com.freshmangoes.app.admin.data.Report;
 import com.freshmangoes.app.admin.service.AdminService;
 import com.freshmangoes.app.common.data.Constants;
+
+import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
+
+import com.freshmangoes.app.rating.data.Rating;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,19 +81,12 @@ public class AdminController {
   }
 
   @GetMapping(Constants.ADMIN_VIEW_REPORTS_MAPPING)
-  public ResponseEntity<Object> getReports() {
-    final HttpStatus status;
-    final Report report;
-
+  public List<Rating> getReports() {
+    List<Rating> reports = null;
     if (adminService.isAuthenticatedAdmin(session)) {
-      status = HttpStatus.OK;
-      report = adminService.getReport();
-    } else {
-      status = HttpStatus.BAD_REQUEST;
-      report = null;
+      reports = adminService.getReport();
     }
-
-    return ResponseEntity.status(status).body(report);
+    return reports;
   }
 
   @PostMapping(Constants.ADMIN_DELETE_RATING_MAPPING)

@@ -7,6 +7,7 @@ import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.rating.data.Rating;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -58,7 +59,7 @@ public abstract class Content {
   @IndexedEmbedded
   private ContentMetadata metadata;
 
-  @OneToMany(mappedBy = "content")
+  @OneToMany(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true)
 //  @JsonIgnoreProperties(value = {"content", "user"})
   private List<Rating> ratings;
 

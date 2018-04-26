@@ -32,13 +32,14 @@ export class EpisodeTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-list={3} data-list-type="episode"/>             
+                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media} data-list-type="Episode"/>             
                     <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} data-type={this.state.type}/>
                 </div>
-
+                <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>
                 <VideoComponent data-videos={this.state.media}/>
                 <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
+                <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
             </div>
 		</div>
 
