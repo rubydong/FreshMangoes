@@ -46,7 +46,6 @@ public class Celebrity {
   private Date birthday;
 
   @Column(name = "celebrity_name")
-
   @Field
   private String name;
 

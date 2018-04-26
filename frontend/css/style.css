@@ -270,6 +270,7 @@ select, option {
 .summary img {
 	object-fit: cover;
 	width: 280px;
+	height: 380px;
 	padding-right: 15px;
 	padding-top: 6px;
 }
@@ -599,26 +600,23 @@ h5 span {
 	border: none;
 }
 
-.btn {
+.btn, .btn-light:hover {
 	background-color: #759BBA !important;
 	color: #FFF;
 	border: none;
+	transition: 300ms ease-in-out;
 }
 
 .btn-light, .btn:hover {
 	background-color: #F2F2F2 !important;
 	color: #465057;
+	border: none;
+	padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
 }
 
-.btn-light:hover {
-	background-color: #759BBA !important;
-	color: #FFF;
-	transition: 300ms ease-in-out;
-}
-
-.btn:hover {
-	border: none !important;
-}
 
 .thead-light th{
 	background-color: #FAFAFA !important;

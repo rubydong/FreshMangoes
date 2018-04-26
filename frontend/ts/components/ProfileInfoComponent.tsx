@@ -22,7 +22,7 @@ export class ProfileInfoComponent extends React.Component {
         axios.post(window.location.origin + '/api/unfollow/' + window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1))
         .then(res => {
             console.log(res);
-            // window.location.reload();
+            window.location.reload();
         });
     }
 
@@ -33,6 +33,8 @@ export class ProfileInfoComponent extends React.Component {
     handleFileChange = event => {
         this.setState({ newFile: event.target.files[0] });
 
+        console.log(event.target.files[0]); 
+        
     }
     handleEmailChange = event => {
         this.setState({ newEmail: event.target.value });
@@ -72,16 +74,18 @@ export class ProfileInfoComponent extends React.Component {
         const state = this.props['data-state'];
         const sameUser = ("/profile/" + state.currentUser) == window.location.pathname;
         let alreadyFollowed = false;
+        console.log(state);
         for (let i = 0; i < state.followers.length; i++) {
             if (state.followers[i].id == state.currentUser) {
                 alreadyFollowed = true;
                 break;
             }
         }
-        const editOrFollowButton = sameUser
-            ? <button className="btn" data-toggle="modal" data-target="#profile-modal">Edit Profile</button>
-            : (alreadyFollowed
-                ? <button className="btn" onClick={this.unfollowUser}>Unfollow</button>
+
+        const editOrFollowButton = sameUser 
+            ? <button className="btn" data-toggle="modal" data-target="#profile-modal">Edit Profile</button> 
+            : (alreadyFollowed 
+                ? <button className="btn-light" onClick={this.unfollowUser}>Unfollow</button> 
                 : <button className="btn" onClick={this.followUser}>Follow</button>);
 
         return (

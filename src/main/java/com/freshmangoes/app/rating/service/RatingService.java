@@ -11,9 +11,13 @@ public interface RatingService {
 
   Rating editRating(Integer userId, Rating rating);
 
+  Rating flagRating(Integer ratingId, String report);
+
   List<Rating> findByContentId(Integer contentId);
 
   List<Rating> findByUserId(Integer userId);
 
   void deleteRating(Integer userId, Integer ratingId);
+
+  List<Rating> getFlaggedRatings();
 }

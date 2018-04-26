@@ -18,7 +18,7 @@ public class ContentSearch {
   @Autowired
   private EntityManager entityManager;
 
-  public List<Content> search(String text) {
+  public List<Content> search(String text, Integer firstResult, Integer maxResults) {
     FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
     QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
                                                      .buildQueryBuilder()
@@ -29,9 +29,9 @@ public class ContentSearch {
                               .onField("metadata.name")
                               .matching(text)
                               .createQuery();
-
-    FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(query, Content.class);
-    fullTextQuery.setMaxResults(10);
+    FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(query, Content.class)
+                                                       .setFirstResult(firstResult)
+                                                       .setMaxResults(maxResults);
     return fullTextQuery.getResultList();
   }
 }

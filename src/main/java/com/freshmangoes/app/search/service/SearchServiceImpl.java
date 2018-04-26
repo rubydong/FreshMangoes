@@ -16,8 +16,8 @@ public class SearchServiceImpl implements SearchService {
 
   public SearchResult searchByKeyword(final String searchQuery) {
     SearchResult searchResult = SearchResult.builder()
-                                            .celebrities(celebritySearch.search(searchQuery))
-                                            .content(contentSearch.search(searchQuery))
+                                            .celebrities(celebritySearch.search(searchQuery, 0, 10))
+                                            .content(contentSearch.search(searchQuery, 0, 10))
                                             .build();
     return searchResult;
   }

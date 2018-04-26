@@ -30,30 +30,32 @@ export class SearchTemplate extends React.Component {
     }
 
     render() {
+        const movies = this.state.content.filter(c => c.type == ContentType.MOVIE);
+        const shows = this.state.content.filter(c => c.type == ContentType.SHOW);
+        
         return (
         <div className="search page-background-color">
             <hr className="header-hr"/>
             <div className="content">
                 
                 <SearchCriteriaComponent/>
-
                 <div className="search-results">
                     <h4> {this.state.results} Results found for "{window.location.search.substring(7).replace("%20", " ")}"</h4> <hr/>
-                    {/* <ul className="list-inline">
+                    <ul className="list-inline">
                         <li><button className="btn-link" onClick={() => this.setSelectedContent([], 'All')}>All</button></li>
-                        <li><button className="btn-link" onClick={() => this.setSelectedContent(this.state.movies, 'Movies')}>Movies</button></li>		
-                        <li><button className="btn-link" onClick={() => this.setSelectedContent(this.state.shows, 'TV Shows')}>TV Shows</button></li>		
+                        <li><button className="btn-link" onClick={() => this.setSelectedContent(movies, 'Movies')}>Movies</button></li>		
+                        <li><button className="btn-link" onClick={() => this.setSelectedContent(shows, 'Tv Shows')}>TV Shows</button></li>		
                         <li><button className="btn-link" onClick={() => this.setSelectedContent(this.state.celebrities, 'Celebrities')}>Celebrities</button></li>
-                    </ul> */}
+                    </ul>
                     
-                    {/* {this.state.selectedContent == [] || this.state.selectedContent == undefined
-                    ? <div> */}
-                    <SearchContentComponent data-title='Movies' data-content={this.state.content.filter(content => content.type === ContentType.MOVIE)} data-search="true"/>
-                    <SearchContentComponent data-title='TV Shows' data-content={this.state.content.filter(content => content.type === ContentType.SHOW)} data-search="true"/>
-                    <SearchContentComponent data-title='Celebrities' data-content={this.state.celebrities} data-search="true"/>
-                    {/* </div>
-                    : <SpotlightDetailComponent data-content={this.state.selectedContent} data-title={this.state.selectedTitle}/>
-                    } */}
+                    {this.state.selectedContent.length == 0
+                    ? <div>
+                    <SearchContentComponent data-title='Movies' data-content={this.state.content.filter(content => content.type === ContentType.MOVIE)}/>
+                    <SearchContentComponent data-title='TV Shows' data-content={this.state.content.filter(content => content.type === ContentType.SHOW)}/>
+                    <SearchContentComponent data-title='Celebrities' data-content={this.state.celebrities}/>
+                    </div>
+                    : <SearchContentComponent data-title={this.state.selectedTitle} data-content={this.state.selectedContent}/>
+                    }
                 </div>		
                 <div className="clear-both"></div>	
             </div>

@@ -31,7 +31,7 @@ export class MovieTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} />             
+                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media}/>             
                     <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
                                       data-id={this.state.id} data-type={this.state.type}/>
                 </div>
