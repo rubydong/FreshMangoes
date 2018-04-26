@@ -60,4 +60,18 @@ public class RatingServiceImpl implements RatingService {
     }
     ratingRepository.deleteById(ratingId);
   }
+
+  public Rating flagRating(final Integer ratingId, final String report) {
+    Rating rating = ratingRepository.findById(ratingId).orElse(null);
+    if (rating == null) {
+      return null;
+    }
+    rating.setIsFlagged(true);
+    ratingRepository.save(rating);
+    return rating;
+  }
+
+  public List<Rating> getFlaggedRatings() {
+    return ratingRepository.findFlaggedRatings();
+  }
 }

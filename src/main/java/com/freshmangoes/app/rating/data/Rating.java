@@ -1,5 +1,6 @@
 package com.freshmangoes.app.rating.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.user.data.User;
@@ -45,4 +46,10 @@ public class Rating {
   @JsonIgnoreProperties({"email", "hash", "numFollowers", "numFollowing",
       "followers", "following", "interestedList", "disinterestedList", "verified", "ratings"})
   private User user;
+
+  @Column(name = "flagged")
+  private Boolean isFlagged;
+
+  @Column(name = "report")
+  private String report;
 }

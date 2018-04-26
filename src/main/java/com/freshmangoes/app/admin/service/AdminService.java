@@ -3,8 +3,10 @@ package com.freshmangoes.app.admin.service;
 import com.freshmangoes.app.admin.data.Report;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Show;
+import com.freshmangoes.app.rating.data.Rating;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public interface AdminService {
   Boolean createMovieDetailPage(Movie movie);
@@ -17,7 +19,7 @@ public interface AdminService {
 
   void deleteDetailPage(Integer contentId);
 
-  Report getReport();
+  List<Rating> getReport();
 
   void deleteRating(Integer ratingId);
 
