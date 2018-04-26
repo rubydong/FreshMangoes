@@ -8,7 +8,7 @@ import { CastComponent } from '../components/CastComponent';
 import { RatingComponent } from '../components/RatingComponent';
 import { SummaryComponent } from "../components/SummaryComponent";  
 import { DetailsComponent } from "../components/DetailsComponent";
-import { EpisodeListComponent } from "../components/EpisodeListComponent";
+import { SeasonEpisodeListComponent } from "../components/SeasonEpisodeListComponent";
 
 export class SeasonTemplate extends React.Component {
     state : Season;
@@ -22,6 +22,8 @@ export class SeasonTemplate extends React.Component {
       try {
         const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
         this.setState(response.data);
+        // console.log(response);
+        // console.log(this.state.episodes);
       } catch (err) {
         console.log(err);
       }
@@ -33,14 +35,16 @@ export class SeasonTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-list={3} data-list-type="season"/>             
+                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media} data-list-type="Season"/>             
                     <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
                                                     data-id={this.state.id} data-type={this.state.type}/>
                 </div>
+                <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>
                 <VideoComponent data-videos={this.state.media}/>
-                <EpisodeListComponent data-episodes={this.state.episodes}/>
+                <SeasonEpisodeListComponent data-list={this.state.episodes} data-type="episode"/>
                 <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
+                <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
             </div>
 		</div>
 

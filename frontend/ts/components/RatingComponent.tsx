@@ -120,7 +120,7 @@ export class RatingComponent extends React.Component {
         return (
             <div className="reviews margin-top-bottom">
                 <h2> Reviews </h2> {isProfile ? '' : <hr/>}
-                {ratings.length == 0 ? <div className="interests box-shadow center-text">There are no reviews right now. You can be the first!</div> : ratings}
+                {ratings.length == 0 ? <div className={isProfile ? 'interests box-shadow center-text' : 'center-text'}>There are no reviews right now. You can be the first!</div> : ratings}
                 {isProfile ? '' : <span className="align-right small-padding-top"> <a href="" data-toggle="modal" data-target="#rating-modal">Add a Rating</a>  | <a href="">View All Reviews </a> </span>}
                 <div className="padding-top clear-both"></div>
                 <div id="rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
