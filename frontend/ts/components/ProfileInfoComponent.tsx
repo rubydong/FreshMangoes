@@ -22,7 +22,7 @@ export class ProfileInfoComponent extends React.Component {
         axios.post(window.location.origin + '/api/unfollow/' + window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1))
         .then(res => {
             console.log(res);
-            // window.location.reload();
+            window.location.reload();
         });
     }
     
@@ -73,6 +73,7 @@ export class ProfileInfoComponent extends React.Component {
         const state = this.props['data-state'];
         const sameUser = ("/profile/" + state.currentUser) == window.location.pathname;    
         let alreadyFollowed = false;
+        console.log(state);
         for (let i = 0; i < state.followers.length; i++) {
             if (state.followers[i].id == state.currentUser) {
                 alreadyFollowed = true;

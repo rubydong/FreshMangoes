@@ -65,10 +65,10 @@ public class User {
 
   @JoinTable(name = "following",
       joinColumns = @JoinColumn(
-          name = "follower_id"
+          name = "followee_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "followee_id"
+          name = "follower_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   @JsonIgnoreProperties({"followers", "following", "interestedList", "disinterestedList", "ratings", "email"})
@@ -76,10 +76,10 @@ public class User {
 
   @JoinTable(name = "following",
       joinColumns = @JoinColumn(
-          name = "followee_id"
+          name = "follower_id"
       ),
       inverseJoinColumns = @JoinColumn(
-          name = "follower_id"
+          name = "followee_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
   @JsonIgnoreProperties({"followers", "following", "interestedList", "disinterestedList", "ratings", "email"})
