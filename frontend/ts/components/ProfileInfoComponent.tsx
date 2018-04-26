@@ -83,7 +83,7 @@ export class ProfileInfoComponent extends React.Component {
         const editOrFollowButton = sameUser 
             ? <button className="btn" data-toggle="modal" data-target="#profile-modal">Edit Profile</button> 
             : (alreadyFollowed 
-                ? <button className="btn" onClick={this.unfollowUser}>Unfollow</button> 
+                ? <button className="btn-light" onClick={this.unfollowUser}>Unfollow</button> 
                 : <button className="btn" onClick={this.followUser}>Follow</button>);
         
         return (
