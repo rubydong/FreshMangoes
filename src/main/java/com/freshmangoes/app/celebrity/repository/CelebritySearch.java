@@ -18,15 +18,20 @@ public class CelebritySearch {
   @Autowired
   private EntityManager entityManager;
 
-  public List<Celebrity> search(String text) {
+  public List<Celebrity> search(String text, Integer firstResult, Integer maxResults) {
     FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
     QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
                                                      .buildQueryBuilder()
                                                      .forEntity(Celebrity.class)
                                                      .get();
-    Query query = queryBuilder.keyword().fuzzy().onField("name").matching(text).createQuery();
-    FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(query, Celebrity.class);
-    fullTextQuery.setMaxResults(10);
+    Query query = queryBuilder.keyword()
+                              .fuzzy()
+                              .onField("name")
+                              .matching(text)
+                              .createQuery();
+    FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(query, Celebrity.class)
+                                                       .setFirstResult(firstResult)
+                                                       .setMaxResults(maxResults);
     return fullTextQuery.getResultList();
   }
 }

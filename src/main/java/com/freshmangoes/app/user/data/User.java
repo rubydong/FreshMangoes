@@ -105,7 +105,7 @@ public class User {
   @ManyToMany(cascade = CascadeType.ALL)
   private List<Content> disinterestedList;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "id")
 //  @JsonIgnoreProperties(value = {"user"})
   private List<Rating> ratings;

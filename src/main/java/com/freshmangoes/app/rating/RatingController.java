@@ -3,8 +3,6 @@ package com.freshmangoes.app.rating;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.helpers.Helpers;
 import com.freshmangoes.app.content.data.ContentType;
-import com.freshmangoes.app.content.repository.MovieRepository;
-import com.freshmangoes.app.content.service.ContentService;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.service.RatingService;
 import com.freshmangoes.app.user.data.User;
@@ -85,6 +83,21 @@ public class RatingController {
        .user(user)
        .body(body.get(Constants.BODY))
        .build()) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+    }
+    return ResponseEntity.status(status).build();
+  }
+
+  @PostMapping(Constants.FLAG_RATING_MAPPING)
+  public ResponseEntity flagRating(@RequestBody final Map<String, String> body,
+                                   @PathVariable final Integer ratingId) {
+    final HttpStatus status;
+    final User user = Helpers.getAuthenticatedUser(session);
+
+    if (user == null) {
+      status = HttpStatus.BAD_REQUEST;
+    } else {
+      status = ratingService.flagRating(ratingId, body.get(Constants.BODY)) != null
+             ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
     return ResponseEntity.status(status).build();
   }

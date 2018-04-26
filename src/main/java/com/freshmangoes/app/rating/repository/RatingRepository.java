@@ -14,4 +14,7 @@ public interface RatingRepository extends CrudRepository<Rating, Integer> {
 
   @Query(value = "SELECT * FROM Ratings WHERE user_id = ?1", nativeQuery = true)
   List<Rating> findByUserId(Integer id);
+
+  @Query(value = "SELECT * FROM Ratings WHERE flagged=true", nativeQuery = true)
+  List<Rating> findFlaggedRatings();
 }

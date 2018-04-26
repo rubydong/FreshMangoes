@@ -9,7 +9,16 @@ def load_json(filename):
     return data
 
 
-def make_request(url, params):
+def download_file(url, local_filename):
+    r = requests.get(url, stream=True)
+    with open(local_filename, 'wb') as f:
+        for chunk in r.iter_content(chunk_size=1024):
+            if chunk:
+                f.write(chunk)
+    return local_filename
+
+
+def download_json(url, params):
     print(url)
     while True:
         try:
