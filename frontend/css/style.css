@@ -270,6 +270,7 @@ select, option {
 .summary img {
 	object-fit: cover;
 	width: 280px;
+	height: 380px;
 	padding-right: 15px;
 	padding-top: 6px;
 }

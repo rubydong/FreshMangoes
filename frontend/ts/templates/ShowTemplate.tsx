@@ -33,7 +33,7 @@ export class ShowTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} />             
+                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media}/>             
                     <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
                                       data-id={this.state.id} data-type={this.state.type}/> 
                 </div>
@@ -42,6 +42,7 @@ export class ShowTemplate extends React.Component {
                 <VideoComponent data-videos={this.state.media}/>
                 <SeasonEpisodeListComponent data-id={this.state.id} data-list={this.state.seasons} data-type="season"/>
                 <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
+                <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
             </div>
 		</div>
 
