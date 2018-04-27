@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 import { MOVIE_GENRES } from "../../GlobalVariables";
 import { TV_GENRES } from "../../GlobalVariables";
 import { CreatePage, ContentType } from "../types/content";
@@ -24,13 +25,33 @@ export class CreatePagesTemplate extends React.Component {
         this.state.type = event.target.value;
         this.forceUpdate();
     }
+
+    handleChangeGenre = event => {
+        if (event.target.checked) {
+            this.state.genres.push(event.target.value);
+        } else {
+            let i = this.state.genres.indexOf(event.target.value);
+            this.state.genres.splice(i, 1);
+        }
+    }
     render() {
         const genres = (this.state.type == ContentType.MOVIE ? MOVIE_GENRES : TV_GENRES).map((genre) => {
             return <div className="form-check form-check-inline">
-                <input className="form-check-input" type="checkbox"/>
+                <input className="form-check-input" type="checkbox" value={genre} onChange={this.handleChangeGenre}/>
                 <label className="form-check-label">{genre}</label>
             </div>
         });
+
+        const cast = ({children}) => {  
+            return ReactDOM.createPortal(
+                <div>
+                    <input type="file"/> <p/>
+                    <input type="text" className="small-margin-right" placeholder="Name"/>
+                    <input type="text" placeholder="Role"/>
+                </div> ,
+              document.getElementById('cast')
+            );
+          };
         
         return ( 
             <div className="page-background-color">
@@ -93,19 +114,21 @@ export class CreatePagesTemplate extends React.Component {
 
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2">Cast</label>
-                            <div className="col-sm-6 form-control">
-                                <input type="file"/> <p/>
+                            <div className="col-sm-6 form-control" id="cast">
+                                {/* <input type="file"/> <p/>
                                 <input type="text" className="small-margin-right" placeholder="Name"/>
                                 <input type="text" placeholder="Role"/> 
 
                                 <div className="padding"></div>
                                 <input type="file"/> <p/>
                                 <input type="text" className="small-margin-right" placeholder="Name"/> 
-                                <input type="text" placeholder="Role"/> 
+                                <input type="text" placeholder="Role"/>  */}
+
+                                <button className="btn-link" onClick={this.addAnotherCast}>Add another cast</button>
                             </div>
                         </div>
 
-                        <button className="btn">Create Page</button>
+                        <button className="btn col-sm-4">Create Page</button>
                     </form>
                 </div>
             </div>
