@@ -122,3 +122,25 @@ export class Spotlight {
     this.selectedTitle = "";
   }
 }
+
+export class CreatePage {
+  type: ContentType;
+  name: string;
+  summary: string;
+  summaryPhoto: File;
+  genres: string [];
+  photos: FileList;
+  videos: FileList;
+  cast: Celebrity[];
+  
+  constructor() {
+    this.type = ContentType.MOVIE;
+    this.name = "";
+    this.summary = "";
+    this.summaryPhoto = null;
+    this.genres = [];
+    this.photos = null;
+    this.videos = null;
+    this.cast = [];
+  }
+}
