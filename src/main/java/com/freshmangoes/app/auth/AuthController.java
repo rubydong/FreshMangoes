@@ -80,7 +80,7 @@ public class AuthController {
   }
 
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)
-  public String currentUser(@RequestParam Integer contentId) {
+  public String currentUser(@RequestParam(required = false) Integer contentId) {
     final User user = Helpers.getAuthenticatedUser(session);
     final ObjectNode rootNode = mapper.createObjectNode();
 
@@ -88,9 +88,11 @@ public class AuthController {
       rootNode.put(Constants.USER_ID, user.getId());
       rootNode.put(Constants.USER_TYPE, user.getType().toString());
 
-      for (Content content : user.getInterestedList()) {
-        if (content.getId().equals(contentId)) {
-          rootNode.put(Constants.INTERESTED, true);
+      if (contentId != null) {
+        for (Content content : user.getInterestedList()) {
+          if (content.getId().equals(contentId)) {
+            rootNode.put(Constants.INTERESTED, true);
+          }
         }
       }
 

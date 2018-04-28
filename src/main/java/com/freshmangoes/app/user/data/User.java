@@ -7,6 +7,7 @@ import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.rating.data.Rating;
 
+import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -107,8 +108,6 @@ public class User {
   private List<Content> disinterestedList;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//  @JoinColumn(name = "id")
-//  @JsonIgnoreProperties(value = {"user"})
   private List<Rating> ratings;
 
   @JsonIgnore
@@ -117,7 +116,5 @@ public class User {
 
   private Boolean verified;
 
-//  private Boolean appliedForCritic;
-//
-//  private String reason;
+  private BigInteger views;
 }
