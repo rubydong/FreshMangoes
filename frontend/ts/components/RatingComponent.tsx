@@ -66,8 +66,12 @@ export class RatingComponent extends React.Component {
         })
     }
 
-    reportReview(reviewId) {
-        axios.post(window.location.origin + '/api/rating/flag/' + reviewId)
+    reportReview = event => {
+        const report = {
+            body: this.state.body
+        };
+
+        axios.post(window.location.origin + '/api/rating/flag/' + this.state.currentReviewId, report)
             .then(res => {
             window.location.reload();
         })
@@ -87,23 +91,24 @@ export class RatingComponent extends React.Component {
                         <img src="/../../images/pencil.png" data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
                         <img src="/../../images/trash.png" onClick={() => this.deleteReview(rating.id)}/>
                       </span> 
-                    : <span className="align-right"> <img src="/../../images/flag.png" data-toggle="modal" data-target="#report-rating-modal"/> </span>
+                    : <span className="align-right"> <img src="/../../images/flag.png" data-toggle="modal" data-target="#report-rating-modal" onClick={()=>this.state.currentReviewId=rating.id}/> </span>
                     }
                     <hr/>
                     "{rating.body}"
+
                     <div id="report-rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-lg">
                             <div className="modal-content">
                                 <h2>Report Rating</h2>
                                 <form onSubmit={this.reportReview}>
-                                    <input type="radio" name="report"/> Unwanted commercial content or spam <br/>
-                                    <input type="radio" name="report"/> Hate speech or graphic violence <br/>
-                                    <input type="radio" name="report"/> Pornography or sexually explicit material <br/>
+                                    <textarea className="form-control" placeholder="State your reason for reporting this review" onChange={this.handleBodyChange}></textarea>
+                                    <p/><p/>
                                     <button type="submit" className="btn btn-primary">Report</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+
                     <div id="edit-rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-lg">
                             <div className="modal-content">
