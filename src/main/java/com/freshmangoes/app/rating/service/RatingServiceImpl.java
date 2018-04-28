@@ -67,6 +67,7 @@ public class RatingServiceImpl implements RatingService {
       return null;
     }
     rating.setIsFlagged(true);
+    rating.setReport(report);
     ratingRepository.save(rating);
     return rating;
   }

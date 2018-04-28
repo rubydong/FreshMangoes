@@ -21,7 +21,8 @@ export class MovieTemplate extends React.Component {
             const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
             this.setState(response.data);
         } catch (err) {
-            window.location.assign('/../404');
+            console.log(err);
+            // window.location.assign('/../404');
         }
     }
 

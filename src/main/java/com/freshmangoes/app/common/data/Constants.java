@@ -49,7 +49,7 @@ public class Constants {
   public static final String FORGOT_PASSWORD_MAPPING = "/forgotpassword";
 
 
-  public static final String ADMIN_ADD_DETAIL_PAGE_MAPPING = "/admin/insert";
+  public static final String ADMIN_ADD_DETAIL_PAGE_MAPPING = "/admin/content/insert";
   public static final String ADMIN_UPDATE_DETAIL_PAGE_MAPPING = "/admin/update";
   public static final String ADMIN_DELETE_DETAIL_PAGE_MAPPING = "/admin/delete/{contentId}";
   public static final String ADMIN_VIEW_REPORTS_MAPPING = "/admin/reports";
