@@ -115,6 +115,4 @@ public class User {
   private String verificationKey;
 
   private Boolean verified;
-
-  private BigInteger views;
 }
