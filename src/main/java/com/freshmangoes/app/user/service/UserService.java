@@ -14,4 +14,6 @@ public interface UserService {
   void deleteAccount(User user);
 
   void updatePicture();
+
+  void updateName(User user, String s);
 }

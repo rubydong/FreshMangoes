@@ -32,11 +32,21 @@ public class UserController {
     return user;
   }
 
+  @PostMapping(Constants.CHANGE_NAME_MAPPING)
+  public ResponseEntity changeDisplayName(@RequestBody final Map<String, String> body) {
+    User user = (User) session.getAttribute(Constants.USER_ID);
+    if (user != null) {
+      userService.updateName(user, body.get(Constants.NEW_NAME));
+      return new ResponseEntity(HttpStatus.OK);
+    }
+    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+  }
+
   @PostMapping(Constants.CHANGE_PASSWORD_MAPPING)
   public ResponseEntity changePassword(@RequestBody final Map<String, String> body) {
     User user = (User) session.getAttribute(Constants.USER_ID);
     if (user != null) {
-      userService.updatePassword(user, body.get(Constants.PASSWORD));
+      userService.updatePassword(user, body.get(Constants.NEW_PASSWORD));
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -46,7 +56,7 @@ public class UserController {
   public ResponseEntity changeEmail(@RequestBody final Map<String, String> body) {
     User user = (User) session.getAttribute(Constants.USER_ID);
     if (user != null) {
-      userService.updateEmail(user, body.get(Constants.EMAIL));
+      userService.updateEmail(user, body.get(Constants.NEW_EMAIL));
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -63,9 +73,9 @@ public class UserController {
   @PostMapping(Constants.DELETE_ACCOUNT_MAPPING)
   public ResponseEntity deleteAccount() {
     User user = (User) session.getAttribute(Constants.USER_ID);
-    System.out.println("###########################" + user);
     if (user != null) {
       userService.deleteAccount(user);
+      session.invalidate();
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
