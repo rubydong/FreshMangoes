@@ -4,6 +4,7 @@ import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.rating.data.Rating;
 
 import java.util.List;
+import java.util.Map;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
