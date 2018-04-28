@@ -36,7 +36,7 @@ const Main = () => (
       <Route path="/verify/:id" component={VerifyTemplate}/>
       <Route path="/tos" component={TosTemplate}/>
       <Route path="/404" component={NoMatch}/>
-      <Route path="/resetpassword/:userid" component={ResetPasswordTemplate}/>
+      <Route path="/resetpassword" component={ResetPasswordTemplate}/>
       <Route component={NoMatch}/>
     </Switch>
   </main>
