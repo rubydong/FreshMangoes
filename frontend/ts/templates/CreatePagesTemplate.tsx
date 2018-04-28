@@ -1,8 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import axios from "axios";
 import { MOVIE_GENRES } from "../../GlobalVariables";
 import { TV_GENRES } from "../../GlobalVariables";
 import { CreatePage, ContentType } from "../types/content";
+import { CreateCast } from "../types/celebrity";
 
 export class CreatePagesTemplate extends React.Component {
     state: CreatePage;
@@ -12,17 +14,17 @@ export class CreatePagesTemplate extends React.Component {
         this.state = new CreatePage();
     }
 
-    addAnotherCast () {
-
-    }
-
     handleCreateContentPage = event => {
         event.preventDefault();
         console.log(this.state);
+        // axios.post(window.location.origin + '/admin/insert', this.state)
+        //     .then(res => {
+        //     window.location.reload();
+        // })
     }
 
     handleChangeType = event => {
-        this.state.type = event.target.value;
+        this.setState({type: event.target.value});
         this.forceUpdate();
     }
 
@@ -34,24 +36,51 @@ export class CreatePagesTemplate extends React.Component {
             this.state.genres.splice(i, 1);
         }
     }
+    
+    addCastMember = () => {
+        this.setState({castNum: this.state.castNum + 1});
+        this.state.cast.push(new CreateCast());
+        this.forceUpdate();
+    }
+
+    removeCastMember = (castMember, i) => {
+        this.setState({castNum: this.state.castNum - 1});
+        castMember.splice(i, 1);
+        this.state.cast.splice(i, 1);
+        this.forceUpdate();
+    }
+
+    handleCastImageChange =  (i, event) => {
+        this.state.cast[i].profilePicture = event.target.files[0];
+    }
+
+    handleCastNameChange =  (i, event) => {
+        this.state.cast[i].name = event.target.value;
+    }
+
+    handleCastRoleChange = (i, event) => {
+        this.state.cast[i].role = event.target.value;
+    }
+
     render() {
-        const genres = (this.state.type == ContentType.MOVIE ? MOVIE_GENRES : TV_GENRES).map((genre) => {
-            return <div className="form-check form-check-inline">
+        const genres = (this.state.type == ContentType.MOVIE ? MOVIE_GENRES : TV_GENRES).map((genre, i) => {
+            return <div className="form-check form-check-inline" key={i}>
                 <input className="form-check-input" type="checkbox" value={genre} onChange={this.handleChangeGenre}/>
                 <label className="form-check-label">{genre}</label>
             </div>
         });
 
-        const cast = ({children}) => {  
-            return ReactDOM.createPortal(
-                <div>
-                    <input type="file"/> <p/>
-                    <input type="text" className="small-margin-right" placeholder="Name"/>
-                    <input type="text" placeholder="Role"/>
-                </div> ,
-              document.getElementById('cast')
-            );
-          };
+        let castMember = [];
+
+        for (let i = 0; i < this.state.castNum; i++) {
+            castMember.push(<div key ={i} className={i != 0 ? "padding-top" : ""}>
+                <input type="file" onChange={(event) => this.handleCastImageChange(i, event)}/> 
+                <button className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button> <p/> 
+                <input type="text" className="small-margin-right" placeholder="Name" onChange={(event) => this.handleCastNameChange(i, event)}/>
+                <input type="text" placeholder="Role" onChange={(event) => this.handleCastRoleChange(i, event)}/>
+            </div>);
+            
+        }
         
         return ( 
             <div className="page-background-color">
@@ -82,6 +111,21 @@ export class CreatePagesTemplate extends React.Component {
                                 </div>
                             </div>
                         </div>
+
+                        {this.state.type == ContentType.SEASON || this.state.type == ContentType.EPISODE 
+                        ? (<div className="form-group row">
+                            <label className="col-sm-2 col-form-label">Show ID</label>
+                            <input className="col-sm-6 form-control" onChange={(event) => this.state.showID = parseInt(event.target.value)}/>
+                           </div>) 
+                        : ''}
+
+                        {this.state.type == ContentType.EPISODE
+                        ? (<div className="form-group row">
+                            <label className="col-sm-2 col-form-label">Season ID</label>
+                            <input className="col-sm-6 form-control" onChange={(event) => this.state.seasonID = parseInt(event.target.value)}/>
+                           </div>) 
+                        : ''}
+
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label">Title</label>
                             <input type="text" className="col-sm-6 form-control" onChange={(event) => this.state.name = event.target.value}/>
@@ -115,16 +159,9 @@ export class CreatePagesTemplate extends React.Component {
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2">Cast</label>
                             <div className="col-sm-6 form-control" id="cast">
-                                {/* <input type="file"/> <p/>
-                                <input type="text" className="small-margin-right" placeholder="Name"/>
-                                <input type="text" placeholder="Role"/> 
+                                {castMember}
 
-                                <div className="padding"></div>
-                                <input type="file"/> <p/>
-                                <input type="text" className="small-margin-right" placeholder="Name"/> 
-                                <input type="text" placeholder="Role"/>  */}
-
-                                <button className="btn-link" onClick={this.addAnotherCast}>Add another cast</button>
+                                <button className={castMember.length != 0 ? "btn-link padding-top" : "btn-link"} onClick={this.addCastMember}>Add another cast</button>
                             </div>
                         </div>
 

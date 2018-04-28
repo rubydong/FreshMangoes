@@ -45,6 +45,18 @@ export class Celebrity {
     }
 }
 
+export class CreateCast {
+    name: string;
+    role: string;
+    profilePicture: File;
+
+    constructor() {
+        this.name = "";
+        this.role = "";
+        this.profilePicture = null;
+    }
+}
+
 export class Role {
     content: Content;
     role: string;

@@ -1,6 +1,7 @@
 package com.freshmangoes.app.auth.service;
 
 import com.freshmangoes.app.user.data.User;
+import com.freshmangoes.app.user.data.UserType;
 import com.freshmangoes.app.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
     final User user = userRepository.save(User.builder()
                                               .email(email)
                                               .hash(hash)
+                                              .type(UserType.AUDIENCE)
                                               .displayName(displayName)
                                               .verified(false)
                                               .build());

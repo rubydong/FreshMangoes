@@ -8,7 +8,7 @@ export class SummaryComponent extends React.Component {
         const list = [];
         for (let i = 1; i <= this.props['data-list']; i++) {
             list.push(
-                <option> 
+                <option key={i}> 
                     <a href={"./" + i}>
                     {this.props['data-list-type'] == 'season' ? 'Season ' + i : 'Episode ' + i}
                     </a>

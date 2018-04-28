@@ -80,15 +80,18 @@ public class AuthController {
   }
 
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)
-  public String currentUser(@RequestParam String contentId) {
+  public String currentUser(@RequestParam Integer contentId) {
     final User user = Helpers.getAuthenticatedUser(session);
     final ObjectNode rootNode = mapper.createObjectNode();
 
     if (user != null) {
       rootNode.put(Constants.USER_ID, user.getId());
+      rootNode.put(Constants.USER_TYPE, user.getType().toString());
 
       for (Content content : user.getInterestedList()) {
-        rootNode.put(Constants.INTERESTED, true);
+        if (content.getId().equals(contentId)) {
+          rootNode.put(Constants.INTERESTED, true);
+        }
       }
 
       if (!rootNode.has(Constants.INTERESTED)) {

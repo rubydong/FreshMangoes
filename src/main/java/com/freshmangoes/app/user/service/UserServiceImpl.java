@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -62,6 +65,18 @@ public class UserServiceImpl implements UserService {
   @Override
   public void updatePicture() {
 
+  }
+
+  @Override
+  public void updateName(User user, String name) {
+    user.setDisplayName(name);
+    userRepository.save(user);
+  }
+
+  public List<User> getCritics() {
+    List<User> critics = userRepository.getAllCritics();
+    critics.sort((User o1, User o2) -> Integer.compare(o2.getRatings().size(), o1.getRatings().size()));
+    return critics;
   }
 
 }

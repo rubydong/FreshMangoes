@@ -6,7 +6,7 @@ export class VideoComponent extends React.Component {
     render() {
         const videosOnly = this.props['data-videos'].filter(video => video.type == 'VIDEO');
         const videos = videosOnly.slice(0, VIDEO_LIMIT).map((video, i) => {
-            return <iframe src={video.path}> </iframe>
+            return <iframe src={video.path} key={i}> </iframe>
         });
 
         

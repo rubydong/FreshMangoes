@@ -4,6 +4,8 @@ import axios from "axios";
 export class VerifyTemplate extends React.Component {
     async componentWillMount() {
         await axios.post(window.location.origin + '/api' + window.location.pathname);
+        window.location.assign("/../");
+
     }
 
     render() {	

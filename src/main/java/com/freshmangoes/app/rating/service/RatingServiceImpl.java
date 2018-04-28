@@ -1,5 +1,6 @@
 package com.freshmangoes.app.rating.service;
 
+import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.content.repository.MovieRepository;
 import com.freshmangoes.app.content.repository.ShowRepository;
@@ -74,5 +75,9 @@ public class RatingServiceImpl implements RatingService {
 
   public List<Rating> getFlaggedRatings() {
     return ratingRepository.findFlaggedRatings();
+  }
+
+  public List<Rating> getLatestRatings() {
+    return ratingRepository.findLatestRatings(Constants.NUM_LATEST_REVIEWS);
   }
 }

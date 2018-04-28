@@ -28,6 +28,7 @@ export class ProfileTemplate extends React.Component {
     }
 
     render() {
+        console.log(this.state);
         return (this.state.displayName == "") ? <h2 className="center-text"><hr/>This user does not exist.</h2> :
         (
             <div className="profile page-background-color">

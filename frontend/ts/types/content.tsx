@@ -1,4 +1,4 @@
-import { Celebrity } from './celebrity';
+import { Celebrity, CreateCast } from './celebrity';
 import { Media } from './media';
 import { Rating } from './rating';
 
@@ -131,8 +131,11 @@ export class CreatePage {
   genres: string [];
   photos: FileList;
   videos: FileList;
-  cast: Celebrity[];
-  
+  cast: CreateCast[];
+  castNum: number;
+  showID: number;
+  seasonID: number;
+
   constructor() {
     this.type = ContentType.MOVIE;
     this.name = "";
@@ -142,5 +145,8 @@ export class CreatePage {
     this.photos = null;
     this.videos = null;
     this.cast = [];
+    this.castNum = 0;
+    this.showID = -1;
+    this.seasonID = -1;
   }
 }

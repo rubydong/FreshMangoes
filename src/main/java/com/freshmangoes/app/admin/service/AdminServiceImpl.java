@@ -99,105 +99,116 @@ public class AdminServiceImpl implements AdminService {
     return (user != null && user.getType() == UserType.ADMIN);
   }
 
+//  @Override
+//  public Content jsonToContent(String json) {
+//    return null;
+//  }
+
+//  public Movie jsonToMovie(String json) {
+//    System.out.println("start function");
+//    String title;
+//    String summary;
+//    Media summaryPhoto;
+//    List<Integer> genres;
+//    List<Media> media;
+//    List<Cast> cast;
+//
+//    try {
+//      JsonNode root = objectMapper.readTree(json);
+//      JsonNode placeHolder;
+//
+//      title = root.path("title").asText();
+//      summary = root.path("summary").asText();
+//
+//      System.out.println(title);
+//      System.out.println(summary);
+//
+//      // Get summary photo
+//      placeHolder = root.path("summaryPhoto");
+//      summaryPhoto = Media
+//       .builder()
+//       .path(new URL(placeHolder.path("path").asText()))
+//       .type(MediaType.PHOTO)
+//       .build();
+//
+//      // Get genres
+//      placeHolder = root.path("genres");
+//      genres = new ArrayList<Integer>();
+//      for (JsonNode node : placeHolder) {
+//        genres.add(node.asInt());
+//      }
+//
+//      // Get Media
+//      placeHolder = root.path("media");
+//      media = new ArrayList<Media>();
+//      for (JsonNode node : placeHolder) {
+//        media.add(Media
+//         .builder()
+//         .path(new URL(node.path("path").asText()))
+//         .type(node.path("type").asText().equals("PHOTO") ? MediaType.PHOTO : MediaType.VIDEO)
+//         .build());
+//      }
+//
+//      // Get Celebrity
+//      placeHolder = root.path("cast");
+//      cast = new ArrayList<Cast>();
+//      for (JsonNode node : placeHolder) {
+//        JsonNode celebrity = node.path("celebrity");
+//        JsonNode pic = celebrity.path("profilePicture");
+//        Cast c = Cast
+//         .builder()
+//         .role(node.path("role").asText())
+//         .celebrity(Celebrity
+//          .builder()
+//          .name(celebrity.path("name").asText())
+//          .profilePicture(pic != null
+//           ? Media.builder().path(new URL(pic.path("path").asText())).type(MediaType.PHOTO).build()
+//           : null)
+//          .build())
+//         .build();
+//        cast.add(c);
+//      }
+//
+//      System.out.println("end function success");
+//
+//      // Create everything not related
+//
+//      Movie m = Movie
+//       .builder()
+//       .media(media)
+//       .cast(cast)
+//       .summaryPhoto(summaryPhoto)
+//       .contentMetadata(ContentMetadata
+//       .builder()
+//       .name(title)
+//       .summary(summary)
+//       .genres(genres)
+//       .build())
+//       .build();
+//
+//      movieRepository.save(m);
+//
+//      return m;
+//
+//    } catch (JsonGenerationException e) {
+//      e.printStackTrace();
+//    } catch (JsonMappingException e) {
+//      e.printStackTrace();
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//
+//    return null;
+//  }
+
   @Override
-  public Content jsonToContent(String json) {
-    return null;
-  }
-
-  public Movie jsonToMovie(String json) {
-    System.out.println("start function");
-    String title;
-    String summary;
-    Media summaryPhoto;
-    List<Integer> genres;
-    List<Media> media;
-    List<Cast> cast;
-
-    try {
-      JsonNode root = objectMapper.readTree(json);
-      JsonNode placeHolder;
-
-      title = root.path("title").asText();
-      summary = root.path("summary").asText();
-
-      System.out.println(title);
-      System.out.println(summary);
-
-      // Get summary photo
-      placeHolder = root.path("summaryPhoto");
-      summaryPhoto = Media
-       .builder()
-       .path(new URL(placeHolder.path("path").asText()))
-       .type(MediaType.PHOTO)
-       .build();
-
-      // Get genres
-      placeHolder = root.path("genres");
-      genres = new ArrayList<Integer>();
-      for (JsonNode node : placeHolder) {
-        genres.add(node.asInt());
-      }
-
-      // Get Media
-      placeHolder = root.path("media");
-      media = new ArrayList<Media>();
-      for (JsonNode node : placeHolder) {
-        media.add(Media
-         .builder()
-         .path(new URL(node.path("path").asText()))
-         .type(node.path("type").asText().equals("PHOTO") ? MediaType.PHOTO : MediaType.VIDEO)
-         .build());
-      }
-
-      // Get Celebrity
-      placeHolder = root.path("cast");
-      cast = new ArrayList<Cast>();
-      for (JsonNode node : placeHolder) {
-        JsonNode celebrity = node.path("celebrity");
-        JsonNode pic = celebrity.path("profilePicture");
-        Cast c = Cast
-         .builder()
-         .role(node.path("role").asText())
-         .celebrity(Celebrity
-          .builder()
-          .name(celebrity.path("name").asText())
-          .profilePicture(pic != null
-           ? Media.builder().path(new URL(pic.path("path").asText())).type(MediaType.PHOTO).build()
-           : null)
-          .build())
-         .build();
-        cast.add(c);
-      }
-
-      System.out.println("end function success");
-
-      // Create everything not related
-
-      Movie m = Movie
-       .builder()
-       .media(media)
-       .cast(cast)
-       .summaryPhoto(summaryPhoto)
-       .contentMetadata(ContentMetadata
-       .builder()
-       .name(title)
-       .summary(summary)
-       .genres(genres)
-       .build())
-       .build();
-
-      movieRepository.save(m);
-
-      return m;
-
-    } catch (JsonGenerationException e) {
-      e.printStackTrace();
-    } catch (JsonMappingException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
+  public User approveUserToCritic(final Integer userId) {
+    final User user = userRepository.findById(userId).orElse(null);
+    if (user == null || userRepository.appliedForCritic(userId) == null) {
+      return null;
     }
-
-    return null;
+    userRepository.deleteCriticApplication(userId);
+    user.setType(UserType.CRITIC);
+    return userRepository.save(user);
   }
 }

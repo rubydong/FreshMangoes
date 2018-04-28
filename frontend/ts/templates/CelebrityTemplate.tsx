@@ -19,7 +19,6 @@ export class CelebrityTemplate extends React.Component {
             this.setState(response.data);
         } catch (err) {
             console.log(err);
-            // window.location.assign('/../404');
         }
     }
 
