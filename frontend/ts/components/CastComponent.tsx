@@ -4,7 +4,7 @@ import { NO_USER_PHOTO, CAST_LIMIT } from "../../GlobalVariables";
 export class CastComponent extends React.Component {
     render() {
         const cast = this.props['data-cast'].slice(0, CAST_LIMIT).map((castPerson, i) => {
-            return <div className="cast-person">
+            return <div className="cast-person" key={i}>
                 <img src={castPerson.celebrity.profilePicture ? castPerson.celebrity.profilePicture.path : NO_USER_PHOTO} className="img-align-left"/>
                 <b> <a href={"../celebrity/" + castPerson.celebrity.id}>{castPerson.celebrity.name}</a> </b> <br/>
                 <i>{castPerson.role}</i>
