@@ -33,23 +33,23 @@ public class AdminController {
   @Autowired
   private HttpSession session;
 
-  @PostMapping(Constants.ADMIN_ADD_DETAIL_PAGE_MAPPING)
-  public Content createDetailPage(@RequestBody final String body) {
-//    final HttpStatus status;
-//
-//    if (adminService.isAuthenticatedAdmin(session)) {
-//      if (body.get("type").equals("MOVIE")) {
-//        status = adminService.createMovieDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-//      } else {
-//        status = adminService.createShowDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-//      }
-//    } else {
-//      status = HttpStatus.BAD_REQUEST;
-//    }
-    Movie m = adminService.jsonToMovie(body);
-//    System.out.println(m.getMetadata().getName());
-    return m;
-  }
+//  @PostMapping(Constants.ADMIN_ADD_DETAIL_PAGE_MAPPING)
+//  public Content createDetailPage(@RequestBody final String body) {
+////    final HttpStatus status;
+////
+////    if (adminService.isAuthenticatedAdmin(session)) {
+////      if (body.get("type").equals("MOVIE")) {
+////        status = adminService.createMovieDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+////      } else {
+////        status = adminService.createShowDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+////      }
+////    } else {
+////      status = HttpStatus.BAD_REQUEST;
+////    }
+//    Movie m = adminService.jsonToMovie(body);
+////    System.out.println(m.getMetadata().getName());
+//    return m;
+//  }
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_PAGE_MAPPING)
   public ResponseEntity updateDetailPage(@RequestBody final Map<String, String> body) {
@@ -124,5 +124,18 @@ public class AdminController {
     FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
     fullTextEntityManager.createIndexer().startAndWait();
     return new ResponseEntity(HttpStatus.OK);
+  }
+
+  @PostMapping(Constants.ADMIN_APPROVE_CRITIC)
+  public ResponseEntity approveCritic(@PathVariable final Integer userId) {
+    final HttpStatus status;
+
+    if (adminService.isAuthenticatedAdmin(session)) {
+      status = adminService.approveUserToCritic(userId) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+
+    return ResponseEntity.status(status).build();
   }
 }

@@ -116,4 +116,8 @@ public class User {
   private String verificationKey;
 
   private Boolean verified;
+
+//  private Boolean appliedForCritic;
+//
+//  private String reason;
 }

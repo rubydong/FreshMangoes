@@ -20,4 +20,6 @@ public interface RatingService {
   void deleteRating(Integer userId, Integer ratingId);
 
   List<Rating> getFlaggedRatings();
+
+  List<Rating> getLatestRatings();
 }

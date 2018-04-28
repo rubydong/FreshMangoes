@@ -28,6 +28,7 @@ public class Constants {
   public static final String FLAG_RATING_MAPPING = "/rating/flag/{ratingId}";
   public static final String GET_RATING_BY_CONTENT_ID_MAPPING = "/rating/search/cid/{contentId}";
   public static final String GET_RATING_BY_USER_ID_MAPPING = "/rating/search/uid/{userId}";
+  public static final String GET_LATEST_RATINGS = "/rating/latest";
 
   public static final String ADD_TO_INTERESTED_MAPPING = "/interested/add/{contentId}";
   public static final String REMOVE_FROM_INTERESTED_MAPPING = "/interested/remove/{contentId}";
@@ -58,6 +59,7 @@ public class Constants {
   public static final String ADMIN_DELETE_RATING_MAPPING = "/admin/rating/delete/{ratingId}";
   public static final String ADMIN_DELETE_USER_MAPPING = "/admin/user/delete/{userId}";
   public static final String ADMIN_REINDEX_MAPPING = "/admin/reindex";
+  public static final String ADMIN_APPROVE_CRITIC = "/admin/approve/{userId}";
 
   public static final String APPLICATION_JSON = "application/json";
 
@@ -75,5 +77,7 @@ public class Constants {
   public static final String OLD_PASSWORD = "oldPassword";
   public static final String NEW_EMAIL = "newEmail";
   public static final String NEW_PROFILE = "newFile";
+
+  public static final Integer NUM_LATEST_REVIEWS = 10;
 
 }
