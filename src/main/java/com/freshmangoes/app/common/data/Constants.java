@@ -36,7 +36,7 @@ public class Constants {
   public static final String REMOVE_FROM_DISINTERESTED_MAPPING =
       "/disinterested/remove/{contentId}";
 
-  public static final String DELETE_ACCOUNT_MAPPING = "/profile/delete/{userId}";
+  public static final String DELETE_ACCOUNT_MAPPING = "/profile/delete";
   public static final String PROFILE_MAPPING = "/profile/{userId}";
   public static final String GET_ALL_CRITICS = "/critics";
   public static final String FOLLOW_MAPPING = "/follow/{userId}";
