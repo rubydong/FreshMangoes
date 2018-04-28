@@ -1,6 +1,8 @@
 package com.freshmangoes.app.admin.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.freshmangoes.app.admin.data.Report;
+import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Show;
 import com.freshmangoes.app.rating.data.Rating;
@@ -26,4 +28,8 @@ public interface AdminService {
   void deleteUser(Integer userId);
 
   Boolean isAuthenticatedAdmin(HttpSession session);
+
+  Content jsonToContent(String json);
+
+  Movie jsonToMovie(String json);
 }

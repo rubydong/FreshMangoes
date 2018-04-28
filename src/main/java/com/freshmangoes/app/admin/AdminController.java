@@ -1,6 +1,5 @@
 package com.freshmangoes.app.admin;
 
-import com.freshmangoes.app.admin.data.Report;
 import com.freshmangoes.app.admin.service.AdminService;
 import com.freshmangoes.app.common.data.Constants;
 
@@ -9,6 +8,8 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
+import com.freshmangoes.app.content.data.Content;
+import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.rating.data.Rating;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
@@ -33,20 +34,21 @@ public class AdminController {
   private HttpSession session;
 
   @PostMapping(Constants.ADMIN_ADD_DETAIL_PAGE_MAPPING)
-  public ResponseEntity createDetailPage(@RequestBody final Map<String, String> body) {
-    final HttpStatus status;
-
-    if (adminService.isAuthenticatedAdmin(session)) {
-      if (body.get("type").equals("MOVIE")) {
-        status = adminService.createMovieDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-      } else {
-        status = adminService.createShowDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-      }
-    } else {
-      status = HttpStatus.BAD_REQUEST;
-    }
-
-    return ResponseEntity.status(status).build();
+  public Content createDetailPage(@RequestBody final String body) {
+//    final HttpStatus status;
+//
+//    if (adminService.isAuthenticatedAdmin(session)) {
+//      if (body.get("type").equals("MOVIE")) {
+//        status = adminService.createMovieDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+//      } else {
+//        status = adminService.createShowDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+//      }
+//    } else {
+//      status = HttpStatus.BAD_REQUEST;
+//    }
+    Movie m = adminService.jsonToMovie(body);
+//    System.out.println(m.getMetadata().getName());
+    return m;
   }
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_PAGE_MAPPING)
