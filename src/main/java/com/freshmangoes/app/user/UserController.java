@@ -6,17 +6,13 @@ import com.freshmangoes.app.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -96,21 +92,6 @@ public class UserController {
 
   @GetMapping(Constants.GET_ALL_CRITICS)
   public List<User> getAllCritics() {
-    List<User> critics = userService.getCritics();
-    Collections.sort(critics,
-     (User o1, User o2)->((Integer)o2.getRatings().size()).compareTo((Integer)o1.getRatings().size()));
-//    Collections.sort(critics, new Comparator<User>() {
-//      @Override
-//      public int compare(User o1, User o2) {
-//        if (o1.getRatings().size() > o2.getRatings().size()) {
-//          return -1;
-//        } else if (o1.getRatings().size() < o2.getRatings().size()) {
-//          return 1;
-//        } else {
-//          return 0;
-//        }
-//      }
-//    });
-    return critics;
+    return userService.getCritics();
   }
 }

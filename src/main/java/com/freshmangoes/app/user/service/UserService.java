@@ -18,6 +18,6 @@ public interface UserService {
   void updatePicture();
 
   void updateName(User user, String s);
-  
+
   List<User> getCritics();
 }
