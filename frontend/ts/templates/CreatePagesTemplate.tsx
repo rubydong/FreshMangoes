@@ -4,7 +4,7 @@ import axios from "axios";
 import { MOVIE_GENRES } from "../../GlobalVariables";
 import { TV_GENRES } from "../../GlobalVariables";
 import { CreatePage, ContentType } from "../types/content";
-import { Celebrity } from "../types/celebrity";
+import { CreateCast } from "../types/celebrity";
 
 export class CreatePagesTemplate extends React.Component {
     state: CreatePage;
@@ -16,10 +16,11 @@ export class CreatePagesTemplate extends React.Component {
 
     handleCreateContentPage = event => {
         event.preventDefault();
-        axios.post(window.location.origin + '/admin/insert', this.state)
-            .then(res => {
-            window.location.reload();
-        })
+        console.log(this.state);
+        // axios.post(window.location.origin + '/admin/insert', this.state)
+        //     .then(res => {
+        //     window.location.reload();
+        // })
     }
 
     handleChangeType = event => {
@@ -38,13 +39,27 @@ export class CreatePagesTemplate extends React.Component {
     
     addCastMember = () => {
         this.setState({castNum: this.state.castNum + 1});
+        this.state.cast.push(new CreateCast());
         this.forceUpdate();
     }
 
     removeCastMember = (castMember, i) => {
         this.setState({castNum: this.state.castNum - 1});
         castMember.splice(i, 1);
+        this.state.cast.splice(i, 1);
         this.forceUpdate();
+    }
+
+    handleCastImageChange =  (i, event) => {
+        this.state.cast[i].profilePicture = event.target.files[0];
+    }
+
+    handleCastNameChange =  (i, event) => {
+        this.state.cast[i].name = event.target.value;
+    }
+
+    handleCastRoleChange = (i, event) => {
+        this.state.cast[i].role = event.target.value;
     }
 
     render() {
@@ -59,10 +74,12 @@ export class CreatePagesTemplate extends React.Component {
 
         for (let i = 0; i < this.state.castNum; i++) {
             castMember.push(<div key ={i} className={i != 0 ? "padding-top" : ""}>
-                <input type="file"/> <button className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button> <p/> 
-                <input type="text" className="small-margin-right" placeholder="Name"/>
-                <input type="text" placeholder="Role"/>
+                <input type="file" onChange={(event) => this.handleCastImageChange(i, event)}/> 
+                <button className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button> <p/> 
+                <input type="text" className="small-margin-right" placeholder="Name" onChange={(event) => this.handleCastNameChange(i, event)}/>
+                <input type="text" placeholder="Role" onChange={(event) => this.handleCastRoleChange(i, event)}/>
             </div>);
+            
         }
         
         return ( 

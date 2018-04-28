@@ -1,4 +1,4 @@
-import { Celebrity } from './celebrity';
+import { Celebrity, CreateCast } from './celebrity';
 import { Media } from './media';
 import { Rating } from './rating';
 
@@ -131,7 +131,7 @@ export class CreatePage {
   genres: string [];
   photos: FileList;
   videos: FileList;
-  cast: Celebrity[];
+  cast: CreateCast[];
   castNum: number;
   showID: number;
   seasonID: number;
