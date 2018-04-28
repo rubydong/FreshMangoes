@@ -84,6 +84,7 @@ public class AuthController {
 
     if (user != null) {
       rootNode.put(Constants.USER_ID, user.getId());
+      rootNode.put(Constants.USER_TYPE, user.getType().toString());
     }
 
     return rootNode.toString();
