@@ -38,6 +38,7 @@ public class Constants {
 
   public static final String DELETE_ACCOUNT_MAPPING = "/profile/delete/{userId}";
   public static final String PROFILE_MAPPING = "/profile/{userId}";
+  public static final String GET_ALL_CRITICS = "/critics";
   public static final String FOLLOW_MAPPING = "/follow/{userId}";
   public static final String UNFOLLOW_MAPPING = "/unfollow/{userId}";
   public static final String GET_FOLLOWERS_MAPPING = "/followers/{userId}";
