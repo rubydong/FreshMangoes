@@ -47,6 +47,7 @@ public class Constants {
   public static final String CHANGE_NAME_MAPPING = "/profile/name/update";
   public static final String CHANGE_EMAIL_MAPPING = "/profile/email/reset";
   public static final String FORGOT_PASSWORD_MAPPING = "/forgotpassword";
+  public static final String RESET_PASSWORD_MAPPING = "/resetpassword/{userId}";
 
 
   public static final String ADMIN_ADD_DETAIL_PAGE_MAPPING = "/admin/content/insert";
