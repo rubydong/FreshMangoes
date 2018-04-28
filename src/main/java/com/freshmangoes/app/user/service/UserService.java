@@ -20,4 +20,6 @@ public interface UserService {
   void updateName(User user, String s);
 
   List<User> getCritics();
+
+  Boolean applyForCritic(Integer userId, String statement);
 }

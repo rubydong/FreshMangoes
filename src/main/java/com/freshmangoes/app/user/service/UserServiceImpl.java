@@ -73,10 +73,20 @@ public class UserServiceImpl implements UserService {
     userRepository.save(user);
   }
 
+  @Override
   public List<User> getCritics() {
     List<User> critics = userRepository.getAllCritics();
     critics.sort((User o1, User o2) -> Integer.compare(o2.getRatings().size(), o1.getRatings().size()));
     return critics;
+  }
+
+  @Override
+  public Boolean applyForCritic(Integer userId, String statement) {
+    final User user = userRepository.findById(userId).orElse(null);
+    if (user == null || userRepository.appliedForCritic(userId) != null) {
+      return false;
+    }
+    return userRepository.applyForCritic(userId, statement) != null;
   }
 
 }
