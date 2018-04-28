@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -89,5 +92,25 @@ public class UserController {
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
+  }
+
+  @GetMapping(Constants.GET_ALL_CRITICS)
+  public List<User> getAllCritics() {
+    List<User> critics = userService.getCritics();
+    Collections.sort(critics,
+     (User o1, User o2)->((Integer)o2.getRatings().size()).compareTo((Integer)o1.getRatings().size()));
+//    Collections.sort(critics, new Comparator<User>() {
+//      @Override
+//      public int compare(User o1, User o2) {
+//        if (o1.getRatings().size() > o2.getRatings().size()) {
+//          return -1;
+//        } else if (o1.getRatings().size() < o2.getRatings().size()) {
+//          return 1;
+//        } else {
+//          return 0;
+//        }
+//      }
+//    });
+    return critics;
   }
 }

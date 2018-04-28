@@ -2,6 +2,8 @@ package com.freshmangoes.app.user.service;
 
 import com.freshmangoes.app.user.data.User;
 
+import java.util.List;
+
 public interface UserService {
   User getUser(Integer userId);
 
@@ -16,4 +18,6 @@ public interface UserService {
   void updatePicture();
 
   void updateName(User user, String s);
+  
+  List<User> getCritics();
 }
