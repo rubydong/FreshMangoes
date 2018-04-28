@@ -54,6 +54,11 @@ public interface UserRepository extends CrudRepository<User, Integer> {
   @Query(value = "SELECT * FROM Users WHERE user_type=1", nativeQuery = true)
   List<User> getAllCritics();
 
+  @Transactional
+  @Modifying
+  @Query(value = "INSERT into critic_application (user_id, statement) VALUES (?1, ?2)", nativeQuery = true)
+  Integer applyForCritic(Integer userId, String statement);
+
   @Query(value = "SELECT user_id FROM critic_application WHERE user_id=?1", nativeQuery = true)
   Integer appliedForCritic(Integer userId);
 
