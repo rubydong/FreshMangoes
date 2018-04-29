@@ -63,8 +63,7 @@ export class CreatePagesTemplate extends React.Component {
         for (let i = 0; i < this.state.castNum; i++) {
             castMember.push(<div key ={i} className={i != 0 ? "padding-top" : ""}>
                 <input type="file" onChange={(event) => this.state.cast[i].profilePicture = event.target.files[0]}/> 
-                <button className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button> 
-                
+                <button className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button>
                 <input type="text" className="form-control" placeholder="Name" onChange={(event) => this.state.cast[i].name = event.target.value}/>
                 <input type="text" className="form-control" placeholder="ID" onChange={(event) => this.state.cast[i].id = parseInt(event.target.value)}/>
                 <input type="text" className="form-control" placeholder="Role" onChange={(event) => this.state.cast[i].role = event.target.value}/>
