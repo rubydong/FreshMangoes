@@ -121,8 +121,10 @@ public class AdminController {
 
   @GetMapping(Constants.ADMIN_GET_CRITIC_APPS)
   public List<Application> getCriticApplication() {
-    // id statement displayname
-    return adminService.getAllPotentialCritics();
+    if (adminService.isAuthenticatedAdmin(session)) {
+      return adminService.getAllPotentialCritics();
+    }
+    return null;
   }
 
   @PostMapping(Constants.ADMIN_APPROVE_CRITIC)
