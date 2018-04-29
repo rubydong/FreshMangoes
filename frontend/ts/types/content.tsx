@@ -100,28 +100,29 @@ export class Search {
 }
 
 export class Spotlight {
-  posterImage: string;
-  openingMovies: Movie[];
-  topBoxOfficeMovies: Movie[];
-  comingSoonMovies: Movie[];
+  posters: Media[];
+  openingThisWeek: Movie[];
+  topBoxOffice: Movie[];
+  comingSoon: Movie[];
+  highestRatedMovies: Movie[];
   certifiedFreshMovies: Movie[];
-  newShows: Show[];
-  mostPopularShows: Show[];
-  topDVDStreamingShows: Show[];
-  certifiedFreshTV: Show[];
+  newTonight: Show[];
+  mostPopular: Show[];
+  highestRatedShows: Show[];
+  certifiedFreshShows: Show[];
   selectedContent: Content[];
   selectedTitle: string; 
 
   constructor() {
-    this.posterImage = "";
-    this.openingMovies = [];
-    this.topBoxOfficeMovies = [];
-    this.comingSoonMovies = [];
+    this.posters = [];
+    this.openingThisWeek = [];
+    this.topBoxOffice = [];
+    this.comingSoon = [];
+    this.highestRatedMovies = [];
     this.certifiedFreshMovies = [];
-    this.newShows = [];
-    this.mostPopularShows = [];
-    this.topDVDStreamingShows = [];
-    this.certifiedFreshTV = [];
+    this.newTonight = [];
+    this.mostPopular = [];
+    this.certifiedFreshShows = [];
     this.selectedContent = [];
     this.selectedTitle = "";
   }
