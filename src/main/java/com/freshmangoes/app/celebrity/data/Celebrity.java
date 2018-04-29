@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.freshmangoes.app.common.data.Media;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -75,4 +76,6 @@ public class Celebrity {
   @OneToMany(mappedBy = "celebrity")
   @JsonIgnoreProperties("celebrity")
   private List<Crew> jobs;
+
+  private BigInteger views;
 }
