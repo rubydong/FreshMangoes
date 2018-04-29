@@ -111,4 +111,10 @@ public class RatingController {
   public List<Rating> getRatingByContentId(@PathVariable final Integer contentId) {
     return ratingService.findByContentId(contentId);
   }
+
+  @GetMapping(Constants.GET_LATEST_RATINGS)
+  public List<Rating> getLatestRatings() {
+    return ratingService.getLatestRatings();
+  }
+
 }

@@ -1,8 +1,12 @@
 package com.freshmangoes.app.admin;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.freshmangoes.app.admin.data.Report;
 import com.freshmangoes.app.admin.service.AdminService;
 import com.freshmangoes.app.common.data.Constants;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -11,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.rating.data.Rating;
+import com.freshmangoes.app.user.data.Application;
+import com.freshmangoes.app.user.data.User;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,20 +41,7 @@ public class AdminController {
 
   @PostMapping(Constants.ADMIN_ADD_DETAIL_PAGE_MAPPING)
   public Content createDetailPage(@RequestBody final String body) {
-//    final HttpStatus status;
-//
-//    if (adminService.isAuthenticatedAdmin(session)) {
-//      if (body.get("type").equals("MOVIE")) {
-//        status = adminService.createMovieDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-//      } else {
-//        status = adminService.createShowDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-//      }
-//    } else {
-//      status = HttpStatus.BAD_REQUEST;
-//    }
-    Movie m = adminService.jsonToMovie(body);
-//    System.out.println(m.getMetadata().getName());
-    return m;
+    return adminService.jsonToContent(body);
   }
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_PAGE_MAPPING)
@@ -124,5 +117,26 @@ public class AdminController {
     FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
     fullTextEntityManager.createIndexer().startAndWait();
     return new ResponseEntity(HttpStatus.OK);
+  }
+
+  @GetMapping(Constants.ADMIN_GET_CRITIC_APPS)
+  public List<Application> getCriticApplication() {
+    if (adminService.isAuthenticatedAdmin(session)) {
+      return adminService.getAllPotentialCritics();
+    }
+    return null;
+  }
+
+  @PostMapping(Constants.ADMIN_APPROVE_CRITIC)
+  public ResponseEntity approveCritic(@PathVariable final Integer userId) {
+    final HttpStatus status;
+
+    if (adminService.isAuthenticatedAdmin(session)) {
+      status = adminService.approveUserToCritic(userId) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+
+    return ResponseEntity.status(status).build();
   }
 }

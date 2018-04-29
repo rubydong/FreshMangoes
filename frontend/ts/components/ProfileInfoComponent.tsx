@@ -1,7 +1,8 @@
 import * as React from "react";
 import axios from "axios";
-import {parseMedia} from "../../HelperFunctions";
 import FileInput from 'react-file-input';
+import {parseMedia, getUrlID} from "../../HelperFunctions";
+import {FollowComponent} from "../components/FollowComponent";
 
 export class ProfileInfoComponent extends React.Component {
     state = {
@@ -10,20 +11,19 @@ export class ProfileInfoComponent extends React.Component {
         newEmail: '',
         newPassword: '',
         oldPassword: '',
-        profileUser: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+        profileUser: getUrlID()
     }
 
     followUser() {
-        axios.post(window.location.origin + '/api/follow/' + this.state.profileUser)
+        axios.post(window.location.origin + '/api/follow/' + getUrlID())
             .then(res => {
                 window.location.reload();
             });
     }
 
     unfollowUser() {
-        axios.post(window.location.origin + '/api/unfollow/' + this.state.profileUser)
+        axios.post(window.location.origin + '/api/unfollow/' + getUrlID())
             .then(res => {
-                console.log(res);
                 window.location.reload();
             });
     }
@@ -34,7 +34,6 @@ export class ProfileInfoComponent extends React.Component {
 
     handleFileChange = event => {
         this.setState({newFile: event.target.files[0]});
-
         console.log(event.target.files[0]);
 
     }
@@ -101,7 +100,6 @@ export class ProfileInfoComponent extends React.Component {
         const state = this.props['data-state'];
         const sameUser = ("/profile/" + state.currentUser) == window.location.pathname;
         let alreadyFollowed = false;
-        console.log(state);
         for (let i = 0; i < state.followers.length; i++) {
             if (state.followers[i].id == state.currentUser) {
                 alreadyFollowed = true;
@@ -120,8 +118,7 @@ export class ProfileInfoComponent extends React.Component {
                 <h2>{state.displayName}</h2>
                 <div className="bio box-shadow">
                     <img className="profile-picture" src={parseMedia(state.profilePicture)}/>
-                    <b>Followers:</b> <a href="">{state.followers.length}</a> <br/>
-                    <b>Following:</b> <a href="">{state.following.length}</a>
+                    <FollowComponent data-followers={state.followers} data-following={state.following}/>
                     <p/>
                     {editOrFollowButton}
                 </div>

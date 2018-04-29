@@ -1,36 +1,31 @@
 import * as React from "react";
 import axios from "axios";
-import { Critics } from '../types/user';
+import { CriticsApply } from '../types/user';
 import { Mangoes } from "../components/Mangoes";
+import { NO_USER_PHOTO } from "../../GlobalVariables";
 
 export class CriticsTemplate extends React.Component {
-    state : Critics;
+    state : CriticsApply;
 
     constructor(props) {
         super(props);
-        this.state = new Critics();
+        this.state = new CriticsApply();
     }
 
     async componentWillMount() {
         try {
-            const response = await axios.get(window.location.origin + '/api' + window.location.pathname)
+            const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
             this.setState(response.data);
         } catch (err) {
             console.log(err);
         }
     }
 
-    handleNameChange = event => {
-        this.setState({applicationName: event.target.value});
-    }
-
-    handleProfileChange = event => {
-        this.setState({applicationProfile: event.target.value});
-    }
-
-    handle
     submitCriticApplication = event => {
-
+        axios.post(window.location.origin + '/api/critic/apply', {body: this.state.applicationReason})
+            .then(res => {
+                window.location.reload();
+        })
     }
 
     render() {
@@ -42,11 +37,11 @@ export class CriticsTemplate extends React.Component {
                         <h2> Top Critics </h2> <hr/>
                         <div className="top-critic big-margin-right">
                             <a href="">Erin Crabtree</a> <br/> 
-                            <img src="../images/icons/user.png"/>
+                            <img src={NO_USER_PHOTO}/>
                         </div>
                         <div className="top-critic">
                             <a href="">Erin Crabtree</a><br/> 
-                            <img src="../images/icons/user.png"/>
+                            <img src={NO_USER_PHOTO}/>
                         </div>
 
                         <p/>
@@ -92,11 +87,11 @@ export class CriticsTemplate extends React.Component {
                                 <h2>Critic Application</h2>
                                 <form onSubmit={this.submitCriticApplication}>
                                     What is your name?
-                                    <input type="text" className="form-control" onChange={this.handleNameChange}/>
+                                    <input type="text" className="form-control" onChange={(event)=>this.setState({applicationName: event.target.value})}/>
                                     What is the link to your profile?
-                                    <input type="password" className="form-control" onChange={this.handleProfileChange}/>
+                                    <input type="text" className="form-control" onChange={(event)=>this.setState({applicationProfile: event.target.value})}/>
                                     Why should we pick you as a critic?
-                                    <input type="text" className="form-control"/>
+                                    <input type="text" className="form-control" onChange={(event)=>this.setState({applicationReason: event.target.value})}/>
                                     <button type="submit" className="btn btn-primary">Submit Application</button>
                                 </form>
                             </div>

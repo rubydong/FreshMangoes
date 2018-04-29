@@ -22,6 +22,7 @@ body {
 
 h2 {
 	letter-spacing: 2px;
+	text-shadow: 1px 1px #DFDFDF;
 }
 
 b, i {
@@ -247,10 +248,12 @@ a,.summary h2, .filmography h4, .episode b {
 	padding: 20px;
 }
 
+.mangoes img {
+	margin: -1px;
+}
 .rating img, .review img {
 	width: 16px !important;
 	height: 16px !important;
-	margin: -1px !important;
 	margin-top: -6px !important;
 	padding: 0 !important;
 	box-shadow: none;
@@ -415,13 +418,14 @@ iframe {
 
 .follow li {
 	border:1px solid #DFDFDF;
-	width: 50px;
 	height: 50px;
 	text-align: center;
 	justify-content: center;
 	line-height: 50px;
 	border-radius: 3px;
 	margin:2px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .left {
@@ -565,6 +569,14 @@ h5 span {
 	float: left;
 }
 
+.critic-badge {
+	background-color: #DFDFDF;
+    margin-left: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    box-shadow: 1px 1px 3px grey;
+}
+
 /* Create Form */
 #create-form {
 	margin-left: 25%;
@@ -617,6 +629,11 @@ h5 span {
     border-radius: 0.25rem;
 }
 
+.btn-thinner, .btn-thinner:hover {
+	padding: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
 
 .thead-light th{
 	background-color: #FAFAFA !important;

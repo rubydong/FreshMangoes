@@ -1,3 +1,6 @@
+import { User }  from "./user";
+import { Content } from "./content";
+
 export enum ReviewierType {
     AUDIENCE, 
     CRITIC
@@ -16,4 +19,17 @@ export class Rating {
       this.body = "";
     }
   }
-  
+
+export class Report extends Rating{
+  user: User;
+  isFlagged: boolean;
+  report: string;
+  content: Content;
+
+  constructor() {
+    super();
+    this.user = new User();
+    this.isFlagged = false;
+    this.report = "";
+  }
+}

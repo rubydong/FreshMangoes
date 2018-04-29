@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.freshmangoes.app.auth.service.AuthService;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.helpers.Helpers;
+import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.verification.service.VerificationService;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -78,13 +80,25 @@ public class AuthController {
   }
 
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)
-  public String currentUser() {
+  public String currentUser(@RequestParam(required = false) Integer contentId) {
     final User user = Helpers.getAuthenticatedUser(session);
     final ObjectNode rootNode = mapper.createObjectNode();
 
     if (user != null) {
       rootNode.put(Constants.USER_ID, user.getId());
       rootNode.put(Constants.USER_TYPE, user.getType().toString());
+
+      if (contentId != null) {
+        for (Content content : user.getInterestedList()) {
+          if (content.getId().equals(contentId)) {
+            rootNode.put(Constants.INTERESTED, true);
+          }
+        }
+      }
+
+      if (!rootNode.has(Constants.INTERESTED)) {
+        rootNode.put(Constants.INTERESTED, false);
+      }
     }
 
     return rootNode.toString();

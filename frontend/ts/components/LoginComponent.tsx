@@ -62,7 +62,7 @@ export class LoginComponent extends React.Component {
                             <input type="password" className="form-control" onChange={this.handlePasswordChange}/>
                             <button type="submit" className="btn btn-primary">Login</button>
                         </form>
-
+                    
                         <p/><p/>
 
                         <h2>Forgot Password?</h2>
@@ -71,6 +71,8 @@ export class LoginComponent extends React.Component {
                             <input type="text" className="form-control" onChange={this.handleForgotPassword}/>
                             <button type="submit" className="btn btn-primary">Reset Password</button>
                         </form>
+
+                        <p/><p/>
 
                         <h2>Resend Verification Email?</h2>
                         <form onSubmit={this.handleResendVerification}>

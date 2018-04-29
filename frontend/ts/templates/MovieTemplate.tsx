@@ -7,6 +7,7 @@ import { CastComponent } from '../components/CastComponent';
 import { RatingComponent } from '../components/RatingComponent';
 import { SummaryComponent } from "../components/SummaryComponent";
 import { DetailsComponent } from "../components/DetailsComponent";
+import { getUrlID } from "../../HelperFunctions";
 
 export class MovieTemplate extends React.Component {
     state: Movie;
@@ -18,8 +19,10 @@ export class MovieTemplate extends React.Component {
 
     async componentWillMount() {
         try {
+            // const currentUser = await axios.get(window.location.origin + '/api/getCurrentUser?contentId=' + getUrlID());
             const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
             this.setState(response.data);
+            // console.log(currentUser);
         } catch (err) {
             console.log(err);
             // window.location.assign('/../404');
@@ -34,7 +37,7 @@ export class MovieTemplate extends React.Component {
                 <div className="summary">
                     <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media}/>             
                     <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
-                                      data-id={this.state.id} data-type={this.state.type}/>
+                                      data-id={this.state.id} data-type={this.state.type} data-state={this.state}/>
                 </div>
                 <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>   

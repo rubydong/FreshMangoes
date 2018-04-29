@@ -6,6 +6,8 @@ import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Show;
 import com.freshmangoes.app.rating.data.Rating;
+import com.freshmangoes.app.user.data.Application;
+import com.freshmangoes.app.user.data.User;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -31,5 +33,7 @@ public interface AdminService {
 
   Content jsonToContent(String json);
 
-  Movie jsonToMovie(String json);
+  List<Application> getAllPotentialCritics();
+
+  User approveUserToCritic(Integer userId);
 }

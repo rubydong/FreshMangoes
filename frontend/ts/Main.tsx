@@ -10,6 +10,7 @@ import { SearchTemplate } from "./templates/SearchTemplate";
 import { ProfileTemplate } from "./templates/ProfileTemplate";
 import { SpotlightTemplate } from "./templates/SpotlightTemplate";
 import { CriticsTemplate } from "./templates/CriticsTemplate";
+import { CriticApplicationsTemplate } from "./templates/CriticApplicationsTemplate";
 import { CreatePagesTemplate } from "./templates/CreatePagesTemplate";
 import { ReportsTemplate } from "./templates/ReportsTemplate";
 import { VerifyTemplate } from "./templates/VerifyTemplate";
@@ -31,12 +32,17 @@ const Main = () => (
       <Route path="/profile/:id" component={ProfileTemplate}/>
       <Route path="/spotlight" component={SpotlightTemplate}/>
       <Route path="/critics" component={CriticsTemplate}/>
+      <Route path="/applications" component={CriticApplicationsTemplate}/>
       <Route path="/create" component={CreatePagesTemplate}/>
       <Route path="/reports" component={ReportsTemplate}/>
       <Route path="/verify/:id" component={VerifyTemplate}/>
       <Route path="/tos" component={TosTemplate}/>
       <Route path="/404" component={NoMatch}/>
+<<<<<<< HEAD
       {/*<Route path="/resetpassword/:userid" component={ResetPasswordTemplate}/>*/}
+=======
+      <Route path="/resetpassword" component={ResetPasswordTemplate}/>
+>>>>>>> 806b36735f7a1c4f59fcdadaa6ddfacc0b034e7c
       <Route component={NoMatch}/>
     </Switch>
   </main>

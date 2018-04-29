@@ -107,4 +107,19 @@ public class UserController {
   public List<User> getAllCritics() {
     return userService.getCritics();
   }
+
+  @PostMapping(Constants.APPLY_FOR_CRITIC)
+  public ResponseEntity applyForCritic(@RequestBody final Map<String, String> body) {
+    HttpStatus status;
+
+    User user = (User) session.getAttribute(Constants.USER_ID);
+    if (user != null) {
+      status = userService.applyForCritic(user.getId(), body.get(Constants.BODY))
+             ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+
+    return ResponseEntity.status(status).build();
+  }
 }

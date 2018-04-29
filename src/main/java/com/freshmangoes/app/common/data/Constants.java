@@ -28,6 +28,7 @@ public class Constants {
   public static final String FLAG_RATING_MAPPING = "/rating/flag/{ratingId}";
   public static final String GET_RATING_BY_CONTENT_ID_MAPPING = "/rating/search/cid/{contentId}";
   public static final String GET_RATING_BY_USER_ID_MAPPING = "/rating/search/uid/{userId}";
+  public static final String GET_LATEST_RATINGS = "/rating/latest";
 
   public static final String ADD_TO_INTERESTED_MAPPING = "/interested/add/{contentId}";
   public static final String REMOVE_FROM_INTERESTED_MAPPING = "/interested/remove/{contentId}";
@@ -39,6 +40,7 @@ public class Constants {
   public static final String DELETE_ACCOUNT_MAPPING = "/delete/profile";
   public static final String PROFILE_MAPPING = "/profile/{userId}";
   public static final String GET_ALL_CRITICS = "/critics";
+  public static final String APPLY_FOR_CRITIC = "/critic/apply";
   public static final String FOLLOW_MAPPING = "/follow/{userId}";
   public static final String UNFOLLOW_MAPPING = "/unfollow/{userId}";
   public static final String CHANGE_PASSWORD_MAPPING = "/profile/password/reset";
@@ -56,10 +58,13 @@ public class Constants {
   public static final String ADMIN_DELETE_RATING_MAPPING = "/admin/rating/delete/{ratingId}";
   public static final String ADMIN_DELETE_USER_MAPPING = "/admin/user/delete/{userId}";
   public static final String ADMIN_REINDEX_MAPPING = "/admin/reindex";
+  public static final String ADMIN_APPROVE_CRITIC = "/admin/approve/{userId}";
+  public static final String ADMIN_GET_CRITIC_APPS = "/admin/critic/apps";
 
   public static final String APPLICATION_JSON = "application/json";
 
   public static final String USER_ID = "userId";
+  public static final String INTERESTED = "interested";
   public static final String USER_TYPE = "userType";
   public static final String OTHER_USER_ID = "otherUserId";
   public static final String DISPLAY_NAME = "displayName";
@@ -75,4 +80,6 @@ public class Constants {
   public static final String NEW_PROFILE = "newFile";
 
   public static final String FILE_PATH = "/~/Documents/cse308/photos/";
+  public static final Integer NUM_LATEST_REVIEWS = 10;
+
 }
