@@ -61,6 +61,7 @@ public class Constants {
   public static final String ADMIN_DELETE_USER_MAPPING = "/admin/user/delete/{userId}";
   public static final String ADMIN_REINDEX_MAPPING = "/admin/reindex";
   public static final String ADMIN_APPROVE_CRITIC = "/admin/approve/{userId}";
+  public static final String ADMIN_GET_CRITIC_APPS = "/admin/critic/apps";
 
   public static final String APPLICATION_JSON = "application/json";
 

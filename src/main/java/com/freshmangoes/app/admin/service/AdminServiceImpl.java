@@ -9,15 +9,20 @@ import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.common.data.MediaType;
+import com.freshmangoes.app.common.helpers.Helpers;
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.content.data.ContentMetadata;
 import com.freshmangoes.app.content.data.ContentType;
+import com.freshmangoes.app.content.data.Episode;
 import com.freshmangoes.app.content.data.Movie;
+import com.freshmangoes.app.content.data.Season;
 import com.freshmangoes.app.content.data.Show;
+import com.freshmangoes.app.content.repository.MediaRepository;
 import com.freshmangoes.app.content.repository.MovieRepository;
 import com.freshmangoes.app.content.repository.ShowRepository;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.repository.RatingRepository;
+import com.freshmangoes.app.user.data.Application;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.data.UserType;
 import com.freshmangoes.app.user.repository.UserRepository;
@@ -29,6 +34,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -43,6 +49,9 @@ public class AdminServiceImpl implements AdminService {
 
   @Autowired
   private UserRepository userRepository;
+
+  @Autowired
+  private MediaRepository mediaRepository;
 
   @Autowired
   private ObjectMapper objectMapper;
@@ -99,107 +108,46 @@ public class AdminServiceImpl implements AdminService {
     return (user != null && user.getType() == UserType.ADMIN);
   }
 
-//  @Override
-//  public Content jsonToContent(String json) {
-//    return null;
-//  }
+  @Override
+  public Content jsonToContent(final String body) {
+    Content content = null;
+    try {
+      JsonNode root = objectMapper.readTree(body);
+      ContentType contentType = Helpers.stringToContentType(root.path("type").asText());
+      switch (contentType) {
+        case MOVIE:
+          content = objectMapper.readValue(body, Movie.class);
+          break;
+        case SHOW:
+          content = objectMapper.readValue(body, Show.class);
+          break;
+        case SEASON:
+          content = objectMapper.readValue(body, Season.class);
+          break;
+        case EPISODE:
+          content = objectMapper.readValue(body, Episode.class);
+          break;
+      }
+      // Insert Summary Photo, Media, Metadata, Cast before saving the Content
 
-//  public Movie jsonToMovie(String json) {
-//    System.out.println("start function");
-//    String title;
-//    String summary;
-//    Media summaryPhoto;
-//    List<Integer> genres;
-//    List<Media> media;
-//    List<Cast> cast;
-//
-//    try {
-//      JsonNode root = objectMapper.readTree(json);
-//      JsonNode placeHolder;
-//
-//      title = root.path("title").asText();
-//      summary = root.path("summary").asText();
-//
-//      System.out.println(title);
-//      System.out.println(summary);
-//
-//      // Get summary photo
-//      placeHolder = root.path("summaryPhoto");
-//      summaryPhoto = Media
-//       .builder()
-//       .path(new URL(placeHolder.path("path").asText()))
-//       .type(MediaType.PHOTO)
-//       .build();
-//
-//      // Get genres
-//      placeHolder = root.path("genres");
-//      genres = new ArrayList<Integer>();
-//      for (JsonNode node : placeHolder) {
-//        genres.add(node.asInt());
-//      }
-//
-//      // Get Media
-//      placeHolder = root.path("media");
-//      media = new ArrayList<Media>();
-//      for (JsonNode node : placeHolder) {
-//        media.add(Media
-//         .builder()
-//         .path(new URL(node.path("path").asText()))
-//         .type(node.path("type").asText().equals("PHOTO") ? MediaType.PHOTO : MediaType.VIDEO)
-//         .build());
-//      }
-//
-//      // Get Celebrity
-//      placeHolder = root.path("cast");
-//      cast = new ArrayList<Cast>();
-//      for (JsonNode node : placeHolder) {
-//        JsonNode celebrity = node.path("celebrity");
-//        JsonNode pic = celebrity.path("profilePicture");
-//        Cast c = Cast
-//         .builder()
-//         .role(node.path("role").asText())
-//         .celebrity(Celebrity
-//          .builder()
-//          .name(celebrity.path("name").asText())
-//          .profilePicture(pic != null
-//           ? Media.builder().path(new URL(pic.path("path").asText())).type(MediaType.PHOTO).build()
-//           : null)
-//          .build())
-//         .build();
-//        cast.add(c);
-//      }
-//
-//      System.out.println("end function success");
-//
-//      // Create everything not related
-//
-//      Movie m = Movie
-//       .builder()
-//       .media(media)
-//       .cast(cast)
-//       .summaryPhoto(summaryPhoto)
-//       .contentMetadata(ContentMetadata
-//       .builder()
-//       .name(title)
-//       .summary(summary)
-//       .genres(genres)
-//       .build())
-//       .build();
-//
-//      movieRepository.save(m);
-//
-//      return m;
-//
-//    } catch (JsonGenerationException e) {
-//      e.printStackTrace();
-//    } catch (JsonMappingException e) {
-//      e.printStackTrace();
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//
-//    return null;
-//  }
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return content;
+  }
+
+  @Override
+  public List<Application> getAllPotentialCritics() {
+    return userRepository.getAllPotentialCritics()
+                         .stream()
+                         .map(user -> Application
+                                        .builder()
+                                        .user(user)
+                                        .statement(userRepository.getCriticApplicationStatement(user.getId()))
+                                        .build())
+                         .collect(Collectors.toList());
+  }
 
   @Override
   public User approveUserToCritic(final Integer userId) {
