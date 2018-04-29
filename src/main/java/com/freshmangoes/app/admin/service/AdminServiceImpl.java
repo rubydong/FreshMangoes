@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freshmangoes.app.celebrity.data.Cast;
 import com.freshmangoes.app.celebrity.data.Celebrity;
+import com.freshmangoes.app.celebrity.repository.CelebrityRepository;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.common.data.MediaType;
@@ -17,8 +18,12 @@ import com.freshmangoes.app.content.data.Episode;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Season;
 import com.freshmangoes.app.content.data.Show;
+import com.freshmangoes.app.content.repository.CastedRepository;
+import com.freshmangoes.app.content.repository.EpisodeRepository;
 import com.freshmangoes.app.content.repository.MediaRepository;
+import com.freshmangoes.app.content.repository.MetadataRepository;
 import com.freshmangoes.app.content.repository.MovieRepository;
+import com.freshmangoes.app.content.repository.SeasonRepository;
 import com.freshmangoes.app.content.repository.ShowRepository;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.repository.RatingRepository;
@@ -45,13 +50,28 @@ public class AdminServiceImpl implements AdminService {
   private ShowRepository showRepository;
 
   @Autowired
+  private SeasonRepository seasonRepository;
+
+  @Autowired
+  private EpisodeRepository episodeRepository;
+
+  @Autowired
   private RatingRepository ratingRepository;
+
+  @Autowired
+  private CastedRepository castedRepository;
+
+  @Autowired
+  private CelebrityRepository celebrityRepository;
 
   @Autowired
   private UserRepository userRepository;
 
   @Autowired
   private MediaRepository mediaRepository;
+
+  @Autowired
+  private MetadataRepository metadataRepository;
 
   @Autowired
   private ObjectMapper objectMapper;
@@ -113,7 +133,7 @@ public class AdminServiceImpl implements AdminService {
     Content content = null;
     try {
       JsonNode root = objectMapper.readTree(body);
-      ContentType contentType = Helpers.stringToContentType(root.path("type").asText());
+      ContentType contentType = ContentType.valueOf(root.path("type").asText());
       switch (contentType) {
         case MOVIE:
           content = objectMapper.readValue(body, Movie.class);
@@ -128,8 +148,53 @@ public class AdminServiceImpl implements AdminService {
           content = objectMapper.readValue(body, Episode.class);
           break;
       }
-      // Insert Summary Photo, Media, Metadata, Cast before saving the Content
 
+      // first do summaryphoto
+      content.setSummaryPhoto(mediaRepository.save(content.getSummaryPhoto()));
+
+      // then all other media
+      List<Media> unsavedMedia = content.getMedia();
+      content.setMedia(new ArrayList<>());
+      for (Media m : unsavedMedia) {
+        content.getMedia().add(mediaRepository.save(m));
+      }
+
+      // then metadata
+      content.setMetadata(metadataRepository.save(content.getMetadata()));
+
+      switch (contentType) {
+        case MOVIE:
+          content = movieRepository.save((Movie) content);
+          break;
+        case SHOW:
+          content = showRepository.save((Show) content);
+          break;
+        case SEASON:
+          content = seasonRepository.save((Season) content);
+          break;
+        case EPISODE:
+          content = episodeRepository.save((Episode) content);
+          break;
+      }
+
+      // do celebrities now
+      // check celebrity id, if it exists find and add into cast, if not create new celebrity
+      List<Cast> unsavedCast = content.getCast();
+      content.setCast(new ArrayList<>());
+      for (Cast cast : unsavedCast) {
+        Celebrity celebrity = cast.getCelebrity();
+        if (celebrity.getId() == -1) {
+          // create a new celebrity here
+          //  media -> celebrities, casted (mainly just profile and celebrities, then put the new celebrities into content object)
+          celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
+          castedRepository.save(Cast.builder().content(content).celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build());
+        } else {
+          celebrity = celebrityRepository.findById(celebrity.getId()).orElse(null);
+          if (celebrity != null) {
+            castedRepository.save(Cast.builder().content(content).celebrity(celebrity).role(cast.getRole()).build());
+          }
+        }
+      }
 
     } catch (IOException e) {
       e.printStackTrace();
