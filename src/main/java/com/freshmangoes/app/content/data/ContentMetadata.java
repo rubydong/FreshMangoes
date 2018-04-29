@@ -28,7 +28,7 @@ import org.hibernate.search.annotations.Field;
 @Embeddable
 public class ContentMetadata {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
   @Column(name = "content_name")

@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import com.freshmangoes.app.content.data.Content;
+import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.user.data.Application;
@@ -62,17 +63,18 @@ public class AdminController {
   }
 
   @PostMapping(Constants.ADMIN_DELETE_DETAIL_PAGE_MAPPING)
-  public ResponseEntity deleteDetailPage(@PathVariable final Integer contentId) {
-    final HttpStatus status;
+  public ResponseEntity deleteDetailPage(@RequestBody final Map<String, String> body,
+                                         @PathVariable final Integer contentId) {
+//    final HttpStatus status;
+//
+//    if (adminService.isAuthenticatedAdmin(session)) {
+//      status = HttpStatus.OK;
+      adminService.deleteDetailPage(contentId, ContentType.valueOf(body.get("type")));
+//    } else {
+//      status = HttpStatus.BAD_REQUEST;
+//    }
 
-    if (adminService.isAuthenticatedAdmin(session)) {
-      status = HttpStatus.OK;
-      adminService.deleteDetailPage(contentId);
-    } else {
-      status = HttpStatus.BAD_REQUEST;
-    }
-
-    return ResponseEntity.status(status).build();
+    return ResponseEntity.status(HttpStatus.OK).build();
   }
 
   @GetMapping(Constants.ADMIN_VIEW_REPORTS_MAPPING)

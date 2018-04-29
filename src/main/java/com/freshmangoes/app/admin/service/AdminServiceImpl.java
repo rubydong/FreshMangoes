@@ -1,7 +1,5 @@
 package com.freshmangoes.app.admin.service;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freshmangoes.app.celebrity.data.Cast;
@@ -9,10 +7,7 @@ import com.freshmangoes.app.celebrity.data.Celebrity;
 import com.freshmangoes.app.celebrity.repository.CelebrityRepository;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.data.Media;
-import com.freshmangoes.app.common.data.MediaType;
-import com.freshmangoes.app.common.helpers.Helpers;
 import com.freshmangoes.app.content.data.Content;
-import com.freshmangoes.app.content.data.ContentMetadata;
 import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.content.data.Episode;
 import com.freshmangoes.app.content.data.Movie;
@@ -36,7 +31,6 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -99,12 +93,21 @@ public class AdminServiceImpl implements AdminService {
   }
 
   @Override
-  public void deleteDetailPage(final Integer contentId) {
-    /*
-      Since movieRepository and showRepository point to `Content` table,
-      deleting from one of the two repositories will do the job.
-    */
-    movieRepository.deleteById(contentId);
+  public void deleteDetailPage(final Integer contentId, ContentType type) {
+    switch (type) {
+      case MOVIE:
+        movieRepository.deleteById(contentId);
+        break;
+      case SHOW:
+        showRepository.deleteById(contentId);
+        break;
+      case SEASON:
+        seasonRepository.deleteById(contentId);
+        break;
+      case EPISODE:
+        episodeRepository.deleteById(contentId);
+        break;
+    }
   }
 
   @Override
@@ -149,17 +152,14 @@ public class AdminServiceImpl implements AdminService {
           break;
       }
 
-      // first do summaryphoto
       content.setSummaryPhoto(mediaRepository.save(content.getSummaryPhoto()));
 
-      // then all other media
       List<Media> unsavedMedia = content.getMedia();
       content.setMedia(new ArrayList<>());
       for (Media m : unsavedMedia) {
         content.getMedia().add(mediaRepository.save(m));
       }
 
-      // then metadata
       content.setMetadata(metadataRepository.save(content.getMetadata()));
 
       switch (contentType) {
@@ -187,11 +187,23 @@ public class AdminServiceImpl implements AdminService {
           // create a new celebrity here
           //  media -> celebrities, casted (mainly just profile and celebrities, then put the new celebrities into content object)
           celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
-          castedRepository.save(Cast.builder().content(content).celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build());
+          content
+           .getCast()
+           .add(castedRepository.save(Cast
+            .builder()
+            .content(content)
+            .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build()));
         } else {
           celebrity = celebrityRepository.findById(celebrity.getId()).orElse(null);
           if (celebrity != null) {
-            castedRepository.save(Cast.builder().content(content).celebrity(celebrity).role(cast.getRole()).build());
+            content
+             .getCast()
+             .add(castedRepository.save(
+              Cast
+               .builder()
+               .content(content)
+               .celebrity(celebrity)
+               .role(cast.getRole()).build()));
           }
         }
       }
@@ -205,13 +217,13 @@ public class AdminServiceImpl implements AdminService {
   @Override
   public List<Application> getAllPotentialCritics() {
     return userRepository.getAllPotentialCritics()
-                         .stream()
-                         .map(user -> Application
-                                        .builder()
-                                        .user(user)
-                                        .statement(userRepository.getCriticApplicationStatement(user.getId()))
-                                        .build())
-                         .collect(Collectors.toList());
+     .stream()
+     .map(user -> Application
+      .builder()
+      .user(user)
+      .statement(userRepository.getCriticApplicationStatement(user.getId()))
+      .build())
+     .collect(Collectors.toList());
   }
 
   @Override

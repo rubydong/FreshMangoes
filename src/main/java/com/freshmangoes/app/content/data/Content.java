@@ -39,19 +39,19 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 @Setter
 public abstract class Content {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Enumerated
   @Column(name = "content_type", insertable = false, updatable = false)
   private ContentType type;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "summary_photo")
   private Media summaryPhoto;
 
   @JoinTable(name = "Content_Media")
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Media> media;
 
   @OneToOne(cascade = CascadeType.ALL)
@@ -62,11 +62,11 @@ public abstract class Content {
   @OneToMany(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Rating> ratings;
 
-  @OneToMany(mappedBy = "content")
+  @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
   @JsonIgnoreProperties("content")
   private List<Cast> cast;
 
-  @OneToMany(mappedBy = "content")
+  @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
   @JsonIgnoreProperties("content")
   private List<Crew> crew;
 
