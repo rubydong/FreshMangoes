@@ -10,7 +10,7 @@ public interface ContentService {
 
   Show findShowById(int id);
 
-  Season findSeasonById(int id);
+  Season findSeason(int showId, int season);
 
-  Episode findEpisodeById(int id);
+  Episode findEpisode(int showId, int season, int episode);
 }

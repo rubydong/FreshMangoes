@@ -1,10 +1,14 @@
 package com.freshmangoes.app.content.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.freshmangoes.app.celebrity.data.Cast;
+import com.freshmangoes.app.celebrity.data.Crew;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.rating.data.Rating;
 
+import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -18,15 +22,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Entity
+@Entity(name = "Seasons")
+@DiscriminatorValue(ContentType.Values.SEASON)
 @Builder
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue(ContentType.Values.SEASON)
+@Getter
+@Setter
+@JsonIgnoreProperties("revenue")
 public class Season extends Content {
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "Season_Episodes",
       joinColumns =
@@ -39,17 +44,23 @@ public class Season extends Content {
   @Builder
   public Season(Integer id,
                 ContentType type,
+                Media summaryPhoto,
                 List<Media> media,
-                ContentMetadata contentMetadata,
-                List<Episode> episodes,
+                ContentMetadata metadata,
                 List<Rating> ratings,
-                Media summaryPhoto) {
+                List<Cast> cast,
+                List<Crew> crew,
+                BigInteger views,
+                List<Episode> episodes) {
     super.setId(id);
-    super.setMedia(media);
-    super.setMetadata(contentMetadata);
     super.setType(type);
     super.setSummaryPhoto(summaryPhoto);
+    super.setMedia(media);
+    super.setMetadata(metadata);
     super.setRatings(ratings);
+    super.setCast(cast);
+    super.setCrew(crew);
+    super.setViews(views);
     this.episodes = episodes;
   }
 }

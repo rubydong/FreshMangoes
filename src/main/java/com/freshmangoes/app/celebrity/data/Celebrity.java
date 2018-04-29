@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.freshmangoes.app.common.data.Media;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,7 @@ import org.hibernate.search.annotations.Indexed;
 @Indexed
 public class Celebrity {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @JsonFormat(pattern = "yyyy-MM-dd")
@@ -75,4 +76,6 @@ public class Celebrity {
   @OneToMany(mappedBy = "celebrity")
   @JsonIgnoreProperties("celebrity")
   private List<Crew> jobs;
+
+  private BigInteger views;
 }

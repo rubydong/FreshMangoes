@@ -32,17 +32,15 @@ public class ContentController {
   }
 
   @GetMapping(Constants.SEASON_MAPPING)
-  public Season getSeason(@PathVariable("showId") final int showId,
-                          @PathVariable("seasonId") final int seasonId) {
-    Season s = contentService.findSeasonById(seasonId);
-    s.setRatings(ratingService.findByContentId(seasonId));
-    return s;
+  public Season getSeason(@PathVariable final int showId,
+                          @PathVariable final int season) {
+    return contentService.findSeason(showId - 1, season - 1);
   }
 
   @GetMapping(Constants.EPISODE_MAPPING)
-  public Episode getEpisode(@PathVariable("showId") final int showId,
-                            @PathVariable("seasonId") final int seasonId,
-                            @PathVariable("episodeId") final int episodeId) {
-    return contentService.findEpisodeById(episodeId);
+  public Episode getEpisode(@PathVariable final int showId,
+                            @PathVariable final int season,
+                            @PathVariable final int episode) {
+    return contentService.findEpisode(showId, season - 1, episode - 1);
   }
 }

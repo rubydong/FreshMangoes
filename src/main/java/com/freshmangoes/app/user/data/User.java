@@ -28,7 +28,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
 
 
 @Builder
@@ -107,4 +106,6 @@ public class User {
   private String verificationKey;
 
   private Boolean verified;
+
+  private BigInteger views;
 }

@@ -2,6 +2,9 @@ import os
 import pymysql
 from helpers import *
 
+CELEBRITIES_DETAILS = 'celebrities/details'
+CELEBRITIES_IMAGES = 'celebrities/images'
+
 MOVIE_CREDITS = 'movies/credits'
 MOVIE_DETAILS = 'movies/details'
 MOVIE_MORE_DETAILS = 'movies/moredetails'
@@ -27,20 +30,19 @@ EPISODES_VIDEOS = 'episodes/videos'
 BASE_PHOTO_URL = 'https://image.tmdb.org/t/p/original'
 BASE_VIDEO_URL = 'https://www.youtube.com/embed/'
 
-CELEBRITIES = 'celebrities'
-
 INSERT_CAST = 'insert into `casted` (celebrity_id, content_id, role) values(%s, %s, %s)'
 INSERT_CREW = 'insert into `crew` (celebrity_id, content_id, job) values(%s, %s, %s)'
 INSERT_CELEBRITY = 'insert into `celebrities` (birthday, birthplace, biography, celebrity_name, id, ' \
                    'profile_picture) values(%s, %s, %s, %s, %s, %s)'
-INSERT_CONTENT = 'insert into `content` (content_type, metadata_id, summary_photo) values(%s, %s, %s)'
+INSERT_CELEBRTY_MEDIA = 'insert into `celebrity_media` (celebrity_id, media_id) values(%s, %s)'
+INSERT_CONTENT = 'insert into `content` (content_type, metadata_id, summary_photo, revenue, views) values(%s, %s, %s, %s, %s)'
 INSERT_CONTENT_MEDIA = 'insert into `content_media` (content_id, media_id) values(%s, %s)'
 INSERT_GENRE = 'insert into `content_genre` (genre, metadata_id) values(%s, %s)'
 INSERT_MEDIA = 'insert into `media` (path, media_type) values(%s, %s)'
 INSERT_METADATA = 'insert into `content_metadata` (audience_score, content_name, mango_score, maturity_rating, ' \
                   'release_date, runtime, studio_network, summary) values(%s, %s, %s, %s, %s, %s, %s, %s)'
-INSERT_SEASON = 'insert into `show_seasons` (show_id, season_id) values(%s, %s)'
-INSERT_EPISODE = 'insert into `season_episodes` (season_id, episode_id) values(%s, %s)'
+INSERT_SHOW_SEASON = 'insert into `show_seasons` (show_id, season_id) values(%s, %s)'
+INSERT_SEASON_EPISODE = 'insert into `season_episodes` (season_id, episode_id) values(%s, %s)'
 
 connection = pymysql.connect(host='localhost',
                              user='root',
@@ -54,12 +56,13 @@ cursor = connection.cursor()
 
 
 def insert_celebrities():
-    celebrities_dir = os.listdir(CELEBRITIES)
+    celebrities_dir = os.listdir(CELEBRITIES_DETAILS)
     for filename in celebrities_dir:
-        celebrity_details = load_json(os.path.join(CELEBRITIES, filename))
+        celebrity_details = load_json(os.path.join(CELEBRITIES_DETAILS, filename))
+        celebrity_images = load_json(os.path.join(CELEBRITIES_IMAGES, filename))
         profile_photo_id = None
 
-        if celebrity_details.get("name", None) is None:
+        if celebrity_details is None or celebrity_details.get("name", None) is None:
             continue
 
         if celebrity_details.get("profile_path", None) is not None:
@@ -77,6 +80,12 @@ def insert_celebrities():
                                           celebrity_details["name"],
                                           celebrity_details["id"],
                                           profile_photo_id))
+        if celebrity_images is not None:
+            for image in celebrity_images.get("results", []):
+                if "file_path" not in image or image["file_path"] is None:
+                    continue
+                cursor.execute(INSERT_MEDIA, (BASE_PHOTO_URL + image["file_path"], 0))
+                cursor.execute(INSERT_CELEBRTY_MEDIA, (celebrity_details["id"], cursor.lastrowid))
 
 
 def insert_content(content_metadata, content_type, content_credits, content_details, content_more_details, content_photos,
@@ -97,12 +106,11 @@ def insert_content(content_metadata, content_type, content_credits, content_deta
         cursor.execute(INSERT_MEDIA, (content_more_details["Poster"], 0))
         summary_photo_id = cursor.lastrowid
     elif content_photos.get("posters"):
-        cursor.execute(INSERT_MEDIA, (content_photos.get("posters")[0]["file_path"], 0))
+        cursor.execute(INSERT_MEDIA, (BASE_PHOTO_URL + content_photos.get("posters")[0]["file_path"], 0))
         summary_photo_id = cursor.lastrowid
 
-    cursor.execute(INSERT_CONTENT, (content_type,
-                                    content_metadata_id,
-                                    summary_photo_id))
+    cursor.execute(INSERT_CONTENT, (content_type, content_metadata_id, summary_photo_id, content_details.get("revenue", None), 0))
+
     content_id = cursor.lastrowid
 
     for genre in content_details.get("genres", []):
@@ -188,7 +196,7 @@ def insert_shows():
                                         season_details["overview"],
                                         ), 2, season_credits, season_details, {}, season_photos, season_videos)
 
-            cursor.execute(INSERT_SEASON, (show_id, season_id))
+            cursor.execute(INSERT_SHOW_SEASON, (show_id, season_id))
 
             for episode in range(1, len(season_details["episodes"]) + 1):
                 episode_filename = f"{show_details['id']}_{season}_{episode}.json"
@@ -211,7 +219,7 @@ def insert_shows():
                                              episode_details["overview"],
                                              ), 3, episode_credits, episode_details, {}, episode_photos, episode_videos)
 
-                cursor.execute(INSERT_EPISODE, (season_id, episode_id))
+                cursor.execute(INSERT_SEASON_EPISODE, (season_id, episode_id))
 
 
 def insert_movies():

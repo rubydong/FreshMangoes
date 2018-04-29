@@ -6,12 +6,11 @@ import com.freshmangoes.app.celebrity.data.Crew;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.rating.data.Rating;
 
+import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -23,36 +22,36 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
+import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
 
-@Entity(name = "Content")
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER, name = "content_type", columnDefinition = "tinyint")
-@Table(name = "Content")
-@Indexed(index = "Content")
+@DiscriminatorColumn(name = "content_type")
+@Table(name = "content")
+@Indexed
 @Getter
 @Setter
 public abstract class Content {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Enumerated
   @Column(name = "content_type", insertable = false, updatable = false)
   private ContentType type;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "summary_photo")
   private Media summaryPhoto;
 
   @JoinTable(name = "Content_Media")
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Media> media;
 
   @OneToOne(cascade = CascadeType.ALL)
@@ -61,14 +60,17 @@ public abstract class Content {
   private ContentMetadata metadata;
 
   @OneToMany(mappedBy = "content", cascade = CascadeType.ALL, orphanRemoval = true)
-//  @JsonIgnoreProperties(value = {"content", "user"})
   private List<Rating> ratings;
 
-  @OneToMany(mappedBy = "content")
+  @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
   @JsonIgnoreProperties("content")
   private List<Cast> cast;
 
-  @OneToMany(mappedBy = "content")
+  @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
   @JsonIgnoreProperties("content")
   private List<Crew> crew;
+
+  private BigInteger revenue;
+
+  private BigInteger views;
 }

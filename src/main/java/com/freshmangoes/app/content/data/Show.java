@@ -1,10 +1,14 @@
 package com.freshmangoes.app.content.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.freshmangoes.app.celebrity.data.Cast;
+import com.freshmangoes.app.celebrity.data.Crew;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.rating.data.Rating;
 
+import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -19,16 +23,17 @@ import lombok.Setter;
 import org.hibernate.search.annotations.Indexed;
 
 
-@Entity
-@Builder
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity(name = "Shows")
 @DiscriminatorValue(ContentType.Values.SHOW)
 @Indexed(index = "Content")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@JsonIgnoreProperties("revenue")
 public class Show extends Content {
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "Show_Seasons",
       joinColumns =
@@ -41,17 +46,23 @@ public class Show extends Content {
   @Builder
   public Show(Integer id,
               ContentType type,
+              Media summaryPhoto,
               List<Media> media,
-              ContentMetadata contentMetadata,
-              List<Season> seasons,
+              ContentMetadata metadata,
               List<Rating> ratings,
-              Media summaryPhoto) {
+              List<Cast> cast,
+              List<Crew> crew,
+              BigInteger views,
+              List<Season> seasons) {
     super.setId(id);
-    super.setMedia(media);
-    super.setMetadata(contentMetadata);
     super.setType(type);
     super.setSummaryPhoto(summaryPhoto);
+    super.setMedia(media);
+    super.setMetadata(metadata);
     super.setRatings(ratings);
+    super.setCast(cast);
+    super.setCrew(crew);
+    super.setViews(views);
     this.seasons = seasons;
   }
 }
