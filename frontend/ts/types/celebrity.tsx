@@ -46,11 +46,13 @@ export class Celebrity {
 }
 
 export class CreateCast {
+    id: number;
     name: string;
     role: string;
     profilePicture: File;
 
     constructor() {
+        this.id = -1;
         this.name = "";
         this.role = "";
         this.profilePicture = null;
