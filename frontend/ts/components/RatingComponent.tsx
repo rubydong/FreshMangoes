@@ -84,6 +84,7 @@ export class RatingComponent extends React.Component {
         const ratings = this.props['data-ratings'].map((rating, i) => {
             return <div className={"review " + (i%2==0 ? "pull-left" : "pull-right")} key={i}>
                     <b><a href={'../profile/' + rating.user.id}>{rating.user.displayName}</a></b>
+                    {rating.user.type == "CRITIC" ? <span className="critic-badge">critic</span> : ''}
                     <span className="align-right"> <Mangoes data-rating={rating.score}/></span> <br/>
                     <i> <a href={'../' + rating.content.type.toLowerCase() + '/' + rating.content.id}> {title || rating.content.metadata.name} </a></i>
                     { this.state.currentUser == rating.user.id

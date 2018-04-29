@@ -566,6 +566,14 @@ h5 span {
 	float: left;
 }
 
+.critic-badge {
+	background-color: #DFDFDF;
+    margin-left: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    box-shadow: 1px 1px 3px grey;
+}
+
 /* Create Form */
 #create-form {
 	margin-left: 25%;
@@ -618,6 +626,11 @@ h5 span {
     border-radius: 0.25rem;
 }
 
+.btn-thinner, .btn-thinner:hover {
+	padding: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
 
 .thead-light th{
 	background-color: #FAFAFA !important;

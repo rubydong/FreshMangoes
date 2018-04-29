@@ -34,7 +34,7 @@ export class ReportsTemplate extends React.Component {
                     <td> {report.body} </td>
                     <td> <a href={"./" + report.content.type.toLowerCase() + "/" + report.content.id}>{report.content.metadata.name} </a></td>
                     <td> {report.report} </td>
-                    <td> <button className="btn" onClick={()=>this.deleteReview(report.id)}> Remove Review </button> </td>
+                    <td> <button className="btn btn-thinner" onClick={()=>this.deleteReview(report.id)}> Remove Review </button> </td>
                 </tr>
         });
 

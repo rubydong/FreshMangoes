@@ -30,7 +30,7 @@ export class CriticApplicationsTemplate extends React.Component {
             return <tr key={i}>
                     <td> <a href={"./profile/" + application.user.id}>{application.user.displayName}</a></td>
                     <td> {application.statement} </td>
-                    <td> <button className="btn" onClick={()=>this.approveReview(application.user.id)}> Approve Application </button></td>
+                    <td> <button className="btn btn-thinner" onClick={()=>this.approveReview(application.user.id)}> Approve Application </button></td>
                 </tr>
         });
 
