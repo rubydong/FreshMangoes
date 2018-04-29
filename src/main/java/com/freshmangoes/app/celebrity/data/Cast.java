@@ -29,7 +29,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Cast {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @ManyToOne

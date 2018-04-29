@@ -2,6 +2,7 @@ import * as React from "react";
 import { parseMedia }  from "../../HelperFunctions.js";
 import { Mangoes } from "./Mangoes";
 import { Rating } from '../types/rating';
+import { TRASH_ICON, EDIT_ICON } from "../../GlobalVariables";
 import axios from "axios";
 
 export class RatingComponent extends React.Component {
@@ -89,8 +90,8 @@ export class RatingComponent extends React.Component {
                     <i> <a href={'../' + rating.content.type.toLowerCase() + '/' + rating.content.id}> {title || rating.content.metadata.name} </a></i>
                     { this.state.currentUser == rating.user.id
                     ? <span className="align-right">
-                        <img src="/../../images/pencil.png" data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
-                        <img src="/../../images/trash.png" onClick={() => this.deleteReview(rating.id)}/>
+                        <img src={EDIT_ICON} data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
+                        <img src={TRASH_ICON} onClick={() => this.deleteReview(rating.id)}/>
                       </span> 
                     : <span className="align-right"> <img src="/../../images/flag.png" data-toggle="modal" data-target="#report-rating-modal" onClick={()=>this.state.currentReviewId=rating.id}/> </span>
                     }

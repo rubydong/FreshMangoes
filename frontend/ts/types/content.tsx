@@ -126,17 +126,13 @@ export class Spotlight {
     this.selectedTitle = "";
   }
 }
-export class Page {
+export class Page extends Content{
+
+}
+export class CreatePage{
   name: string;
   summary: string;
   summaryPhoto: File;
-  constructor() {
-    this.name = "";
-    this.summary = "";
-    this.summaryPhoto = null;
-  }
-}
-export class CreatePage extends Page{
   type: ContentType;
   genres: string [];
   photos: FileList;
@@ -147,7 +143,6 @@ export class CreatePage extends Page{
   seasonID: number;
 
   constructor() {
-    super();
     this.type = ContentType.MOVIE;
     this.genres = [];
     this.photos = null;
@@ -156,5 +151,8 @@ export class CreatePage extends Page{
     this.castNum = 0;
     this.showID = -1;
     this.seasonID = -1;
+    this.name = "";
+    this.summary = "";
+    this.summaryPhoto = null;
   }
 }

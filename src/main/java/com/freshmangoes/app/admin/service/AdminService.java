@@ -3,6 +3,7 @@ package com.freshmangoes.app.admin.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.freshmangoes.app.admin.data.Report;
 import com.freshmangoes.app.content.data.Content;
+import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Show;
 import com.freshmangoes.app.rating.data.Rating;
@@ -21,7 +22,7 @@ public interface AdminService {
 
   Boolean updateShowDetailPage(Show show);
 
-  void deleteDetailPage(Integer contentId);
+  void deleteDetailPage(Integer contentId, ContentType type);
 
   List<Rating> getReport();
 

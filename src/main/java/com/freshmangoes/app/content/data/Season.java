@@ -8,6 +8,7 @@ import com.freshmangoes.app.rating.data.Rating;
 
 import java.math.BigInteger;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -30,7 +31,7 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties("revenue")
 public class Season extends Content {
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "Season_Episodes",
       joinColumns =

@@ -34,7 +34,7 @@ import org.hibernate.search.annotations.Indexed;
 @Setter
 @JsonIgnoreProperties("revenue")
 public class Show extends Content {
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "Show_Seasons",
       joinColumns =

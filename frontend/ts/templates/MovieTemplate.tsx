@@ -7,6 +7,7 @@ import { CastComponent } from '../components/CastComponent';
 import { RatingComponent } from '../components/RatingComponent';
 import { SummaryComponent } from "../components/SummaryComponent";
 import { DetailsComponent } from "../components/DetailsComponent";
+import { EditPageComponent } from "../components/EditPageComponent";
 import { getUrlID } from "../../HelperFunctions";
 
 export class MovieTemplate extends React.Component {
@@ -35,6 +36,7 @@ export class MovieTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
+                    <EditPageComponent data-state={this.state}/>
                     <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media}/>             
                     <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
                                       data-id={this.state.id} data-type={this.state.type} data-state={this.state}/>

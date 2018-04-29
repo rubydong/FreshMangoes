@@ -44,7 +44,4 @@ public class Episode extends Content {
     super.setCrew(crew);
     super.setViews(views);
   }
-  public Content jsonToContent(String body) {
-    return Episode.builder().build();
-  }
 }

@@ -1,22 +1,17 @@
 package com.freshmangoes.app.admin;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.freshmangoes.app.admin.data.Report;
 import com.freshmangoes.app.admin.service.AdminService;
 import com.freshmangoes.app.common.data.Constants;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import com.freshmangoes.app.content.data.Content;
-import com.freshmangoes.app.content.data.Movie;
+import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.user.data.Application;
-import com.freshmangoes.app.user.data.User;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +36,13 @@ public class AdminController {
 
   @PostMapping(Constants.ADMIN_ADD_DETAIL_PAGE_MAPPING)
   public Content createDetailPage(@RequestBody final String body) {
-    return adminService.jsonToContent(body);
+    Content content = null;
+
+    if (adminService.isAuthenticatedAdmin(session)) {
+      content = adminService.jsonToContent(body);
+    }
+
+    return content;
   }
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_PAGE_MAPPING)
@@ -62,12 +63,13 @@ public class AdminController {
   }
 
   @PostMapping(Constants.ADMIN_DELETE_DETAIL_PAGE_MAPPING)
-  public ResponseEntity deleteDetailPage(@PathVariable final Integer contentId) {
+  public ResponseEntity deleteDetailPage(@RequestBody final Map<String, String> body,
+                                         @PathVariable final Integer contentId) {
     final HttpStatus status;
 
     if (adminService.isAuthenticatedAdmin(session)) {
       status = HttpStatus.OK;
-      adminService.deleteDetailPage(contentId);
+      adminService.deleteDetailPage(contentId, ContentType.valueOf(body.get("type")));
     } else {
       status = HttpStatus.BAD_REQUEST;
     }
