@@ -5,11 +5,15 @@ import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -82,8 +86,9 @@ public class UserController {
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
   }
 
-  @PostMapping(Constants.CHANGE_PICTURE_MAPPING)
-  public ResponseEntity editPicture(@RequestParam("file") final MultipartFile file) {
+  @RequestMapping(value = Constants.CHANGE_PICTURE_MAPPING, headers = "content-type=multipart/*", method = RequestMethod.POST,
+      consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+  public ResponseEntity editPicture(@RequestParam("myImage") final MultipartFile file) {
     User user = (User) session.getAttribute(Constants.USER_ID);
     if (user != null) {
       if (userService.updatePicture(file)) {
@@ -115,7 +120,7 @@ public class UserController {
     User user = (User) session.getAttribute(Constants.USER_ID);
     if (user != null) {
       status = userService.applyForCritic(user.getId(), body.get(Constants.BODY))
-             ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+          ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     } else {
       status = HttpStatus.BAD_REQUEST;
     }

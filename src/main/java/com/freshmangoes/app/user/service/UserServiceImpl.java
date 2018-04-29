@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -67,13 +68,20 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public boolean updatePicture(MultipartFile f) {
-    File temp = new File(Constants.FILE_PATH + f.getName());
+    File temp = new File(Constants.FILE_PATH + f.getOriginalFilename());
     try {
-      return temp.createNewFile();
+      if (!temp.getParentFile().exists()) {
+        temp.getParentFile().mkdirs();
+      }
+      if (!temp.exists()) {
+        temp.createNewFile();
+        f.transferTo(temp);
+        return true;
+      }
     } catch (IOException e) {
       e.printStackTrace();
-      return false;
     }
+    return false;
   }
 
   @Override

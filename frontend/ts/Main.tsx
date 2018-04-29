@@ -16,7 +16,7 @@ import { ReportsTemplate } from "./templates/ReportsTemplate";
 import { VerifyTemplate } from "./templates/VerifyTemplate";
 import { NoMatch } from "./templates/NoMatch";
 import { TosTemplate } from "./templates/TosTemplate";
-// import {ResetPasswordTemplate} from "./templates/ResetPasswordTemplate";
+import {ResetPasswordTemplate} from "./templates/ResetPasswordTemplate";
 
 const Main = () => (
   <main>
@@ -38,11 +38,7 @@ const Main = () => (
       <Route path="/verify/:id" component={VerifyTemplate}/>
       <Route path="/tos" component={TosTemplate}/>
       <Route path="/404" component={NoMatch}/>
-<<<<<<< HEAD
-      {/*<Route path="/resetpassword/:userid" component={ResetPasswordTemplate}/>*/}
-=======
-      <Route path="/resetpassword" component={ResetPasswordTemplate}/>
->>>>>>> 806b36735f7a1c4f59fcdadaa6ddfacc0b034e7c
+     <Route path="/resetpassword" component={ResetPasswordTemplate}/>
       <Route component={NoMatch}/>
     </Switch>
   </main>

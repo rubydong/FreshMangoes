@@ -79,7 +79,7 @@ public class Constants {
   public static final String NEW_EMAIL = "newEmail";
   public static final String NEW_PROFILE = "newFile";
 
-  public static final String FILE_PATH = "/~/Documents/cse308/photos/";
+  public static final String FILE_PATH = "/Users/normanle/Documents/cse308/photos/";
   public static final Integer NUM_LATEST_REVIEWS = 10;
 
 }
