@@ -42,7 +42,9 @@ export class Content {
   ratings: Rating[];
   cast: Celebrity[];
   crew: Celebrity[];
-
+  interested: boolean;
+  disinterested: boolean;
+  
   constructor() {
     this.id = 0;
     this.type = null;
@@ -52,6 +54,8 @@ export class Content {
     this.ratings = [];
     this.cast = [];
     this.crew = [];
+    this.interested = false;
+    this.disinterested = false;
   }
 }
 

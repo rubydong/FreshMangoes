@@ -19,3 +19,6 @@ export function parseDate(date) {
     return d.getMonth()+1 + '-' + d.getUTCDate() + '-' + d.getFullYear();
 }
 
+export function getUrlID() {
+    return window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+}
