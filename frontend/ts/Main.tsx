@@ -33,6 +33,7 @@ const Main = () => (
       <Route path="/critics" component={CriticsTemplate}/>
       <Route path="/create" component={CreatePagesTemplate}/>
       <Route path="/reports" component={ReportsTemplate}/>
+      {/* application template */}
       <Route path="/verify/:id" component={VerifyTemplate}/>
       <Route path="/tos" component={TosTemplate}/>
       <Route path="/404" component={NoMatch}/>

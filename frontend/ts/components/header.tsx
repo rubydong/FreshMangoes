@@ -51,11 +51,18 @@ export class Header extends React.Component {
                         <li className="nav-item"> <a className="nav-link" href="/critics">Critics</a> </li>
                         {/* <li className="nav-item"> <a className="nav-link" href="/tos">Terms & Services</a></li> */}
                         {isLoggedIn && this.state.userType == "ADMIN"
-                        ? <span>
-                            <li className="nav-item"><a className="nav-link" href="/create">Create Page</a></li>
-                            <li className="nav-item"> <a className="nav-link" href="/reports">View Reports</a> </li>
-                          </span>
-                            : ''
+                        ? 
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a className="dropdown-item" href="/create">Create Page</a>
+                                <a className="dropdown-item" href="/reports">View Reports</a>
+                                <a className="dropdown-item" href="/applications">View Critic Applications</a>
+                            </div>
+                        </li>
+                        : ''
                         }
                         {isLoggedIn
                         ? <span>
