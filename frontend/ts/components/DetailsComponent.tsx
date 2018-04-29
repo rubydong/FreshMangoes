@@ -64,12 +64,12 @@ export class DetailsComponent extends React.Component {
                     <b>In Theaters:</b> {parseDate(metadata.releaseDate)} 
                   </div>
                 : <div>
-                    <b>Network:</b> {metadata.network} <br/>
+                    {metadata.network ? <div><b>Network:</b> {metadata.network}</div> : ''}
                     <b>Premiere Date:</b> {parseDate(metadata.releaseDate)} 
                   </div>
                 }
                 
-                <b>Genres:</b>	{genres} <br/>
+                {genres.length != 0 ? <div><b>Genres:</b> {genres}</div> : ''} 
                 {directors.length != 0 ? <div> <b>Directed By:</b> {directorsFinal} </div> : ''}
                 {writers.length != 0 ? <div> <b>Written By:</b> {writersFinal} </div> : ''}
                 {producers.length != 0 ? <div> <b>Produced By:</b> {producersFinal} </div> : ''} 
