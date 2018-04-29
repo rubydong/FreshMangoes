@@ -1,19 +1,27 @@
 import * as React from "react";
-import {Mangoes} from "./Mangoes";
+import { Mangoes } from "./Mangoes";
 import { parseMoreMedia } from "../../HelperFunctions.js";
+import { ContentType } from '../types/content';
 
 export class SummaryComponent extends React.Component {
     render() {
         const metadata = this.props['data-metadata'];
         const list = [];
-        for (let i = 1; i <= this.props['data-list']; i++) {
-            list.push(
-                <option key={i}> 
-                    <a href={"./" + i}>
-                    {this.props['data-list-type'] == 'season' ? 'Season ' + i : 'Episode ' + i}
-                    </a>
-                </option>);
+        const type = this.props['data-type'];
+
+        if (this.props['data-list']) {
+            for (let i = 1; i <= this.props['data-list'].length; i++) {
+                list.push(
+                    <option key={i}> 
+                        <a href={"./" + type + "/" + i}>
+                            {type==ContentType.SEASON ? 'Season ' + i : 'Episode ' + i}
+                        </a>
+                    </option>
+                );
+            }
         }
+
+        console.log(this.props['data-list']);
 
         return (
             <div>        

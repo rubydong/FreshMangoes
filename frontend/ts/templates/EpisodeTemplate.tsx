@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import { parseMedia }  from "../../HelperFunctions.js";
-import { ContentMetadata, Episode } from '../types/content';
+import { ContentMetadata, Episode, ContentType } from '../types/content';
 import { PhotoComponent } from '../components/PhotoComponent';
 import { VideoComponent } from '../components/VideoComponent';
 import { CastComponent } from '../components/CastComponent';
@@ -32,14 +32,13 @@ export class EpisodeTemplate extends React.Component {
             <hr/>
             <div className="content">
                 <div className="summary">
-                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media} data-list-type="Episode"/>             
+                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media} data-type={ContentType.EPISODE}/>             
                     <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} data-type={this.state.type}/>
                 </div>
                 <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>
                 <VideoComponent data-videos={this.state.media}/>
                 <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
-                <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
             </div>
 		</div>
 

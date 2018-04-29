@@ -1,6 +1,5 @@
 import * as React from "react";
 import axios from "axios";
-import FileInput from 'react-file-input';
 import {parseMedia, getUrlID} from "../../HelperFunctions";
 import {FollowComponent} from "../components/FollowComponent";
 
