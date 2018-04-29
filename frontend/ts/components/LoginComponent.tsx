@@ -4,8 +4,7 @@ import axios from "axios";
 export class LoginComponent extends React.Component {
     state = {
         email: '',
-        password: '',
-        forgotEmail: ''
+        password: ''
     }
 
     handleEmailChange = event => {
@@ -29,12 +28,12 @@ export class LoginComponent extends React.Component {
     }
 
     handleForgotEmailChange = event => {
-        this.setState({forgotEmail: event.target.value});
+        this.setState({email: event.target.value});
     }
 
     handleForgotPassword = event => {
         event.preventDefault();
-        axios.post(window.location.origin + '/api/forgotpassword', {email: this.state.forgotEmail})
+        axios.post(window.location.origin + '/api/forgotpassword', {email: this.state.email})
             .then(res => {
                 window.location.reload();
             })
@@ -42,7 +41,7 @@ export class LoginComponent extends React.Component {
 
     handleResendVerification = event => {
         event.preventDefault();
-        axios.post(window.location.origin + '/api/resendverification', {email: this.state.forgotEmail})
+        axios.post(window.location.origin + '/api/resendverification', {email: this.state.email})
             .then(res => {
                 window.location.reload();
             })
@@ -66,9 +65,9 @@ export class LoginComponent extends React.Component {
                         <p/><p/>
 
                         <h2>Forgot Password?</h2>
-                        <form onSubmit={this.handleResendVerification}>
+                        <form onSubmit={this.handleForgotPassword}>
                             Email
-                            <input type="text" className="form-control" onChange={this.handleForgotPassword}/>
+                            <input type="text" className="form-control" onChange={this.handleEmailChange}/>
                             <button type="submit" className="btn btn-primary">Reset Password</button>
                         </form>
 
