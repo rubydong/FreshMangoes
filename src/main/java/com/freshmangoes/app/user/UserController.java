@@ -69,7 +69,7 @@ public class UserController {
 
   @PostMapping(Constants.FORGOT_PASSWORD_MAPPING)
   public ResponseEntity forgotPassword(@RequestBody final Map<String, String> body) {
-    if (userService.forgotPassword(body.get(Constants.PASSWORD))) {
+    if (userService.forgotPassword(body.get(Constants.EMAIL))) {
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -100,7 +100,7 @@ public class UserController {
 
   @PostMapping(Constants.RESET_PASSWORD_MAPPING)
   public ResponseEntity resetPassword(@RequestBody final Map<String, String> body) {
-    User user = (User) session.getAttribute(Constants.USER_ID);
+    User user = userService.getUserByEmail(body.get(Constants.EMAIL));
     if (user != null) {
       userService.updatePassword(user, body.get(Constants.NEW_PASSWORD));
       return new ResponseEntity(HttpStatus.OK);

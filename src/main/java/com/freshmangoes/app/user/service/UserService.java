@@ -9,6 +9,8 @@ import java.util.List;
 public interface UserService {
   User getUser(Integer userId);
 
+  User getUserByEmail(String email);
+
   void updatePassword(User user, String s);
 
   void updateEmail(User user, String s);

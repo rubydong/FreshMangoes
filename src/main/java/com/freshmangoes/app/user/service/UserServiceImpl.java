@@ -42,6 +42,11 @@ public class UserServiceImpl implements UserService {
     return user;
   }
 
+  public User getUserByEmail(final String email){
+    final User user = userRepository.findByEmail(email);
+    return user;
+  }
+
   @Override
   public void updatePassword(User user, String s) {
     String hash = passwordEncoder.encode(s);
