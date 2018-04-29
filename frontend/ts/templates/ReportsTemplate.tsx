@@ -28,11 +28,7 @@ export class ReportsTemplate extends React.Component {
     }
 
     render() {
-        
-        const reports = this.state.reports;
-        console.log(reports);
-        console.log(reports.length);
-        const r = reports.map((report, i) => {
+        const r = this.state.reports.map((report, i) => {
             return <tr key={i}>
                     <td> <a href={"./profile/" + report.user.id}>{report.user.displayName}</a></td>
                     <td> {report.body} </td>

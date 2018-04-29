@@ -35,14 +35,23 @@ export class User {
     }
 }
 
-export class Critics {
-    critics: User [];
+export class CriticsApply {
     applicationName: string;
     applicationProfile: string;
+    applicationReason: string;
 
     constructor() {
-        this.critics = [];
         this.applicationName = "";
         this.applicationProfile = "";
+        this.applicationReason = "";
+    }
+}
+
+export class CriticsApplication {
+    user: User;
+    statement: string;
+
+    constructor() {
+        this.user = new User();
     }
 }
