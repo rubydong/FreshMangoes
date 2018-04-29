@@ -130,10 +130,10 @@ def main():
     assure_path_exists('celebrities/images')
     assure_path_exists('scraped_media')
 
-    #scrape_movies(2000)
-    #scrape_shows(2000)
-    #scrape_show_moredetails()
-    #scrape_celebrities()
+    scrape_movies(2000)
+    scrape_shows(2000)
+    scrape_show_moredetails()
+    scrape_celebrities()
     scrape_images()
 
 
