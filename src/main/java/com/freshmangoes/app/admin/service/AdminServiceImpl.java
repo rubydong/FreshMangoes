@@ -1,5 +1,6 @@
 package com.freshmangoes.app.admin.service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freshmangoes.app.celebrity.data.Cast;
@@ -135,6 +136,7 @@ public class AdminServiceImpl implements AdminService {
   public Content jsonToContent(final String body) {
     Content content = null;
     try {
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
       JsonNode root = objectMapper.readTree(body);
       ContentType contentType = ContentType.valueOf(root.path("type").asText());
       switch (contentType) {
@@ -170,10 +172,22 @@ public class AdminServiceImpl implements AdminService {
           content = showRepository.save((Show) content);
           break;
         case SEASON:
+          Show show = showRepository.findById(root.path("showId").asInt()).orElse(null);
+          if (show == null) {
+            return null;
+          }
           content = seasonRepository.save((Season) content);
+          show.getSeasons().add((Season) content);
+          showRepository.save(show);
           break;
         case EPISODE:
+          Season season = seasonRepository.findById(root.path("seasonId").asInt()).orElse(null);
+          if (season == null) {
+            return null;
+          }
           content = episodeRepository.save((Episode) content);
+          season.getEpisodes().add((Episode) content);
+          seasonRepository.save(season);
           break;
       }
 

@@ -5,6 +5,7 @@ import com.freshmangoes.app.rating.data.Rating;
 
 import java.util.List;
 import java.util.Map;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -28,7 +29,7 @@ import org.hibernate.search.annotations.Indexed;
 @DiscriminatorValue(ContentType.Values.SHOW)
 @Indexed(index = "Content")
 public class Show extends Content {
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "Show_Seasons",
       joinColumns =
