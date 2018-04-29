@@ -57,14 +57,6 @@ public class User {
   @JoinColumn(name = "profile_picture")
   private Media profilePicture;
 
-  @JsonInclude()
-  @Transient
-  private Integer numFollowers;
-
-  @JsonInclude()
-  @Transient
-  private Integer numFollowing;
-
   @JoinTable(name = "following",
       joinColumns = @JoinColumn(
           name = "followee_id"
