@@ -19,8 +19,8 @@ public class Constants {
 
   public static final String MOVIE_MAPPING = "/movie/{id}";
   public static final String SHOW_MAPPING = "/show/{id}";
-  public static final String SEASON_MAPPING = "/show/{showId}/season/{seasonId}";
-  public static final String EPISODE_MAPPING = "/show/{showId}/season/{seasonId}/episode/{episodeId}";
+  public static final String SEASON_MAPPING = "/show/{showId}/season/{season}";
+  public static final String EPISODE_MAPPING = "/show/{showId}/season/{season}/episode/{episode}";
 
   public static final String ADD_RATING_MAPPING = "/rating/{contentId}";
   public static final String EDIT_RATING_MAPPING = "/rating/update/{ratingId}";

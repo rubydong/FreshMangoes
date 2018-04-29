@@ -8,6 +8,7 @@ import com.freshmangoes.app.content.repository.EpisodeRepository;
 import com.freshmangoes.app.content.repository.MovieRepository;
 import com.freshmangoes.app.content.repository.SeasonRepository;
 import com.freshmangoes.app.content.repository.ShowRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,11 +35,31 @@ public class ContentServiceImpl implements ContentService {
     return showRepository.findById(id).orElse(null);
   }
 
-  public Season findSeasonById(final int id) {
-    return seasonRepository.findById(id).orElse(null);
+  @Override
+  public Season findSeason(int showId, int season) {
+    final Show show = findShowById(showId);
+    final List<Season> seasons;
+
+    if (show != null) {
+      seasons = show.getSeasons();
+      return (season >= 0 && season < seasons.size()) ? seasons.get(season)
+                                                      : null;
+    } else {
+      return null;
+    }
   }
 
-  public Episode findEpisodeById(final int id) {
-    return episodeRepository.findById(id).orElse(null);
+  @Override
+  public Episode findEpisode(int showId, int season, int episode) {
+    final Season s = findSeason(showId, season);
+    final List<Episode> episodes;
+
+    if (s != null) {
+      episodes = s.getEpisodes();
+      return (season >= 0 && season < episodes.size()) ? episodes.get(episode)
+                                                       : null;
+    } else {
+      return null;
+    }
   }
 }

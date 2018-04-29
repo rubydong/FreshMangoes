@@ -10,6 +10,7 @@ import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.annotations.Indexed;
@@ -29,7 +31,9 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "content_type")
+@Table(name = "content")
 @Indexed
 @Getter
 @Setter
@@ -65,6 +69,8 @@ public abstract class Content {
   @OneToMany(mappedBy = "content")
   @JsonIgnoreProperties("content")
   private List<Crew> crew;
+
+  private BigInteger revenue;
 
   private BigInteger views;
 }

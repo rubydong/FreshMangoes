@@ -28,7 +28,8 @@ CREATE TABLE `casted` (
   `celebrity_id` int(11) DEFAULT NULL,
   `content_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKeinemy663e61qd2ot9mbpvr0r` (`celebrity_id`)
+  KEY `FKeinemy663e61qd2ot9mbpvr0r` (`celebrity_id`),
+  KEY `FK8jkabyrlmiucsv3oxwr9jio62` (`content_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -68,6 +69,26 @@ CREATE TABLE `celebrity_media` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `content`
+--
+
+DROP TABLE IF EXISTS `content`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `content` (
+  `content_type` varchar(31) NOT NULL,
+  `id` int(11) NOT NULL,
+  `revenue` decimal(19,2) DEFAULT NULL,
+  `views` decimal(19,2) DEFAULT NULL,
+  `metadata_id` int(11) DEFAULT NULL,
+  `summary_photo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKiav9hhg4oip1u8qbge7jhjo7q` (`metadata_id`),
+  KEY `FKths342rwi39ephvkoxsuylh41` (`summary_photo`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `content_genre`
 --
 
@@ -91,7 +112,8 @@ DROP TABLE IF EXISTS `content_media`;
 CREATE TABLE `content_media` (
   `content_id` int(11) NOT NULL,
   `media_id` int(11) NOT NULL,
-  UNIQUE KEY `UK_f6bxw2sgn21lk4dxdinlpkyjp` (`media_id`)
+  UNIQUE KEY `UK_f6bxw2sgn21lk4dxdinlpkyjp` (`media_id`),
+  KEY `FK2xrsp5d2dlj6odb3yb9uan9rm` (`content_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -129,7 +151,8 @@ CREATE TABLE `crew` (
   `celebrity_id` int(11) DEFAULT NULL,
   `content_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKgmi569238pqg5g5ur7m6em1ml` (`celebrity_id`)
+  KEY `FKgmi569238pqg5g5ur7m6em1ml` (`celebrity_id`),
+  KEY `FK9svuaa43iq4hn8hlk1e0bbmm` (`content_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -143,26 +166,8 @@ DROP TABLE IF EXISTS `disinterests`;
 CREATE TABLE `disinterests` (
   `user_id` int(11) NOT NULL,
   `content_id` int(11) NOT NULL,
+  KEY `FKgwy8vb27dya6wo8cvgn35c0l7` (`content_id`),
   KEY `FKpqbt85t8sh1wi4o66apbrefti` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `episodes`
---
-
-DROP TABLE IF EXISTS `episodes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `episodes` (
-  `id` int(11) NOT NULL,
-  `content_type` int(11) DEFAULT NULL,
-  `views` decimal(19,2) DEFAULT NULL,
-  `metadata_id` int(11) DEFAULT NULL,
-  `summary_photo` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_rqc2lcbh5atqu9nhmrqwd3xjv` (`metadata_id`),
-  KEY `FK_8qnnvpf9skot1updrq3etsb0o` (`summary_photo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -203,6 +208,7 @@ DROP TABLE IF EXISTS `interests`;
 CREATE TABLE `interests` (
   `user_id` int(11) NOT NULL,
   `content_id` int(11) NOT NULL,
+  KEY `FKjhxrs0awp9xffawmf5uk5bsnb` (`content_id`),
   KEY `FKq9kr60l7n7h3yf82s44rkoe4g` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -223,26 +229,6 @@ CREATE TABLE `media` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `movies`
---
-
-DROP TABLE IF EXISTS `movies`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `movies` (
-  `id` int(11) NOT NULL,
-  `content_type` int(11) DEFAULT NULL,
-  `views` decimal(19,2) DEFAULT NULL,
-  `metadata_id` int(11) DEFAULT NULL,
-  `summary_photo` int(11) DEFAULT NULL,
-  `revenue` decimal(19,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_g9oaomvaqlt85e73vwpaoener` (`metadata_id`),
-  KEY `FK_nwbre21w32ic06lyk3xgl7dws` (`summary_photo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `ratings`
 --
 
@@ -258,6 +244,7 @@ CREATE TABLE `ratings` (
   `content_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `FKfasgqqfwv14esnf4f0nnyeu0l` (`content_id`),
   KEY `FKb3354ee2xxvdrbyq9f42jdayd` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -273,26 +260,7 @@ CREATE TABLE `season_episodes` (
   `season_id` int(11) NOT NULL,
   `episode_id` int(11) NOT NULL,
   UNIQUE KEY `UK_bfrnjvoi6k296nx96n2ndsvf5` (`episode_id`),
-  KEY `FKco3rn0iuotl5rbfyj9qh003u9` (`season_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `seasons`
---
-
-DROP TABLE IF EXISTS `seasons`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `seasons` (
-  `id` int(11) NOT NULL,
-  `content_type` int(11) DEFAULT NULL,
-  `views` decimal(19,2) DEFAULT NULL,
-  `metadata_id` int(11) DEFAULT NULL,
-  `summary_photo` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_bk7hi2cpyr86wadowgurl13u3` (`metadata_id`),
-  KEY `FK_8976fi8gh1t99jxl9vybksjft` (`summary_photo`)
+  KEY `FKy3bwvd39ph05trwb5nsxrf7c` (`season_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -307,26 +275,7 @@ CREATE TABLE `show_seasons` (
   `show_id` int(11) NOT NULL,
   `season_id` int(11) NOT NULL,
   UNIQUE KEY `UK_esyixasulssavkeknu8p4x5po` (`season_id`),
-  KEY `FKp99ambm0je50oc9ckf2rmxwdj` (`show_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `shows`
---
-
-DROP TABLE IF EXISTS `shows`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `shows` (
-  `id` int(11) NOT NULL,
-  `content_type` int(11) DEFAULT NULL,
-  `views` decimal(19,2) DEFAULT NULL,
-  `metadata_id` int(11) DEFAULT NULL,
-  `summary_photo` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_6447puiq2k6lsodpjk89i52ff` (`metadata_id`),
-  KEY `FK_8wbjrv4o4smc6n4sh1oarv4dp` (`summary_photo`)
+  KEY `FKib4r1f14sas7aq8wqhy696syv` (`show_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -361,4 +310,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-28 17:46:42
+-- Dump completed on 2018-04-29 15:30:43

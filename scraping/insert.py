@@ -35,10 +35,7 @@ INSERT_CREW = 'insert into `crew` (celebrity_id, content_id, job) values(%s, %s,
 INSERT_CELEBRITY = 'insert into `celebrities` (birthday, birthplace, biography, celebrity_name, id, ' \
                    'profile_picture) values(%s, %s, %s, %s, %s, %s)'
 INSERT_CELEBRTY_MEDIA = 'insert into `celebrity_media` (celebrity_id, media_id) values(%s, %s)'
-INSERT_MOVIE = 'insert into `movies` (content_type, metadata_id, summary_photo, revenue) values(%s, %s, %s, %s)'
-INSERT_SHOW = 'insert into `shows` (content_type, metadata_id, summary_photo) values(%s, %s, %s)'
-INSERT_SEASON = 'insert into `seasons` (content_type, metadata_id, summary_photo) values(%s, %s, %s)'
-INSERT_EPISODE = 'insert into `episodes` (content_type, metadata_id, summary_photo) values(%s, %s, %s)'
+INSERT_CONTENT = 'insert into `content` (content_type, metadata_id, summary_photo, revenue, views) values(%s, %s, %s, %s, %s)'
 INSERT_CONTENT_MEDIA = 'insert into `content_media` (content_id, media_id) values(%s, %s)'
 INSERT_GENRE = 'insert into `content_genre` (genre, metadata_id) values(%s, %s)'
 INSERT_MEDIA = 'insert into `media` (path, media_type) values(%s, %s)'
@@ -112,14 +109,7 @@ def insert_content(content_metadata, content_type, content_credits, content_deta
         cursor.execute(INSERT_MEDIA, (BASE_PHOTO_URL + content_photos.get("posters")[0]["file_path"], 0))
         summary_photo_id = cursor.lastrowid
 
-    if content_type == 0:
-        cursor.execute(INSERT_MOVIE, (content_type, content_metadata_id, summary_photo_id, content_details["revenue"]))
-    elif content_type == 1:
-        cursor.execute(INSERT_SHOW, (content_type, content_metadata_id, summary_photo_id))
-    elif content_type == 2:
-        cursor.execute(INSERT_SEASON, (content_type, content_metadata_id, summary_photo_id))
-    else:
-        cursor.execute(INSERT_EPISODE, (content_type, content_metadata_id, summary_photo_id))
+    cursor.execute(INSERT_CONTENT, (content_type, content_metadata_id, summary_photo_id, content_details.get("revenue", None), 0))
 
     content_id = cursor.lastrowid
 
