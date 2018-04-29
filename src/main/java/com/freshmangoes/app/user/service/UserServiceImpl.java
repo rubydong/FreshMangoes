@@ -6,10 +6,15 @@ import com.freshmangoes.app.follow.repository.FollowRepository;
 import com.freshmangoes.app.rating.repository.RatingRepository;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.repository.UserRepository;
+import java.math.BigInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,6 +43,11 @@ public class UserServiceImpl implements UserService {
     return user;
   }
 
+  public User getUserByEmail(final String email){
+    final User user = userRepository.findByEmail(email);
+    return user;
+  }
+
   @Override
   public void updatePassword(User user, String s) {
     String hash = passwordEncoder.encode(s);
@@ -63,8 +73,21 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void updatePicture() {
-
+  public boolean updatePicture(MultipartFile f) {
+    File temp = new File(Constants.FILE_PATH + f.getOriginalFilename());
+    try {
+      if (!temp.getParentFile().exists()) {
+        temp.getParentFile().mkdirs();
+      }
+      if (!temp.exists()) {
+        temp.createNewFile();
+        f.transferTo(temp);
+        return true;
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return false;
   }
 
   @Override
@@ -89,4 +112,8 @@ public class UserServiceImpl implements UserService {
     return userRepository.applyForCritic(userId, statement) != null;
   }
 
+  public void updateViews(User user, BigInteger views) {
+    user.setViews(views);
+    userRepository.save(user);
+  }
 }
