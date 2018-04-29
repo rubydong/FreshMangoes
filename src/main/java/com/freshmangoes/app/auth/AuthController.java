@@ -94,11 +94,14 @@ public class AuthController {
             rootNode.put(Constants.INTERESTED, true);
           }
         }
+
+        for (Content content : user.getDisinterestedList()) {
+          if (content.getId().equals(contentId)) {
+            rootNode.put(Constants.INTERESTED, false);
+          }
+        }
       }
 
-      if (!rootNode.has(Constants.INTERESTED)) {
-        rootNode.put(Constants.INTERESTED, false);
-      }
     }
 
     return rootNode.toString();
