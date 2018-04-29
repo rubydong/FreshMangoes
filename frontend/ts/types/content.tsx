@@ -126,12 +126,18 @@ export class Spotlight {
     this.selectedTitle = "";
   }
 }
-
-export class CreatePage {
-  type: ContentType;
+export class Page {
   name: string;
   summary: string;
   summaryPhoto: File;
+  constructor() {
+    this.name = "";
+    this.summary = "";
+    this.summaryPhoto = null;
+  }
+}
+export class CreatePage extends Page{
+  type: ContentType;
   genres: string [];
   photos: FileList;
   videos: FileList;
@@ -141,10 +147,8 @@ export class CreatePage {
   seasonID: number;
 
   constructor() {
+    super();
     this.type = ContentType.MOVIE;
-    this.name = "";
-    this.summary = "";
-    this.summaryPhoto = null;
     this.genres = [];
     this.photos = null;
     this.videos = null;

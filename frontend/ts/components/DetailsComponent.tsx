@@ -3,6 +3,7 @@ import { parseDate }  from "../../HelperFunctions";
 import { Mangoes } from "./Mangoes";
 import { GENRES_MAP } from "../../GlobalVariables";
 import axios from "axios";
+import { EditPageComponent } from "./EditPageComponent";
 
 export class DetailsComponent extends React.Component {
     addToInterested = event => {
@@ -49,9 +50,11 @@ export class DetailsComponent extends React.Component {
         });
     
         return (
+            
             <div className="content-info">
+                <EditPageComponent data-metadata={metadata}/>
                 <span className="rating">
-                    <b>Edit Page:</b>  <img src="/../../images/pencil.png" data-toggle="modal" data-target="#edit-rating-modal"/> <br/>
+                    <b>Edit Page:</b>  <img src="/../../images/pencil.png" data-toggle="modal" data-target="#edit-page-modal"/> <br/>
                     <b>Delete Page:</b> <img src="/../../images/trash.png"/> <br/>
                 </span>
                 
