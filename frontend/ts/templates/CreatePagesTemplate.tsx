@@ -50,18 +50,6 @@ export class CreatePagesTemplate extends React.Component {
         this.forceUpdate();
     }
 
-    handleCastImageChange =  (i, event) => {
-        this.state.cast[i].profilePicture = event.target.files[0];
-    }
-
-    handleCastNameChange =  (i, event) => {
-        this.state.cast[i].name = event.target.value;
-    }
-
-    handleCastRoleChange = (i, event) => {
-        this.state.cast[i].role = event.target.value;
-    }
-
     render() {
         const genres = (this.state.type == ContentType.MOVIE ? MOVIE_GENRES : TV_GENRES).map((genre, i) => {
             return <div className="form-check form-check-inline" key={i}>
@@ -74,10 +62,12 @@ export class CreatePagesTemplate extends React.Component {
 
         for (let i = 0; i < this.state.castNum; i++) {
             castMember.push(<div key ={i} className={i != 0 ? "padding-top" : ""}>
-                <input type="file" onChange={(event) => this.handleCastImageChange(i, event)}/> 
-                <button className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button> <p/> 
-                <input type="text" className="small-margin-right" placeholder="Name" onChange={(event) => this.handleCastNameChange(i, event)}/>
-                <input type="text" placeholder="Role" onChange={(event) => this.handleCastRoleChange(i, event)}/>
+                <input type="file" onChange={(event) => this.state.cast[i].profilePicture = event.target.files[0]}/> 
+                <button className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button> 
+                
+                <input type="text" className="form-control" placeholder="Name" onChange={(event) => this.state.cast[i].name = event.target.value}/>
+                <input type="text" className="form-control" placeholder="ID" onChange={(event) => this.state.cast[i].id = parseInt(event.target.value)}/>
+                <input type="text" className="form-control" placeholder="Role" onChange={(event) => this.state.cast[i].role = event.target.value}/>
             </div>);
             
         }
