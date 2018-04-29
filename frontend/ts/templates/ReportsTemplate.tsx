@@ -34,7 +34,7 @@ export class ReportsTemplate extends React.Component {
         console.log(reports.length);
         const r = reports.map((report, i) => {
             return <tr key={i}>
-                    <td> <a href={"./profile" + report.user.id}>{report.user.displayName}</a></td>
+                    <td> <a href={"./profile/" + report.user.id}>{report.user.displayName}</a></td>
                     <td> {report.body} </td>
                     <td> <a href={"./" + report.content.type.toLowerCase() + "/" + report.content.id}>{report.content.metadata.name} </a></td>
                     <td> {report.report} </td>
@@ -47,8 +47,8 @@ export class ReportsTemplate extends React.Component {
                 <hr/>
                 <div className="content">
                     <h2> View Reports </h2>
-                    <hr/>
-                    <table className="table">
+                    {r.length == 0 ? <div className="center-text"><hr/>There are no reports right now.</div> :
+                    (<table className="table">
                         <thead className="thead-light">
                             <tr>
                                 <th>User</th>
@@ -58,8 +58,9 @@ export class ReportsTemplate extends React.Component {
                                 <th>Remove</th>
                             </tr>
                         </thead>
-                        <tbody>{r}</tbody>
-                    </table>
+                        <tbody> {r} </tbody>
+                    </table>)
+                    }
                 </div>
             </div>
         )
