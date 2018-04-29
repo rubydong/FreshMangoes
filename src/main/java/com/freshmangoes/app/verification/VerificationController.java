@@ -31,7 +31,7 @@ public class VerificationController {
     user = verificationService.verifyUser(verificationKey);
 
     if (user != null) {
-      session.setAttribute(Constants.USER_ID, user);
+      session.setAttribute(Constants.USER_ID, user.getId());
       status = HttpStatus.OK;
     } else {
       status = HttpStatus.BAD_REQUEST;

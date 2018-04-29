@@ -7,6 +7,7 @@ import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.helpers.Helpers;
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.user.data.User;
+import com.freshmangoes.app.user.service.UserService;
 import com.freshmangoes.app.verification.service.VerificationService;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,9 @@ public class AuthController {
   private AuthService authService;
 
   @Autowired
+  private UserService userService;
+
+  @Autowired
   private VerificationService verificationService;
 
   @Autowired
@@ -44,7 +48,7 @@ public class AuthController {
                                  body.get(Constants.PASSWORD));
 
     if (user != null) {
-      session.setAttribute(Constants.USER_ID, user);
+      session.setAttribute(Constants.USER_ID, user.getId());
       status = HttpStatus.OK;
     } else {
       status = HttpStatus.BAD_REQUEST;
@@ -81,7 +85,8 @@ public class AuthController {
 
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)
   public String currentUser(@RequestParam(required = false) Integer contentId) {
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer userId = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(userId);
     final ObjectNode rootNode = mapper.createObjectNode();
 
     if (user != null) {

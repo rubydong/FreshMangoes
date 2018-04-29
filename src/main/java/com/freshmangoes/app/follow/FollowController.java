@@ -4,6 +4,7 @@ import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.helpers.Helpers;
 import com.freshmangoes.app.follow.service.FollowService;
 import com.freshmangoes.app.user.data.User;
+import com.freshmangoes.app.user.service.UserService;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,16 @@ public class FollowController {
   private FollowService followService;
 
   @Autowired
+  private UserService userService;
+
+  @Autowired
   private HttpSession session;
 
   @PostMapping(Constants.FOLLOW_MAPPING)
   public ResponseEntity follow(@PathVariable final Integer userId) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer currentUserId  = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(currentUserId);
 
     if (user != null) {
       status = followService.followUser(user.getId(), userId) ? HttpStatus.OK
@@ -43,7 +48,8 @@ public class FollowController {
   @PostMapping(Constants.UNFOLLOW_MAPPING)
   public ResponseEntity unfollow(@PathVariable final Integer userId) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer currentUserId  = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(currentUserId);
 
     if (user != null) {
       status = followService.unfollowUser(user.getId(), userId) ? HttpStatus.OK
