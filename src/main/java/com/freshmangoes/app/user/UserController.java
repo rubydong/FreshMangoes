@@ -34,7 +34,7 @@ public class UserController {
   @GetMapping(Constants.PROFILE_MAPPING)
   public User getProfile(@PathVariable final int userId) {
     User user = userService.getUser(userId);
-    userService.updateViews(user, user.getViews().add(BigInteger.ONE));
+    //userService.updateViews(user, user.getViews().add(BigInteger.ONE));
     return user;
   }
 
