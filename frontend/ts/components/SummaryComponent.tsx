@@ -17,7 +17,7 @@ export class SummaryComponent extends React.Component {
 
         return (
             <div>        
-                <img src={parseMoreMedia(this.props['data-image'], this.props['data-media'])} className="img-align-left"/>
+                <img className="img-align-left" src={parseMoreMedia(this.props['data-image'], this.props['data-media'])}/>
                 <div className="summary-title">
                     <h2>{metadata.name}</h2>
                 </div>
@@ -37,6 +37,7 @@ export class SummaryComponent extends React.Component {
                     <b>About Movie</b>
                     <br/> {metadata.summary}
                     <p/>
+                    
                 </div>
             </div>
         );

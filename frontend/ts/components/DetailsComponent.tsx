@@ -50,6 +50,11 @@ export class DetailsComponent extends React.Component {
     
         return (
             <div className="content-info">
+                <span className="rating">
+                    <b>Edit Page:</b>  <img src="/../../images/pencil.png" data-toggle="modal" data-target="#edit-rating-modal"/> <br/>
+                    <b>Delete Page:</b> <img src="/../../images/trash.png"/> <br/>
+                </span>
+                
                 {type == 'MOVIE'
                 ? <div> 
                     <b>Rating:</b> {metadata.maturityRating} <br/> 
@@ -68,8 +73,8 @@ export class DetailsComponent extends React.Component {
                 {writers.length != 0 ? <div> <b>Written By:</b> {writersFinal} </div> : ''}
                 {producers.length != 0 ? <div> <b>Produced By:</b> {producersFinal} </div> : ''} 
                 <p/>
-                <button className="btn small-margin-right" onClick={this.addToInterested}> Interested</button>
-                <button className="btn" onClick={this.addToDisinterested}> Uninterested</button>
+                <button className="btn small-margin-right" onClick={this.addToInterested}> Interested </button>
+                <button className="btn small-margin-right" onClick={this.addToDisinterested}> Uninterested </button> 
             </div>
         );
     }

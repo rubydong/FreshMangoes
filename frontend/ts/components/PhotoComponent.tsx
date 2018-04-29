@@ -6,7 +6,7 @@ export class PhotoComponent extends React.Component {
     render() {
         const photosOnly = this.props['data-photos'].filter(photo => photo.type == 'PHOTO');
         const photos = photosOnly.slice(0, MEDIA_LIMIT).map((photo, i) => {
-            return <img src={photo.path} key={i}/>
+            return <img className="box-shadow" src={photo.path} key={i}/>
         });
 
         return ( photos == isNullOrUndefined || photos.length == 0 ) 
