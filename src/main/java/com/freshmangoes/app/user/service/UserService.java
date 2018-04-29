@@ -2,6 +2,7 @@ package com.freshmangoes.app.user.service;
 
 import com.freshmangoes.app.user.data.User;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface UserService {
@@ -18,6 +19,8 @@ public interface UserService {
   void updatePicture();
 
   void updateName(User user, String s);
+
+  void updateViews(User user, BigInteger views);
 
   List<User> getCritics();
 

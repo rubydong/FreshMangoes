@@ -10,7 +10,11 @@ public interface ContentService {
 
   Show findShowById(int id);
 
-  Season findSeason(int showId, int season);
+  Movie saveMovie(Movie movie);
 
-  Episode findEpisode(int showId, int season, int episode);
+  Show saveShow(Show show);
+
+  Season saveSeason(Season season);
+
+  Episode saveEpisode(Episode episode);
 }

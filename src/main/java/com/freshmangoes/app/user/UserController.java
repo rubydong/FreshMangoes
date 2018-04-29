@@ -3,6 +3,7 @@ package com.freshmangoes.app.user;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.service.UserService;
+import java.math.BigInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public class UserController {
   @GetMapping(Constants.PROFILE_MAPPING)
   public User getProfile(@PathVariable final int userId) {
     User user = userService.getUser(userId);
+    userService.updateViews(user, user.getViews().add(BigInteger.ONE));
     return user;
   }
 
