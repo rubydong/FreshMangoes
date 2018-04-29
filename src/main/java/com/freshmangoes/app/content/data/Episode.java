@@ -13,7 +13,4 @@ import java.util.Map;
 @AllArgsConstructor
 @DiscriminatorValue(ContentType.Values.EPISODE)
 public class Episode extends Content {
-  public Content jsonToContent(String body) {
-    return Episode.builder().build();
-  }
 }
