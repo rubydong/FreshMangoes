@@ -41,8 +41,6 @@ public class Constants {
   public static final String GET_ALL_CRITICS = "/critics";
   public static final String FOLLOW_MAPPING = "/follow/{userId}";
   public static final String UNFOLLOW_MAPPING = "/unfollow/{userId}";
-  public static final String GET_FOLLOWERS_MAPPING = "/followers/{userId}";
-  public static final String GET_FOLLOWING_MAPPING = "/following/{userId}";
   public static final String CHANGE_PASSWORD_MAPPING = "/profile/password/reset";
   public static final String CHANGE_PICTURE_MAPPING = "/profile/picture/update";
   public static final String CHANGE_NAME_MAPPING = "/profile/name/update";
@@ -76,4 +74,5 @@ public class Constants {
   public static final String NEW_EMAIL = "newEmail";
   public static final String NEW_PROFILE = "newFile";
 
+  public static final String FILE_PATH = "/~/Documents/cse308/photos/";
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import {parseMedia} from "../../HelperFunctions";
+import FileInput from 'react-file-input';
 
 export class ProfileInfoComponent extends React.Component {
     state = {
@@ -66,11 +67,15 @@ export class ProfileInfoComponent extends React.Component {
                 })
         }
 
-        if (editProfileInfo.newFile != '') {
-            axios.post(window.location.origin + '/api/profile/email/reset/', editProfileInfo)
-                .then(res => {
-                    window.location.reload();
-                })
+        if (editProfileInfo.newFile != null) {
+            var formData = new FormData();
+            var imagefile = document.querySelector('#file');
+            formData.append("image", event.target.files[0], 'name');
+            axios.post('upload_file', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
         }
         if (editProfileInfo.newEmail != '') {
             axios.post(window.location.origin + '/api/profile/picture/update/', editProfileInfo)
@@ -130,6 +135,10 @@ export class ProfileInfoComponent extends React.Component {
                             <form onSubmit={this.handleSubmit}>
                                 New Display Name
                                 <input type="text" className="form-control" onChange={this.handleDisplayNameChange}/>
+                                {/*<FileInput name="myImage"*/}
+                                           {/*accept=".png,.jpeg"*/}
+                                           {/*placeholder="My Image"*/}
+                                           {/*onChange={this.handleFileChange} />*/}
                                 Choose New Profile Picture
                                 <input type="file" className="form-control" onChange={this.handleFileChange}/>
                                 New Email
