@@ -1,22 +1,24 @@
+
 import * as React from "react";
 import axios from "axios";
 
 export class ResetPasswordTemplate extends React.Component {
     state = {
         email: '',
-        password: '',
+        newPassword: '',
         passwordConfirm: ''
     }
 
     handleSubmit = event => {
         event.preventDefault();
         const loginInfo = {
-            password: this.state.password,
+            email: this.state.email,
+            newPassword: this.state.newPassword,
             passwordConfirm: this.state.passwordConfirm
         };
-        axios.post(window.location.origin + '/api/resetPassword', loginInfo)
+        axios.post(window.location.origin + '/api/resetpassword', loginInfo)
             .then(res => {
-                window.location.reload();
+                window.location.assign('/../');
             })
     }
 
@@ -30,7 +32,7 @@ export class ResetPasswordTemplate extends React.Component {
                         Email 
                         <input type="text" className="form-control" onChange={(event) => this.setState({email: event.target.value})}/>
                         New Password
-                        <input type="text" className="form-control" onChange={(event) => this.setState({password: event.target.value})}/>
+                        <input type="password" className="form-control" onChange={(event) => this.setState({newPassword: event.target.value})}/>
                         New Password Confirm
                         <input type="password" className="form-control" onChange={(event) => this.setState({passwordConfirm: event.target.value})}/>
                         <p/>

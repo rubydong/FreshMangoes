@@ -37,13 +37,13 @@ public class ContentServiceImpl implements ContentService {
 
   @Override
   public Season findSeason(int showId, int season) {
-    final Show show = findShowById(showId);
+    final Show show = this.findShowById(showId);
     final List<Season> seasons;
 
     if (show != null) {
       seasons = show.getSeasons();
       return (season >= 0 && season < seasons.size()) ? seasons.get(season)
-                                                      : null;
+          : null;
     } else {
       return null;
     }

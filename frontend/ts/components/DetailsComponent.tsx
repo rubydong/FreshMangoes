@@ -1,9 +1,8 @@
 import * as React from "react";
+import axios from "axios";
 import { parseDate }  from "../../HelperFunctions";
 import { Mangoes } from "./Mangoes";
-import { GENRES_MAP } from "../../GlobalVariables";
-import axios from "axios";
-import { EditPageComponent } from "./EditPageComponent";
+import { TRASH_ICON, EDIT_ICON, GENRES_MAP } from "../../GlobalVariables";
 
 export class DetailsComponent extends React.Component {
     addToInterested = event => {
@@ -52,10 +51,9 @@ export class DetailsComponent extends React.Component {
         return (
             
             <div className="content-info">
-                <EditPageComponent data-metadata={metadata}/>
                 <span className="rating">
-                    <b>Edit Page:</b>  <img src="/../../images/pencil.png" data-toggle="modal" data-target="#edit-page-modal"/> <br/>
-                    <b>Delete Page:</b> <img src="/../../images/trash.png"/> <br/>
+                    <b>Edit Information:</b>  <img src={EDIT_ICON} data-toggle="modal" data-target="#edit-info-modal"/> <br/>
+                    <b>Delete Page:</b> <img src={TRASH_ICON}/> <br/>
                 </span>
                 
                 {type == 'MOVIE'
