@@ -40,6 +40,35 @@ export const GENRES_MAP = {
     37: 'Western'
 }
 
+export const GENRES_VALUES_MAP = {
+    'Action': 28,
+    'Action & Adventure': 10759,
+    'Adventure': 12,
+    'Animation': 16,
+    'Comedy': 35,
+    'Crime': 80,
+    'Documentary': 99,
+    'Drama': 18,
+    'Family': 10751,
+    'History': 36,
+    'Horror': 27,
+    'Kids': 10762,
+    'Music': 10402,
+    'Mystery': 9648,
+    'News': 10763,
+    'Reality': 10764,
+    'Romance': 10749,
+    'Sci-Fi & Fantasy': 10765,
+    'Science Fiction': 878,
+    'Soap': 10766,
+    'Talk': 10767,
+    'TV Movie': 10770,
+    'Thriller': 53,
+    'War': 10752,
+    'War & Politics': 10768,
+    'Western': 37
+}
+
 export const MOVIE_GENRES = [
     'Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 
     'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Mystery', 

@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import axios from "axios";
-import { MOVIE_GENRES } from "../../GlobalVariables";
-import { TV_GENRES } from "../../GlobalVariables";
+import { MOVIE_GENRES, TV_GENRES, GENRES_VALUES_MAP } from "../../GlobalVariables";
 import { CreatePage, ContentType } from "../types/content";
 import { CreateCast } from "../types/celebrity";
 
@@ -30,11 +29,12 @@ export class CreatePagesTemplate extends React.Component {
 
     handleChangeGenre = event => {
         if (event.target.checked) {
-            this.state.genres.push(event.target.value);
+            this.state.genres.push(GENRES_VALUES_MAP[event.target.value]);
         } else {
             let i = this.state.genres.indexOf(event.target.value);
             this.state.genres.splice(i, 1);
         }
+        console.log(this.state.genres);
     }
     
     addCastMember = () => {
