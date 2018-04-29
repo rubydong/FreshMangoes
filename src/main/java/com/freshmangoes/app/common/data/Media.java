@@ -26,7 +26,7 @@ public class Media {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-  private URL path;
+  private String path;
   @Column(name = "media_type")
   private MediaType type;
 

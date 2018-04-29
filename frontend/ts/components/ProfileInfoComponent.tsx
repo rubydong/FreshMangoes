@@ -1,5 +1,6 @@
 import * as React from "react";
 import axios from "axios";
+import FileInput from 'react-file-input';
 import {parseMedia, getUrlID} from "../../HelperFunctions";
 import {FollowComponent} from "../components/FollowComponent";
 
@@ -33,7 +34,6 @@ export class ProfileInfoComponent extends React.Component {
 
     handleFileChange = event => {
         this.setState({newFile: event.target.files[0]});
-        console.log(event.target.files[0]);
 
     }
     handleEmailChange = event => {
@@ -65,8 +65,14 @@ export class ProfileInfoComponent extends React.Component {
                 })
         }
 
-        if (editProfileInfo.newFile != '') {
-            axios.post(window.location.origin + '/api/profile/email/reset/', editProfileInfo)
+        if (editProfileInfo.newFile != null) {
+            let formData = new FormData();
+            console.log(editProfileInfo.newFile);
+            formData.append("myImage", editProfileInfo.newFile);
+            console.log(formData);
+
+            console.log(formData.get("myImage"))
+            axios.post(window.location.origin + '/api/profile/picture/update/', formData)
                 .then(res => {
                     window.location.reload();
                 })
@@ -124,11 +130,11 @@ export class ProfileInfoComponent extends React.Component {
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">
                             <h2>Edit Profile</h2>
-                            <form onSubmit={this.handleSubmit}>
+                            <form onSubmit={this.handleSubmit} encType="multipart/form-data">
                                 New Display Name
                                 <input type="text" className="form-control" onChange={this.handleDisplayNameChange}/>
                                 Choose New Profile Picture
-                                <input type="file" className="form-control" onChange={this.handleFileChange}/>
+                                <input type="file" name="newFile" className="form-control" onChange={this.handleFileChange}/>
                                 New Email
                                 <input type="text" className="form-control" onChange={this.handleEmailChange}/>
                                 New Password

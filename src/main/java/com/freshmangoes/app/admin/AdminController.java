@@ -41,25 +41,25 @@ public class AdminController {
     if (adminService.isAuthenticatedAdmin(session)) {
       content = adminService.jsonToContent(body);
     }
-
     return content;
   }
 
-  @PostMapping(Constants.ADMIN_UPDATE_DETAIL_PAGE_MAPPING)
-  public ResponseEntity updateDetailPage(@RequestBody final Map<String, String> body) {
-    final HttpStatus status;
+  @PostMapping(Constants.ADMIN_UPDATE_DETAIL_SUMMARY_MAPPING)
+  public Content updateDetailPageSummmary(@PathVariable final Integer contentId,
+                                          @RequestBody final Map<String, String> body) {
+    return null;
+  }
 
-    if (adminService.isAuthenticatedAdmin(session)) {
-      if (body.get("type").equals("MOVIE")) {
-        status = adminService.updateMovieDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-      } else {
-        status = adminService.updateShowDetailPage(null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-      }
-    } else {
-      status = HttpStatus.BAD_REQUEST;
-    }
+  @PostMapping(Constants.ADMIN_UPDATE_DETAIL_MEDIA_MAPPING)
+  public Content updateDetailPageMedia(@PathVariable final Integer contentId,
+                                          @RequestBody final Map<String, String> body) {
+    return null;
+  }
 
-    return ResponseEntity.status(status).build();
+  @PostMapping(Constants.ADMIN_UPDATE_DETAIL_CAST_MAPPING)
+  public Content updateDetailPageCast(@PathVariable final Integer contentId,
+                                          @RequestBody final Map<String, String> body) {
+    return null;
   }
 
   @PostMapping(Constants.ADMIN_DELETE_DETAIL_PAGE_MAPPING)
