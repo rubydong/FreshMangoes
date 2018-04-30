@@ -5,11 +5,12 @@ import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.user.data.User;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Helpers {
-  public static User getAuthenticatedUser(HttpSession session) {
-    User user = (User) session.getAttribute(Constants.USER_ID);
-    return user;
+
+  public static Integer getAuthenticatedUser(HttpSession session) {
+    return (Integer) session.getAttribute(Constants.USER_ID);
   }
 
   public static ContentType stringToContentType(String type) {

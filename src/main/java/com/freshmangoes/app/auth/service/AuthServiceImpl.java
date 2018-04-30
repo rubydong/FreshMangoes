@@ -3,6 +3,7 @@ package com.freshmangoes.app.auth.service;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.data.UserType;
 import com.freshmangoes.app.user.repository.UserRepository;
+import java.math.BigInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,7 @@ public class AuthServiceImpl implements AuthService {
                                               .hash(hash)
                                               .type(UserType.AUDIENCE)
                                               .displayName(displayName)
+                                              .views(BigInteger.ZERO)
                                               .verified(false)
                                               .build());
     return user;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import { parseMedia }  from "../../HelperFunctions.js";
-import { ContentMetadata, Show } from '../types/content';
+import { ContentMetadata, Show, ContentType } from '../types/content';
 import { PhotoComponent } from '../components/PhotoComponent';
 import { VideoComponent } from '../components/VideoComponent';
 import { CastComponent } from '../components/CastComponent';
@@ -40,7 +40,7 @@ export class ShowTemplate extends React.Component {
                 <div className="clear-both"></div>
                 <PhotoComponent data-photos={this.state.media}/>
                 <VideoComponent data-videos={this.state.media}/>
-                <SeasonEpisodeListComponent data-id={this.state.id} data-list={this.state.seasons} data-type="season"/>
+                <SeasonEpisodeListComponent data-id={this.state.id} data-seasons={this.state.seasons} data-type="season"/>
                 <CastComponent data-cast={this.state.cast} data-name={this.state.metadata.name}/>
                 <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
             </div>

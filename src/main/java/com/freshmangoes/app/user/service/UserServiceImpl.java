@@ -9,6 +9,7 @@ import com.freshmangoes.app.follow.repository.FollowRepository;
 import com.freshmangoes.app.rating.repository.RatingRepository;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.repository.UserRepository;
+import java.math.BigInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -120,5 +121,8 @@ public class UserServiceImpl implements UserService {
     return userRepository.applyForCritic(userId, statement) != null;
   }
 
-
+  public void updateViews(User user, BigInteger views) {
+    user.setViews(views);
+    userRepository.save(user);
+  }
 }

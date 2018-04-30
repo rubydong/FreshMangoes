@@ -7,6 +7,7 @@ import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.service.RatingService;
 import com.freshmangoes.app.user.data.User;
 
+import com.freshmangoes.app.user.service.UserService;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class RatingController {
 
   @Autowired
+  private UserService userService;
+
+  @Autowired
   private RatingService ratingService;
 
   @Autowired
@@ -34,7 +38,8 @@ public class RatingController {
   public ResponseEntity addRating(@RequestBody final Map<String, String> body,
                                   @PathVariable final Integer contentId) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer userId  = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(userId);
 
     if (user == null) {
       status = HttpStatus.BAD_REQUEST;
@@ -56,7 +61,8 @@ public class RatingController {
   @DeleteMapping(Constants.DELETE_RATING_MAPPING)
   public ResponseEntity deleteRating(@PathVariable final Integer id) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer userId  = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(userId);
 
     if (user == null) {
       status = HttpStatus.BAD_REQUEST;
@@ -71,7 +77,8 @@ public class RatingController {
   public ResponseEntity editRating(@RequestBody final Map<String, String> body,
                                    @PathVariable final Integer ratingId) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer userId  = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(userId);
 
     if (user == null) {
       status = HttpStatus.BAD_REQUEST;
@@ -93,7 +100,8 @@ public class RatingController {
   public ResponseEntity flagRating(@RequestBody final Map<String, String> body,
                                    @PathVariable final Integer ratingId) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer userId  = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(userId);
 
     if (user == null) {
       status = HttpStatus.BAD_REQUEST;

@@ -6,7 +6,7 @@ export class CastComponent extends React.Component {
         const cast = this.props['data-cast'].slice(0, CAST_LIMIT).map((castPerson, i) => {
             return <div className="cast-person" key={i}>
                 <img className="img-align-left" src={castPerson.celebrity.profilePicture ? castPerson.celebrity.profilePicture.path : NO_USER_PHOTO}/>
-                <b> <a href={"../celebrity/" + castPerson.celebrity.id}>{castPerson.celebrity.name}</a> </b> <br/>
+                <b> <a href={"/../celebrity/" + castPerson.celebrity.id}>{castPerson.celebrity.name}</a> </b> <br/>
                 <i>{castPerson.role}</i>
             </div>
         });

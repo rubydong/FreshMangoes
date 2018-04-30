@@ -52,7 +52,9 @@ public class Constants {
 
 
   public static final String ADMIN_ADD_DETAIL_PAGE_MAPPING = "/admin/content/insert";
-  public static final String ADMIN_UPDATE_DETAIL_PAGE_MAPPING = "/admin/update";
+  public static final String ADMIN_UPDATE_DETAIL_SUMMARY_MAPPING = "/admin/update/summary/{contentId}";
+  public static final String ADMIN_UPDATE_DETAIL_MEDIA_MAPPING = "/admin/update/media/{contentId}";
+  public static final String ADMIN_UPDATE_DETAIL_CAST_MAPPING = "/admin/update/cast/{contentId}";
   public static final String ADMIN_DELETE_DETAIL_PAGE_MAPPING = "/admin/delete/{contentId}";
   public static final String ADMIN_VIEW_REPORTS_MAPPING = "/admin/reports";
   public static final String ADMIN_DELETE_RATING_MAPPING = "/admin/rating/delete/{ratingId}";
@@ -64,7 +66,7 @@ public class Constants {
   public static final String APPLICATION_JSON = "application/json";
 
   public static final String USER_ID = "userId";
-  public static final String INTERESTED = "interested";
+  public static final String INTERESTED = "interest";
   public static final String USER_TYPE = "userType";
   public static final String OTHER_USER_ID = "otherUserId";
   public static final String DISPLAY_NAME = "displayName";

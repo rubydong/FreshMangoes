@@ -2,7 +2,6 @@ package com.freshmangoes.app.user.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.rating.data.Rating;
@@ -21,13 +20,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 
 @Builder
@@ -98,7 +97,7 @@ public class User {
   @ManyToMany(cascade = CascadeType.REMOVE)
   private List<Content> disinterestedList;
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private List<Rating> ratings;
 
   @JsonIgnore

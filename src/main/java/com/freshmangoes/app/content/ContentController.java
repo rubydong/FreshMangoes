@@ -7,6 +7,7 @@ import com.freshmangoes.app.content.data.Season;
 import com.freshmangoes.app.content.data.Show;
 import com.freshmangoes.app.content.service.ContentService;
 import com.freshmangoes.app.rating.service.RatingService;
+import java.math.BigInteger;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +25,18 @@ public class ContentController {
 
   @GetMapping(Constants.MOVIE_MAPPING)
   public Movie getMovie(@PathVariable final int id) {
-    return contentService.findMovieById(id);
+    final Movie movie = contentService.findMovieById(id);
+    movie.getViews().add(BigInteger.ONE);
+    contentService.saveMovie(movie);
+    return movie;
   }
 
   @GetMapping(Constants.SHOW_MAPPING)
   public Show getShow(@PathVariable final int id) {
-    return contentService.findShowById(id);
+    final Show show = contentService.findShowById(id);
+    show.setViews(show.getViews().add(BigInteger.ONE));
+    contentService.saveShow(show);
+    return show;
   }
 
   @GetMapping(Constants.SEASON_MAPPING)
@@ -44,6 +51,8 @@ public class ContentController {
       seasons = show.getSeasons();
       s = (actualSeason >= 0 && actualSeason < seasons.size()) ? seasons.get(actualSeason)
                                                                : null;
+      s.setViews(s.getViews().add(BigInteger.ONE));
+      contentService.saveSeason(s);
     } else {
       s = null;
     }
@@ -64,6 +73,8 @@ public class ContentController {
       episodes = s.getEpisodes();
       e = (actualEpisode >= 0 && actualEpisode < episodes.size()) ? episodes.get(actualEpisode)
                                                                   : null;
+      e.setViews(e.getViews().add(BigInteger.ONE));
+      contentService.saveEpisode(e);
     } else {
       e = null;
     }

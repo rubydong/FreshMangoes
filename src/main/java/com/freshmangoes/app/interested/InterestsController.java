@@ -4,6 +4,7 @@ import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.helpers.Helpers;
 import com.freshmangoes.app.interested.service.InterestsService;
 import com.freshmangoes.app.user.data.User;
+import com.freshmangoes.app.user.service.UserService;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,13 +20,17 @@ public class InterestsController {
   private InterestsService interestsService;
 
   @Autowired
+  private UserService userService;
+
+  @Autowired
   private HttpSession session;
 
 
   @PostMapping(Constants.ADD_TO_INTERESTED_MAPPING)
   public ResponseEntity addToInterestedList(@PathVariable final Integer contentId) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer userId = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(userId);
 
     if (user != null) {
       status = interestsService.addToInterestedList(user.getId(), contentId) ? HttpStatus.OK
@@ -40,7 +45,8 @@ public class InterestsController {
   @PostMapping(Constants.REMOVE_FROM_INTERESTED_MAPPING)
   public ResponseEntity removeFromInterestedList(@PathVariable final Integer contentId) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer userId = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(userId);
 
     if (user != null) {
       status = HttpStatus.OK;
@@ -55,7 +61,8 @@ public class InterestsController {
   @PostMapping(Constants.ADD_TO_DISINTERESTED_MAPPING)
   public ResponseEntity addToDisinterestedList(@PathVariable final Integer contentId) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer userId = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(userId);
 
     if (user != null) {
       status = interestsService.addToDisinterestedList(user.getId(), contentId) ? HttpStatus.OK
@@ -70,7 +77,8 @@ public class InterestsController {
   @PostMapping(Constants.REMOVE_FROM_DISINTERESTED_MAPPING)
   public ResponseEntity removeFromDisinterestedList(@PathVariable final Integer contentId) {
     final HttpStatus status;
-    final User user = Helpers.getAuthenticatedUser(session);
+    final Integer userId = Helpers.getAuthenticatedUser(session);
+    final User user = userService.getUser(userId);
 
     if (user != null) {
       status = HttpStatus.OK;

@@ -4,17 +4,27 @@ import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.content.data.Movie;
 import com.freshmangoes.app.content.data.Show;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class SpotlightItems {
-  private Media posterImage;
-  private List<Movie> openingMovies;
-  private List<Movie> topBoxOfficeMovies;
-  private List<Movie> comingSoonMovies;
-  private List<Show> newShows;
-  private List<Show> mostPopularShows;
-  private List<Show> topDvdStreamingShows;
+  private List<Media> posters;
+  private List<Movie> openingThisWeek;
+  private List<Movie> topBoxOffice;
+  private List<Movie> comingSoon;
+  private List<Movie> certifiedFreshMovies;
+  private List<Movie> highestRatedMovies;
+
+  private List<Show> newTonight;
+  private List<Show> mostPopular;
+  private List<Show> certifiedFreshShows;
+  private List<Show> highestRatedShows;
 }

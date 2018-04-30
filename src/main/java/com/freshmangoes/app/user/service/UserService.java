@@ -3,7 +3,7 @@ package com.freshmangoes.app.user.service;
 import com.freshmangoes.app.user.data.User;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+import java.math.BigInteger;
 import java.util.List;
 
 public interface UserService {
@@ -22,6 +22,8 @@ public interface UserService {
   Boolean updatePicture(User user, MultipartFile file);
 
   void updateName(User user, String s);
+
+  void updateViews(User user, BigInteger views);
 
   List<User> getCritics();
 
