@@ -35,7 +35,7 @@ export class ContentTemplate extends React.Component {
     render() {
        return (     
         <div>
-            <hr/>
+            <hr className="header-hr"/>
             <div className="content">
                 {this.state.metadata.name == "" ? <h2>There is nothing here.</h2> :
                 <div>
@@ -50,7 +50,9 @@ export class ContentTemplate extends React.Component {
                     <CastComponent data-cast={this.state.cast} data-current-user={this.state.currentUser}/>
                     {this.state.type == ContentType.SHOW ? <SeasonEpisodeListComponent data-seasons={this.state.seasons}/> : ''}
                     {this.state.type == ContentType.SEASON ? <SeasonEpisodeListComponent data-episodes={this.state.episodes}/> : ''}
-                    <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
+                    {this.state.type == ContentType.SHOW || this.state.type == ContentType.MOVIE 
+                    ? <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
+                    : ''}
                 </div>
                 }
             </div>

@@ -165,7 +165,7 @@ export class CreatePagesTemplate extends React.Component {
         
         return ( 
             <div className="page-background-color">
-                <hr/>
+                <hr className="header-hr"/>
                 <div className="content">
                     <form id="create-form" onSubmit={this.handleCreateContentPage.bind(this)}>
                         <h2> Create a New Content Page </h2> 

@@ -1,21 +1,22 @@
 import * as React from "react";
 import axios from "axios";
-import { CriticsApply } from '../types/user';
+import { Critics } from '../types/user';
 import { Mangoes } from "../components/Mangoes";
 import { NO_USER_PHOTO } from "../../GlobalVariables";
 
 export class CriticsTemplate extends React.Component {
-    state : CriticsApply;
+    state : Critics;
 
     constructor(props) {
         super(props);
-        this.state = new CriticsApply();
+        this.state = new Critics();
     }
 
     async componentWillMount() {
         try {
             const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
-            this.setState(response.data);
+            this.setState({critics:response.data});
+            console.log(response.data);
         } catch (err) {
             console.log(err);
         }
@@ -29,9 +30,16 @@ export class CriticsTemplate extends React.Component {
     }
 
     render() {
+        const allCritics = this.state.critics.map((critic, i) => {
+            return <li className="list-group-item">
+                        <a href={"./profile/" + critic.id}> {critic.displayName} </a>
+                   </li>
+        });
+
+
         return (
-            <div id="critics"> 
-                <hr/>
+            <div id="critics" className="page-background-color"> 
+                <hr className="header-hr"/>
                 <div className="content">
                     <div className="split-half big-margin-right">
                         <h2> Top Critics </h2> <hr/>
@@ -48,16 +56,12 @@ export class CriticsTemplate extends React.Component {
 
                         <div className="clear-both padding-top">
                             <h2> List of Critics </h2> <hr/>
-                            <ul>
-                                <li> <a href="">Alex Abad-Santos </a> </li>
-                                <li> <a href="">Kate Abbott </a> </li>
-                                <li> <a href="">Mae Abdulbaki </a> </li>
-                                <li> <a href="">Hanif Abdurraqib </a> </li>
-                                <li> <a href="">Daudi Abe </a> </li>
-                                <li> <a href="">Fraser Abe </a> </li>
+                            <ul className="list-group">
+                                {allCritics}
                             </ul>
                         </div>
-                        <button className="btn" data-toggle="modal" data-target="#critic-modal">Apply to be a Critic</button>
+                        <p className="padding-top"/>
+                        <button className="btn align-center" data-toggle="modal" data-target="#critic-modal">Apply to be a Critic</button>
                     </div>
 
                     <div className="split-half">

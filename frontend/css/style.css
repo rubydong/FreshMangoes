@@ -1,5 +1,6 @@
-body {
+body, .navbar {
 	color: #252627;
+	background: url("../images/brillant.png") !important;
 }
 @media (min-width: 992px) {
 	.navbar span {
@@ -35,7 +36,6 @@ a,.summary h2, .filmography h4, .episode b {
 
 .page-background-color {
 	min-height: 90vh;
-	background-color: #FAFAFA;
 }
 
 .btn-link:hover, a:hover {
@@ -100,7 +100,7 @@ a,.summary h2, .filmography h4, .episode b {
 	text-align: center;
 }
 
-.box-shadow, .review, .showtime li, .search-criteria, .search-results{
+.box-shadow, .review, .showtime li, .search-criteria, .search-results, .list-group{
 	box-shadow: 4px 4px 5px 0px rgba(209,209,209, 0.3);
 }
 
