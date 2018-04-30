@@ -1,6 +1,6 @@
-body, .navbar {
+body {
 	color: #252627;
-	background: url("../images/brillant.png") !important;
+	background: url("../images/brillant.png");
 }
 @media (min-width: 992px) {
 	.navbar span {
@@ -467,7 +467,6 @@ iframe {
 
 .interests {
 	padding-top: 2%;
-	padding-bottom: 40px;
 }
 
 .interests span {
@@ -549,10 +548,6 @@ h5 span {
 }
 
 /* Critics */
-.top-critic {
-	float: left;
-}
-
 .top-critic img {
 	width: 100px;
 	height: 100px;

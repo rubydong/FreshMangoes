@@ -2,7 +2,8 @@ import * as React from "react";
 import axios from "axios";
 import { Critics } from '../types/user';
 import { Mangoes } from "../components/Mangoes";
-import { NO_USER_PHOTO } from "../../GlobalVariables";
+import { parseUserMedia } from "../../HelperFunctions";
+import { RatingComponent } from '../components/RatingComponent';
 
 export class CriticsTemplate extends React.Component {
     state : Critics;
@@ -30,29 +31,34 @@ export class CriticsTemplate extends React.Component {
     }
 
     render() {
-        const allCritics = this.state.critics.map((critic, i) => {
+        const topCritics = (this.state.critics || []).slice(0,2).map((critic, i) => {
+            return <div className="top-critic small-margin-right"> 
+                    <a href={"./profile/" + critic.id}> {critic.displayName} </a> <br/>
+                    <img src={parseUserMedia(critic.profilePicture)}/>
+                </div>
+        });
+
+        const allCritics = (this.state.critics || []).map((critic, i) => {
             return <li className="list-group-item">
                         <a href={"./profile/" + critic.id}> {critic.displayName} </a>
                    </li>
         });
 
+        const reviews = (this.state.critics || []).slice(0,1).map((critic, i) => {
+            return <RatingComponent data-ratings={critic.ratings} data-rating-type="profile" data-show-title="false"/>
+        });
 
         return (
             <div id="critics" className="page-background-color"> 
                 <hr className="header-hr"/>
                 <div className="content">
                     <div className="split-half big-margin-right">
+                        
                         <h2> Top Critics </h2> <hr/>
-                        <div className="top-critic big-margin-right">
-                            <a href="">Erin Crabtree</a> <br/> 
-                            <img src={NO_USER_PHOTO}/>
+                        <div className="interests flex-center">
+                            {topCritics}
+                            <br className="clear-both"/>
                         </div>
-                        <div className="top-critic">
-                            <a href="">Erin Crabtree</a><br/> 
-                            <img src={NO_USER_PHOTO}/>
-                        </div>
-
-                        <p/>
 
                         <div className="clear-both padding-top">
                             <h2> List of Critics </h2> <hr/>
@@ -66,23 +72,7 @@ export class CriticsTemplate extends React.Component {
 
                     <div className="split-half">
                         <h2> Top Reviews </h2> <hr/>
-                        <div className="profile-reviews list-group">
-                            <div className="review">
-                                <b><a href="">Bob Smith</a></b> 
-                                <span className="align-right"><Mangoes data-rating="80"/></span> <br/>
-                                <i>Black Panther</i>
-
-                                <hr/>
-                                "Jordan has swagger to spare, with those rolling shoulders, but there's a breath of charm, too, all the more seductive in the overblown atmosphere of Marvel. He's twice as pantherish as the Panther."
-                            </div>
-                            <div className="review">
-                                <b><a href="">Ruby Dong</a></b> 
-                                <span className="align-right"><Mangoes data-rating="40"/></span>  <br/>
-                                <i>Peter Rabbit</i>
-                                <hr/>
-                                "The movie remains an object lesson in how not to adapt a beloved volume to the screen."
-                            </div>
-                        </div>
+                        {reviews}
                     </div>
 
                     <div id="critic-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
