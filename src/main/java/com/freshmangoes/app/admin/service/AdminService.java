@@ -9,6 +9,7 @@ import com.freshmangoes.app.content.data.Show;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.user.data.Application;
 import com.freshmangoes.app.user.data.User;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -37,4 +38,6 @@ public interface AdminService {
   List<Application> getAllPotentialCritics();
 
   User approveUserToCritic(Integer userId);
+
+  String uploadMedia(MultipartFile file);
 }
