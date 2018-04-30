@@ -23,6 +23,7 @@ public class SpotlightServiceImpl implements SpotlightService {
   public SpotlightItems getIndexPageItems() {
     final Date today;
     final Date tomorrow;
+    final Date twoWeeksAgo;
     final Date weekFromToday;
     final Date monthFromToday;
     final Calendar c;
@@ -39,6 +40,10 @@ public class SpotlightServiceImpl implements SpotlightService {
     c.set(Calendar.SECOND, 59);
     c.set(Calendar.MILLISECOND, 59);
     tomorrow = c.getTime();
+
+    c.setTime(today);
+    c.add(Calendar.WEEK_OF_MONTH, -2);
+    twoWeeksAgo = c.getTime();
 
     c.setTime(today);
     c.add(Calendar.WEEK_OF_MONTH, 1);
@@ -60,9 +65,12 @@ public class SpotlightServiceImpl implements SpotlightService {
                              contentService.findTop10MoviesWithMangoScoreGreaterThan(75.00
                              ))
                          .highestRatedMovies(
-                             contentService.findTop10MoviesWithMangoScoreGreaterThan(75.00
+                             contentService.findTop10MoviesWithMangoScoreGreaterThan(0.00
                              ))
                          .newTonight(contentService.findShowsByReleaseDateRange(today, tomorrow))
+                         .mostPopular(contentService.findPopularShowsDateRange(twoWeeksAgo, today))
+                         .certifiedFreshShows(contentService.findTop10ShowsWithMangoScoreGreaterThan(75.00))
+                         .highestRatedShows(contentService.findTop10ShowsWithMangoScoreGreaterThan(0.00))
                          .build();
   }
 

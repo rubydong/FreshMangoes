@@ -16,10 +16,13 @@ public interface ContentService {
 
   List<Movie> findTop10MoviesWithMangoScoreGreaterThan(Double mangoScore);
 
+  List<Show> findPopularShowsDateRange(Date startDate, Date endDate);
+
   Show findShowById(int id);
 
   List<Show> findShowsByReleaseDateRange(Date startDate, Date endDate);
 
+  List<Show> findTop10ShowsWithMangoScoreGreaterThan(Double mangoScore);
 
   Movie saveMovie(Movie movie);
 

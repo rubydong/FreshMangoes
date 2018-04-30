@@ -8,9 +8,11 @@ import com.freshmangoes.app.content.repository.EpisodeRepository;
 import com.freshmangoes.app.content.repository.MovieRepository;
 import com.freshmangoes.app.content.repository.SeasonRepository;
 import com.freshmangoes.app.content.repository.ShowRepository;
-import java.util.ArrayList;
+import com.google.common.collect.Lists;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -49,20 +51,37 @@ public class ContentServiceImpl implements ContentService {
     return movieRepository.findTop10ByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDesc(mangoScore);
   }
 
+  public List<Show> findPopularShowsDateRange(Date startDate, Date endDate) {
+    List<Episode> episodes = episodeRepository.findByMetadata_ReleaseDateGreaterThanEqualAndMetadata_ReleaseDateLessThanEqualOrderBySeason_Show_ViewsDesc(startDate, endDate);
+    Set<Show> shows = new LinkedHashSet<>();
+
+    for (Episode episode : episodes) {
+      shows.add(episode.getSeason().getShow());
+    }
+
+    return Lists.newArrayList(shows);
+  }
+
   public Show findShowById(final int id) {
     return showRepository.findById(id).orElse(null);
   }
 
   public List<Show> findShowsByReleaseDateRange(Date startDate, Date endDate) {
     List<Episode> episodes = episodeRepository.findByMetadata_ReleaseDateGreaterThanEqualAndMetadata_ReleaseDateLessThanEqualOrderByMetadata_ReleaseDateDesc(startDate, endDate);
-    List<Show> shows = new ArrayList<>();
+    Set<Show> shows = new LinkedHashSet<>();
 
     for (Episode episode : episodes) {
       shows.add(episode.getSeason().getShow());
     }
 
-    return shows;
+    return Lists.newArrayList(shows);
   }
+
+  @Override
+  public List<Show> findTop10ShowsWithMangoScoreGreaterThan(Double mangoScore) {
+    return showRepository.findTop10ByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDesc(mangoScore);
+  }
+
   public Movie saveMovie(final Movie movie) {
     return movieRepository.save(movie);
   }
