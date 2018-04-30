@@ -586,7 +586,8 @@ h5 span {
 .icon img{
 	width: 16px;
     height: 16px;
-    margin-top: 4px;
+    margin: 10px;
+	padding: 0px;
 }
 
 .all-photos {

@@ -7,7 +7,7 @@ export class SpotlightDetailComponent extends React.Component {
     state = {
         currentContent: this.props['data-content'],
         currentPage: 1,
-        contentPerPage: 16
+        contentPerPage: 12
     };
     
     constructor(props) {
@@ -31,8 +31,10 @@ export class SpotlightDetailComponent extends React.Component {
             return <div className="movieshow" key={content.id}>
                 <img src={newUrl}/> <br/>
                 <a href={"/" + (content.type != null ? content.type.toLowerCase() : 'movie') + "/" + content.id}> {content.metadata.name}</a> <br/>
-                <Mangoes data-rating={content.metadata.mangoScore}/> <br/>
-                {content.metadata.mangoScore}%
+                {content.metadata.mangoScore == 0 ? '' 
+                : <span><Mangoes data-rating={content.metadata.mangoScore}/> <br/>
+                  {content.metadata.mangoScore}%</span>
+                }
             </div>  
         })
 
@@ -52,10 +54,7 @@ export class SpotlightDetailComponent extends React.Component {
         return (<div className="spotlight-content">
         <h2>{this.props['data-title']}</h2>
         <div className="spotlight-page-posters">
-            {spotlightContent}
-            {spotlightContent}
-            {spotlightContent}
-            {spotlightContent}
+            {spotlightContent.length == 0 ? 'There are none right now.' : spotlightContent}
         </div>
         <span className="align-right">{renderPageNumbers}</span>
     </div>);

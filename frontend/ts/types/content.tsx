@@ -111,6 +111,8 @@ export class Spotlight {
   highestRatedShows: Show[];
   certifiedFreshShows: Show[];
   selectedContent: Content[];
+  selectedMovies: Movie[];
+  selectedShows: Show[];
   selectedTitle: string; 
 
   constructor() {
@@ -124,6 +126,8 @@ export class Spotlight {
     this.mostPopular = [];
     this.certifiedFreshShows = [];
     this.selectedContent = [];
+    this.selectedMovies = [];
+    this.selectedShows = [];
     this.selectedTitle = "";
   }
 }

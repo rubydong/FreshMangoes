@@ -64,6 +64,19 @@ export class EditPageComponent extends React.Component {
                     </div>    
                 </div>
 
+                <div id="edit-cast-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <form onSubmit={()=>this.handleEditPhotos()}>
+                                <h2>Edit Photos</h2>
+                                <div className="all-photos"> {photos} </div>
+                                <button className="btn"> Update Photos </button>
+                            </form>
+                        </div>
+                    </div>    
+                </div>
+
+
 
                 
             </div>

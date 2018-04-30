@@ -32,7 +32,7 @@ public class SpotlightServiceImpl implements SpotlightService {
 
     return SpotlightItems.builder()
                          .openingThisWeek(movieRepository.findTop10ByMetadata_ReleaseDateGreaterThanEqualAndMetadata_ReleaseDateLessThanEqualOrderByMetadata_ReleaseDateDesc(currentDate, weekFromToday))
-                         .topBoxOffice(movieRepository.findByOrderByRevenueDesc(PageRequest.of(0, 10)).getContent())
+                         .topBoxOffice(movieRepository.findByOrderByRevenueDesc(PageRequest.of(0, 36)).getContent())
                          .comingSoon(movieRepository.findTop10ByMetadata_ReleaseDateGreaterThanEqualAndMetadata_ReleaseDateLessThanEqualOrderByMetadata_ReleaseDateDesc(currentDate, monthFromToday))
                          .certifiedFreshMovies(movieRepository.findTop10ByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDesc(75.00))
                          .highestRatedMovies(movieRepository.findTop10ByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDesc(0.0))
