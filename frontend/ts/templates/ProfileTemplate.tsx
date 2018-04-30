@@ -28,19 +28,22 @@ export class ProfileTemplate extends React.Component {
     }
 
     render() {
-        console.log(this.state);
-        return (this.state.displayName == "") ? <h2 className="center-text"><hr/>This user does not exist.</h2> :
-        (
+       
+        return (
             <div className="profile page-background-color">
                 <hr className="header-hr"/>
                 <div className="content">
-                    <ProfileInfoComponent data-state={this.state}/>
-                    <div className="right">
-                        <RatingComponent data-ratings={this.state.ratings} data-id={this.state.id} data-rating-type="profile"/>
-                        <InterestsListComponent data-title='Interested' data-content={this.state.interestedList} data-current-user={this.state.currentUser}/>
-                        <InterestsListComponent data-title='Not Interested' data-content={this.state.disinterestedList} data-current-user={this.state.currentUser}/>
+                    {this.state.displayName == "" ? <h2>There is user here.</h2> :
+                    <div>
+                        <ProfileInfoComponent data-state={this.state}/>
+                        <div className="right">
+                            <RatingComponent data-ratings={this.state.ratings} data-id={this.state.id} data-rating-type="profile"/>
+                            <InterestsListComponent data-title='Interested' data-content={this.state.interestedList} data-current-user={this.state.currentUser}/>
+                            <InterestsListComponent data-title='Not Interested' data-content={this.state.disinterestedList} data-current-user={this.state.currentUser}/>
+                        </div>
+                        <div className="clear-both padding-top"></div>
                     </div>
-                    <div className="clear-both padding-top"></div>
+                    }
                 </div>
                 <div className="clear-both"></div>	
             </div>

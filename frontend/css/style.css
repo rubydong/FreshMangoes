@@ -1,5 +1,6 @@
 body {
 	color: #252627;
+	background: url("../images/brillant.png");
 }
 @media (min-width: 992px) {
 	.navbar span {
@@ -35,7 +36,6 @@ a,.summary h2, .filmography h4, .episode b {
 
 .page-background-color {
 	min-height: 90vh;
-	background-color: #FAFAFA;
 }
 
 .btn-link:hover, a:hover {
@@ -100,7 +100,7 @@ a,.summary h2, .filmography h4, .episode b {
 	text-align: center;
 }
 
-.box-shadow, .review, .showtime li, .search-criteria, .search-results{
+.box-shadow, .review, .showtime li, .search-criteria, .search-results, .list-group{
 	box-shadow: 4px 4px 5px 0px rgba(209,209,209, 0.3);
 }
 
@@ -142,7 +142,6 @@ a,.summary h2, .filmography h4, .episode b {
 
 .spotlight-nav li{
 	margin: 0 10px;
-	
 } 
 
 @media only screen and (max-width: 875px) {
@@ -155,7 +154,7 @@ a,.summary h2, .filmography h4, .episode b {
 
 .movieshow {
 	text-align: center;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 /* spotlight page */
@@ -201,7 +200,7 @@ a,.summary h2, .filmography h4, .episode b {
 .spotlight-page-posters .movieshow {
 	width: 20%;
 	margin: 5px;
-	font-size: 12px;
+	font-size: 14px;
 }
 .spotlight-page-posters  .rating {
 	font-size: 12px;
@@ -209,7 +208,7 @@ a,.summary h2, .filmography h4, .episode b {
 
 .spotlight-page-posters img {
 	width: 150px;
-	max-height: 220px;
+	height: 200px;
 	object-fit: cover;
 }
 
@@ -468,7 +467,6 @@ iframe {
 
 .interests {
 	padding-top: 2%;
-	padding-bottom: 40px;
 }
 
 .interests span {
@@ -550,10 +548,6 @@ h5 span {
 }
 
 /* Critics */
-.top-critic {
-	float: left;
-}
-
 .top-critic img {
 	width: 100px;
 	height: 100px;
@@ -586,7 +580,8 @@ h5 span {
 .icon img{
 	width: 16px;
     height: 16px;
-    margin-top: 4px;
+    margin: 10px;
+	padding: 0px;
 }
 
 .all-photos {

@@ -44,6 +44,7 @@ export class InterestsListComponent extends React.Component {
                             ? <div className="center-text"> You have not added anything to your list yet! </div>
                             : <span className="align-right"> <a href="">View All</a> </span>
                         }
+                        <br className="clear-both"/>
                     </div>
                 </div>
             

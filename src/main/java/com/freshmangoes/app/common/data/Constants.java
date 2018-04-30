@@ -62,6 +62,7 @@ public class Constants {
   public static final String ADMIN_REINDEX_MAPPING = "/admin/reindex";
   public static final String ADMIN_APPROVE_CRITIC = "/admin/approve/{userId}";
   public static final String ADMIN_GET_CRITIC_APPS = "/admin/critic/apps";
+  public static final String ADMIN_UPLOAD_MEDIA = "/admin/upload";
 
   public static final String APPLICATION_JSON = "application/json";
 
@@ -81,7 +82,7 @@ public class Constants {
   public static final String NEW_EMAIL = "newEmail";
   public static final String NEW_PROFILE = "newFile";
 
-  public static final String FILE_PATH = "/Users/normanle/Documents/cse308/photos/";
+  public static final String FILE_PATH = "/Users/Jack/Desktop/CSE308Project/photos/";
   public static final Integer NUM_LATEST_REVIEWS = 10;
 
 }

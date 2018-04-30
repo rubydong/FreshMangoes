@@ -1,6 +1,7 @@
 import { Celebrity, CreateCast } from './celebrity';
 import { Media } from './media';
 import { Rating } from './rating';
+import { CurrentUser } from "./user";
 
 export enum ContentType {
   MOVIE = "MOVIE",
@@ -44,6 +45,9 @@ export class Content {
   crew: Celebrity[];
   interested: boolean;
   disinterested: boolean;
+  episodes: Episode[];
+  seasons: Season[];
+  currentUser: CurrentUser;
   
   constructor() {
     this.id = 0;
@@ -56,6 +60,9 @@ export class Content {
     this.crew = [];
     this.interested = false;
     this.disinterested = false;
+    this.episodes = [];
+    this.seasons = [];
+    this.currentUser = new CurrentUser();
   }
 }
 
@@ -70,7 +77,7 @@ export class Season extends Content {
 
   constructor() {
     super();
-    this.episodes = [];
+    
   }
 }
 
@@ -79,7 +86,7 @@ export class Show extends Content {
 
   constructor() {
     super();
-    this.seasons = [];
+    
   }
 }
 
@@ -111,6 +118,8 @@ export class Spotlight {
   highestRatedShows: Show[];
   certifiedFreshShows: Show[];
   selectedContent: Content[];
+  selectedMovies: Movie[];
+  selectedShows: Show[];
   selectedTitle: string; 
 
   constructor() {
@@ -124,6 +133,8 @@ export class Spotlight {
     this.mostPopular = [];
     this.certifiedFreshShows = [];
     this.selectedContent = [];
+    this.selectedMovies = [];
+    this.selectedShows = [];
     this.selectedTitle = "";
   }
 }

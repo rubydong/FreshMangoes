@@ -10,20 +10,36 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Entity(name = "Episodes")
 @DiscriminatorValue(ContentType.Values.EPISODE)
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Getter
 @Setter
-@JsonIgnoreProperties("revenue")
+@JsonIgnoreProperties({"revenue", "season"})
 public class Episode extends Content {
+
+  @ManyToOne
+  @JoinTable(
+      name = "Season_Episodes",
+      joinColumns =
+      @JoinColumn(name = "episode_id"),
+      inverseJoinColumns =
+      @JoinColumn(name = "season_id")
+  )
+  private Season season;
+
   @Builder
   public Episode(Integer id,
                  ContentType type,
@@ -33,7 +49,8 @@ public class Episode extends Content {
                  List<Rating> ratings,
                  List<Cast> cast,
                  List<Crew> crew,
-                 BigInteger views) {
+                 BigInteger views,
+                 Season season) {
     super.setId(id);
     super.setType(type);
     super.setSummaryPhoto(summaryPhoto);
@@ -43,5 +60,6 @@ public class Episode extends Content {
     super.setCast(cast);
     super.setCrew(crew);
     super.setViews(views);
+    this.season = season;
   }
 }

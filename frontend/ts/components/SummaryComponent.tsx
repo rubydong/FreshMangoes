@@ -21,8 +21,6 @@ export class SummaryComponent extends React.Component {
             }
         }
 
-        console.log(this.props['data-list']);
-
         return (
             <div>        
                 <img className="img-align-left" src={parseMoreMedia(this.props['data-image'], this.props['data-media'])}/>
@@ -38,14 +36,11 @@ export class SummaryComponent extends React.Component {
                         Audience Score
                     </b>
                     <br/>
-                    <Mangoes data-rating={metadata.mangoScore}/> {metadata.mangoScore}%
+                    <Mangoes data-rating={metadata.mangoScore || 0}/> {metadata.mangoScore || 0}%
                     <span className="med-margin-right"></span>
-                    <Mangoes data-rating={metadata.audienceScore}/> {metadata.audienceScore}%
+                    <Mangoes data-rating={metadata.audienceScore || 0}/> {metadata.audienceScore || 0}%
                     <p/>
-                    <b>About Movie</b>
-                    <br/> {metadata.summary}
-                    <p/>
-                    
+                    {metadata.summary ? <div> <b>About Movie</b> <br/> {metadata.summary} <p/></div>: ''}
                 </div>
             </div>
         );

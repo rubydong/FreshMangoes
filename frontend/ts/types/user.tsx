@@ -1,5 +1,11 @@
 import { Content } from './content';
 
+export enum UserType {
+    AUDIENCE = "AUDIENCE",
+    CRITIC = "CRITIC",
+    ADMIN = "ADMIN"
+}
+
 export class Rating {
     id: number;
     score: number;
@@ -35,12 +41,26 @@ export class User {
     }
 }
 
-export class CriticsApply {
+export class CurrentUser {
+    interest: boolean;
+    userId: number;
+    userType: UserType;
+
+    constructor() {
+        this.interest = null;
+        this.userId = -1;
+        this.userType = null;
+    }
+}
+
+export class Critics {
+    critics: User [];
     applicationName: string;
     applicationProfile: string;
     applicationReason: string;
 
     constructor() {
+        this.critics = []
         this.applicationName = "";
         this.applicationProfile = "";
         this.applicationReason = "";

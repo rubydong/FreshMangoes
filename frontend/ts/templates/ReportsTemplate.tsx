@@ -40,7 +40,7 @@ export class ReportsTemplate extends React.Component {
 
         return (            
             <div>
-                <hr/>
+                <hr className="header-hr"/>
                 <div className="content">
                     <h2> View Reports </h2>
                     {r.length == 0 ? <div className="center-text"><hr/>There are no reports right now.</div> :

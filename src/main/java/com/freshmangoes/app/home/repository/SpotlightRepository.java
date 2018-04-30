@@ -10,20 +10,8 @@ public interface SpotlightRepository {
   @Query("SELECT media_id FROM posters")
   List<Media> findAllPosters();
 
-  @Query("SELECT movie_id FROM opening_this_week")
-  List<Movie> findOpeningThisWeek();
-
   @Query("SELECT movie_id FROM top_box_office")
   List<Movie> findTopBoxOffice();
-
-  @Query("SELECT movie_id FROM coming_soon")
-  List<Movie> findComingSoon();
-
-  @Query
-  List<Movie> findHighestRated();
-
-  @Query("SELECT movie_id FROM certified_fresh_movies")
-  List<Movie> findCertifiedFreshMovies();
 
   @Query("SELECT show_id FROM new_tonight")
   List<Show> findNewTonight();

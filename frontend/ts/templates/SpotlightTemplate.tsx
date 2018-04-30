@@ -15,8 +15,8 @@ export class SpotlightTemplate extends React.Component {
     async componentWillMount() {
         try {
             const response = await axios.get(window.location.origin + '/api/index')
-            this.state.selectedContent = response.data.openingMovies;
-            this.state.selectedTitle = 'Opening This Week';
+            this.state.selectedContent = response.data.topBoxOffice;
+            this.state.selectedTitle = 'Top Box Office';
             this.setState(response.data);
         } catch (err) {
             console.log(err);
@@ -32,12 +32,12 @@ export class SpotlightTemplate extends React.Component {
     render() {
         return (
             <div id="spotlight-page">
-                <hr/>
+                <hr className="header-hr"/>
                 <div className="spotlight-type">
                     <b>IN THEATERS</b>
                     <ul>
-                        <li> <button className="btn-link" onClick={() => this.setSelectedContent(this.state.openingThisWeek, 'Opening This Week')}>Opening This Week </button> </li>
                         <li> <button className="btn-link" onClick={() => this.setSelectedContent(this.state.topBoxOffice, 'Top Box Office')}>Top Box Office </button> </li>
+                        <li> <button className="btn-link" onClick={() => this.setSelectedContent(this.state.openingThisWeek, 'Opening This Week')}>Opening This Week </button> </li>
                         <li> <button className="btn-link" onClick={() => this.setSelectedContent(this.state.comingSoon, 'Coming Soon')}>Coming Soon</button> </li>
                         <li> <button className="btn-link" onClick={() => this.setSelectedContent(this.state.certifiedFreshMovies, 'Certified Fresh Movies')}>Certified Fresh Movies</button> </li>
                         <li> <button className="btn-link" onClick={() => this.setSelectedContent(this.state.highestRatedMovies, 'Highest Rated Movies')}>Highest Rated Movies</button> </li>

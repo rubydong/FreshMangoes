@@ -38,9 +38,9 @@ public class Show extends Content {
   @JoinTable(
       name = "Show_Seasons",
       joinColumns =
-      @JoinColumn(name = "show_id", referencedColumnName = "id"),
+      @JoinColumn(name = "show_id"),
       inverseJoinColumns =
-      @JoinColumn(name = "season_id", referencedColumnName = "id")
+      @JoinColumn(name = "season_id")
   )
   private List<Season> seasons;
 

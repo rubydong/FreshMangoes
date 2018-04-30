@@ -25,12 +25,11 @@ export class CelebrityTemplate extends React.Component {
     render() {
         return (
             <div>
-                <hr/>
+                <hr className="header-hr"/>
                 <div className="content" id="celebrity">
                     <CelebrityInfoComponent data-state={this.state}/>
                     <PhotoComponent data-photos={this.state.media}/>
                     <FilmographyComponent data-roles={this.state.roles}/>
-                    
                 </div>
             </div>
         )

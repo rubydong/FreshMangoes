@@ -49,13 +49,15 @@ export class CreateCast {
     id: number;
     name: string;
     role: string;
-    profilePicture: File;
+    profilePicture: string;
+    profilePictureFile: File;
 
     constructor() {
         this.id = -1;
         this.name = "";
         this.role = "";
-        this.profilePicture = null;
+        this.profilePictureFile = null;
+        this.profilePicture = "";
     }
 }
 

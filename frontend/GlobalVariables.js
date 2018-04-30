@@ -4,14 +4,15 @@ export const VIDEO_LIMIT = 3;
 export const CONTENT_LIMIT = 8;
 export const SEARCH_SELECTED_LIMIT = 16;
 export const CAST_LIMIT = 9;
-export const MANGO_COLOR = "http://i67.tinypic.com/lazqr.jpg";
-export const MANGO_BW = "http://i63.tinypic.com/2gxecgl.png";
-export const LOGO = "http://i68.tinypic.com/14iq5vl.png";
-export const NO_USER_PHOTO = "http://i67.tinypic.com/2a4z1x2.png";
-export const NO_CONTENT_PHOTO = "http://i63.tinypic.com/zswme1.png";
-export const HOME_PAGE_POSTER = "http://i68.tinypic.com/dr729i.jpg";
-export const TRASH_ICON = "http://i65.tinypic.com/6xu5qv.png";
-export const EDIT_ICON = "http://i67.tinypic.com/4ih0tv.png";
+export const MANGO_COLOR = "/./images/mangocolor.png";
+export const MANGO_BW = "/./images/mangobw.png";
+export const LOGO = "/./images/logo.png";
+export const NO_USER_PHOTO = "/./images/nouserphoto.png";
+export const NO_CONTENT_PHOTO = "/./images/nocontent.png";
+export const HOME_PAGE_POSTER = "/./images/greatestshowmanbanner.jpg";
+export const TRASH_ICON = "/./images/trash.png";
+export const EDIT_ICON = "/./images/pencil.png";
+export const FILE_STORAGE_BASE_DIR = "/Users/Jack/Desktop/CSE308Project/photos/";
 
 export const GENRES_MAP = {
     28: 'Action',

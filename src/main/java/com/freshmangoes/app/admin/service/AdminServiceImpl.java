@@ -29,9 +29,12 @@ import com.freshmangoes.app.user.data.UserType;
 import com.freshmangoes.app.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -128,8 +131,7 @@ public class AdminServiceImpl implements AdminService {
 
   @Override
   public Boolean isAuthenticatedAdmin(final HttpSession session) {
-    final User user = (User) session.getAttribute(Constants.USER_ID);
-    // add userservice
+    final User user = userRepository.findById((Integer) session.getAttribute(Constants.USER_ID)).orElse(null);
     return (user != null && user.getType() == UserType.ADMIN);
   }
 
@@ -155,7 +157,11 @@ public class AdminServiceImpl implements AdminService {
           break;
       }
 
-      content.setSummaryPhoto(mediaRepository.save(content.getSummaryPhoto()));
+      content.setViews(BigInteger.ZERO);
+
+      if (content.getSummaryPhoto() != null) {
+        content.setSummaryPhoto(mediaRepository.save(content.getSummaryPhoto()));
+      }
 
       List<Media> unsavedMedia = content.getMedia();
       content.setMedia(new ArrayList<>());
@@ -201,7 +207,9 @@ public class AdminServiceImpl implements AdminService {
         if (celebrity.getId() == -1) {
           // create a new celebrity here
           //  media -> celebrities, casted (mainly just profile and celebrities, then put the new celebrities into content object)
-          celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
+          if (celebrity.getProfilePicture() != null) {
+            celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
+          }
           content
               .getCast()
               .add(castedRepository.save(Cast
@@ -250,5 +258,23 @@ public class AdminServiceImpl implements AdminService {
     userRepository.deleteCriticApplication(userId);
     user.setType(UserType.CRITIC);
     return userRepository.save(user);
+  }
+
+  @Override
+  public String uploadMedia(MultipartFile f) {
+    File temp = new File(Constants.FILE_PATH + f.getOriginalFilename());
+    try {
+      if (!temp.getParentFile().exists()) {
+        temp.getParentFile().mkdirs();
+      }
+      if (!temp.exists()) {
+        temp.createNewFile();
+        f.transferTo(temp);
+        return temp.getCanonicalPath();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }
