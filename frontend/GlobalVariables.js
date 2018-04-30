@@ -12,6 +12,7 @@ export const NO_CONTENT_PHOTO = "http://i63.tinypic.com/zswme1.png";
 export const HOME_PAGE_POSTER = "http://i68.tinypic.com/dr729i.jpg";
 export const TRASH_ICON = "http://i65.tinypic.com/6xu5qv.png";
 export const EDIT_ICON = "http://i67.tinypic.com/4ih0tv.png";
+export const FILE_STORAGE_BASE_DIR = "/Users/Jack/Desktop/CSE308Project/photos/";
 
 export const GENRES_MAP = {
     28: 'Action',

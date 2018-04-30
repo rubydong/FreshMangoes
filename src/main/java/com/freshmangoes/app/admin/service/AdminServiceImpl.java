@@ -29,8 +29,10 @@ import com.freshmangoes.app.user.data.UserType;
 import com.freshmangoes.app.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -249,5 +251,23 @@ public class AdminServiceImpl implements AdminService {
     userRepository.deleteCriticApplication(userId);
     user.setType(UserType.CRITIC);
     return userRepository.save(user);
+  }
+
+  @Override
+  public String uploadMedia(MultipartFile f) {
+    File temp = new File(Constants.FILE_PATH + f.getOriginalFilename());
+    try {
+      if (!temp.getParentFile().exists()) {
+        temp.getParentFile().mkdirs();
+      }
+      if (!temp.exists()) {
+        temp.createNewFile();
+        f.transferTo(temp);
+        return temp.getCanonicalPath();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }
