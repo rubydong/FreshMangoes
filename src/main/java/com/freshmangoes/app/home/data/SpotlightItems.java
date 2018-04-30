@@ -21,8 +21,10 @@ public class SpotlightItems {
   private List<Movie> topBoxOffice;
   private List<Movie> comingSoon;
   private List<Movie> certifiedFreshMovies;
+  private List<Movie> highestRatedMovies;
 
   private List<Show> newTonight;
   private List<Show> mostPopular;
   private List<Show> certifiedFreshShows;
+  private List<Show> highestRatedShows;
 }
