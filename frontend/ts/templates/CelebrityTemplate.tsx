@@ -2,7 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import { Celebrity} from '../types/celebrity';
 import { CelebrityInfoComponent } from '../components/CelebrityInfoComponent';
-import { PhotoComponent } from '../components/PhotoComponent';
+import { EditPageComponent } from "../components/EditPageComponent";
 import { FilmographyComponent } from '../components/FilmographyComponent';
 
 export class CelebrityTemplate extends React.Component {

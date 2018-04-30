@@ -45,9 +45,9 @@ export class ContentTemplate extends React.Component {
                         <DetailsComponent data-state={this.state}/>
                     </div>
                     <div className="clear-both"></div>
-                    <PhotoComponent data-photos={this.state.media}/>   
+                    <PhotoComponent data-photos={this.state.media} data-current-user={this.state.currentUser}/>   
                     <VideoComponent data-videos={this.state.media}/>  
-                    <CastComponent data-cast={this.state.cast}/>
+                    <CastComponent data-cast={this.state.cast} data-current-user={this.state.currentUser}/>
                     {this.state.type == ContentType.SHOW ? <SeasonEpisodeListComponent data-seasons={this.state.seasons}/> : ''}
                     {this.state.type == ContentType.SEASON ? <SeasonEpisodeListComponent data-episodes={this.state.episodes}/> : ''}
                     <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
