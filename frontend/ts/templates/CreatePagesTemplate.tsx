@@ -54,6 +54,13 @@ export class CreatePagesTemplate extends React.Component {
         let formattedCast = []
         for (let i = 0; i < this.state.cast.length; i++) {
             let c = this.state.cast[i];
+            let c2 = {
+                celebrity: {
+                    id: c.id,
+                    name: c.name
+                },
+                role: c.role
+            };
             if (c.profilePictureFile != null) {
                 let formData = new FormData();
                 formData.append("myImage", c.profilePictureFile);
@@ -61,19 +68,16 @@ export class CreatePagesTemplate extends React.Component {
                     .then(res => {
                         console.log("Completed Request " + res);
                     })
-                let c2 = {
-                      celebrity: {
-                        id: c.id,
-                        name: c.name,
-                        profilePicture: {
-                            path: FILE_STORAGE_BASE_DIR + c.profilePictureFile.name,
-                            type: MediaType.PHOTO
-                        }
-                      },
-                    role: c.role
-                };
-                formattedCast.push(c2);
+                c2['profilePicture'] =  {
+                    path: FILE_STORAGE_BASE_DIR + c.profilePictureFile.name,
+                        type: MediaType.PHOTO
+                }
+
             }
+
+
+
+                formattedCast.push(c2);
         }
 
         let metadata = {
@@ -98,7 +102,14 @@ export class CreatePagesTemplate extends React.Component {
             .then(res => {
                 console.log(res);
                 console.log("after posting to insert")
-                window.location.assign(window.location.origin + "/movie/" + res.data.id)
+
+                if (requestBody.type == ContentType.MOVIE) {
+                    window.location.assign(window.location.origin + "/movie/" + res.data.id);
+                } else if (requestBody.type == ContentType.SHOW) {
+                    window.location.assign(window.location.origin + "/show/" + res.data.id);
+                } else {
+                    window.location.assign(window.location.origin + "/show/" + requestBody.showId);
+                }
             })
     }
 

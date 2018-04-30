@@ -34,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -156,7 +157,11 @@ public class AdminServiceImpl implements AdminService {
           break;
       }
 
-      content.setSummaryPhoto(mediaRepository.save(content.getSummaryPhoto()));
+      content.setViews(BigInteger.ZERO);
+
+      if (content.getSummaryPhoto() != null) {
+        content.setSummaryPhoto(mediaRepository.save(content.getSummaryPhoto()));
+      }
 
       List<Media> unsavedMedia = content.getMedia();
       content.setMedia(new ArrayList<>());
@@ -202,7 +207,9 @@ public class AdminServiceImpl implements AdminService {
         if (celebrity.getId() == -1) {
           // create a new celebrity here
           //  media -> celebrities, casted (mainly just profile and celebrities, then put the new celebrities into content object)
-          celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
+          if (celebrity.getProfilePicture() != null) {
+            celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
+          }
           content
            .getCast()
            .add(castedRepository.save(Cast
