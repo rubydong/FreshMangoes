@@ -32,7 +32,7 @@ export class SpotlightTemplate extends React.Component {
     render() {
         return (
             <div id="spotlight-page">
-                <hr/>
+                <hr className="header-hr"/>
                 <div className="spotlight-type">
                     <b>IN THEATERS</b>
                     <ul>

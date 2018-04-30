@@ -36,7 +36,7 @@ export class CriticApplicationsTemplate extends React.Component {
 
         return (
             <div id="critics"> 
-                <hr/>
+                <hr className="header-hr"/>
                 <div className="content">
                     <h2> View Reports </h2>
                     {applications.length == 0 ? <div className="center-text"><hr/>There are no critic applications right now.</div> :

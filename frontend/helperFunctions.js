@@ -1,9 +1,12 @@
-import { NO_CONTENT_PHOTO } from "./GlobalVariables";
+import { NO_CONTENT_PHOTO, NO_USER_PHOTO } from "./GlobalVariables";
 
 export function parseMedia(media) {
     return (media && media.path != "") ? media.path : NO_CONTENT_PHOTO;
 }
 
+export function parseUserMedia(media) {
+    return (media && media.path != "") ? media.path : NO_USER_PHOTO;
+}
 export function parseMoreMedia(media, list) {
     if (media && media.path != "") {
         return media.path;

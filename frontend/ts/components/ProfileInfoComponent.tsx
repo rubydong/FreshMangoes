@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import {parseMedia, getUrlID} from "../../HelperFunctions";
+import {parseUserMedia, getUrlID} from "../../HelperFunctions";
 import {FollowComponent} from "../components/FollowComponent";
 
 export class ProfileInfoComponent extends React.Component {
@@ -117,7 +117,7 @@ export class ProfileInfoComponent extends React.Component {
             <div className="left">
                 <h2>{state.displayName}</h2>
                 <div className="bio box-shadow">
-                    <img className="profile-picture" src={parseMedia(state.profilePicture)}/>
+                    <img className="profile-picture" src={parseUserMedia(state.profilePicture)}/>
                     <FollowComponent data-followers={state.followers} data-following={state.following}/>
                     <p/>
                     {editOrFollowButton}

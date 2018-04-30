@@ -53,12 +53,14 @@ export class CurrentUser {
     }
 }
 
-export class CriticsApply {
+export class Critics {
+    critics: User [];
     applicationName: string;
     applicationProfile: string;
     applicationReason: string;
 
     constructor() {
+        this.critics = []
         this.applicationName = "";
         this.applicationProfile = "";
         this.applicationReason = "";
