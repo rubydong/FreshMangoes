@@ -6,9 +6,11 @@ import com.freshmangoes.app.content.data.ContentType;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.service.RatingService;
 import com.freshmangoes.app.user.data.User;
+
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,15 +40,15 @@ public class RatingController {
       status = HttpStatus.BAD_REQUEST;
     } else {
       status = ratingService.addRating(
-       contentId,
-       body.get("type").equals("MOVIE") ? ContentType.MOVIE : ContentType.SHOW,
-       Rating
-       .builder()
-       .content(null)
-       .score(Integer.parseInt(body.get(Constants.SCORE)))
-       .user(user)
-       .body(body.get(Constants.BODY))
-       .build()) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+          contentId,
+          body.get("type").equals("MOVIE") ? ContentType.MOVIE : ContentType.SHOW,
+          Rating
+              .builder()
+              .content(null)
+              .score(Integer.parseInt(body.get(Constants.SCORE)))
+              .user(user)
+              .body(body.get(Constants.BODY))
+              .build()) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
     return ResponseEntity.status(status).build();
   }
@@ -75,14 +77,14 @@ public class RatingController {
       status = HttpStatus.BAD_REQUEST;
     } else {
       status = ratingService.editRating(user.getId(),
-       Rating
-       .builder()
-       .id(ratingId)
-       .content(null)
-       .score(Integer.parseInt(body.get(Constants.SCORE)))
-       .user(user)
-       .body(body.get(Constants.BODY))
-       .build()) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+          Rating
+              .builder()
+              .id(ratingId)
+              .content(null)
+              .score(Integer.parseInt(body.get(Constants.SCORE)))
+              .user(user)
+              .body(body.get(Constants.BODY))
+              .build()) != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
     return ResponseEntity.status(status).build();
   }
@@ -97,7 +99,7 @@ public class RatingController {
       status = HttpStatus.BAD_REQUEST;
     } else {
       status = ratingService.flagRating(ratingId, body.get(Constants.BODY)) != null
-             ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+          ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
     return ResponseEntity.status(status).build();
   }

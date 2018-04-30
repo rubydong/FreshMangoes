@@ -1,6 +1,9 @@
 package com.freshmangoes.app.user.service;
 
 import com.freshmangoes.app.common.data.Constants;
+import com.freshmangoes.app.common.data.Media;
+import com.freshmangoes.app.common.data.MediaType;
+import com.freshmangoes.app.content.repository.MediaRepository;
 import com.freshmangoes.app.email.service.EmailService;
 import com.freshmangoes.app.follow.repository.FollowRepository;
 import com.freshmangoes.app.rating.repository.RatingRepository;
@@ -24,10 +27,10 @@ public class UserServiceImpl implements UserService {
   private UserRepository userRepository;
 
   @Autowired
-  private FollowRepository followRepository;
+  private RatingRepository ratingRepository;
 
   @Autowired
-  private RatingRepository ratingRepository;
+  private MediaRepository mediaRepository;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
@@ -42,7 +45,7 @@ public class UserServiceImpl implements UserService {
     return user;
   }
 
-  public User getUserByEmail(final String email){
+  public User getUserByEmail(final String email) {
     final User user = userRepository.findByEmail(email);
     return user;
   }
@@ -61,7 +64,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean forgotPassword(String email) {
+  public Boolean forgotPassword(String email) {
     return emailService.sendEmail(email, "Fresh Mangoes Password Reset",
         "Click this link to reset your password: http://localhost:9000/resetpassword/");
   }
@@ -72,15 +75,21 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean updatePicture(MultipartFile f) {
-    File temp = new File(Constants.FILE_PATH + f.getOriginalFilename());
+  public Boolean updatePicture(User user, MultipartFile mpf) {
+    File f = new File(Constants.FILE_PATH + mpf.getOriginalFilename());
     try {
-      if (!temp.getParentFile().exists()) {
-        temp.getParentFile().mkdirs();
+      if (!f.getParentFile().exists()) {
+        f.getParentFile().mkdirs();
       }
-      if (!temp.exists()) {
-        temp.createNewFile();
-        f.transferTo(temp);
+      if (!f.exists()) {
+        f.createNewFile();
+        mpf.transferTo(f);
+        Media media = new Media();
+        media.setPath(f.getCanonicalPath());
+        media.setType(MediaType.PHOTO);
+        mediaRepository.save(media);
+        user.setProfilePicture(media);
+        userRepository.save(user);
         return true;
       }
     } catch (IOException e) {
@@ -110,5 +119,6 @@ public class UserServiceImpl implements UserService {
     }
     return userRepository.applyForCritic(userId, statement) != null;
   }
+
 
 }

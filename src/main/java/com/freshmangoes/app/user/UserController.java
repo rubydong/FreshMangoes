@@ -91,7 +91,7 @@ public class UserController {
   public ResponseEntity editPicture(@RequestParam("myImage") final MultipartFile file) {
     User user = (User) session.getAttribute(Constants.USER_ID);
     if (user != null) {
-      if (userService.updatePicture(file)) {
+      if (userService.updatePicture(user, file)) {
         return new ResponseEntity(HttpStatus.OK);
       }
     }

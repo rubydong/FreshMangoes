@@ -202,22 +202,22 @@ public class AdminServiceImpl implements AdminService {
           //  media -> celebrities, casted (mainly just profile and celebrities, then put the new celebrities into content object)
           celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
           content
-           .getCast()
-           .add(castedRepository.save(Cast
-            .builder()
-            .content(content)
-            .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build()));
+              .getCast()
+              .add(castedRepository.save(Cast
+                  .builder()
+                  .content(content)
+                  .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build()));
         } else {
           celebrity = celebrityRepository.findById(celebrity.getId()).orElse(null);
           if (celebrity != null) {
             content
-             .getCast()
-             .add(castedRepository.save(
-              Cast
-               .builder()
-               .content(content)
-               .celebrity(celebrity)
-               .role(cast.getRole()).build()));
+                .getCast()
+                .add(castedRepository.save(
+                    Cast
+                        .builder()
+                        .content(content)
+                        .celebrity(celebrity)
+                        .role(cast.getRole()).build()));
           }
         }
       }
@@ -231,13 +231,13 @@ public class AdminServiceImpl implements AdminService {
   @Override
   public List<Application> getAllPotentialCritics() {
     return userRepository.getAllPotentialCritics()
-     .stream()
-     .map(user -> Application
-      .builder()
-      .user(user)
-      .statement(userRepository.getCriticApplicationStatement(user.getId()))
-      .build())
-     .collect(Collectors.toList());
+        .stream()
+        .map(user -> Application
+            .builder()
+            .user(user)
+            .statement(userRepository.getCriticApplicationStatement(user.getId()))
+            .build())
+        .collect(Collectors.toList());
   }
 
   @Override

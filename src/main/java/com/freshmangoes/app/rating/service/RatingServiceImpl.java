@@ -2,6 +2,7 @@ package com.freshmangoes.app.rating.service;
 
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.content.data.ContentType;
+import com.freshmangoes.app.content.repository.MetadataRepository;
 import com.freshmangoes.app.content.repository.MovieRepository;
 import com.freshmangoes.app.content.repository.ShowRepository;
 import com.freshmangoes.app.rating.data.Rating;
@@ -21,6 +22,9 @@ public class RatingServiceImpl implements RatingService {
   @Autowired
   private ShowRepository showRepository;
 
+  @Autowired
+  private MetadataRepository metadataRepository;
+
   public Rating addRating(final Integer contentId, final ContentType contentType, final Rating rating) {
     switch (contentType) {
       case MOVIE:
@@ -30,6 +34,7 @@ public class RatingServiceImpl implements RatingService {
         rating.setContent(showRepository.findById(contentId).orElse(null));
         break;
     }
+//    metadataRepository.updateAudienceScore(contentId);
     return ratingRepository.existsByUserId(rating.getUser().getId(), contentId) == null
            ? ratingRepository.save(rating)
            : null;
@@ -43,6 +48,7 @@ public class RatingServiceImpl implements RatingService {
     existingRating.setBody(rating.getBody());
     existingRating.setScore(rating.getScore());
     ratingRepository.save(existingRating);
+//    metadataRepository.updateAudienceScore(existingRating.getContent().getId());
     return existingRating;
   }
 
@@ -59,6 +65,7 @@ public class RatingServiceImpl implements RatingService {
     if (rating == null || !rating.getUser().getId().equals(userId)) {
       return;
     }
+//    metadataRepository.updateAudienceScore(rating.getContent().getId());
     ratingRepository.deleteById(ratingId);
   }
 
