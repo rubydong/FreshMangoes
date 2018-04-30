@@ -10,6 +10,7 @@ export class RatingComponent extends React.Component {
         score: 5,
         body: '',
         currentUser: -1, 
+        currentUserType: '',
         currentReviewId: -1,
     }
     
@@ -19,6 +20,7 @@ export class RatingComponent extends React.Component {
         .then(function (response) {
             currentComponent.setState({ 
                 currentUser: response.data.userId,
+                currentUserType: response.data.userType
             });
         })
         .catch(function (error) {
@@ -63,7 +65,7 @@ export class RatingComponent extends React.Component {
     deleteReview(reviewId) { 
         axios.delete(window.location.origin + '/api/rating/delete/' + reviewId)
             .then(res => {
-            window.location.reload();
+                window.location.reload();
         })
     }
 
@@ -88,7 +90,7 @@ export class RatingComponent extends React.Component {
                     {rating.user.type == "CRITIC" ? <span className="critic-badge">critic</span> : ''}
                     <span className="align-right"> <Mangoes data-rating={rating.score}/></span> <br/>
                     <i> <a href={'../' + rating.content.type.toLowerCase() + '/' + rating.content.id}> {title || rating.content.metadata.name} </a></i>
-                    { this.state.currentUser == rating.user.id
+                    { this.state.currentUser == rating.user.id || this.state.currentUserType == 'ADMIN'
                     ? <span className="align-right">
                         <img src={EDIT_ICON} data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
                         <img src={TRASH_ICON} onClick={() => this.deleteReview(rating.id)}/>
