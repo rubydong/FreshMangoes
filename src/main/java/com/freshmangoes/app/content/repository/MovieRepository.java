@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MovieRepository extends CrudRepository<Movie, Integer> {
   List<Movie> findTop10ByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDesc(Double mangoScore);
-  List<Movie> findTop10ByMetadata_ReleaseDateGreaterThanEqualAndMetadata_ReleaseDateLessThanEqualOrderByMetadata_ReleaseDateDesc(Date startDate, Date endDate);
+  List<Movie> findByMetadata_ReleaseDateGreaterThanEqualAndMetadata_ReleaseDateLessThanEqualOrderByMetadata_ReleaseDateDesc(Date startDate, Date endDate);
   Page<Movie> findByOrderByRevenueDesc(Pageable pageable);
 }
