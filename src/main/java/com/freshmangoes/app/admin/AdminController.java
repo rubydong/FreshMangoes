@@ -43,11 +43,9 @@ public class AdminController {
   @PostMapping(Constants.ADMIN_ADD_DETAIL_PAGE_MAPPING)
   public Content createDetailPage(@RequestBody final String body) {
     Content content = null;
-    System.out.println("#######################################IN CREATE DETAIL APGE");
-    System.out.println(body);
-//    if (adminService.isAuthenticatedAdmin(session)) {
+    if (adminService.isAuthenticatedAdmin(session)) {
       content = adminService.jsonToContent(body);
-//    }
+    }
     return content;
   }
 
@@ -74,15 +72,13 @@ public class AdminController {
                                          @PathVariable final Integer contentId) {
     final HttpStatus status;
 
-//    if (adminService.isAuthenticatedAdmin(session)) {
-//      status = HttpStatus.OK;
+    if (adminService.isAuthenticatedAdmin(session)) {
+      status = HttpStatus.OK;
       adminService.deleteDetailPage(contentId, ContentType.valueOf(body.get("type")));
-//    }
-//    else {
-//      status = HttpStatus.BAD_REQUEST;
-//    }
-
-    return ResponseEntity.status(HttpStatus.OK).build();
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+    return ResponseEntity.status(status).build();
   }
 
   @GetMapping(Constants.ADMIN_VIEW_REPORTS_MAPPING)
@@ -154,9 +150,9 @@ public class AdminController {
                headers = "content-type=multipart/*",
                consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
   public String uploadMedia(@RequestParam("myImage") final MultipartFile file) {
-//    if (adminService.isAuthenticatedAdmin(session)) {
+    if (adminService.isAuthenticatedAdmin(session)) {
       return adminService.uploadMedia(file);
-//    }
-//    return null;
+    }
+    return null;
   }
 }
