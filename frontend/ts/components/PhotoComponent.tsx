@@ -18,6 +18,7 @@ export class PhotoComponent extends React.Component {
                     <span className="icon"><img src={EDIT_ICON} data-toggle="modal" data-target="#edit-photos-modal"/></span>
                 </h2> <p/> <hr/>
                 <div className="photos-inner"> {photos} </div>
+                <span className="align-right"><a href="" data-toggle="modal" data-target="#edit-photos-modal">View All Photos</a></span>
               </div>;
     }
 }

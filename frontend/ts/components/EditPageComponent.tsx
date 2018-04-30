@@ -1,6 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import { Page } from "../types/content";
+import { NO_USER_PHOTO } from "../../GlobalVariables";
 
 export class EditPageComponent extends React.Component {
     state: Page;
@@ -25,10 +26,17 @@ export class EditPageComponent extends React.Component {
     render() {
         const state = this.props['data-state'];
         const metadata = this.state.metadata;
-        const photosOnly = state.media.filter(photo => photo.type == 'PHOTO');
-        const photos = (photosOnly||[]).map((photo, i) => {
+        const photos = state.media.filter(photo => photo.type == 'PHOTO').map((photo, i) => {
             return <img src={photo.path} key={i}/>
         });
+        const cast = state.cast.map((castPerson, i) => {
+            return <div className="cast-person" key={i}>
+                <img className="img-align-left" src={castPerson.celebrity.profilePicture ? castPerson.celebrity.profilePicture.path : NO_USER_PHOTO}/>
+                <b> <a href={"/../celebrity/" + castPerson.celebrity.id}>{castPerson.celebrity.name}</a> </b> <br/>
+                <i>{castPerson.role}</i>
+            </div>
+        });
+
 
         return (
             <div>
@@ -56,7 +64,7 @@ export class EditPageComponent extends React.Component {
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">
                             <form onSubmit={()=>this.handleEditPhotos()}>
-                                <h2>Edit Photos</h2>
+                                <h2>Photos</h2>
                                 <div className="all-photos"> {photos} </div>
                                 <button className="btn"> Update Photos </button>
                             </form>
@@ -66,11 +74,11 @@ export class EditPageComponent extends React.Component {
 
                 <div id="edit-cast-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
-                        <div className="modal-content">
+                        <div className="modal-content casts">
                             <form onSubmit={()=>this.handleEditPhotos()}>
-                                <h2>Edit Photos</h2>
-                                <div className="all-photos"> {photos} </div>
-                                <button className="btn"> Update Photos </button>
+                                <h2>Cast</h2>
+                                <div className="flex-center"> {cast} </div>
+                                <button className="btn"> Update Cast </button>
                             </form>
                         </div>
                     </div>    

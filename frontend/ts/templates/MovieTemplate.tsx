@@ -35,17 +35,21 @@ export class MovieTemplate extends React.Component {
         <div>
             <hr/>
             <div className="content">
-                <div className="summary">
-                    <EditPageComponent data-state={this.state}/>
-                    <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media}/>             
-                    <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
-                                      data-id={this.state.id} data-type={this.state.type} data-state={this.state}/>
+                {this.state.metadata.name == "" ? <h2>There is no movie here.</h2> :
+                <div>
+                    <div className="summary">
+                        <EditPageComponent data-state={this.state}/>
+                        <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media}/>             
+                        <DetailsComponent data-metadata={this.state.metadata} data-crew={this.state.crew} 
+                                        data-id={this.state.id} data-type={this.state.type} data-state={this.state}/>
+                    </div>
+                    <div className="clear-both"></div>
+                    <PhotoComponent data-photos={this.state.media}/>   
+                    <VideoComponent data-videos={this.state.media}/>  
+                    <CastComponent data-cast={this.state.cast}/>
+                    <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
                 </div>
-                <div className="clear-both"></div>
-                <PhotoComponent data-photos={this.state.media}/>   
-                <VideoComponent data-videos={this.state.media}/>  
-                <CastComponent data-cast={this.state.cast}/>
-                <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
+                }
             </div>
 		</div>
         );
