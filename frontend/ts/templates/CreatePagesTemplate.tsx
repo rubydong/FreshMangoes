@@ -202,7 +202,7 @@ export class CreatePagesTemplate extends React.Component {
 
                         {this.state.type == ContentType.EPISODE
                         ? (<div className="form-group row">
-                            <label className="col-sm-2 col-form-label">Season ID</label>
+                            <label className="col-sm-2 col-form-label">Season</label>
                             <input className="col-sm-6 form-control" onChange={(event) => this.state.seasonID = parseInt(event.target.value)}/>
                            </div>) 
                         : ''}

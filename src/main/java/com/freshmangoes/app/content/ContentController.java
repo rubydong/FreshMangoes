@@ -26,7 +26,7 @@ public class ContentController {
   @GetMapping(Constants.MOVIE_MAPPING)
   public Movie getMovie(@PathVariable final int id) {
     final Movie movie = contentService.findMovieById(id);
-    movie.getViews().add(BigInteger.ONE);
+    movie.setViews(movie.getViews().add(BigInteger.ONE));
     contentService.saveMovie(movie);
     return movie;
   }
