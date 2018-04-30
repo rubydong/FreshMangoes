@@ -49,7 +49,7 @@ export class IndexComponent extends React.Component {
                     <h2> Movies Spotlight </h2>	<hr/>
                     <ul className="list-inline align-center spotlight-nav">
                         <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].topBoxOffice)}>Top Box Office</button></li>		
-                        <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].openingThisWeek)}>Opening This Week</button></li>
+                        <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].certifiedFreshMovies)}>Certified Fresh Movies</button></li>
                         <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].comingSoon)}>Coming Soon</button></li> 
                         <li><a href="/spotlight">View All</a></li>
                     </ul>
