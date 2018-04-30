@@ -2,6 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import { Page } from "../types/content";
 import { NO_USER_PHOTO } from "../../GlobalVariables";
+import { UserType } from '../types/user';
 
 export class EditPageComponent extends React.Component {
     state: Page;
@@ -25,6 +26,7 @@ export class EditPageComponent extends React.Component {
 
     render() {
         const state = this.props['data-state'];
+        const currentUser = state.currentUser;
         const metadata = this.state.metadata;
         const photos = state.media.filter(photo => photo.type == 'PHOTO').map((photo, i) => {
             return <img src={photo.path} key={i}/>
@@ -66,7 +68,7 @@ export class EditPageComponent extends React.Component {
                             <form onSubmit={()=>this.handleEditPhotos()}>
                                 <h2>Photos</h2>
                                 <div className="all-photos"> {photos} </div>
-                                <button className="btn"> Update Photos </button>
+                                { currentUser && currentUser.userType == UserType.ADMIN ? <button className="btn"> Update Photos </button> : '' }
                             </form>
                         </div>
                     </div>    
@@ -78,7 +80,7 @@ export class EditPageComponent extends React.Component {
                             <form onSubmit={()=>this.handleEditPhotos()}>
                                 <h2>Cast</h2>
                                 <div className="flex-center"> {cast} </div>
-                                <button className="btn"> Update Cast </button>
+                                { currentUser && currentUser.userType == UserType.ADMIN ? <button className="btn"> Update Cast </button> : '' }
                             </form>
                         </div>
                     </div>    
