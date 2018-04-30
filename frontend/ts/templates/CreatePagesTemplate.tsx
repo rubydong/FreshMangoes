@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import axios from "axios";
-import { MOVIE_GENRES, TV_GENRES, GENRES_VALUES_MAP } from "../../GlobalVariables";
+import { MOVIE_GENRES, TV_GENRES, GENRES_VALUES_MAP, FILE_STORAGE_BASE_DIR } from "../../GlobalVariables";
 import { CreatePage, ContentType } from "../types/content";
 import { CreateCast } from "../types/celebrity";
+import {Media, MediaType} from "../types/media";
 
 export class CreatePagesTemplate extends React.Component {
     state: CreatePage;
@@ -16,10 +17,89 @@ export class CreatePagesTemplate extends React.Component {
     handleCreateContentPage = event => {
         event.preventDefault();
         console.log(this.state);
-        // axios.post(window.location.origin + '/admin/insert', this.state)
-        //     .then(res => {
-        //     window.location.reload();
-        // })
+
+        console.log("I AM HERE");
+
+        let summaryPhoto = null;
+        if (this.state.summaryPhoto != null) {
+            let formData = new FormData();
+            formData.append("myImage", this.state.summaryPhoto);
+            console.log("Posting to upload summaryPhoto");
+            axios.post(window.location.origin + "/api/admin/upload", formData)
+                .then(res => {
+                    console.log("Completed Request " + res);
+                })
+            summaryPhoto = new Media()
+            summaryPhoto.path = FILE_STORAGE_BASE_DIR + this.state.summaryPhoto.name;
+            summaryPhoto.type = MediaType.PHOTO;
+        }
+
+        // add pictures
+        let mediaPaths = [];
+        if (this.state.photos != null && this.state.photos.length > 0) {
+            for (let i = 0; i < this.state.photos.length; i++) {
+                let formData = new FormData();
+                formData.append("myImage", this.state.photos.item(i));
+                axios.post(window.location.origin + "/api/admin/upload", formData)
+                    .then(res => {
+                        console.log("Completed Request " + res);
+                    })
+                let pic = new Media();
+                pic.path = FILE_STORAGE_BASE_DIR + this.state.photos.item(i).name;
+                pic.type = MediaType.PHOTO;
+                mediaPaths.push(pic);
+            }
+        }
+        // // // add pictures for celebrities?
+        let formattedCast = []
+        for (let i = 0; i < this.state.cast.length; i++) {
+            let c = this.state.cast[i];
+            if (c.profilePictureFile != null) {
+                let formData = new FormData();
+                formData.append("myImage", c.profilePictureFile);
+                axios.post(window.location.origin + "/api/admin/upload", formData)
+                    .then(res => {
+                        console.log("Completed Request " + res);
+                    })
+                let c2 = {
+                      celebrity: {
+                        id: c.id,
+                        name: c.name,
+                        profilePicture: {
+                            path: FILE_STORAGE_BASE_DIR + c.profilePictureFile.name,
+                            type: MediaType.PHOTO
+                        }
+                      },
+                    role: c.role
+                };
+                formattedCast.push(c2);
+            }
+        }
+
+        let metadata = {
+            name: this.state.name,
+            summary: this.state.summary,
+            genres: this.state.genres
+        }
+
+        const requestBody = {
+            type: this.state.type.toString(),
+            showId: this.state.showID,
+            seasonId: this.state.seasonID,
+            summaryPhoto: summaryPhoto,
+            media: mediaPaths,
+            metadata: metadata,
+            cast: formattedCast
+        }
+
+        console.log("about to post insert");
+        console.log(requestBody);
+        axios.post(window.location.origin + "/api/admin/content/insert", requestBody)
+            .then(res => {
+                console.log(res);
+                console.log("after posting to insert")
+                window.location.assign(window.location.origin + "/movie/" + res.data.id)
+            })
     }
 
     handleChangeType = event => {
@@ -40,14 +120,28 @@ export class CreatePagesTemplate extends React.Component {
     addCastMember = () => {
         this.setState({castNum: this.state.castNum + 1});
         this.state.cast.push(new CreateCast());
-        this.forceUpdate();
+        // this.forceUpdate();
     }
 
     removeCastMember = (castMember, i) => {
         this.setState({castNum: this.state.castNum - 1});
         castMember.splice(i, 1);
         this.state.cast.splice(i, 1);
-        this.forceUpdate();
+        // this.forceUpdate();
+    }
+
+    displayCastList = () => {
+        let castMember = []
+        for (let i = 0; i < this.state.castNum; i++) {
+            castMember.push(<div key ={i} className={i != 0 ? "padding-top" : ""}>
+                <input type="file" onChange={(event) => this.state.cast[i].profilePictureFile = event.target.files[0]}/>
+                <button type="button" className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button>
+                <input type="text" className="form-control" placeholder="Name" onChange={(event) => this.state.cast[i].name = event.target.value}/>
+                <input type="text" className="form-control" placeholder="ID" onChange={(event) => this.state.cast[i].id = parseInt(event.target.value)}/>
+                <input type="text" className="form-control" placeholder="Role" onChange={(event) => this.state.cast[i].role = event.target.value}/>
+            </div>);
+        }
+        return castMember;
     }
 
     render() {
@@ -57,25 +151,12 @@ export class CreatePagesTemplate extends React.Component {
                 <label className="form-check-label">{genre}</label>
             </div>
         });
-
-        let castMember = [];
-
-        for (let i = 0; i < this.state.castNum; i++) {
-            castMember.push(<div key ={i} className={i != 0 ? "padding-top" : ""}>
-                <input type="file" onChange={(event) => this.state.cast[i].profilePicture = event.target.files[0]}/> 
-                <button className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button>
-                <input type="text" className="form-control" placeholder="Name" onChange={(event) => this.state.cast[i].name = event.target.value}/>
-                <input type="text" className="form-control" placeholder="ID" onChange={(event) => this.state.cast[i].id = parseInt(event.target.value)}/>
-                <input type="text" className="form-control" placeholder="Role" onChange={(event) => this.state.cast[i].role = event.target.value}/>
-            </div>);
-            
-        }
         
         return ( 
             <div className="page-background-color">
                 <hr/>
                 <div className="content">
-                    <form id="create-form" onSubmit={this.handleCreateContentPage}>
+                    <form id="create-form" onSubmit={this.handleCreateContentPage.bind(this)}>
                         <h2> Create a New Content Page </h2> 
                         <div className="padding"></div>
 
@@ -148,13 +229,13 @@ export class CreatePagesTemplate extends React.Component {
                         <div className="form-group row">
                             <label className="col-form-label col-sm-2">Cast</label>
                             <div className="col-sm-6 form-control" id="cast">
-                                {castMember}
+                                {this.displayCastList()}
 
-                                <button className={castMember.length != 0 ? "btn-link padding-top" : "btn-link"} onClick={this.addCastMember}>Add another cast</button>
+                                <button type="button" className={this.state.castNum != 0 ? "btn-link padding-top" : "btn-link"} onClick={this.addCastMember}>Add another cast</button>
                             </div>
                         </div>
 
-                        <button className="btn col-sm-4">Create Page</button>
+                        <button className="btn col-sm-4" type="submit">Create Page</button>
                     </form>
                 </div>
             </div>
