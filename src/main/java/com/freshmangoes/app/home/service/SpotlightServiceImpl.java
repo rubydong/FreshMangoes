@@ -52,7 +52,7 @@ public class SpotlightServiceImpl implements SpotlightService {
                          .openingThisWeek(
                              contentService.findMovieByReleaseDateRange(today, weekFromToday
                              ))
-                         .topBoxOffice(contentService.findMoviesByRevenue(0, 10))
+                         .topBoxOffice(contentService.findMoviesByRevenue(0, 32))
                          .comingSoon(
                              contentService.findMovieByReleaseDateRange(today, monthFromToday
                              ))
