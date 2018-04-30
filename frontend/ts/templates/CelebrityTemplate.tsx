@@ -30,7 +30,6 @@ export class CelebrityTemplate extends React.Component {
                     <CelebrityInfoComponent data-state={this.state}/>
                     <PhotoComponent data-photos={this.state.media}/>
                     <FilmographyComponent data-roles={this.state.roles}/>
-                    
                 </div>
             </div>
         )

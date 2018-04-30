@@ -1,10 +1,6 @@
 import * as React from "react";
 import { Switch, Route } from 'react-router-dom'
 import { IndexTemplate } from "./templates/IndexTemplate";
-import { MovieTemplate } from "./templates/MovieTemplate";
-import { ShowTemplate } from "./templates/ShowTemplate";
-import { SeasonTemplate } from "./templates/SeasonTemplate";
-import { EpisodeTemplate } from "./templates/EpisodeTemplate";
 import { CelebrityTemplate } from "./templates/CelebrityTemplate";
 import { SearchTemplate } from "./templates/SearchTemplate";
 import { ProfileTemplate } from "./templates/ProfileTemplate";
@@ -17,16 +13,17 @@ import { VerifyTemplate } from "./templates/VerifyTemplate";
 import { NoMatch } from "./templates/NoMatch";
 import { TosTemplate } from "./templates/TosTemplate";
 import {ResetPasswordTemplate} from "./templates/ResetPasswordTemplate";
+import { ContentTemplate } from "./templates/ContentTemplate";
 
 const Main = () => (
   <main>
     <Switch>
       <Route exact path='/' component={IndexTemplate}/>
       <Route exact path='/index' component={IndexTemplate}/>
-      <Route path='/movie/:id' component={MovieTemplate}/>
-      <Route path='/show/:showid/season/:seasonid/episode/:episodeid' component={EpisodeTemplate}/>
-      <Route path="/show/:showid/season/:seasonid" component={SeasonTemplate}/>
-      <Route path='/show/:id' component={ShowTemplate}/> 
+      <Route path='/movie/:id' component={ContentTemplate}/>
+      <Route path='/show/:showid/season/:seasonid/episode/:episodeid' component={ContentTemplate}/>
+      <Route path="/show/:showid/season/:seasonid" component={ContentTemplate}/>
+      <Route path='/show/:id' component={ContentTemplate}/> 
       <Route path="/celebrity/:id" component={CelebrityTemplate}/>
       <Route path="/search*" component={SearchTemplate}/>
       <Route path="/profile/:id" component={ProfileTemplate}/>
