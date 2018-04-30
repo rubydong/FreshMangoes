@@ -1,6 +1,4 @@
 package com.freshmangoes.app.content.data;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.freshmangoes.app.celebrity.data.Cast;
 import com.freshmangoes.app.celebrity.data.Crew;
 import com.freshmangoes.app.common.data.Media;
