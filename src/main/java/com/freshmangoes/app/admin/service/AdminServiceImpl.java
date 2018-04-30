@@ -129,6 +129,7 @@ public class AdminServiceImpl implements AdminService {
   @Override
   public Boolean isAuthenticatedAdmin(final HttpSession session) {
     final User user = (User) session.getAttribute(Constants.USER_ID);
+    // add userservice
     return (user != null && user.getType() == UserType.ADMIN);
   }
 

@@ -34,10 +34,13 @@ public class RatingServiceImpl implements RatingService {
         rating.setContent(showRepository.findById(contentId).orElse(null));
         break;
     }
-//    metadataRepository.updateAudienceScore(contentId);
-    return ratingRepository.existsByUserId(rating.getUser().getId(), contentId) == null
-           ? ratingRepository.save(rating)
-           : null;
+
+    if(ratingRepository.existsByUserId(rating.getUser().getId(), contentId) == null) {
+      ratingRepository.save(rating);
+      metadataRepository.updateAudienceScore(contentId);
+      return rating;
+    }
+    return null;
   }
 
   public Rating editRating(final Integer userId, final Rating rating) {
@@ -48,7 +51,7 @@ public class RatingServiceImpl implements RatingService {
     existingRating.setBody(rating.getBody());
     existingRating.setScore(rating.getScore());
     ratingRepository.save(existingRating);
-//    metadataRepository.updateAudienceScore(existingRating.getContent().getId());
+    metadataRepository.updateAudienceScore(existingRating.getContent().getId());
     return existingRating;
   }
 
@@ -65,8 +68,8 @@ public class RatingServiceImpl implements RatingService {
     if (rating == null || !rating.getUser().getId().equals(userId)) {
       return;
     }
-//    metadataRepository.updateAudienceScore(rating.getContent().getId());
     ratingRepository.deleteById(ratingId);
+    metadataRepository.updateAudienceScore(rating.getContent().getId());
   }
 
   public Rating flagRating(final Integer ratingId, final String report) {
@@ -87,4 +90,5 @@ public class RatingServiceImpl implements RatingService {
   public List<Rating> getLatestRatings() {
     return ratingRepository.findLatestRatings(Constants.NUM_LATEST_REVIEWS);
   }
+
 }

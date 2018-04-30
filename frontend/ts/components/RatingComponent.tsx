@@ -63,7 +63,7 @@ export class RatingComponent extends React.Component {
     }
 
     deleteReview(reviewId) { 
-        axios.delete(window.location.origin + '/api/rating/delete/' + reviewId)
+        axios.post(window.location.origin + '/api/rating/delete/' + reviewId)
             .then(res => {
                 window.location.reload();
         })

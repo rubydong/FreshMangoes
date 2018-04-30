@@ -40,7 +40,7 @@ public class UserController {
 
   @PostMapping(Constants.CHANGE_NAME_MAPPING)
   public ResponseEntity changeDisplayName(@RequestBody final Map<String, String> body) {
-    User user = (User) session.getAttribute(Constants.USER_ID);
+    User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
       userService.updateName(user, body.get(Constants.NEW_NAME));
       return new ResponseEntity(HttpStatus.OK);
@@ -50,7 +50,7 @@ public class UserController {
 
   @PostMapping(Constants.CHANGE_PASSWORD_MAPPING)
   public ResponseEntity changePassword(@RequestBody final Map<String, String> body) {
-    User user = (User) session.getAttribute(Constants.USER_ID);
+    User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
       userService.updatePassword(user, body.get(Constants.NEW_PASSWORD));
       return new ResponseEntity(HttpStatus.OK);
@@ -60,7 +60,7 @@ public class UserController {
 
   @PostMapping(Constants.CHANGE_EMAIL_MAPPING)
   public ResponseEntity changeEmail(@RequestBody final Map<String, String> body) {
-    User user = (User) session.getAttribute(Constants.USER_ID);
+    User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
       userService.updateEmail(user, body.get(Constants.NEW_EMAIL));
       return new ResponseEntity(HttpStatus.OK);
@@ -78,7 +78,7 @@ public class UserController {
 
   @PostMapping(Constants.DELETE_ACCOUNT_MAPPING)
   public ResponseEntity deleteAccount() {
-    User user = (User) session.getAttribute(Constants.USER_ID);
+    User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
       userService.deleteAccount(user);
       session.invalidate();
@@ -90,7 +90,7 @@ public class UserController {
   @RequestMapping(value = Constants.CHANGE_PICTURE_MAPPING, headers = "content-type=multipart/*", method = RequestMethod.POST,
       consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
   public ResponseEntity editPicture(@RequestParam("myImage") final MultipartFile file) {
-    User user = (User) session.getAttribute(Constants.USER_ID);
+    User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
       if (userService.updatePicture(user, file)) {
         return new ResponseEntity(HttpStatus.OK);
@@ -118,7 +118,7 @@ public class UserController {
   public ResponseEntity applyForCritic(@RequestBody final Map<String, String> body) {
     HttpStatus status;
 
-    User user = (User) session.getAttribute(Constants.USER_ID);
+    User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
       status = userService.applyForCritic(user.getId(), body.get(Constants.BODY))
           ? HttpStatus.OK : HttpStatus.BAD_REQUEST;

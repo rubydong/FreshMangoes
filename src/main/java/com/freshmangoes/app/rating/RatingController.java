@@ -8,6 +8,7 @@ import com.freshmangoes.app.rating.service.RatingService;
 import com.freshmangoes.app.user.data.User;
 
 import com.freshmangoes.app.user.service.UserService;
+
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -15,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +38,7 @@ public class RatingController {
   public ResponseEntity addRating(@RequestBody final Map<String, String> body,
                                   @PathVariable final Integer contentId) {
     final HttpStatus status;
-    final Integer userId  = Helpers.getAuthenticatedUser(session);
+    final Integer userId = Helpers.getAuthenticatedUser(session);
     final User user = userService.getUser(userId);
 
     if (user == null) {
@@ -58,10 +58,10 @@ public class RatingController {
     return ResponseEntity.status(status).build();
   }
 
-  @DeleteMapping(Constants.DELETE_RATING_MAPPING)
+  @PostMapping(Constants.DELETE_RATING_MAPPING)
   public ResponseEntity deleteRating(@PathVariable final Integer id) {
     final HttpStatus status;
-    final Integer userId  = Helpers.getAuthenticatedUser(session);
+    final Integer userId = Helpers.getAuthenticatedUser(session);
     final User user = userService.getUser(userId);
 
     if (user == null) {
@@ -77,7 +77,7 @@ public class RatingController {
   public ResponseEntity editRating(@RequestBody final Map<String, String> body,
                                    @PathVariable final Integer ratingId) {
     final HttpStatus status;
-    final Integer userId  = Helpers.getAuthenticatedUser(session);
+    final Integer userId = Helpers.getAuthenticatedUser(session);
     final User user = userService.getUser(userId);
 
     if (user == null) {
@@ -100,7 +100,7 @@ public class RatingController {
   public ResponseEntity flagRating(@RequestBody final Map<String, String> body,
                                    @PathVariable final Integer ratingId) {
     final HttpStatus status;
-    final Integer userId  = Helpers.getAuthenticatedUser(session);
+    final Integer userId = Helpers.getAuthenticatedUser(session);
     final User user = userService.getUser(userId);
 
     if (user == null) {
