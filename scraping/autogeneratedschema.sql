@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `casted`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `casted` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `role` text,
   `celebrity_id` int(11) DEFAULT NULL,
   `content_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKeinemy663e61qd2ot9mbpvr0r` (`celebrity_id`),
   KEY `FK8jkabyrlmiucsv3oxwr9jio62` (`content_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=370587 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `celebrities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `celebrities` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `biography` text,
   `birthday` datetime DEFAULT NULL,
   `birthplace` varchar(255) DEFAULT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE `celebrities` (
   `profile_picture` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKt6n4mshm9dxvn59lehdokuf7n` (`profile_picture`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2023521 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +77,7 @@ DROP TABLE IF EXISTS `content`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `content` (
   `content_type` varchar(31) NOT NULL,
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revenue` decimal(19,2) DEFAULT NULL,
   `views` decimal(19,2) DEFAULT NULL,
   `metadata_id` int(11) DEFAULT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE `content` (
   PRIMARY KEY (`id`),
   KEY `FKiav9hhg4oip1u8qbge7jhjo7q` (`metadata_id`),
   KEY `FKths342rwi39ephvkoxsuylh41` (`summary_photo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=27300 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,7 @@ DROP TABLE IF EXISTS `content_metadata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `content_metadata` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `audience_score` double DEFAULT NULL,
   `mango_score` double DEFAULT NULL,
   `maturity_rating` varchar(255) DEFAULT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE `content_metadata` (
   `studio_network` varchar(255) DEFAULT NULL,
   `summary` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=27300 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,14 +146,14 @@ DROP TABLE IF EXISTS `crew`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `crew` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `job` text,
   `celebrity_id` int(11) DEFAULT NULL,
   `content_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKgmi569238pqg5g5ur7m6em1ml` (`celebrity_id`),
   KEY `FK9svuaa43iq4hn8hlk1e0bbmm` (`content_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=164774 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,18 +187,6 @@ CREATE TABLE `following` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `hibernate_sequence`
---
-
-DROP TABLE IF EXISTS `hibernate_sequence`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `interests`
 --
 
@@ -221,11 +209,11 @@ DROP TABLE IF EXISTS `media`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `media` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `path` varchar(255) DEFAULT NULL,
   `media_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=141959 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,7 +224,7 @@ DROP TABLE IF EXISTS `ratings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ratings` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `body` text,
   `flagged` bit(1) DEFAULT NULL,
   `report` varchar(255) DEFAULT NULL,
@@ -310,4 +298,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-29 15:30:43
+-- Dump completed on 2018-04-29 22:04:15

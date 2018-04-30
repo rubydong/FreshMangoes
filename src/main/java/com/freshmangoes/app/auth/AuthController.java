@@ -85,28 +85,34 @@ public class AuthController {
 
   @GetMapping(value = Constants.CURRENT_USER_MAPPING, produces = Constants.APPLICATION_JSON)
   public String currentUser(@RequestParam(required = false) Integer contentId) {
-    final Integer userId = Helpers.getAuthenticatedUser(session);
-    final User user = userService.getUser(userId);
+    final Integer userId;
+    final User user;
     final ObjectNode rootNode = mapper.createObjectNode();
 
-    if (user != null) {
-      rootNode.put(Constants.USER_ID, user.getId());
-      rootNode.put(Constants.USER_TYPE, user.getType().toString());
+    userId = Helpers.getAuthenticatedUser(session);
 
-      if (contentId != null) {
-        for (Content content : user.getInterestedList()) {
-          if (content.getId().equals(contentId)) {
-            rootNode.put(Constants.INTERESTED, true);
+    if (userId != null) {
+      user = userService.getUser(userId);
+
+      if (user != null) {
+        rootNode.put(Constants.USER_ID, user.getId());
+        rootNode.put(Constants.USER_TYPE, user.getType().toString());
+
+        if (contentId != null) {
+          for (Content content : user.getInterestedList()) {
+            if (content.getId().equals(contentId)) {
+              rootNode.put(Constants.INTERESTED, true);
+            }
+          }
+
+          for (Content content : user.getDisinterestedList()) {
+            if (content.getId().equals(contentId)) {
+              rootNode.put(Constants.INTERESTED, false);
+            }
           }
         }
 
-        for (Content content : user.getDisinterestedList()) {
-          if (content.getId().equals(contentId)) {
-            rootNode.put(Constants.INTERESTED, false);
-          }
-        }
       }
-
     }
 
     return rootNode.toString();
