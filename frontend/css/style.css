@@ -142,7 +142,6 @@ a,.summary h2, .filmography h4, .episode b {
 
 .spotlight-nav li{
 	margin: 0 10px;
-	
 } 
 
 @media only screen and (max-width: 875px) {
@@ -155,7 +154,7 @@ a,.summary h2, .filmography h4, .episode b {
 
 .movieshow {
 	text-align: center;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 /* spotlight page */
@@ -201,7 +200,7 @@ a,.summary h2, .filmography h4, .episode b {
 .spotlight-page-posters .movieshow {
 	width: 20%;
 	margin: 5px;
-	font-size: 12px;
+	font-size: 14px;
 }
 .spotlight-page-posters  .rating {
 	font-size: 12px;
@@ -209,7 +208,7 @@ a,.summary h2, .filmography h4, .episode b {
 
 .spotlight-page-posters img {
 	width: 150px;
-	max-height: 220px;
+	height: 200px;
 	object-fit: cover;
 }
 
@@ -586,7 +585,8 @@ h5 span {
 .icon img{
 	width: 16px;
     height: 16px;
-    margin-top: 4px;
+    margin: 10px;
+	padding: 0px;
 }
 
 .all-photos {
