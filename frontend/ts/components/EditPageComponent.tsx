@@ -1,8 +1,9 @@
 import * as React from "react";
 import axios from "axios";
 import { Page } from "../types/content";
-import { NO_USER_PHOTO } from "../../GlobalVariables";
+import { NO_USER_PHOTO, MOVIE_GENRES, TV_GENRES, GENRES_VALUES_MAP } from "../../GlobalVariables";
 import { UserType } from '../types/user';
+import { ContentType } from '../types/content';
 
 export class EditPageComponent extends React.Component {
     state: Page;
@@ -20,17 +21,34 @@ export class EditPageComponent extends React.Component {
         // })
     }
 
-    handleEditPhotos() {
+    handleUpdatePhotos() {}
+    handleUpdateCast() {}
 
+    handleChangeGenre = event => {
+        if (event.target.checked) {
+            this.state.metadata.genres.push(GENRES_VALUES_MAP[event.target.value]);
+        } else {
+            let i = this.state.metadata.genres.indexOf(event.target.value);
+            this.state.metadata.genres.splice(i, 1);
+        }
+        console.log(this.state.metadata.genres);
     }
 
     render() {
         const state = this.props['data-state'];
         const currentUser = state.currentUser;
         const metadata = this.state.metadata;
+        const genres = (this.state.type == ContentType.MOVIE ? MOVIE_GENRES : TV_GENRES).map((genre, i) => {
+            return <div className="form-check form-check-inline" key={i}>
+                <input className="form-check-input" type="checkbox" value={genre} onChange={this.handleChangeGenre}/>
+                <label className="form-check-label">{genre}</label>
+            </div>
+        });
+
         const photos = state.media.filter(photo => photo.type == 'PHOTO').map((photo, i) => {
             return <img src={photo.path} key={i}/>
         });
+        
         const cast = state.cast.map((castPerson, i) => {
             return <div className="cast-person" key={i}>
                 <img className="img-align-left" src={castPerson.celebrity.profilePicture ? castPerson.celebrity.profilePicture.path : NO_USER_PHOTO}/>
@@ -55,7 +73,10 @@ export class EditPageComponent extends React.Component {
                     
                                 Main Photo 
                                 <input className="form-control" type="file"/>
-                                
+
+                                Genres  
+                                <div className="form-control"> {genres} </div>
+                                <p/>
                                 <button className="btn"> Edit Information </button>
                             </form>
                         </div>
@@ -65,7 +86,7 @@ export class EditPageComponent extends React.Component {
                 <div id="edit-photos-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">
-                            <form onSubmit={()=>this.handleEditPhotos()}>
+                            <form onSubmit={()=>this.handleUpdatePhotos()}>
                                 <h2>Photos</h2>
                                 <div className="all-photos"> {photos} </div>
                                 { currentUser && currentUser.userType == UserType.ADMIN ? <button className="btn"> Update Photos </button> : '' }
@@ -77,7 +98,7 @@ export class EditPageComponent extends React.Component {
                 <div id="edit-cast-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content casts">
-                            <form onSubmit={()=>this.handleEditPhotos()}>
+                            <form onSubmit={()=>this.handleUpdateCast()}>
                                 <h2>Cast</h2>
                                 <div className="flex-center"> {cast} </div>
                                 { currentUser && currentUser.userType == UserType.ADMIN ? <button className="btn"> Update Cast </button> : '' }
