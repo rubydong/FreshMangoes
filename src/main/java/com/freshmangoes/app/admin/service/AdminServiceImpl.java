@@ -188,13 +188,14 @@ public class AdminServiceImpl implements AdminService {
           showRepository.save(show);
           break;
         case EPISODE:
-          Season season = seasonRepository.findById(root.path("seasonId").asInt()).orElse(null);
-          if (season == null) {
+          Show show2 = showRepository.findById(root.path("showId").asInt()).orElse(null);
+          Integer actualSeason = root.path("seasonId").asInt() - 1;
+          if (show2 == null || actualSeason < 0 || actualSeason > show2.getSeasons().size()-1) {
             return null;
           }
           content = episodeRepository.save((Episode) content);
-          season.getEpisodes().add((Episode) content);
-          seasonRepository.save(season);
+          show2.getSeasons().get(actualSeason).getEpisodes().add((Episode) content);
+          showRepository.save(show2);
           break;
       }
 

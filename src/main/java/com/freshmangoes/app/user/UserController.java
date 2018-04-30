@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class UserController {
@@ -111,7 +112,15 @@ public class UserController {
 
   @GetMapping(Constants.GET_ALL_CRITICS)
   public List<User> getAllCritics() {
-    return userService.getCritics();
+    List<User> critics = userService.getCritics();
+    for (User u : critics) {
+      u.setInterestedList(null);
+      u.setDisinterestedList(null);
+      u.setFollowing(null);
+      u.setFollowers(null);
+      u.setRatings(u.getRatings().stream().filter(rating -> rating.getScore() == 100).collect(Collectors.toList()));
+    }
+    return critics;
   }
 
   @PostMapping(Constants.APPLY_FOR_CRITIC)
