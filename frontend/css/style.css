@@ -66,6 +66,10 @@ a,.summary h2, .filmography h4, .episode b {
 	margin: 40px 0;
 }
 
+.margin-top {
+	margin-top: 40px;
+}
+
 .tiny-margin-right {
 	margin-right: 2px;
 }
@@ -497,7 +501,7 @@ iframe {
 }
 
 .interests {
-	padding-top: 2%;
+	padding: 15px;
 }
 
 .interests span {
