@@ -13,9 +13,50 @@ export class EditPageComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.props['data-state'];
+        this.state.tempSummaryPhoto = null;
     }
 
     handleEditInfo (id) {
+        // check image and upload if necessary
+        // let summaryPhoto = null;
+        // if (this.state.summaryPhoto != null) {
+        //     let formData = new FormData();
+        //     formData.append("myImage", this.state.summaryPhoto);
+        //     console.log("Posting to upload summaryPhoto");
+        //     axios.post(window.location.origin + "/api/admin/upload", formData)
+        //         .then(res => {
+        //             console.log("Completed Request " + res);
+        //         })
+        //     summaryPhoto = new Media()
+        //     summaryPhoto.path = FILE_STORAGE_BASE_DIR + this.state.summaryPhoto.name;
+        //     summaryPhoto.type = MediaType.PHOTO;
+        // }
+        let summaryPhoto = "";
+        if (this.state.tempSummaryPhoto != null) {
+            let formData = new FormData();
+            formData.append("myImage", this.state.tempSummaryPhoto);
+            axios.post(window.location.origin + "/api/admin/upload", formData)
+                .then(res => {
+                    console.log("Completed Request " + res);
+                })
+            summaryPhoto = FILE_STORAGE_BASE_DIR + this.state.tempSummaryPhoto.name;
+        }
+
+        const requestBody = {
+            type: this.state.type,
+            summaryPhoto: summaryPhoto,
+            name: this.state.metadata.name,
+            summary: this.state.metadata.summary,
+            genre: this.state.metadata.genres
+        }
+
+        // /admin/update/summary/{contentId}
+
+        axios.post(window.location.origin + "/api/admin/update/summary/" + this.state.id, requestBody)
+            .then(res => {
+                console.log("Completed Request " + res);
+                window.location.reload();
+            })
     }
 
     handleUploadPhoto = event => {
@@ -25,6 +66,16 @@ export class EditPageComponent extends React.Component {
 
     handleDeletePhoto(id) {
         
+    }
+
+    handleNameChange = event => {
+        this.state.metadata.name = event.target.value;
+        this.forceUpdate();
+    }
+
+    handleSummaryChange = event => {
+        this.state.metadata.summary = event.target.value;
+        this.forceUpdate();
     }
 
     handleUpdateCast() {}
@@ -75,10 +126,10 @@ export class EditPageComponent extends React.Component {
                             <form onSubmit={()=>this.handleEditInfo(state.id)}>
                                 <h2> Edit Information </h2>
                                 Title
-                                <input type="text" className="form-control" value={state.metadata.name} onChange={(event) => this.state.metadata.name = event.target.value}/>
+                                <input type="text" className="form-control" value={this.state.metadata.name} onChange={this.handleNameChange}/>
                     
                                 Summary
-                                <textarea className="form-control" value={state.metadata.summary} onChange={(event) => this.state.metadata.summary = event.target.value}/>
+                                <textarea className="form-control" value={this.state.metadata.summary} onChange={this.handleSummaryChange}/>
                     
                                 Main Photo <br/>
                                 <span className="form-control">
@@ -106,6 +157,8 @@ export class EditPageComponent extends React.Component {
                     </div>    
                 </div>
 
+
+                                
                 <div id="edit-cast-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content casts">

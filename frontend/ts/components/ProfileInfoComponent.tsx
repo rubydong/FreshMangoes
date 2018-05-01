@@ -142,7 +142,7 @@ export class ProfileInfoComponent extends React.Component {
                             </form>
 
                             <span className="center-text">OR</span>
-                            <button type="submit" className="btn btn primary" onClick={this.deleteAccount}> Delete
+                            <button type="submit" className="btn btn primary" onClick={() => { if (window.confirm("Are you sure you want to delete this account?")) this.deleteAccount() }}> Delete
                                 Account
                             </button>
 
