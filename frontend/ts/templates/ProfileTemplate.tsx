@@ -53,7 +53,7 @@ export class ProfileTemplate extends React.Component {
             <div className="profile page-background-color">
                 <hr className="header-hr"/>
                 <div className="content">
-                    {this.state.displayName == "" ? <h2>There is no user here.</h2> :
+                    {this.state.displayName == "" ? '' :
                     <div>
                         <ProfileInfoComponent data-state={this.state}/>
                         <div className="right">

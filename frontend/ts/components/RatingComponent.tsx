@@ -93,7 +93,7 @@ export class RatingComponent extends React.Component {
                     { this.state.currentUser == rating.user.id || this.state.currentUserType == 'ADMIN'
                     ? <span className="align-right">
                         <img src={EDIT_ICON} data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
-                        <img src={TRASH_ICON} onClick={() => this.deleteReview(rating.id)}/>
+                        <img src={TRASH_ICON} onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteReview(rating.id) }}/>
                       </span> 
                     : <span className="align-right"> <img src="/../../images/flag.png" data-toggle="modal" data-target="#report-rating-modal" onClick={()=>this.state.currentReviewId=rating.id}/> </span>
                     }
