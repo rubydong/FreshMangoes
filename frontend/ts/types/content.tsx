@@ -48,7 +48,9 @@ export class Content {
   episodes: Episode[];
   seasons: Season[];
   currentUser: CurrentUser;
-  
+  numberOfSeasons: number;
+  numberOfEpisodes: number;
+
   constructor() {
     this.id = 0;
     this.type = null;
@@ -63,6 +65,8 @@ export class Content {
     this.episodes = [];
     this.seasons = [];
     this.currentUser = new CurrentUser();
+    this.numberOfEpisodes = 0;
+    this.numberOfSeasons = 0;
   }
 }
 
@@ -77,7 +81,6 @@ export class Season extends Content {
 
   constructor() {
     super();
-    
   }
 }
 
@@ -86,7 +89,6 @@ export class Show extends Content {
 
   constructor() {
     super();
-    
   }
 }
 
@@ -106,6 +108,20 @@ export class Search {
   }
 }
 
+export class SearchComponentType {
+  title: string;
+  currentPage: number;
+  content: any[];
+  type: string;
+
+  constructor() {
+    this.title = "";
+    this.currentPage = 0;
+    this.content = [];
+    this.type = "";
+  }
+}
+
 export class Spotlight {
   posters: Media[];
   openingThisWeek: Movie[];
@@ -120,7 +136,7 @@ export class Spotlight {
   selectedContent: Content[];
   selectedMovies: Movie[];
   selectedShows: Show[];
-  selectedTitle: string; 
+  selectedTitle: string;
 
   constructor() {
     this.posters = [];

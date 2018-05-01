@@ -48,7 +48,7 @@ export class DetailsComponent extends React.Component {
             if (c.job == 'Director') directors.push(c.celebrity.name);
             else if (c.job == 'Screenplay') writers.push(c.celebrity.name);
             else if (c.job == 'Executive Producer') producers.push(c.celebrity.name);
-        });
+        })
 
         const directorsFinal = directors.map((d, i) => {
             return <span> {d}{i < directors.length - 1 ? ', ' : ''}</span>
@@ -69,10 +69,8 @@ export class DetailsComponent extends React.Component {
                 {currentUser && currentUser.userType == UserType.ADMIN 
                 ? <span className="rating">
                     <b>Edit Information:</b>  <img src={EDIT_ICON} data-toggle="modal" data-target="#edit-info-modal"/> <br/>
-                    <b>Delete Page:</b> <button onClick={() => {
-                        if (window.confirm("Are you sure you want to delete this content?"))
-                            this.deleteContent() }}>
-                        <img src={TRASH_ICON}/></button><br/>
+                    <b>Delete Page:</b>
+                        <img src={TRASH_ICON} onClick={() => { if (window.confirm("Are you sure you want to delete this content?")) this.deleteContent() }}/><br/>
                   </span>
                 : ''}
 

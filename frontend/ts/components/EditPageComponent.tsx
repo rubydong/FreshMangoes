@@ -157,6 +157,8 @@ export class EditPageComponent extends React.Component {
                     </div>    
                 </div>
 
+
+                                
                 <div id="edit-cast-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content casts">

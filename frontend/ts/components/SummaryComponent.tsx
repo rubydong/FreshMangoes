@@ -9,17 +9,14 @@ export class SummaryComponent extends React.Component {
         const list = [];
         const type = this.props['data-type'];
 
-        if (this.props['data-list']) {
-            for (let i = 1; i <= this.props['data-list'].length; i++) {
-                list.push(
-                    <option key={i}> 
-                        <a href={"./" + type + "/" + i}>
-                            {type==ContentType.SEASON ? 'Season ' + i : 'Episode ' + i}
-                        </a>
-                    </option>
-                );
-            }
+        for (let i = 1; i <= this.props['data-list-count']; i++) {
+            list.push(
+                <option key={i} value={"./" + i}> 
+                    {type==ContentType.SEASON ? 'Season ' + i : 'Episode ' + i}
+                </option>
+            );
         }
+
 
         return (
             <div>        
@@ -29,7 +26,7 @@ export class SummaryComponent extends React.Component {
                 </div>
 
                 <div className="plot">
-                    { list.length != 0 ? <select className="form-control"> {list} </select> : ''} 
+                    { list.length != 0 ? <select className="form-control" onChange={(event) => window.location.assign(event.target.value)}> {list} </select> : ''} 
                     <b>
                         MangoMeter
                         <span className="med-margin-right"></span>
