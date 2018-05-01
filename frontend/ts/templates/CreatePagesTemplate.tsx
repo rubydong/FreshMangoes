@@ -68,9 +68,9 @@ export class CreatePagesTemplate extends React.Component {
                     .then(res => {
                         console.log("Completed Request " + res);
                     })
-                c2['profilePicture'] =  {
+                c2.celebrity['profilePicture'] =  {
                     path: FILE_STORAGE_BASE_DIR + c.profilePictureFile.name,
-                        type: MediaType.PHOTO
+                    type: MediaType.PHOTO
                 }
 
             }
