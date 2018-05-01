@@ -28,7 +28,7 @@ export class ContentTemplate extends React.Component {
             this.setState({currentUser : currentUser.data});
             console.log(this.state);
         } catch (err) {
-            console.log(err);
+            window.location.assign('/404');
         }
     }
 
@@ -37,7 +37,7 @@ export class ContentTemplate extends React.Component {
         <div className="no-background-image">
             <hr className="header-hr"/>
             <div className="content">
-                {this.state.metadata.name == "" ? <h2>There is nothing here.</h2> :
+                {this.state.metadata.name == "" ? '' :
                 <div>
                     <div className="summary">
                         <EditPageComponent data-state={this.state}/>
@@ -55,7 +55,7 @@ export class ContentTemplate extends React.Component {
                     {this.state.type == ContentType.SHOW ? <SeasonEpisodeListComponent data-seasons={this.state.seasons}/> : ''}
                     {this.state.type == ContentType.SEASON ? <SeasonEpisodeListComponent data-episodes={this.state.episodes}/> : ''}
                     {this.state.type == ContentType.SHOW || this.state.type == ContentType.MOVIE 
-                    ? <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id}/>
+                    ? <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id} data-title="Reviews"/>
                     : ''}
                 </div>
                 }

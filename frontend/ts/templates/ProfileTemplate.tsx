@@ -14,18 +14,20 @@ export class ProfileTemplate extends React.Component {
         super(props);
         this.state = new User();
     }
-
-    componentWillMount() {
-        let currentComponent = this;
-        axios.all([
-            axios.get(window.location.origin + '/api' + window.location.pathname),
-            axios.get(window.location.origin + '/api/getCurrentUser')
-        ]).then(axios.spread(function(profile, currentUser) {
-            currentComponent.state.currentUser = currentUser.data.userId;
-            currentComponent.setState(profile.data); 
-        }));
-        
+    async componentWillMount() {
+        try {
+            const profilePromise = axios(window.location.origin + '/api' + window.location.pathname);
+            const currentUserPromise = axios(window.location.origin + '/api/getCurrentUser');
+            const [content, currentUser] = await Promise.all([profilePromise, currentUserPromise]);
+            this.setState(content.data);
+            this.setState({currentUser : currentUser.data});
+            console.log(this.state);
+        } catch (err) {
+            window.location.assign('/404');
+        }
     }
+
+
 
     render() {
         let myData = [];
@@ -33,18 +35,17 @@ export class ProfileTemplate extends React.Component {
             myData = [].concat(this.state.ratings)
                 .sort((b, a) => a.score - b.score);
         }
-        let count = 0;
         for (let i = 0; i < myData.length; i++) {
-            if (count < 2 && myData[i].score >= 80) {
+            if (myData[i].score >= 80) {
                 this.state.highestRatings.push(myData[i]);
-                count++;
+                break;
             }
         }
-        count = 0;
+
         for (let i = myData.length - 1; i >= 0; i--) {
-            if (count < 2 && myData[i].score <= 40) {
+            if (myData[i].score <= 40) {
                 this.state.lowestRatings.push(myData[i]);
-                count++;
+                break;
             }
         }
 
@@ -56,11 +57,15 @@ export class ProfileTemplate extends React.Component {
                     <div>
                         <ProfileInfoComponent data-state={this.state}/>
                         <div className="right">
-                            <RatingComponent data-ratings={this.state.ratings} data-id={this.state.id} data-rating-type="profile"/>
-                            <RatingComponent data-ratings={this.state.highestRatings} data-id={this.state.id} data-rating-type="profile"/>
-                            <RatingComponent data-ratings={this.state.lowestRatings} data-id={this.state.id} data-rating-type="profile"/>
-                            <InterestsListComponent data-title='Interested' data-content={this.state.interestedList} data-current-user={this.state.currentUser}/>
-                            <InterestsListComponent data-title='Not Interested' data-content={this.state.disinterestedList} data-current-user={this.state.currentUser}/>
+                            {this.state.currentUser.userType == "CRITIC" ?
+                            <div>
+                                <RatingComponent data-ratings={this.state.highestRatings.slice(0,1)} data-id={this.state.id} data-rating-type="profile" data-title="Best Rating"/>
+                                <RatingComponent data-ratings={this.state.lowestRatings.slice(0,1)} data-id={this.state.id} data-rating-type="profile" data-title="Worst Rating"/>
+                            </div>
+                            : ''}
+                            <RatingComponent data-ratings={this.state.ratings} data-id={this.state.id} data-rating-type="profile" data-title="Reviews"/>
+                            <InterestsListComponent data-title='Interested' data-content={this.state.interestedList} data-current-user={this.state.currentUser.userId}/>
+                            <InterestsListComponent data-title='Not Interested' data-content={this.state.disinterestedList} data-current-user={this.state.currentUser.userId}/>
                         </div>
                         <div className="clear-both padding-top"></div>
                     </div>

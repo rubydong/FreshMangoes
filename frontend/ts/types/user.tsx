@@ -23,7 +23,7 @@ export class User {
     following: User [];
     interestedList: Content[];
     disinterestedList: Content[];
-    currentUser: number;
+    currentUser: CurrentUser;
     ratings: Rating[];
     highestRatings: Rating[];
     lowestRatings: Rating[];
@@ -38,7 +38,7 @@ export class User {
         this.following = [];
         this.interestedList = [];
         this.disinterestedList = [];
-        this.currentUser = -1;
+        this.currentUser = new CurrentUser();
         this.ratings = [];
         this.highestRatings = [];
         this.lowestRatings = [];

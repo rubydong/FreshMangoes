@@ -12,6 +12,7 @@ export const NO_CONTENT_PHOTO = "/./images/nocontent.png";
 export const HOME_PAGE_POSTER = "/./images/greatestshowmanbanner.jpg";
 export const TRASH_ICON = "/./images/trash.png";
 export const EDIT_ICON = "/./images/pencil.png";
+export const LOADING = "/./images/loading.gif";
 export const FILE_STORAGE_BASE_DIR = "/Users/Jack/Desktop/CSE308Project/photos/";
 
 export const GENRES_MAP = {
