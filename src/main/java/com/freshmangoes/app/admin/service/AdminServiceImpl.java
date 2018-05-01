@@ -75,28 +75,6 @@ public class AdminServiceImpl implements AdminService {
   private ObjectMapper objectMapper;
 
   @Override
-  public Boolean createMovieDetailPage(final Movie movie) {
-    movieRepository.save(movie);
-    return null;
-  }
-
-  @Override
-  public Boolean createShowDetailPage(final Show show) {
-    showRepository.save(show);
-    return null;
-  }
-
-  @Override
-  public Boolean updateMovieDetailPage(final Movie movie) {
-    return null;
-  }
-
-  @Override
-  public Boolean updateShowDetailPage(final Show show) {
-    return null;
-  }
-
-  @Override
   public void deleteDetailPage(final Integer contentId, ContentType type) {
     switch (type) {
       case MOVIE:
@@ -170,6 +148,8 @@ public class AdminServiceImpl implements AdminService {
       }
 
       content.setMetadata(metadataRepository.save(content.getMetadata()));
+      List<Cast> unsavedCast = content.getCast();
+      content.setCast(null);
 
       switch (contentType) {
         case MOVIE:
@@ -190,7 +170,7 @@ public class AdminServiceImpl implements AdminService {
         case EPISODE:
           Show show2 = showRepository.findById(root.path("showId").asInt()).orElse(null);
           Integer actualSeason = root.path("seasonId").asInt() - 1;
-          if (show2 == null || actualSeason < 0 || actualSeason > show2.getSeasons().size()-1) {
+          if (show2 == null || actualSeason < 0 || actualSeason > show2.getSeasons().size() - 1) {
             return null;
           }
           content = episodeRepository.save((Episode) content);
@@ -201,8 +181,6 @@ public class AdminServiceImpl implements AdminService {
 
       // do celebrities now
       // check celebrity id, if it exists find and add into cast, if not create new celebrity
-      List<Cast> unsavedCast = content.getCast();
-      content.setCast(new ArrayList<>());
       for (Cast cast : unsavedCast) {
         Celebrity celebrity = cast.getCelebrity();
         if (celebrity.getId() == -1) {
@@ -211,23 +189,20 @@ public class AdminServiceImpl implements AdminService {
           if (celebrity.getProfilePicture() != null) {
             celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
           }
-          content
-              .getCast()
-              .add(castedRepository.save(Cast
-                  .builder()
-                  .content(content)
-                  .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build()));
+          castedRepository.save(
+           Cast
+            .builder()
+            .content(content)
+            .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build());
         } else {
           celebrity = celebrityRepository.findById(celebrity.getId()).orElse(null);
           if (celebrity != null) {
-            content
-                .getCast()
-                .add(castedRepository.save(
-                    Cast
-                        .builder()
-                        .content(content)
-                        .celebrity(celebrity)
-                        .role(cast.getRole()).build()));
+            castedRepository.save(
+             Cast
+              .builder()
+              .content(content)
+              .celebrity(celebrity)
+              .role(cast.getRole()).build());
           }
         }
       }

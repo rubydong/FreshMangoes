@@ -15,14 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface AdminService {
-  Boolean createMovieDetailPage(Movie movie);
-
-  Boolean createShowDetailPage(Show show);
-
-  Boolean updateMovieDetailPage(Movie movie);
-
-  Boolean updateShowDetailPage(Show show);
-
   void deleteDetailPage(Integer contentId, ContentType type);
 
   List<Rating> getReport();
