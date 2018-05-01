@@ -83,7 +83,7 @@ export class DetailsComponent extends React.Component {
                   </div>
                 : <div>
                     {metadata.network ? <div><b>Network:</b> {metadata.network}</div> : ''}
-                    <b>Premiere Date:</b> {parseDate(metadata.releaseDate)} 
+                    {metadata.releaseDate ? <div> <b>Premiere Date:</b> {parseDate(metadata.releaseDate)} </div> : ''}
                   </div>
                 }
                 

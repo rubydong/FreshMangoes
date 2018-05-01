@@ -56,9 +56,9 @@ export class Header extends React.Component {
                             Admin
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="/create">Create Page</a>
-                                <a className="dropdown-item" href="/reports">View Reports</a>
-                                <a className="dropdown-item" href="/applications">View Critic Applications</a>
+                                <a className="nav-link dropdown-item" href="/create">Create Page</a>
+                                <a className="nav-link dropdown-item" href="/reports">View Reports</a>
+                                <a className="nav-link dropdown-item" href="/applications">View Critic Applications</a>
                             </div>
                         </li>
                         : ''
