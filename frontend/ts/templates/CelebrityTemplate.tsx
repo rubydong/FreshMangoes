@@ -24,7 +24,7 @@ export class CelebrityTemplate extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="no-background-image">
                 <hr className="header-hr"/>
                 <div className="content" id="celebrity">
                     <CelebrityInfoComponent data-state={this.state}/>

@@ -1,16 +1,17 @@
 import * as React from "react";
 import axios from "axios";
-import { Page } from "../types/content";
-import { NO_USER_PHOTO, MOVIE_GENRES, TV_GENRES, GENRES_VALUES_MAP } from "../../GlobalVariables";
+import { Content } from "../types/content";
+import { NO_USER_PHOTO, MOVIE_GENRES, TV_GENRES, GENRES_MAP, GENRES_VALUES_MAP } from "../../GlobalVariables";
+import { parseMedia } from "../../HelperFunctions";
 import { UserType } from '../types/user';
 import { ContentType } from '../types/content';
 
 export class EditPageComponent extends React.Component {
-    state: Page;
+    state: Content;
 
     constructor(props) {
         super(props);
-        this.state = new Page();
+        this.state = this.props['data-state'];
     }
 
     handleEditInfo (id) {
@@ -26,12 +27,15 @@ export class EditPageComponent extends React.Component {
 
     handleChangeGenre = event => {
         if (event.target.checked) {
+            console.log("i'm pushing...... " + event.target.value);
             this.state.metadata.genres.push(GENRES_VALUES_MAP[event.target.value]);
         } else {
-            let i = this.state.metadata.genres.indexOf(event.target.value);
+            console.log("i'm deleting...... " + event.target.value);
+            let i = this.state.metadata.genres.indexOf(GENRES_VALUES_MAP[event.target.value]);
             this.state.metadata.genres.splice(i, 1);
         }
         console.log(this.state.metadata.genres);
+        this.forceUpdate();
     }
 
     render() {
@@ -40,7 +44,8 @@ export class EditPageComponent extends React.Component {
         const metadata = this.state.metadata;
         const genres = (this.state.type == ContentType.MOVIE ? MOVIE_GENRES : TV_GENRES).map((genre, i) => {
             return <div className="form-check form-check-inline" key={i}>
-                <input className="form-check-input" type="checkbox" value={genre} onChange={this.handleChangeGenre}/>
+                <input className="form-check-input" type="checkbox" value={genre} checked={this.state.metadata.genres.indexOf(GENRES_VALUES_MAP[genre]) != -1}
+                       onChange={this.handleChangeGenre}/>
                 <label className="form-check-label">{genre}</label>
             </div>
         });
@@ -71,9 +76,11 @@ export class EditPageComponent extends React.Component {
                                 Summary
                                 <textarea className="form-control" value={state.metadata.summary} onChange={(event) => this.state.metadata.summary = event.target.value}/>
                     
-                                Main Photo 
-                                <input className="form-control" type="file"/>
-
+                                Main Photo <br/>
+                                <span className="form-control">
+                                    <img className="summary-photo" src={parseMedia(this.state.summaryPhoto)}/>
+                                    <input type="file"/>
+                                </span>
                                 Genres  
                                 <div className="form-control"> {genres} </div>
                                 <p/>
@@ -106,10 +113,6 @@ export class EditPageComponent extends React.Component {
                         </div>
                     </div>    
                 </div>
-
-
-
-                
             </div>
         )
     }

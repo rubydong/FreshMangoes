@@ -92,7 +92,7 @@ def insert_content(content_metadata, content_type, content_credits, content_deta
                    content_videos):
 
     photos = []
-    photos += [BASE_PHOTO_URL + backdrop["file_path"] for backdrop in content_photos.get("backdrop", [])]
+    photos += [BASE_PHOTO_URL + backdrop["file_path"] for backdrop in content_photos.get("backdrops", [])]
     photos += [BASE_PHOTO_URL + still["file_path"] for still in content_photos.get("stills", [])]
 
     videos = []

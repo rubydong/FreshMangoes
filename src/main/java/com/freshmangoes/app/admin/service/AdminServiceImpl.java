@@ -216,13 +216,13 @@ public class AdminServiceImpl implements AdminService {
   @Override
   public List<Application> getAllPotentialCritics() {
     return userRepository.getAllPotentialCritics()
-     .stream()
-     .map(user -> Application
-      .builder()
-      .user(user)
-      .statement(userRepository.getCriticApplicationStatement(user.getId()))
-      .build())
-     .collect(Collectors.toList());
+        .stream()
+        .map(user -> Application
+            .builder()
+            .user(user)
+            .statement(userRepository.getCriticApplicationStatement(user.getId()))
+            .build())
+        .collect(Collectors.toList());
   }
 
   @Override

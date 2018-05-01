@@ -97,7 +97,7 @@ public class User {
   @ManyToMany(cascade = CascadeType.REMOVE)
   private List<Content> disinterestedList;
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
   private List<Rating> ratings;
 
   @JsonIgnore
