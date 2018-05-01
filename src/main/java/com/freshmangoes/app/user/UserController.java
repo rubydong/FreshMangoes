@@ -38,13 +38,12 @@ public class UserController {
   public User getProfile(@PathVariable final int userId) {
     Integer currentUserId = (Integer) session.getAttribute(Constants.USER_ID);
     User user = userService.getUser(userId);
-    if (user.getId().equals(currentUserId)) {
-      return user;
-    }
-    if (user.getIsPrivate()) {
+    if (user == null) {
       return null;
     }
-    userService.updateViews(user, user.getViews().add(BigInteger.ONE));
+    if (!user.getId().equals(currentUserId)) {
+      userService.updateViews(user, user.getViews().add(BigInteger.ONE));
+    }
     return user;
   }
 

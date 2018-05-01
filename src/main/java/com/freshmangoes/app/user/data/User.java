@@ -95,7 +95,7 @@ public class User {
       inverseJoinColumns = @JoinColumn(
           name = "content_id"
       ))
-  @ManyToMany(cascade = CascadeType.REMOVE)
+  @ManyToMany(cascade = CascadeType.ALL)
   @JsonIgnoreProperties({"media", "ratings", "cast", "crew", "revenue", "views"})
   private List<Content> disinterestedList;
 
