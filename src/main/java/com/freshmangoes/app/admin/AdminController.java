@@ -53,13 +53,32 @@ public class AdminController {
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_SUMMARY_MAPPING)
   public Content updateDetailPageSummmary(@PathVariable final Integer contentId,
                                           @RequestBody final String body) {
-    System.out.println("########################## " + body);
-    return adminService.editContentSummary(body, contentId);
+    Content content = null;
+    if (adminService.isAuthenticatedAdmin(session)) {
+      content = adminService.editContentSummary(body, contentId);
+    }
+    return content;
+  }
+
+  @DeleteMapping(Constants.ADMIN_DELETE_MEDIA_MAPPING)
+  public ResponseEntity deleteMedia(@PathVariable final String contentType,
+                                    @PathVariable final Integer contentId,
+                                    @PathVariable final Integer mediaId) {
+
+    final HttpStatus status;
+
+    if (adminService.isAuthenticatedAdmin(session)) {
+      status = HttpStatus.OK;
+      adminService.deleteMedia(contentId, ContentType.valueOf(contentType), mediaId);
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+    return ResponseEntity.status(status).build();
   }
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_MEDIA_MAPPING)
   public Content updateDetailPageMedia(@PathVariable final Integer contentId,
-                                          @RequestBody final Map<String, String> body) {
+                                       @RequestBody final String body) {
     return null;
   }
 

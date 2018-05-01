@@ -107,10 +107,11 @@ export class ProfileInfoComponent extends React.Component {
 
     render() {
         const state = this.props['data-state'];
-        const sameUser = ("/profile/" + state.currentUser) == window.location.pathname;
+        console.log(state);
+        const sameUser = ("/profile/" + state.currentUser.userId) == window.location.pathname;
         let alreadyFollowed = false;
         for (let i = 0; i < state.followers.length; i++) {
-            if (state.followers[i].id == state.currentUser) {
+            if (state.followers[i].id == state.currentUser.userId) {
                 alreadyFollowed = true;
                 break;
             }
@@ -147,9 +148,12 @@ export class ProfileInfoComponent extends React.Component {
                                 <input type="text" className="form-control" onChange={this.handleEmailChange}/>
                                 New Password
                                 <input type="password" className="form-control" onChange={this.handlePasswordChange}/>
-                                Privacy Settings
-                                <input type="radio" value="Everyone" name="privacy" onChange={this.handlePrivacyChange}/> Show to Everyone
-                                <input type="radio" value="Me" name="privacy" onChange={this.handlePrivacyChange}/> Only Me
+                                Privacy Settings 
+                                <div className="form-control">
+                                    <input type="radio" value="Everyone" name="privacy" onChange={this.handlePrivacyChange}/> Show to Everyone
+                                    <span className="med-margin-right"/>
+                                    <input type="radio" value="Me" name="privacy" onChange={this.handlePrivacyChange}/> Only Me
+                                </div>
                                 <br/>
                                 Confirm Changes With Your Old Password
                                 <input type="password" className="form-control"

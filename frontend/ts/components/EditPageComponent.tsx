@@ -17,20 +17,6 @@ export class EditPageComponent extends React.Component {
     }
 
     handleEditInfo (id) {
-        // check image and upload if necessary
-        // let summaryPhoto = null;
-        // if (this.state.summaryPhoto != null) {
-        //     let formData = new FormData();
-        //     formData.append("myImage", this.state.summaryPhoto);
-        //     console.log("Posting to upload summaryPhoto");
-        //     axios.post(window.location.origin + "/api/admin/upload", formData)
-        //         .then(res => {
-        //             console.log("Completed Request " + res);
-        //         })
-        //     summaryPhoto = new Media()
-        //     summaryPhoto.path = FILE_STORAGE_BASE_DIR + this.state.summaryPhoto.name;
-        //     summaryPhoto.type = MediaType.PHOTO;
-        // }
         let summaryPhoto = "";
         if (this.state.tempSummaryPhoto != null) {
             let formData = new FormData();
@@ -52,7 +38,7 @@ export class EditPageComponent extends React.Component {
 
         // /admin/update/summary/{contentId}
 
-        axios.post(window.location.origin + "/api/admin/update/summary/" + this.state.id, requestBody)
+        axios.post(window.location.origin + "/api/admin/update/summary/" + id, requestBody)
             .then(res => {
                 console.log("Completed Request " + res);
                 window.location.reload();
@@ -64,8 +50,16 @@ export class EditPageComponent extends React.Component {
         //axios call here for uploading......
     }
 
-    handleDeletePhoto(id) {
-        
+//     this.setState({castNum: this.state.castNum - 1});
+// castMember.splice(i, 1);
+// this.state.cast.splice(i, 1);
+    handleDeletePhoto = (photos, i, id) => {
+        axios.delete(window.location.origin + "/api/admin/delete/media/" + this.state.type.toString() + "/" + this.state.id + "/" + id)
+            .then(res => {
+                console.log("Completed Request " + res);
+            })
+        photos.splice(i, 1);
+        this.forceUpdate();
     }
 
     handleNameChange = event => {
@@ -90,6 +84,11 @@ export class EditPageComponent extends React.Component {
         this.forceUpdate();
     }
 
+    handleMediaChange = event => {
+        console.log('here');
+        window.location.reload();
+    }
+
     render() {
         const state = this.props['data-state'];
         const currentUser = state.currentUser;
@@ -105,7 +104,7 @@ export class EditPageComponent extends React.Component {
         const photos = state.media.filter(photo => photo.type == 'PHOTO').map((photo, i) => {
             return <div className="search-item">
                 <img className="no-padding" src={photo.path}/> 
-                { currentUser && currentUser.userType == UserType.ADMIN ? <span onClick={() => this.handleDeletePhoto(photo.id)}> <div className="x">X</div></span> : ''}
+                { currentUser && currentUser.userType == UserType.ADMIN ? <span onClick={() => this.handleDeletePhoto(state.media, i, photo.id)}> <div className="x">X</div></span> : ''}
             </div>
         });
         
@@ -153,6 +152,8 @@ export class EditPageComponent extends React.Component {
                                 <input type="file" className="form-control" onChange={(event) => this.state.tempPhoto = event.target.files[0]}/> 
                             : ''}
                             <div className="form-control flex-center"> {photos} </div>
+                            <p/>
+                            <button className="btn" onClick={this.handleMediaChange}> Save Changes </button>
                         </div>
                     </div>    
                 </div>
