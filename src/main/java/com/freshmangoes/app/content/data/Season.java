@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -43,6 +44,7 @@ public class Season extends Content {
   )
   private Show show;
 
+
   @OneToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "Season_Episodes",
@@ -52,6 +54,9 @@ public class Season extends Content {
       @JoinColumn(name = "episode_id")
   )
   private List<Episode> episodes;
+
+  @Transient
+  private Integer numberOfSeasons;
 
   @Builder
   public Season(Integer id,

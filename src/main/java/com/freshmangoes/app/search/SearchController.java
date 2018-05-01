@@ -14,8 +14,10 @@ public class SearchController {
   @Autowired
   private SearchService searchService;
 
-  @GetMapping(Constants.SEARCH_MAPPING)
-  public SearchResult doGet(@RequestParam("query") final String searchQuery) {
-    return searchService.searchByKeyword(searchQuery);
+  @GetMapping(Constants.SEARCH_ALL_MAPPING)
+  public SearchResult searchAll(@RequestParam final String query,
+                                @RequestParam(defaultValue = "0") final Integer first,
+                                @RequestParam(defaultValue = "2147483647") final Integer max) {
+    return searchService.searchAll(query, first, max);
   }
 }
