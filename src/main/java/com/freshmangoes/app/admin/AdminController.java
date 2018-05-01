@@ -52,8 +52,9 @@ public class AdminController {
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_SUMMARY_MAPPING)
   public Content updateDetailPageSummmary(@PathVariable final Integer contentId,
-                                          @RequestBody final Map<String, String> body) {
-    return null;
+                                          @RequestBody final String body) {
+    System.out.println("########################## " + body);
+    return adminService.editContentSummary(body, contentId);
   }
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_MEDIA_MAPPING)

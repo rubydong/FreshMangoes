@@ -32,4 +32,6 @@ public interface AdminService {
   User approveUserToCritic(Integer userId);
 
   String uploadMedia(MultipartFile file);
+
+  Content editContentSummary(String json, Integer contentId);
 }
