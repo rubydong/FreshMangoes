@@ -5,7 +5,9 @@ import { NO_USER_PHOTO, MOVIE_GENRES, TV_GENRES, GENRES_MAP, GENRES_VALUES_MAP, 
 import { parseMedia } from "../../HelperFunctions";
 import { UserType } from '../types/user';
 import { ContentType } from '../types/content';
+import { Celebrity } from '../types/celebrity';
 import {Media, MediaType} from "../types/media";
+import {CreateCast} from "../types/celebrity";
 
 export class EditPageComponent extends React.Component {
     state: EditPage;
@@ -72,7 +74,18 @@ export class EditPageComponent extends React.Component {
         this.forceUpdate();
     }
 
-    handleUpdateCast() {}
+    handleDeleteCast = (cast, i, id) => {
+        axios.delete(window.location.origin + "/api/admin/delete/cast/" + this.state.type.toString() + "/" + this.state.id + "/" + id)
+            .then(res => {
+                console.log("Completed Request " + res);
+            })
+        cast.splice(i, 1);
+        this.forceUpdate();
+    }
+
+    handleUpdateCast = event => {
+        window.location.reload();
+    }
 
     handleChangeGenre = event => {
         if (event.target.checked) {
@@ -110,6 +123,8 @@ export class EditPageComponent extends React.Component {
         
         const cast = state.cast.map((castPerson, i) => {
             return <div className="cast-person" key={i}>
+
+                { currentUser && currentUser.userType == UserType.ADMIN ? <span onClick={() => this.handleDeleteCast(state.cast, i, castPerson.celebrity.id)}> X </span> : ''}
                 <img className="img-align-left" src={castPerson.celebrity.profilePicture ? castPerson.celebrity.profilePicture.path : NO_USER_PHOTO}/>
                 <b> <a href={"/../celebrity/" + castPerson.celebrity.id}>{castPerson.celebrity.name}</a> </b> <br/>
                 <i>{castPerson.role}</i>
@@ -163,7 +178,7 @@ export class EditPageComponent extends React.Component {
                 <div id="edit-cast-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content casts">
-                            <form onSubmit={()=>this.handleUpdateCast()}>
+                            <form onSubmit={()=>this.handleUpdateCast}>
                                 <h2>Cast</h2>
                                 <div className="flex-center"> {cast} </div>
                                 { currentUser && currentUser.userType == UserType.ADMIN ? <button className="btn"> Update Cast </button> : '' }

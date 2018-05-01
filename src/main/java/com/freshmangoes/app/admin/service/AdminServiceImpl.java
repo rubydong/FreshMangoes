@@ -215,6 +215,33 @@ public class AdminServiceImpl implements AdminService {
   }
 
   @Override
+  public void deleteCast(Integer contentId, ContentType contentType, Integer celebrityId) {
+    Content content = findContentByType(contentType, contentId);
+    if (content == null) {
+      return;
+    }
+    if (content.getCast() != null) {
+      Cast toRemove = null;
+      List<Cast> casts = content.getCast();
+      for (Cast c : casts) {
+        Celebrity celebrity = c.getCelebrity();
+        if (celebrity.getId().equals(celebrityId)) {
+          toRemove = c;
+          break;
+        }
+      }
+      if (toRemove != null) {
+//        toRemove.setCelebrity(null);
+//        toRemove.setContent(null);
+        casts.remove(toRemove);
+        saveContentByType(content, contentType);
+        castedRepository.delete(toRemove);
+      }
+    }
+
+  }
+
+  @Override
   public Content editContentSummary(final String json, final Integer contentId) {
     Content oldContent = null;
     try {

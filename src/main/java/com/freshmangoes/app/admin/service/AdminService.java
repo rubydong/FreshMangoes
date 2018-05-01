@@ -35,5 +35,7 @@ public interface AdminService {
 
   Content editContentSummary(String json, Integer contentId);
 
+  void deleteCast(Integer contentId, ContentType contentType, Integer celebrityId);
+
   void deleteMedia(Integer contentId, ContentType contentType, Integer mediaId);
 }

@@ -45,6 +45,7 @@ public class AdminController {
   public Content createDetailPage(@RequestBody final String body) {
     Content content = null;
     if (adminService.isAuthenticatedAdmin(session)) {
+      System.out.println("################### " + body);
       content = adminService.jsonToContent(body);
     }
     return content;
@@ -80,6 +81,21 @@ public class AdminController {
   public Content updateDetailPageMedia(@PathVariable final Integer contentId,
                                        @RequestBody final String body) {
     return null;
+  }
+
+  @DeleteMapping(Constants.ADMIN_DELETE_CAST_MAPPING)
+  public ResponseEntity deleteCast(@PathVariable final String contentType,
+                                   @PathVariable final Integer contentId,
+                                   @PathVariable final Integer castId) {
+    final HttpStatus status;
+
+    if (adminService.isAuthenticatedAdmin(session)) {
+      status = HttpStatus.OK;
+      adminService.deleteCast(contentId, ContentType.valueOf(contentType), castId);
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+    return ResponseEntity.status(status).build();
   }
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_CAST_MAPPING)

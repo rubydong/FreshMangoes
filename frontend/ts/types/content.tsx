@@ -157,11 +157,15 @@ export class Spotlight {
 export class EditPage extends Content{
   tempSummaryPhoto: File;
   tempPhoto: File;
+  tempCast: CreateCast[];
+  castNum: number;
 
   constructor() {
     super();
     this.tempSummaryPhoto = null;
     this.tempPhoto = null;
+    this.tempCast = [];
+    this.castNum = 0;
   }
 }
 export class CreatePage{
