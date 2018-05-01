@@ -1,13 +1,12 @@
 import * as React from "react";
 import axios from "axios";
 import { EditPage } from "../types/content";
-import { NO_USER_PHOTO, MOVIE_GENRES, TV_GENRES, GENRES_MAP, GENRES_VALUES_MAP, FILE_STORAGE_BASE_DIR } from "../../GlobalVariables";
+import { NO_USER_PHOTO, MOVIE_GENRES, TV_GENRES, GENRES_MAP, GENRES_VALUES_MAP, FILE_STORAGE_BASE_DIR, TRASH_ICON } from "../../GlobalVariables";
 import { parseMedia } from "../../HelperFunctions";
 import { UserType } from '../types/user';
 import { ContentType } from '../types/content';
-import { Celebrity } from '../types/celebrity';
+import { Celebrity, CreateCast } from '../types/celebrity';
 import {Media, MediaType} from "../types/media";
-import {CreateCast} from "../types/celebrity";
 
 export class EditPageComponent extends React.Component {
     state: EditPage;
@@ -16,6 +15,8 @@ export class EditPageComponent extends React.Component {
         super(props);
         this.state = this.props['data-state'];
         this.state.tempSummaryPhoto = null;
+        this.state.tempCast =[];
+        this.state.castNum = 0;
     }
 
     handleEditInfo (id) {
@@ -86,6 +87,34 @@ export class EditPageComponent extends React.Component {
     handleUpdateCast = event => {
         window.location.reload();
     }
+    
+    addCastMember = () => {
+        this.setState({castNum: this.state.castNum + 1});
+        this.state.tempCast.push(new CreateCast());
+        console.log(this.state.tempCast);
+        // this.forceUpdate();
+    }
+
+    removeCastMember = (castMember, i) => {
+        this.setState({castNum: this.state.castNum - 1});
+        castMember.splice(i, 1);
+        this.state.tempCast.splice(i, 1);
+        // this.forceUpdate();
+    }
+    
+    displayCastList = () => {
+        let castMember = []
+        for (let i = 0; i < this.state.castNum; i++) {
+            castMember.push(<div key ={i} className={i != 0 ? "padding-top" : ""}>
+                <input type="file" onChange={(event) => this.state.tempCast[i].profilePictureFile = event.target.files[0]}/>
+                <span className="icon align-right"> <img src={TRASH_ICON} className="align-right" onClick={() => this.removeCastMember(castMember, i)}/> </span>
+                <input type="text" className="form-control" placeholder="Name" onChange={(event) => this.state.tempCast[i].name = event.target.value}/>
+                <input type="text" className="form-control" placeholder="ID" onChange={(event) => this.state.tempCast[i].id = parseInt(event.target.value)}/>
+                <input type="text" className="form-control" placeholder="Role" onChange={(event) => this.state.tempCast[i].role = event.target.value}/>
+            </div>);
+        }
+        return castMember;
+    }
 
     handleChangeGenre = event => {
         if (event.target.checked) {
@@ -123,11 +152,13 @@ export class EditPageComponent extends React.Component {
         
         const cast = state.cast.map((castPerson, i) => {
             return <div className="cast-person" key={i}>
-
-                { currentUser && currentUser.userType == UserType.ADMIN ? <span onClick={() => this.handleDeleteCast(state.cast, i, castPerson.celebrity.id)}> X </span> : ''}
                 <img className="img-align-left" src={castPerson.celebrity.profilePicture ? castPerson.celebrity.profilePicture.path : NO_USER_PHOTO}/>
                 <b> <a href={"/../celebrity/" + castPerson.celebrity.id}>{castPerson.celebrity.name}</a> </b> <br/>
-                <i>{castPerson.role}</i>
+                <i>{castPerson.role}</i> <br/>
+                { currentUser && currentUser.userType == UserType.ADMIN 
+                    ? <span className="icon"><img src={TRASH_ICON} onClick={() => this.handleDeleteCast(state.cast, i, castPerson.celebrity.id)}/></span>
+                    : ''
+                } 
             </div>
         });
 
@@ -180,6 +211,13 @@ export class EditPageComponent extends React.Component {
                         <div className="modal-content casts">
                             <form onSubmit={()=>this.handleUpdateCast}>
                                 <h2>Cast</h2>
+                                { currentUser && currentUser.userType == UserType.ADMIN ? 
+                                 <div>
+                                    {this.displayCastList()}
+                                    <button type="button" className={this.state.castNum != 0 ? "btn-link padding-top" : "btn-link"} onClick={this.addCastMember}>Add another cast</button>
+                                    <p/>
+                                </div>
+                                : ''}
                                 <div className="flex-center"> {cast} </div>
                                 { currentUser && currentUser.userType == UserType.ADMIN ? <button className="btn"> Update Cast </button> : '' }
                             </form>
