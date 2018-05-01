@@ -41,7 +41,7 @@ export class SearchTemplate extends React.Component {
             
             <div className="content">
                 <SearchCriteriaComponent/>
-                <div className="search-results">
+                <div className="search-results margin-bottom">
                     <h4> {this.state.results} Results found for "{window.location.search.substring(7).replace("%20", " ")}"</h4> <hr/>
                     <ul className="list-inline">
                         <li><button className="btn-link" onClick={() => this.setSelectedContent([], '')}>All</button></li>

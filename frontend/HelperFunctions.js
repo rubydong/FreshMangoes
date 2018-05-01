@@ -19,7 +19,7 @@ export function parseMoreMedia(media, list) {
 export function parseDate(date) {
     if (date == "") return "";
     var d = new Date(date);
-    return d.getMonth()+1 + '-' + d.getDate() + '-' + d.getFullYear();
+    return d.getMonth() + 1 + '-' + d.getDate() + '-' + d.getFullYear();
 }
 
 export function getUrlID() {

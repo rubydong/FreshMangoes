@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+
 body {
 	color: #252627;
 	background-color: #EDF1F2;
-	/* background: url("../images/brillant.png"); */
 }
 
 @media (min-width: 992px) {
@@ -68,6 +69,10 @@ a,.summary h2, .filmography h4, .episode b {
 
 .margin-top {
 	margin-top: 40px;
+}
+
+.margin-bottom {
+	margin-bottom: 40px;
 }
 
 .tiny-margin-right {
@@ -139,18 +144,11 @@ a,.summary h2, .filmography h4, .episode b {
 	padding: 20px;
 	padding-bottom: 40px;
 }
-/* 
-.white-component hr {
-	width: 80%;
-}
 
-.white-component h2 {
-	margin-left: 10%;
-} */
 /* index */
 #poster {
 	width: 100%;
-	max-height: 70vh;
+	/* max-height: 70vh; */
 	object-fit: cover;
 	margin-left: 0px;
 }
@@ -470,7 +468,7 @@ iframe {
 
 .bio, .profile-reviews .speech-bubble, .search-criteria, .search-results, .interests {
 	text-align: center;
-	border:1px solid #DFDFDF;
+	/* border:1px solid #DFDFDF; */
 	border-radius: 2px;
 	padding: 5px;
 	background: white;
@@ -636,13 +634,22 @@ h5 span {
 }
 
 
-/* Footer */
+/* Header + Footer*/
+.nav-link, .footer {
+	font-family: Nanum Gothic;
+	text-transform: uppercase;
+	font-size: 13px;
+}
 .navbar {
 	border-bottom: 1px solid #DEDEDE;
 }
+
+.nav-link {
+	color: #90A6B4 !important;
+}
+
 .footer {
 	border-top: 1px solid #DEDEDE;
-	/* position: absolute; */
 	width: 100%;
 	bottom: 0px;
 	padding: 20px;
@@ -683,6 +690,9 @@ h5 span {
 	border: none;
 }
 
+.search-bar {
+	border:1px solid #90A6B4;
+}
 .btn, .btn-light:hover {
 	background: none !important;
 	border:1px solid #90A6B4;

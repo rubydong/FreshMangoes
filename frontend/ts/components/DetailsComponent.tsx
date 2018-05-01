@@ -1,25 +1,40 @@
 import * as React from "react";
 import axios from "axios";
-import { parseDate }  from "../../HelperFunctions";
+import { parseDate, getUrlID}  from "../../HelperFunctions";
 import { UserType } from '../types/user';
 import { ContentType } from '../types/content';
 import { Mangoes } from "./Mangoes";
 import { TRASH_ICON, EDIT_ICON, GENRES_MAP } from "../../GlobalVariables";
 
 export class DetailsComponent extends React.Component {
+    
     addToInterested = event => {
-        axios.post(window.location.origin + '/api/interested/add/' + this.props['data-state'].id)
+        axios.post(window.location.origin + '/api/interested/add/' + getUrlID())
             .then(res => {
                 console.log(res);
                 window.location.reload();
         })
     }
     addToDisinterested = event => {
-        axios.post(window.location.origin + '/api/disinterested/add/' + this.props['data-state'].id)
+        axios.post(window.location.origin + '/api/disinterested/add/' + getUrlID())
             .then(res => {
                 console.log(res);
                 window.location.reload();
         })
+    }
+
+    removeFromInterested() {
+        axios.post(window.location.origin + '/api/interested/remove/' + getUrlID())
+            .then(res => {
+                window.location.reload();
+        });
+    }
+
+    removeFromDisinterested() {
+        axios.post(window.location.origin + '/api/disinterested/remove/' + getUrlID())
+            .then(res => {
+                window.location.reload();
+        });
     }
 
     deleteContent() {
@@ -76,14 +91,14 @@ export class DetailsComponent extends React.Component {
 
                 {type == 'MOVIE'
                 ? <div> 
-                    <b>Rating:</b> {metadata.maturityRating} <br/> 
-                    <b>Runtime:</b> {metadata.runtime} minutes <br/>
-                    <b>Studio:</b> {metadata.studio} <br/>
-                    <b>In Theaters:</b> {parseDate(metadata.releaseDate)} 
+                    {metadata.maturityRating ? <div> <b>Rating:</b> {metadata.maturityRating} </div> : ''} 
+                    {metadata.runtime ? <div> <b>Runtime:</b> {metadata.runtime} minutes </div> : ''}
+                    {metadata.studio ? <div> <b>Studio:</b> {metadata.studio} </div> : ''}
+                    {metadata.releaseDate ? <div> <b>In Theaters:</b> {parseDate(metadata.releaseDate)} </div> : ''} 
                   </div>
                 : <div>
                     {metadata.network ? <div><b>Network:</b> {metadata.network}</div> : ''}
-                    <b>Premiere Date:</b> {parseDate(metadata.releaseDate)} 
+                    {metadata.releaseDate ? <div> <b>Premiere Date:</b> {parseDate(metadata.releaseDate)} </div> : ''}
                   </div>
                 }
                 
@@ -97,11 +112,11 @@ export class DetailsComponent extends React.Component {
                     <button className={currentUser && currentUser.interest == true 
                                         ? "btn-light small-margin-right" 
                                         : "btn small-margin-right"} 
-                            onClick={this.addToInterested}> Interested </button>
+                            onClick={currentUser && currentUser.interest == true ? this.removeFromInterested : this.addToInterested}> Interested </button>
                     <button className={currentUser && currentUser.interest == false 
                                         ? "btn-light small-margin-right" 
                                         : "btn small-margin-right"} 
-                            onClick={this.addToDisinterested}> Uninterested </button> 
+                            onClick={currentUser && currentUser.interest == false ? this.removeFromDisinterested : this.addToDisinterested}> Uninterested </button> 
                   </div>
                 : ''
                 }

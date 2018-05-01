@@ -114,13 +114,9 @@ public class AdminServiceImpl implements AdminService {
     return (user != null && user.getType() == UserType.ADMIN);
   }
 
-  @Override
-  public Content jsonToContent(final String body) {
+  private Content readContentByType(final String body, ContentType contentType) {
     Content content = null;
     try {
-      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-      JsonNode root = objectMapper.readTree(body);
-      ContentType contentType = ContentType.valueOf(root.path("type").asText());
       switch (contentType) {
         case MOVIE:
           content = objectMapper.readValue(body, Movie.class);
@@ -135,6 +131,20 @@ public class AdminServiceImpl implements AdminService {
           content = objectMapper.readValue(body, Episode.class);
           break;
       }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return content;
+  }
+
+  @Override
+  public Content jsonToContent(final String body) {
+    Content content = null;
+    try {
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      JsonNode root = objectMapper.readTree(body);
+      ContentType contentType = ContentType.valueOf(root.path("type").asText());
+      content = readContentByType(body, contentType);
 
       content.setViews(BigInteger.ZERO);
 
@@ -144,9 +154,7 @@ public class AdminServiceImpl implements AdminService {
 
       List<Media> unsavedMedia = content.getMedia();
       content.setMedia(new ArrayList<>());
-      for (Media m : unsavedMedia) {
-        content.getMedia().add(mediaRepository.save(m));
-      }
+      addMedia(content, unsavedMedia);
 
       content.setMetadata(metadataRepository.save(content.getMetadata()));
       List<Cast> unsavedCast = content.getCast();
@@ -182,31 +190,88 @@ public class AdminServiceImpl implements AdminService {
 
       // do celebrities now
       // check celebrity id, if it exists find and add into cast, if not create new celebrity
-      for (Cast cast : unsavedCast) {
-        Celebrity celebrity = cast.getCelebrity();
-        if (celebrity.getId() == -1) {
-          // create a new celebrity here
-          //  media -> celebrities, casted (mainly just profile and celebrities, then put the new celebrities into content object)
-          if (celebrity.getProfilePicture() != null) {
-            celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
-          }
+      addCast(unsavedCast, content);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return content;
+  }
+
+  private void addMedia(Content content, List<Media> unsavedMedia) {
+    for (Media m : unsavedMedia) {
+      content.getMedia().add(mediaRepository.save(m));
+    }
+  }
+
+  private void addCast(List<Cast> unsavedCast, Content content) {
+    for (Cast cast : unsavedCast) {
+      Celebrity celebrity = cast.getCelebrity();
+      if (celebrity.getId() == -1) {
+        // create a new celebrity here
+        //  media -> celebrities, casted (mainly just profile and celebrities, then put the new celebrities into content object)
+        if (celebrity.getProfilePicture() != null) {
+          celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
+        }
+        castedRepository.save(
+         Cast
+          .builder()
+          .content(content)
+          .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build());
+      } else {
+        celebrity = celebrityRepository.findById(celebrity.getId()).orElse(null);
+        if (celebrity != null) {
           castedRepository.save(
            Cast
             .builder()
             .content(content)
-            .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build());
-        } else {
-          celebrity = celebrityRepository.findById(celebrity.getId()).orElse(null);
-          if (celebrity != null) {
-            castedRepository.save(
-             Cast
-              .builder()
-              .content(content)
-              .celebrity(celebrity)
-              .role(cast.getRole()).build());
-          }
+            .celebrity(celebrity)
+            .role(cast.getRole()).build());
         }
       }
+    }
+  }
+
+  @Override
+  public Content editCast(final String json, final Integer contentId) {
+    Content content = null;
+    try {
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      JsonNode root = objectMapper.readTree(json);
+      ContentType contentType = ContentType.valueOf(root.path("type").asText());
+      content = readContentByType(json, contentType);
+
+      Content originalContent = findContentByType(contentType, contentId);
+      if (originalContent == null) {
+        return null;
+      }
+
+      List<Cast> newCast = content.getCast();
+      addCast(newCast, originalContent);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return content;
+  }
+
+  @Override
+  public Content editMedia(final String json, final Integer contentId) {
+    Content content = null;
+    try {
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      JsonNode root = objectMapper.readTree(json);
+      ContentType contentType = ContentType.valueOf(root.path("type").asText());
+      content = readContentByType(json, contentType);
+
+      Content originalContent = findContentByType(contentType, contentId);
+      if (originalContent == null) {
+        return null;
+      }
+
+      addMedia(originalContent, content.getMedia());
+
+      saveContentByType(originalContent, contentType);
 
     } catch (IOException e) {
       e.printStackTrace();

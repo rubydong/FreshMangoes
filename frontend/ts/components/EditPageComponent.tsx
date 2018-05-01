@@ -85,7 +85,54 @@ export class EditPageComponent extends React.Component {
     }
 
     handleUpdateCast = event => {
-        window.location.reload();
+        console.log("updating cast");
+
+        // for (let i = 0; i < this.state.tempCast.length; i++) {
+        //     let c = this.state.tempCast[i];
+        //     console.log(c.role);
+        //     console.log(c.name);
+        // }
+
+        let formattedCast = []
+        for (let i = 0; i < this.state.tempCast.length; i++) {
+            let cast = this.state.tempCast[i];
+            let formatCast = {
+                celebrity: {
+                    id: cast.id,
+                    name: cast.name
+                },
+                role: cast.role
+            };
+            if (cast.profilePictureFile != null) {
+                console.log("profile pic here");
+                let formData = new FormData();
+                formData.append("myImage", cast.profilePictureFile);
+                axios.post(window.location.origin + "/api/admin/upload", formData)
+                    .then(res => {
+                        console.log("Completed Request " + res);
+                    });
+                formatCast.celebrity['profilePicture'] = {
+                    path: FILE_STORAGE_BASE_DIR + cast.profilePictureFile.name,
+                    type: MediaType.PHOTO
+                }
+            }
+            formattedCast.push(formatCast);
+        }
+
+        const requestBody = {
+            type: this.state.type.toString(),
+            cast: formattedCast
+        }
+
+        ///admin/update/cast/{contentId}
+        axios.post(window.location.origin + "/api/admin/update/cast/" + this.state.id, requestBody)
+            .then(res => {
+               console.log("Completed Request for update Cast" + res);
+            });
+
+
+
+        // window.location.reload();
     }
     
     addCastMember = () => {
@@ -128,7 +175,34 @@ export class EditPageComponent extends React.Component {
 
     handleMediaChange = event => {
         console.log('here');
-        window.location.reload();
+        let mediaPaths = [];
+        if (this.state.tempPhoto != null && this.state.tempPhoto.length > 0) {
+            for (let i = 0; i < this.state.tempPhoto.length; i++) {
+                console.log(this.state.tempPhoto.item(i).name);
+                let formData = new FormData();
+                formData.append("myImage", this.state.tempPhoto.item(i));
+                axios.post(window.location.origin + "/api/admin/upload", formData)
+                    .then(res => {
+                        console.log("Completed Request " + res);
+                    })
+                let pic = new Media();
+                pic.path = FILE_STORAGE_BASE_DIR + this.state.tempPhoto.item(i).name;
+                pic.type = MediaType.PHOTO;
+                mediaPaths.push(pic);
+            }
+        }
+
+        const requestBody = {
+            type: this.state.type.toString(),
+            media: mediaPaths
+        }
+
+        ///admin/update/cast/{contentId}
+        axios.post(window.location.origin + "/api/admin/update/media/" + this.state.id, requestBody)
+            .then(res => {
+                console.log("Completed Request for update Cast" + res);
+                window.location.reload();
+            });
     }
 
     render() {
@@ -195,7 +269,7 @@ export class EditPageComponent extends React.Component {
                         <div className="modal-content">
                             <h2>Photos</h2>
                             { currentUser && currentUser.userType == UserType.ADMIN ? 
-                                <input type="file" className="form-control" onChange={(event) => this.state.tempPhoto = event.target.files[0]}/> 
+                                <input type="file" className="form-control" multiple onChange={(event) => this.state.tempPhoto = event.target.files}/>
                             : ''}
                             <div className="form-control flex-center"> {photos} </div>
                             <p/>
@@ -209,7 +283,7 @@ export class EditPageComponent extends React.Component {
                 <div id="edit-cast-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content casts">
-                            <form onSubmit={()=>this.handleUpdateCast}>
+                            <form onSubmit={this.handleUpdateCast}>
                                 <h2>Cast</h2>
                                 { currentUser && currentUser.userType == UserType.ADMIN ? 
                                  <div>

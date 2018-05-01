@@ -56,9 +56,9 @@ export class Header extends React.Component {
                             Admin
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="/create">Create Page</a>
-                                <a className="dropdown-item" href="/reports">View Reports</a>
-                                <a className="dropdown-item" href="/applications">View Critic Applications</a>
+                                <a className="nav-link dropdown-item" href="/create">Create Page</a>
+                                <a className="nav-link dropdown-item" href="/reports">View Reports</a>
+                                <a className="nav-link dropdown-item" href="/applications">View Critic Applications</a>
                             </div>
                         </li>
                         : ''
@@ -76,7 +76,7 @@ export class Header extends React.Component {
                         
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                        <input aria-label="Search" className="form-control mr-sm-2" type="search" onChange={this.handleSearchChange}/>
+                        <input aria-label="Search" className="form-control mr-sm-2 search-bar" type="search" onChange={this.handleSearchChange}/>
                         <a className="btn btn-primary" href={"/search?query=" + this.state.searchQueries}>Search</a>
                     </form>
                 </div>
