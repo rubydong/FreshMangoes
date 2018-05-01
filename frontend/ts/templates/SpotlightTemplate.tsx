@@ -53,6 +53,7 @@ export class SpotlightTemplate extends React.Component {
                 </div>
 
                 <SpotlightDetailComponent data-content={this.state.selectedContent} data-title={this.state.selectedTitle}/>
+                <div className="clear-both"></div>	
             </div>
         )
     }

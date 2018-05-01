@@ -53,22 +53,26 @@ export class ProfileTemplate extends React.Component {
             <div className="profile page-background-color">
                 <hr className="header-hr"/>
                 <div className="content">
+                
                     {this.state.displayName == "" ? '' :
+                    ((this.state.isPrivate && this.state.currentUser && this.state.currentUser.userId == this.state.id) || !this.state.isPrivate) ?
                     <div>
                         <ProfileInfoComponent data-state={this.state}/>
                         <div className="right">
+                            <RatingComponent data-ratings={this.state.ratings} data-id={this.state.id} data-rating-type="profile" data-title="Reviews"/>
                             {this.state.currentUser.userType == "CRITIC" ?
                             <div>
                                 <RatingComponent data-ratings={this.state.highestRatings.slice(0,1)} data-id={this.state.id} data-rating-type="profile" data-title="Best Rating"/>
                                 <RatingComponent data-ratings={this.state.lowestRatings.slice(0,1)} data-id={this.state.id} data-rating-type="profile" data-title="Worst Rating"/>
                             </div>
                             : ''}
-                            <RatingComponent data-ratings={this.state.ratings} data-id={this.state.id} data-rating-type="profile" data-title="Reviews"/>
+                           
                             <InterestsListComponent data-title='Interested' data-content={this.state.interestedList} data-current-user={this.state.currentUser.userId}/>
                             <InterestsListComponent data-title='Not Interested' data-content={this.state.disinterestedList} data-current-user={this.state.currentUser.userId}/>
                         </div>
                         <div className="clear-both padding-top"></div>
                     </div>
+                    : <h2 className="align-center">This user has privated their profile.</h2>
                     }
                 </div>
                 <div className="clear-both"></div>	

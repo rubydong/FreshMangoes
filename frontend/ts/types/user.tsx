@@ -27,6 +27,7 @@ export class User {
     ratings: Rating[];
     highestRatings: Rating[];
     lowestRatings: Rating[];
+    isPrivate: boolean;
 
     constructor() {
         this.id = 0;
@@ -42,6 +43,7 @@ export class User {
         this.ratings = [];
         this.highestRatings = [];
         this.lowestRatings = [];
+        this.isPrivate = false;
     }
 }
 

@@ -26,6 +26,7 @@ export class FollowComponent extends React.Component {
                 <div id="follower-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">
+                            <h2>Followers</h2>
                             <ul className="follow">
                                 {followersFull.length == 0 ? <span>This user is not followed by anyone.</span> : followersFull}
                             </ul>
@@ -36,6 +37,7 @@ export class FollowComponent extends React.Component {
                 <div id="following-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">
+                            <h2>Following</h2>
                             <ul className="follow">
                                 {followingFull.length == 0 ? <span>This user is not following anyone.</span> : followingFull}
                             </ul>

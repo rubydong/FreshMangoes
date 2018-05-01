@@ -3,6 +3,10 @@ body {
 	background: url("../images/brillant.png");
 }
 
+.white-background {
+	background-color: white;
+}
+
 .no-background-image {
 	background: none;
 	background-color: #FFF;
