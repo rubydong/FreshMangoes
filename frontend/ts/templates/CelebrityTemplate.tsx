@@ -25,7 +25,6 @@ export class CelebrityTemplate extends React.Component {
     render() {
         return (
             <div className="no-background-image">
-                <hr className="header-hr"/>
                 <div className="content" id="celebrity">
                 {this.state.name == "" ? '' :
                     <div>

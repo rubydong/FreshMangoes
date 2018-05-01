@@ -15,7 +15,7 @@ export class FilmographyComponent extends React.Component {
         });
         return (filmography == null || filmography.length == 0) 
             ? ''
-            :   <div className="filmography margin-top-bottom">
+            :   <div className="filmography white-component margin-top-bottom">
                     <h2> Filmography </h2>
                     <hr/>
                     <table className="table">

@@ -49,7 +49,7 @@ export class SpotlightDetailComponent extends React.Component {
             );
         });
         
-        return (<div className="spotlight-content">
+        return (<div className="spotlight-content white-component margin-top-bottom">
         <h2>{this.props['data-title']}</h2>
         <div className="spotlight-page-posters">
             {spotlightContent.length == 0 ? 'There are none right now.' : spotlightContent}

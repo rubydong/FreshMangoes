@@ -14,7 +14,7 @@ export class PhotoComponent extends React.Component {
 
         return ( photos == isNullOrUndefined || photos.length == 0 ) 
             ? ''
-            : <div className="photos margin-top-bottom">
+            : <div className="photos white-component margin-top-bottom">
                 <h2> 
                     Photos 
                     { currentUser && currentUser.userType == UserType.ADMIN 

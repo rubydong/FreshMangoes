@@ -35,11 +35,11 @@ export class ContentTemplate extends React.Component {
     render() {
        return (     
         <div className="no-background-image">
-            <hr className="header-hr"/>
+            
             <div className="content">
                 {this.state.metadata.name == "" ? '' :
                 <div>
-                    <div className="summary">
+                    <div className="summary white-component">
                         <EditPageComponent data-state={this.state}/>
                         <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media}
                                           data-list-count={this.state.type == ContentType.SEASON ? this.state.numberOfSeasons : 
@@ -47,6 +47,7 @@ export class ContentTemplate extends React.Component {
                                           data-type={this.state.type}
                         />  
                         <DetailsComponent data-state={this.state}/>
+                        <div className="clear-both"></div>
                     </div>
                     <div className="clear-both"></div>
                     <PhotoComponent data-photos={this.state.media} data-current-user={this.state.currentUser}/>   
@@ -55,7 +56,10 @@ export class ContentTemplate extends React.Component {
                     {this.state.type == ContentType.SHOW ? <SeasonEpisodeListComponent data-seasons={this.state.seasons}/> : ''}
                     {this.state.type == ContentType.SEASON ? <SeasonEpisodeListComponent data-episodes={this.state.episodes}/> : ''}
                     {this.state.type == ContentType.SHOW || this.state.type == ContentType.MOVIE 
-                    ? <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id} data-title="Reviews"/>
+                    ? <div className="white-component margin-top-bottom"> 
+                        <RatingComponent data-ratings={this.state.ratings} data-name={this.state.metadata.name} data-id={this.state.id} 
+                                         data-title="Reviews" data-no-margin={true}/> 
+                      </div>
                     : ''}
                 </div>
                 }

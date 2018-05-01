@@ -25,7 +25,7 @@ export class ResetPasswordTemplate extends React.Component {
     render() {
         return (
             <div>
-                <hr className="header-hr"/>
+                
                 <div className="content">
                     <h2>Reset Password</h2>
                     <form onSubmit={this.handleSubmit}>

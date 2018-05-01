@@ -36,21 +36,23 @@ export class CriticApplicationsTemplate extends React.Component {
 
         return (
             <div id="critics"> 
-                <hr className="header-hr"/>
-                <div className="content">
-                    <h2> View Critic Applications </h2>
-                    {applications.length == 0 ? <div className="center-text"><hr/>There are no critic applications right now.</div> :
-                    (<table className="table">
-                        <thead className="thead-light">
-                            <tr>
-                                <th>User</th>
-                                <th>Reason</th>
-                                <th>Decision</th>
-                            </tr>
-                        </thead>
-                        <tbody> {applications} </tbody>
-                    </table>)
-                    }
+                
+                <div className="content page-background-color">
+                    <div className="white-component">
+                        <h2> View Critic Applications </h2>
+                        {applications.length == 0 ? <div className="center-text"><hr/>There are no critic applications right now.</div> :
+                        (<table className="table">
+                            <thead className="thead-light">
+                                <tr>
+                                    <th>User</th>
+                                    <th>Reason</th>
+                                    <th>Decision</th>
+                                </tr>
+                            </thead>
+                            <tbody> {applications} </tbody>
+                        </table>)
+                        }
+                    </div>
                 </div>
             </div>
         )

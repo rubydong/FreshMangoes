@@ -38,7 +38,7 @@ export class SearchTemplate extends React.Component {
 
         return (
         <div className="search page-background-color">
-            <hr className="header-hr"/>
+            
             <div className="content">
                 <SearchCriteriaComponent/>
                 <div className="search-results">

@@ -4,14 +4,20 @@ import axios from "axios";
 export class Footer extends React.Component {
     render() {
         return (
-            <footer className="center-text white-background">
-                <hr/>
-                    Terms of Service  About Us
+            <div className="footer center-text bg-light">
+                
                 <div className="flex-center">
-                    facebook instagram email phone
+                    <a href="/tos" className="med-margin-right">Terms of Service</a>  
+                    <a href="/about">About Us</a>
+                </div>
+                <div className="social-icons flex-center ">
+                    <img src="/./images/facebook.png"/>
+                    <img src="/./images/instagram.png"/>
+                    <img src="/./images/phone.png"/>
+                    <img src="/./images/mail.png"/>
                 </div>
                 © 2018 Fresh Mangoes
-            </footer>
+            </div>
         )
     }
 }

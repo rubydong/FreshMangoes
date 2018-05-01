@@ -51,7 +51,7 @@ export class ProfileTemplate extends React.Component {
 
         return (
             <div className="profile page-background-color">
-                <hr className="header-hr"/>
+                
                 <div className="content">
                 
                     {this.state.displayName == "" ? '' :

@@ -15,7 +15,7 @@ export class CastComponent extends React.Component {
 
         return (cast == null || cast.length == 0) 
             ? ''
-            : <div className="casts margin-top-bottom">
+            : <div className="casts white-component margin-top-bottom">
                 <h2>
                     Cast
                     { currentUser && currentUser.userType == UserType.ADMIN 

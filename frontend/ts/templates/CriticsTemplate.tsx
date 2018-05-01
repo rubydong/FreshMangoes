@@ -45,17 +45,17 @@ export class CriticsTemplate extends React.Component {
         });
 
         const reviews = (this.state.critics || []).slice(0,1).map((critic, i) => {
-            return <RatingComponent data-ratings={critic.ratings} data-rating-type="profile" data-title=""/>
+            return <RatingComponent data-ratings={critic.ratings} data-title="Top Reviews"/>
         });
 
         return (
-            <div id="critics" className="page-background-color"> 
-                <hr className="header-hr"/>
+
+            <div id="critics" className="page-background-color">     
                 <div className="content">
                     <div className="split-half big-margin-right">
                         
                         <h2> Top Critic </h2> <hr/>
-                        <div className="interests flex-center">
+                        <div className="interests flex-center box-shadow">
                             {topCritics}
                             <br className="clear-both"/>
                         </div>
