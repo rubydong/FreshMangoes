@@ -15,11 +15,11 @@ public interface UserService {
 
   void updateEmail(User user, String s);
 
-  boolean forgotPassword(String email);
+  Boolean forgotPassword(String email);
 
   void deleteAccount(User user);
 
-  boolean updatePicture(MultipartFile file);
+  Boolean updatePicture(User user, MultipartFile file);
 
   void updateName(User user, String s);
 
@@ -28,4 +28,6 @@ public interface UserService {
   List<User> getCritics();
 
   Boolean applyForCritic(Integer userId, String statement);
+
+
 }

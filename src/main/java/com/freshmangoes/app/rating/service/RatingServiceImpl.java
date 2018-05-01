@@ -2,6 +2,7 @@ package com.freshmangoes.app.rating.service;
 
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.content.data.ContentType;
+import com.freshmangoes.app.content.repository.MetadataRepository;
 import com.freshmangoes.app.content.repository.MovieRepository;
 import com.freshmangoes.app.content.repository.ShowRepository;
 import com.freshmangoes.app.rating.data.Rating;
@@ -21,6 +22,9 @@ public class RatingServiceImpl implements RatingService {
   @Autowired
   private ShowRepository showRepository;
 
+  @Autowired
+  private MetadataRepository metadataRepository;
+
   public Rating addRating(final Integer contentId, final ContentType contentType, final Rating rating) {
     switch (contentType) {
       case MOVIE:
@@ -30,9 +34,13 @@ public class RatingServiceImpl implements RatingService {
         rating.setContent(showRepository.findById(contentId).orElse(null));
         break;
     }
-    return ratingRepository.existsByUserId(rating.getUser().getId(), contentId) == null
-           ? ratingRepository.save(rating)
-           : null;
+
+    if(ratingRepository.existsByUserId(rating.getUser().getId(), contentId) == null) {
+      ratingRepository.save(rating);
+      metadataRepository.updateAudienceScore(contentId);
+      return rating;
+    }
+    return null;
   }
 
   public Rating editRating(final Integer userId, final Rating rating) {
@@ -43,6 +51,7 @@ public class RatingServiceImpl implements RatingService {
     existingRating.setBody(rating.getBody());
     existingRating.setScore(rating.getScore());
     ratingRepository.save(existingRating);
+    metadataRepository.updateAudienceScore(existingRating.getContent().getId());
     return existingRating;
   }
 
@@ -60,6 +69,7 @@ public class RatingServiceImpl implements RatingService {
       return;
     }
     ratingRepository.deleteById(ratingId);
+    metadataRepository.updateAudienceScore(rating.getContent().getId());
   }
 
   public Rating flagRating(final Integer ratingId, final String report) {
@@ -80,4 +90,5 @@ public class RatingServiceImpl implements RatingService {
   public List<Rating> getLatestRatings() {
     return ratingRepository.findLatestRatings(Constants.NUM_LATEST_REVIEWS);
   }
+
 }

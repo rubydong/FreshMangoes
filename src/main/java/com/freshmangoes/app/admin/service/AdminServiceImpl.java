@@ -188,13 +188,14 @@ public class AdminServiceImpl implements AdminService {
           showRepository.save(show);
           break;
         case EPISODE:
-          Season season = seasonRepository.findById(root.path("seasonId").asInt()).orElse(null);
-          if (season == null) {
+          Show show2 = showRepository.findById(root.path("showId").asInt()).orElse(null);
+          Integer actualSeason = root.path("seasonId").asInt() - 1;
+          if (show2 == null || actualSeason < 0 || actualSeason > show2.getSeasons().size()-1) {
             return null;
           }
           content = episodeRepository.save((Episode) content);
-          season.getEpisodes().add((Episode) content);
-          seasonRepository.save(season);
+          show2.getSeasons().get(actualSeason).getEpisodes().add((Episode) content);
+          showRepository.save(show2);
           break;
       }
 
@@ -211,22 +212,22 @@ public class AdminServiceImpl implements AdminService {
             celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
           }
           content
-           .getCast()
-           .add(castedRepository.save(Cast
-            .builder()
-            .content(content)
-            .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build()));
+              .getCast()
+              .add(castedRepository.save(Cast
+                  .builder()
+                  .content(content)
+                  .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build()));
         } else {
           celebrity = celebrityRepository.findById(celebrity.getId()).orElse(null);
           if (celebrity != null) {
             content
-             .getCast()
-             .add(castedRepository.save(
-              Cast
-               .builder()
-               .content(content)
-               .celebrity(celebrity)
-               .role(cast.getRole()).build()));
+                .getCast()
+                .add(castedRepository.save(
+                    Cast
+                        .builder()
+                        .content(content)
+                        .celebrity(celebrity)
+                        .role(cast.getRole()).build()));
           }
         }
       }
@@ -240,13 +241,13 @@ public class AdminServiceImpl implements AdminService {
   @Override
   public List<Application> getAllPotentialCritics() {
     return userRepository.getAllPotentialCritics()
-     .stream()
-     .map(user -> Application
-      .builder()
-      .user(user)
-      .statement(userRepository.getCriticApplicationStatement(user.getId()))
-      .build())
-     .collect(Collectors.toList());
+        .stream()
+        .map(user -> Application
+            .builder()
+            .user(user)
+            .statement(userRepository.getCriticApplicationStatement(user.getId()))
+            .build())
+        .collect(Collectors.toList());
   }
 
   @Override
