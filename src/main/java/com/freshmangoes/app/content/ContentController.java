@@ -51,6 +51,7 @@ public class ContentController {
       seasons = show.getSeasons();
       s = (actualSeason >= 0 && actualSeason < seasons.size()) ? seasons.get(actualSeason)
                                                                : null;
+      s.setNumberOfSeasons(seasons.size());
       s.setViews(s.getViews().add(BigInteger.ONE));
       contentService.saveSeason(s);
     } else {
@@ -73,6 +74,7 @@ public class ContentController {
       episodes = s.getEpisodes();
       e = (actualEpisode >= 0 && actualEpisode < episodes.size()) ? episodes.get(actualEpisode)
                                                                   : null;
+      e.setNumberOfEpisodes(episodes.size());
       e.setViews(e.getViews().add(BigInteger.ONE));
       contentService.saveEpisode(e);
     } else {
