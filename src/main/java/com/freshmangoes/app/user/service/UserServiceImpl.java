@@ -118,6 +118,16 @@ public class UserServiceImpl implements UserService {
     return userRepository.applyForCritic(userId, statement) != null;
   }
 
+  @Override
+  public void updatePrivacy(User user, String privacy) {
+    if (privacy.equals("Everyone")) {
+      user.setIsPrivate(false);
+    } else {
+      user.setIsPrivate(true);
+    }
+    userRepository.save(user);
+  }
+
   public void updateViews(User user, BigInteger views) {
     user.setViews(views);
     userRepository.save(user);

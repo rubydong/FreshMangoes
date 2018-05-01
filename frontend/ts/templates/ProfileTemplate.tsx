@@ -28,16 +28,37 @@ export class ProfileTemplate extends React.Component {
     }
 
     render() {
-       
+        let myData = [];
+        if (this.state.ratings.length != 0) {
+            myData = [].concat(this.state.ratings)
+                .sort((b, a) => a.score - b.score);
+        }
+        let count = 0;
+        for (let i = 0; i < myData.length; i++) {
+            if (count < 2 && myData[i].score >= 80) {
+                this.state.highestRatings.push(myData[i]);
+                count++;
+            }
+        }
+        count = 0;
+        for (let i = myData.length - 1; i >= 0; i--) {
+            if (count < 2 && myData[i].score <= 40) {
+                this.state.lowestRatings.push(myData[i]);
+                count++;
+            }
+        }
+
         return (
             <div className="profile page-background-color">
                 <hr className="header-hr"/>
                 <div className="content">
-                    {this.state.displayName == "" ? <h2>There is user here.</h2> :
+                    {this.state.displayName == "" ? <h2>There is no user here.</h2> :
                     <div>
                         <ProfileInfoComponent data-state={this.state}/>
                         <div className="right">
                             <RatingComponent data-ratings={this.state.ratings} data-id={this.state.id} data-rating-type="profile"/>
+                            <RatingComponent data-ratings={this.state.highestRatings} data-id={this.state.id} data-rating-type="profile"/>
+                            <RatingComponent data-ratings={this.state.lowestRatings} data-id={this.state.id} data-rating-type="profile"/>
                             <InterestsListComponent data-title='Interested' data-content={this.state.interestedList} data-current-user={this.state.currentUser}/>
                             <InterestsListComponent data-title='Not Interested' data-content={this.state.disinterestedList} data-current-user={this.state.currentUser}/>
                         </div>

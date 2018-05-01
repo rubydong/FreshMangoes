@@ -3,7 +3,9 @@ package com.freshmangoes.app.user;
 import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.service.UserService;
+
 import java.math.BigInteger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,8 +36,15 @@ public class UserController {
 
   @GetMapping(Constants.PROFILE_MAPPING)
   public User getProfile(@PathVariable final int userId) {
+    Integer currentUserId = (Integer) session.getAttribute(Constants.USER_ID);
     User user = userService.getUser(userId);
-    //userService.updateViews(user, user.getViews().add(BigInteger.ONE));
+    if (user.getId().equals(currentUserId)) {
+      return user;
+    }
+    if (user.getIsPrivate()) {
+      return null;
+    }
+    userService.updateViews(user, user.getViews().add(BigInteger.ONE));
     return user;
   }
 
@@ -105,6 +114,16 @@ public class UserController {
     User user = userService.getUserByEmail(body.get(Constants.EMAIL));
     if (user != null) {
       userService.updatePassword(user, body.get(Constants.NEW_PASSWORD));
+      return new ResponseEntity(HttpStatus.OK);
+    }
+    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+  }
+
+  @PostMapping(Constants.CHANGE_PRIVACY_MAPPING)
+  public ResponseEntity changePrivacy(@RequestBody final Map<String, String> body) {
+    User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
+    if (user != null) {
+      userService.updatePrivacy(user, body.get(Constants.NEW_PRIVACY));
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);

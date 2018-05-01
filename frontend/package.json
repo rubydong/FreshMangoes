@@ -13,7 +13,8 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check"
+    "posttest": "npm run check",
+    "pm2": "node_modules/.bin/pm2 start process.yml"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "@types/react-dom": "^16.0.4",
     "axios": "^0.18.0",
     "express": "^4.16.3",
+    "pm2": "^2.10.3",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-router": "^4.2.0",

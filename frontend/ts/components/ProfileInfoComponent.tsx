@@ -10,7 +10,8 @@ export class ProfileInfoComponent extends React.Component {
         newEmail: '',
         newPassword: '',
         oldPassword: '',
-        profileUser: getUrlID()
+        profileUser: getUrlID(),
+        privacy: ''
     }
 
     followUser() {
@@ -54,7 +55,8 @@ export class ProfileInfoComponent extends React.Component {
             newFile: this.state.newFile,
             newEmail: this.state.newEmail,
             newPassword: this.state.newPassword,
-            oldPassword: this.state.oldPassword
+            oldPassword: this.state.oldPassword,
+            newPrivacy: this.state.privacy
         };
 
         if (editProfileInfo.newName != '') {
@@ -85,7 +87,17 @@ export class ProfileInfoComponent extends React.Component {
                     window.location.reload();
                 })
         }
+        if(editProfileInfo.newPrivacy != ''){
+            axios.post(window.location.origin + '/api/profile/privacy/update/', editProfileInfo)
+                .then(res => {
+                    window.location.reload();
+                })
+        }
 
+    }
+
+    handlePrivacyChange = event => {
+        this.setState({privacy: event.target.value})
     }
 
     async deleteAccount() {
@@ -135,6 +147,10 @@ export class ProfileInfoComponent extends React.Component {
                                 <input type="text" className="form-control" onChange={this.handleEmailChange}/>
                                 New Password
                                 <input type="password" className="form-control" onChange={this.handlePasswordChange}/>
+                                Privacy Settings
+                                <input type="radio" value="Everyone" name="privacy" onChange={this.handlePrivacyChange}/> Show to Everyone
+                                <input type="radio" value="Me" name="privacy" onChange={this.handlePrivacyChange}/> Only Me
+                                <br/>
                                 Confirm Changes With Your Old Password
                                 <input type="password" className="form-control"
                                        onChange={this.handleVerifyPasswordChange}/>

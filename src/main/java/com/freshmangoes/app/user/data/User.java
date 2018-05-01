@@ -85,6 +85,7 @@ public class User {
           name = "content_id"
       ))
   @ManyToMany(cascade = CascadeType.ALL)
+  @JsonIgnoreProperties({"media", "ratings", "cast", "crew", "revenue", "views"})
   private List<Content> interestedList;
 
   @JoinTable(name = "disinterests",
@@ -95,9 +96,11 @@ public class User {
           name = "content_id"
       ))
   @ManyToMany(cascade = CascadeType.REMOVE)
+  @JsonIgnoreProperties({"media", "ratings", "cast", "crew", "revenue", "views"})
   private List<Content> disinterestedList;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+  @JsonIgnoreProperties({"flagged", "report"})
   private List<Rating> ratings;
 
   @JsonIgnore
@@ -107,4 +110,6 @@ public class User {
   private Boolean verified;
 
   private BigInteger views;
+
+  private Boolean isPrivate;
 }
