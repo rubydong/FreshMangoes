@@ -222,22 +222,7 @@ public class AdminServiceImpl implements AdminService {
       JsonNode root = objectMapper.readTree(json);
       String summaryPhoto = root.path("summaryPhoto").asText();
       ContentType contentType = ContentType.valueOf(root.path("type").asText());
-      switch (contentType) {
-        case MOVIE:
-          oldContent = movieRepository.findById(contentId).orElse(null);
-          break;
-        case SHOW:
-          oldContent = showRepository.findById(contentId).orElse(null);
-          break;
-        case SEASON:
-          oldContent = seasonRepository.findById(contentId).orElse(null);
-          break;
-        case EPISODE:
-          oldContent = episodeRepository.findById(contentId).orElse(null);
-          break;
-      }
-
-//      {"type":"MOVIE","summaryPhoto":"","name":"Fake Title","summary":"Fake Description","genre":[28,99,27]}
+      oldContent = findContentByType(contentType, contentId);
 
       if (oldContent == null) {
         return null;
@@ -263,24 +248,72 @@ public class AdminServiceImpl implements AdminService {
         oldContent.getMetadata().getGenres().add(jn.asInt());
       }
 
-      switch (contentType) {
-        case MOVIE:
-          oldContent = movieRepository.save((Movie) oldContent);
-          break;
-        case SHOW:
-          oldContent = showRepository.save((Show) oldContent);
-          break;
-        case SEASON:
-          oldContent = seasonRepository.save((Season) oldContent);
-          break;
-        case EPISODE:
-          oldContent = episodeRepository.save((Episode) oldContent);
-          break;
-      }
+      oldContent = saveContentByType(oldContent, contentType);
+
     } catch (IOException e) {
       e.printStackTrace();
     }
     return oldContent;
+  }
+
+  private Content findContentByType(ContentType contentType, Integer contentId) {
+    Content oldContent = null;
+    switch (contentType) {
+      case MOVIE:
+        oldContent = movieRepository.findById(contentId).orElse(null);
+        break;
+      case SHOW:
+        oldContent = showRepository.findById(contentId).orElse(null);
+        break;
+      case SEASON:
+        oldContent = seasonRepository.findById(contentId).orElse(null);
+        break;
+      case EPISODE:
+        oldContent = episodeRepository.findById(contentId).orElse(null);
+        break;
+    }
+    return oldContent;
+  }
+
+  private Content saveContentByType(Content content, ContentType contentType) {
+    switch (contentType) {
+      case MOVIE:
+        content = movieRepository.save((Movie) content);
+        break;
+      case SHOW:
+        content = showRepository.save((Show) content);
+        break;
+      case SEASON:
+        content = seasonRepository.save((Season) content);
+        break;
+      case EPISODE:
+        content = episodeRepository.save((Episode) content);
+        break;
+    }
+    return content;
+  }
+
+  @Override
+  public void deleteMedia(Integer contentId, ContentType contentType, Integer mediaId) {
+    Content oldContent = findContentByType(contentType, contentId);
+    if (oldContent == null) {
+      return;
+    }
+    if (oldContent.getMedia() != null) {
+      List<Media> medias = oldContent.getMedia();
+      Media toRemove = null;
+      for (Media m : medias) {
+        if (m.getId() == mediaId) {
+          toRemove = m;
+          break;
+        }
+      }
+      if (toRemove != null) {
+        medias.remove(toRemove);
+        mediaRepository.delete(toRemove);
+        saveContentByType(oldContent, contentType);
+      }
+    }
   }
 
   @Override

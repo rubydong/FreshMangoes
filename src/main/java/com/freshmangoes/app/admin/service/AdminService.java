@@ -34,4 +34,6 @@ public interface AdminService {
   String uploadMedia(MultipartFile file);
 
   Content editContentSummary(String json, Integer contentId);
+
+  void deleteMedia(Integer contentId, ContentType contentType, Integer mediaId);
 }
