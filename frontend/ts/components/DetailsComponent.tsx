@@ -48,7 +48,7 @@ export class DetailsComponent extends React.Component {
             if (c.job == 'Director') directors.push(c.celebrity.name);
             else if (c.job == 'Screenplay') writers.push(c.celebrity.name);
             else if (c.job == 'Executive Producer') producers.push(c.celebrity.name);
-        });
+        })
 
         const directorsFinal = directors.map((d, i) => {
             return <span> {d}{i < directors.length - 1 ? ', ' : ''}</span>

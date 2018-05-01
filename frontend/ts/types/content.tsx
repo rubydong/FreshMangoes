@@ -48,6 +48,8 @@ export class Content {
   episodes: Episode[];
   seasons: Season[];
   currentUser: CurrentUser;
+  numberOfSeasons: number;
+  numberOfEpisodes: number;
 
   constructor() {
     this.id = 0;
@@ -63,6 +65,8 @@ export class Content {
     this.episodes = [];
     this.seasons = [];
     this.currentUser = new CurrentUser();
+    this.numberOfEpisodes = 0;
+    this.numberOfSeasons = 0;
   }
 }
 
