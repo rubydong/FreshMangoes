@@ -11,7 +11,7 @@ export class ProfileInfoComponent extends React.Component {
         newPassword: '',
         oldPassword: '',
         profileUser: getUrlID(),
-        privacy: ''
+        privacy: '',
     }
 
     followUser() {
@@ -128,6 +128,7 @@ export class ProfileInfoComponent extends React.Component {
                 <h2>{state.displayName}</h2>
                 <div className="bio box-shadow">
                     <img className="profile-picture" src={parseUserMedia(state.profilePicture)}/>
+                    <b>Views: </b> {state.views}
                     <FollowComponent data-followers={state.followers} data-following={state.following}/>
                     <p/>
                     {editOrFollowButton}

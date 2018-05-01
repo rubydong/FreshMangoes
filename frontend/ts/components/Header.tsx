@@ -76,8 +76,8 @@ export class Header extends React.Component {
                         
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                        <input aria-label="Search" className="form-control mr-sm-2" type="search" onChange={this.handleSearchChange}/>
-                        <a className="btn btn-primary" href={"/search?query=" + this.state.searchQueries}>Search</a>
+                        <input aria-label="Search" className="form-control mr-sm-2 search-bar" type="search" onChange={this.handleSearchChange}/>
+                        <button className="btn btn-primary" onClick={() => window.location.assign("/search?query=" + this.state.searchQueries)}>Search</button>
                     </form>
                 </div>
             </nav>

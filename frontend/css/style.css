@@ -635,7 +635,7 @@ h5 span {
 
 
 /* Header + Footer*/
-.navbar a, .footer a{
+.navbar a, .footer {
 	font-family: Nanum Gothic;
 	text-transform: uppercase;
 	font-size: 13px;
@@ -690,6 +690,9 @@ h5 span {
 	border: none;
 }
 
+.search-bar {
+	border:1px solid #90A6B4;
+}
 .btn, .btn-light:hover {
 	background: none !important;
 	border:1px solid #90A6B4;

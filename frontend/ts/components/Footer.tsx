@@ -11,10 +11,10 @@ export class Footer extends React.Component {
                     <a href="/about">About Us</a>
                 </div>
                 <div className="social-icons flex-center ">
-                    <img src="/./images/facebook.png"/>
-                    <img src="/./images/instagram.png"/>
-                    <img src="/./images/phone.png"/>
-                    <img src="/./images/mail.png"/>
+                    <a href="https://www.facebook.com/FreshMangoes308/" target="_blank"><img src="/./images/facebook.png"/></a>
+                    <a href="https://www.instagram.com/freshmangoes308/" target="_blank"><img src="/./images/instagram.png"/></a>
+                    <img title="347-777-8888" src="/./images/phone.png"/>
+                    <img title="Freshmangoes@gmail.com" src="/./images/mail.png"/>
                 </div>
                 © 2018 Fresh Mangoes
             </div>
