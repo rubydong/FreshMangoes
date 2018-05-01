@@ -69,6 +69,11 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void deleteAccount(User user) {
+    user.setDisinterestedList(null);
+    user.setInterestedList(null);
+    user.setFollowers(null);
+    user.setFollowing(null);
+    userRepository.save(user);
     userRepository.delete(user);
   }
 

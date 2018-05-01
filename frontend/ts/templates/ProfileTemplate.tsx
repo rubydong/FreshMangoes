@@ -31,29 +31,33 @@ export class ProfileTemplate extends React.Component {
 
     render() {
         let myData = [];
+        this.state.highestRatings = [];
+        this.state.lowestRatings = [];
+        console.log(this.state.ratings)
         if (this.state.ratings.length != 0) {
             myData = [].concat(this.state.ratings)
                 .sort((b, a) => a.score - b.score);
         }
+        console.log(myData)
         for (let i = 0; i < myData.length; i++) {
             if (myData[i].score >= 80) {
                 this.state.highestRatings.push(myData[i]);
-                break;
+                // break;
             }
         }
-
+        console.log(this.state.highestRatings);
         for (let i = myData.length - 1; i >= 0; i--) {
             if (myData[i].score <= 40) {
                 this.state.lowestRatings.push(myData[i]);
-                break;
+                // break;
             }
         }
+        console.log(this.state.lowestRatings);
 
         return (
             <div className="profile page-background-color">
                 
                 <div className="content">
-                
                     {this.state.displayName == "" ? '' :
                     ((this.state.isPrivate && this.state.currentUser && this.state.currentUser.userId == this.state.id) || !this.state.isPrivate) ?
                     <div>
