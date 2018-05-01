@@ -25,6 +25,8 @@ export class User {
     disinterestedList: Content[];
     currentUser: number;
     ratings: Rating[];
+    highestRatings: Rating[];
+    lowestRatings: Rating[];
 
     constructor() {
         this.id = 0;
@@ -38,6 +40,8 @@ export class User {
         this.disinterestedList = [];
         this.currentUser = -1;
         this.ratings = [];
+        this.highestRatings = [];
+        this.lowestRatings = [];
     }
 }
 

@@ -39,6 +39,7 @@ public class AuthServiceImpl implements AuthService {
                                               .displayName(displayName)
                                               .views(BigInteger.ZERO)
                                               .verified(false)
+                                              .isPrivate(false)
                                               .build());
     return user;
   }
