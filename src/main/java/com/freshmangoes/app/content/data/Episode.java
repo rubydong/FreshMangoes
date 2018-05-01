@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,6 +40,9 @@ public class Episode extends Content {
       @JoinColumn(name = "season_id")
   )
   private Season season;
+
+  @Transient
+  private Integer numberOfEpisodes;
 
   @Builder
   public Episode(Integer id,

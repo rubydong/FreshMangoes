@@ -14,10 +14,26 @@ public class SearchServiceImpl implements SearchService {
   @Autowired
   private ContentSearch contentSearch;
 
-  public SearchResult searchByKeyword(final String searchQuery) {
+  public SearchResult searchAll(final String text, final Integer first, final Integer max) {
     SearchResult searchResult = SearchResult.builder()
-                                            .celebrities(celebritySearch.search(searchQuery, 0, 10))
-                                            .content(contentSearch.search(searchQuery, 0, 10))
+                                            .celebrities(celebritySearch.search(text, first, max))
+                                            .content(contentSearch.search(text, first, max))
+                                            .build();
+    return searchResult;
+  }
+
+  @Override
+  public SearchResult searchCelebrity(String text, Integer first, Integer max) {
+    SearchResult searchResult = SearchResult.builder()
+                                            .celebrities(celebritySearch.search(text, first, max))
+                                            .build();
+    return searchResult;
+  }
+
+  @Override
+  public SearchResult searchContent(String text, Integer first, Integer max) {
+    SearchResult searchResult = SearchResult.builder()
+                                            .content(contentSearch.search(text, first, max))
                                             .build();
     return searchResult;
   }

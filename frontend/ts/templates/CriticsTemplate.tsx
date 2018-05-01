@@ -31,7 +31,7 @@ export class CriticsTemplate extends React.Component {
     }
 
     render() {
-        const topCritics = (this.state.critics || []).slice(0,2).map((critic, i) => {
+        const topCritics = (this.state.critics || []).slice(0,1).map((critic, i) => {
             return <div className="top-critic small-margin-right"> 
                     <a href={"./profile/" + critic.id}> {critic.displayName} </a> <br/>
                     <img src={parseUserMedia(critic.profilePicture)}/>
@@ -54,7 +54,7 @@ export class CriticsTemplate extends React.Component {
                 <div className="content">
                     <div className="split-half big-margin-right">
                         
-                        <h2> Top Critics </h2> <hr/>
+                        <h2> Top Critic </h2> <hr/>
                         <div className="interests flex-center">
                             {topCritics}
                             <br className="clear-both"/>

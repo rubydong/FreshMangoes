@@ -122,7 +122,7 @@ export class CreatePagesTemplate extends React.Component {
         if (event.target.checked) {
             this.state.genres.push(GENRES_VALUES_MAP[event.target.value]);
         } else {
-            let i = this.state.genres.indexOf(event.target.value);
+            let i = this.state.genres.indexOf(GENRES_VALUES_MAP[event.target.value]);
             this.state.genres.splice(i, 1);
         }
         console.log(this.state.genres);

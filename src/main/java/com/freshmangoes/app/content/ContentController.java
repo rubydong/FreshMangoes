@@ -26,16 +26,20 @@ public class ContentController {
   @GetMapping(Constants.MOVIE_MAPPING)
   public Movie getMovie(@PathVariable final int id) {
     final Movie movie = contentService.findMovieById(id);
-    movie.setViews(movie.getViews().add(BigInteger.ONE));
-    contentService.saveMovie(movie);
+    if (movie != null) {
+      movie.setViews(movie.getViews().add(BigInteger.ONE));
+      contentService.saveMovie(movie);
+    }
     return movie;
   }
 
   @GetMapping(Constants.SHOW_MAPPING)
   public Show getShow(@PathVariable final int id) {
     final Show show = contentService.findShowById(id);
-    show.setViews(show.getViews().add(BigInteger.ONE));
-    contentService.saveShow(show);
+    if (show != null) {
+      show.setViews(show.getViews().add(BigInteger.ONE));
+      contentService.saveShow(show);
+    }
     return show;
   }
 
@@ -51,6 +55,7 @@ public class ContentController {
       seasons = show.getSeasons();
       s = (actualSeason >= 0 && actualSeason < seasons.size()) ? seasons.get(actualSeason)
                                                                : null;
+      s.setNumberOfSeasons(seasons.size());
       s.setViews(s.getViews().add(BigInteger.ONE));
       contentService.saveSeason(s);
     } else {
@@ -73,6 +78,7 @@ public class ContentController {
       episodes = s.getEpisodes();
       e = (actualEpisode >= 0 && actualEpisode < episodes.size()) ? episodes.get(actualEpisode)
                                                                   : null;
+      e.setNumberOfEpisodes(episodes.size());
       e.setViews(e.getViews().add(BigInteger.ONE));
       contentService.saveEpisode(e);
     } else {

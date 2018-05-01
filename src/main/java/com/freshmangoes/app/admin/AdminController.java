@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,8 +52,9 @@ public class AdminController {
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_SUMMARY_MAPPING)
   public Content updateDetailPageSummmary(@PathVariable final Integer contentId,
-                                          @RequestBody final Map<String, String> body) {
-    return null;
+                                          @RequestBody final String body) {
+    System.out.println("########################## " + body);
+    return adminService.editContentSummary(body, contentId);
   }
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_MEDIA_MAPPING)
@@ -67,14 +69,14 @@ public class AdminController {
     return null;
   }
 
-  @PostMapping(Constants.ADMIN_DELETE_DETAIL_PAGE_MAPPING)
-  public ResponseEntity deleteDetailPage(@RequestBody final Map<String, String> body,
+  @DeleteMapping(Constants.ADMIN_DELETE_DETAIL_PAGE_MAPPING)
+  public ResponseEntity deleteDetailPage(@PathVariable final String contentType,
                                          @PathVariable final Integer contentId) {
     final HttpStatus status;
 
     if (adminService.isAuthenticatedAdmin(session)) {
       status = HttpStatus.OK;
-      adminService.deleteDetailPage(contentId, ContentType.valueOf(body.get("type")));
+      adminService.deleteDetailPage(contentId, ContentType.valueOf(contentType));
     } else {
       status = HttpStatus.BAD_REQUEST;
     }
@@ -90,7 +92,7 @@ public class AdminController {
     return reports;
   }
 
-  @PostMapping(Constants.ADMIN_DELETE_RATING_MAPPING)
+  @DeleteMapping(Constants.ADMIN_DELETE_RATING_MAPPING)
   public ResponseEntity deleteRating(@PathVariable final Integer ratingId) {
     final HttpStatus status;
 
@@ -104,7 +106,7 @@ public class AdminController {
     return ResponseEntity.status(status).build();
   }
 
-  @PostMapping(Constants.ADMIN_DELETE_USER_MAPPING)
+  @DeleteMapping(Constants.ADMIN_DELETE_USER_MAPPING)
   public ResponseEntity deleteUser(@PathVariable final Integer userId) {
     final HttpStatus status;
 

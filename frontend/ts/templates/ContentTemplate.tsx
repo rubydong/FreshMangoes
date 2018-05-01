@@ -34,14 +34,18 @@ export class ContentTemplate extends React.Component {
 
     render() {
        return (     
-        <div>
+        <div className="no-background-image">
             <hr className="header-hr"/>
             <div className="content">
                 {this.state.metadata.name == "" ? <h2>There is nothing here.</h2> :
                 <div>
                     <div className="summary">
                         <EditPageComponent data-state={this.state}/>
-                        <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media}/>             
+                        <SummaryComponent data-metadata={this.state.metadata} data-image={this.state.summaryPhoto} data-media={this.state.media}
+                                          data-list-count={this.state.type == ContentType.SEASON ? this.state.numberOfSeasons : 
+                                                           (this.state.type == ContentType.EPISODE ? this.state.numberOfEpisodes : 0)}
+                                          data-type={this.state.type}
+                        />  
                         <DetailsComponent data-state={this.state}/>
                     </div>
                     <div className="clear-both"></div>
