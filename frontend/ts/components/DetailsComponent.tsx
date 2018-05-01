@@ -76,10 +76,10 @@ export class DetailsComponent extends React.Component {
 
                 {type == 'MOVIE'
                 ? <div> 
-                    <b>Rating:</b> {metadata.maturityRating} <br/> 
-                    <b>Runtime:</b> {metadata.runtime} minutes <br/>
-                    <b>Studio:</b> {metadata.studio} <br/>
-                    <b>In Theaters:</b> {parseDate(metadata.releaseDate)} 
+                    {metadata.maturityRating ? <div> <b>Rating:</b> {metadata.maturityRating} </div> : ''} 
+                    {metadata.runtime ? <div> <b>Runtime:</b> {metadata.runtime} minutes </div> : ''}
+                    {metadata.studio ? <div> <b>Studio:</b> {metadata.studio} </div> : ''}
+                    {metadata.releaseDate ? <div> <b>In Theaters:</b> {parseDate(metadata.releaseDate)} </div> : ''} 
                   </div>
                 : <div>
                     {metadata.network ? <div><b>Network:</b> {metadata.network}</div> : ''}
