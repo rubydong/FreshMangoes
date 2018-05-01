@@ -150,8 +150,15 @@ export class Spotlight {
     this.selectedTitle = "";
   }
 }
-export class Page extends Content{
+export class EditPage extends Content{
+  tempSummaryPhoto: File;
+  tempPhoto: File;
 
+  constructor() {
+    super();
+    this.tempSummaryPhoto = null;
+    this.tempPhoto = null;
+  }
 }
 export class CreatePage{
   name: string;

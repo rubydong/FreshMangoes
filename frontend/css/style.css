@@ -2,6 +2,11 @@ body {
 	color: #252627;
 	background: url("../images/brillant.png");
 }
+
+.no-background-image {
+	background: none;
+	background-color: #FFF;
+}
 @media (min-width: 992px) {
 	.navbar span {
 		justify-content: center;
@@ -16,6 +21,9 @@ body {
 	margin-top: 50px;
 }
 
+.no-padding {
+	padding: 0px !important;
+}
 .underline {
 	border-bottom: 1px solid #759BBA;
 	padding-bottom: 3px;
@@ -593,6 +601,11 @@ h5 span {
 	height: 130px;
 	margin: 5px;
 	padding: 0px;
+}
+
+.summary-photo {
+	width: 50px !important;
+	height: auto !important;
 }
 /* bootstrap rewrite */
 

@@ -34,7 +34,7 @@ export class ContentTemplate extends React.Component {
 
     render() {
        return (     
-        <div>
+        <div className="no-background-image">
             <hr className="header-hr"/>
             <div className="content">
                 {this.state.metadata.name == "" ? <h2>There is nothing here.</h2> :

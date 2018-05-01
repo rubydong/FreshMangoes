@@ -57,7 +57,7 @@ public class Constants {
   public static final String ADMIN_UPDATE_DETAIL_SUMMARY_MAPPING = "/admin/update/summary/{contentId}";
   public static final String ADMIN_UPDATE_DETAIL_MEDIA_MAPPING = "/admin/update/media/{contentId}";
   public static final String ADMIN_UPDATE_DETAIL_CAST_MAPPING = "/admin/update/cast/{contentId}";
-  public static final String ADMIN_DELETE_DETAIL_PAGE_MAPPING = "/admin/delete/{contentId}";
+  public static final String ADMIN_DELETE_DETAIL_PAGE_MAPPING = "/admin/delete/{contentType}/{contentId}";
   public static final String ADMIN_VIEW_REPORTS_MAPPING = "/admin/reports";
   public static final String ADMIN_DELETE_RATING_MAPPING = "/admin/rating/delete/{ratingId}";
   public static final String ADMIN_DELETE_USER_MAPPING = "/admin/user/delete/{userId}";

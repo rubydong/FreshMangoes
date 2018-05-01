@@ -25,9 +25,9 @@ export class InterestsListComponent extends React.Component {
         const contentList = this.props['data-content'].slice(0, CONTENT_LIMIT).map((content, i) => {
             return <div className="search-item">
                 <img src={parseMedia(content.summaryPhoto)}/> 
-                    <span onClick={ () => listType == "Interested" 
-                        ? this.removeFromInterested(content.id) 
-                        : this.removeFromDisinterested(content.id) }>{x}</span>
+                <span onClick={ () => listType == "Interested" 
+                    ? this.removeFromInterested(content.id) 
+                    : this.removeFromDisinterested(content.id) }>{x}</span>
                 <div className="text">
                     <a href={"/" + content.type.toLowerCase() + "/" + content.id}>{content.metadata.name}</a>
                 </div>
