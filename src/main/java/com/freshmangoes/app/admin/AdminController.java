@@ -45,7 +45,6 @@ public class AdminController {
   public Content createDetailPage(@RequestBody final String body) {
     Content content = null;
     if (adminService.isAuthenticatedAdmin(session)) {
-      System.out.println("################### " + body);
       content = adminService.jsonToContent(body);
     }
     return content;
@@ -80,7 +79,11 @@ public class AdminController {
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_MEDIA_MAPPING)
   public Content updateDetailPageMedia(@PathVariable final Integer contentId,
                                        @RequestBody final String body) {
-    return null;
+    Content content = null;
+    if (adminService.isAuthenticatedAdmin(session)) {
+      content = adminService.editMedia(body, contentId);
+    }
+    return content;
   }
 
   @DeleteMapping(Constants.ADMIN_DELETE_CAST_MAPPING)
@@ -100,7 +103,8 @@ public class AdminController {
 
   @PostMapping(Constants.ADMIN_UPDATE_DETAIL_CAST_MAPPING)
   public Content updateDetailPageCast(@PathVariable final Integer contentId,
-                                          @RequestBody final Map<String, String> body) {
+                                      @RequestBody final String body) {
+    adminService.editCast(body, contentId);
     return null;
   }
 

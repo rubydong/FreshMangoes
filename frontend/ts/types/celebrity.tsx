@@ -53,6 +53,7 @@ export class CreateCast {
     role: string;
     profilePicture: string;
     profilePictureFile: File;
+    isNewCast: boolean;
 
     constructor() {
         this.id = -1;
@@ -60,6 +61,7 @@ export class CreateCast {
         this.role = "";
         this.profilePictureFile = null;
         this.profilePicture = "";
+        this.isNewCast = false;
     }
 }
 
