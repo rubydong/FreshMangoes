@@ -66,12 +66,14 @@ export class Critics {
     applicationName: string;
     applicationProfile: string;
     applicationReason: string;
+    latestReviews: Rating[];
 
     constructor() {
         this.critics = []
         this.applicationName = "";
         this.applicationProfile = "";
         this.applicationReason = "";
+        this.latestReviews = [];
     }
 }
 

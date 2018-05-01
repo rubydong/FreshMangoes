@@ -19,7 +19,6 @@ export function parseMoreMedia(media, list) {
 export function parseDate(date) {
     if (date == "") return "";
     var d = new Date(date);
-    console.log(d);
     return d.getMonth() + 1 + '-' + d.getDate() + '-' + d.getFullYear();
 }
 
