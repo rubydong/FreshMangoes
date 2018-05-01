@@ -8,7 +8,9 @@ public class Constants {
   public static final String VERIFY_MAPPING = "/verify/{verificationKey}";
   public static final String RESEND_MAPPING = "/resendverification";
   public static final String CURRENT_USER_MAPPING = "/getCurrentUser";
-  public static final String SEARCH_MAPPING = "/search";
+  public static final String SEARCH_ALL_MAPPING = "/searchAll";
+  public static final String SEARCH_CELEBRITY_MAPPING = "/searchCelebrity";
+  public static final String SEARCH_CONTENT_MAPPING = "/searchContent";
   public static final String SPOTLIGHT_MAPPING = "/spotlightItems";
 
   public static final String GET_CELEBRITY_MAPPING = "/celebrity/{id}";
