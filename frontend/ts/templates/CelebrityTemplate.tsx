@@ -18,7 +18,7 @@ export class CelebrityTemplate extends React.Component {
             const response = await axios.get(window.location.origin + '/api' + window.location.pathname)
             this.setState(response.data);
         } catch (err) {
-            console.log(err);
+            window.location.assign('/404');
         }
     }
 
@@ -27,9 +27,13 @@ export class CelebrityTemplate extends React.Component {
             <div className="no-background-image">
                 <hr className="header-hr"/>
                 <div className="content" id="celebrity">
+                {this.state.name == "" ? '' :
+                    <div>
                     <CelebrityInfoComponent data-state={this.state}/>
                     <PhotoComponent data-photos={this.state.media}/>
                     <FilmographyComponent data-roles={this.state.roles}/>
+                    </div>
+                }
                 </div>
             </div>
         )

@@ -45,7 +45,7 @@ export class CriticsTemplate extends React.Component {
         });
 
         const reviews = (this.state.critics || []).slice(0,1).map((critic, i) => {
-            return <RatingComponent data-ratings={critic.ratings} data-rating-type="profile" data-show-title="false"/>
+            return <RatingComponent data-ratings={critic.ratings} data-rating-type="profile" data-title=""/>
         });
 
         return (
@@ -71,7 +71,6 @@ export class CriticsTemplate extends React.Component {
                     </div>
 
                     <div className="split-half">
-                        <h2> Top Reviews </h2> <hr/>
                         {reviews}
                     </div>
 
