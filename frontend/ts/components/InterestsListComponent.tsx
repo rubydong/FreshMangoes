@@ -42,7 +42,7 @@ export class InterestsListComponent extends React.Component {
                         <div className="flex-center"> {contentList} </div>
                         {contentList.length == 0 
                             ? <div className="center-text"> You have not added anything to your list yet! </div>
-                            : <div> <span className="align-right"> <a href="">View All</a> </span> <br className="clear-both"/> </div>
+                            : ''
                         }
                         
                     </div>
