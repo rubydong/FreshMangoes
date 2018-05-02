@@ -69,7 +69,7 @@ export class ProfileInfoComponent extends React.Component {
         if (editProfileInfo.newFile != null) {
             let formData = new FormData();
             formData.append("myImage", editProfileInfo.newFile);
-
+            formData.append("oldPassword", editProfileInfo.oldPassword);
             axios.post(window.location.origin + '/api/profile/picture/update/', formData)
                 .then(res => {
                     window.location.reload();
@@ -101,7 +101,10 @@ export class ProfileInfoComponent extends React.Component {
     }
 
     async deleteAccount() {
-        const response = await axios.post(window.location.origin + '/api/delete/profile');
+        const editInfo= {
+            oldPassword: this.state.oldPassword
+        }
+        const response = await axios.post(window.location.origin + '/api/delete/profile', editInfo);
         window.location.reload();
     }
 

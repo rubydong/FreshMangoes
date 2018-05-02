@@ -51,7 +51,7 @@ public class UserController {
   public ResponseEntity changeDisplayName(@RequestBody final Map<String, String> body) {
     User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
-      userService.updateName(user, body.get(Constants.NEW_NAME));
+      userService.updateName(user, body.get(Constants.OLD_PASSWORD), body.get(Constants.NEW_NAME));
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -61,7 +61,7 @@ public class UserController {
   public ResponseEntity changePassword(@RequestBody final Map<String, String> body) {
     User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
-      userService.updatePassword(user, body.get(Constants.NEW_PASSWORD));
+      userService.updatePassword(user, body.get(Constants.OLD_PASSWORD), body.get(Constants.NEW_PASSWORD));
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -71,7 +71,7 @@ public class UserController {
   public ResponseEntity changeEmail(@RequestBody final Map<String, String> body) {
     User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
-      userService.updateEmail(user, body.get(Constants.NEW_EMAIL));
+      userService.updateEmail(user, body.get(Constants.OLD_PASSWORD), body.get(Constants.NEW_EMAIL));
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -86,10 +86,10 @@ public class UserController {
   }
 
   @PostMapping(Constants.DELETE_ACCOUNT_MAPPING)
-  public ResponseEntity deleteAccount() {
+  public ResponseEntity deleteAccount(@RequestBody final Map<String, String> body) {
     User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
-      userService.deleteAccount(user);
+      userService.deleteAccount(user, body.get(Constants.OLD_PASSWORD));
       session.invalidate();
       return new ResponseEntity(HttpStatus.OK);
     }
@@ -98,22 +98,12 @@ public class UserController {
 
   @RequestMapping(value = Constants.CHANGE_PICTURE_MAPPING, headers = "content-type=multipart/*", method = RequestMethod.POST,
       consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-  public ResponseEntity editPicture(@RequestParam("myImage") final MultipartFile file) {
+  public ResponseEntity editPicture(@RequestParam("myImage") final MultipartFile file, @RequestParam("oldPassword") final String password) {
     User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
-      if (userService.updatePicture(user, file)) {
+      if (userService.updatePicture(user, password, file)) {
         return new ResponseEntity(HttpStatus.OK);
       }
-    }
-    return new ResponseEntity(HttpStatus.BAD_REQUEST);
-  }
-
-  @PostMapping(Constants.RESET_PASSWORD_MAPPING)
-  public ResponseEntity resetPassword(@RequestBody final Map<String, String> body) {
-    User user = userService.getUserByEmail(body.get(Constants.EMAIL));
-    if (user != null) {
-      userService.updatePassword(user, body.get(Constants.NEW_PASSWORD));
-      return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
   }

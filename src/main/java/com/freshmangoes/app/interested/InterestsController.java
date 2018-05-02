@@ -35,6 +35,7 @@ public class InterestsController {
     if (user != null) {
       status = interestsService.addToInterestedList(user.getId(), contentId) ? HttpStatus.OK
           : HttpStatus.BAD_REQUEST;
+      interestsService.removeFromDisinterestedList(user.getId(), contentId);
     } else {
       status = HttpStatus.BAD_REQUEST;
     }
@@ -67,6 +68,7 @@ public class InterestsController {
     if (user != null) {
       status = interestsService.addToDisinterestedList(user.getId(), contentId) ? HttpStatus.OK
           : HttpStatus.BAD_REQUEST;
+      interestsService.removeFromInterestedList(user.getId(), contentId);
     } else {
       status = HttpStatus.BAD_REQUEST;
     }
