@@ -64,7 +64,7 @@ export class ProfileTemplate extends React.Component {
                         <ProfileInfoComponent data-state={this.state}/>
                         <div className="right">
                             <RatingComponent data-ratings={this.state.ratings} data-id={this.state.id} data-rating-type="profile" data-title="Reviews"/>
-                            {this.state.currentUser.userType == "CRITIC" ?
+                            {this.state.type == "CRITIC" ?
                             <div>
                                 <RatingComponent data-ratings={this.state.highestRatings.slice(0,1)} data-id={this.state.id} data-rating-type="profile" data-title="Best Rating"/>
                                 <RatingComponent data-ratings={this.state.lowestRatings.slice(0,1)} data-id={this.state.id} data-rating-type="profile" data-title="Worst Rating"/>

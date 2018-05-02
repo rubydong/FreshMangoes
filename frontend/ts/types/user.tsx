@@ -29,6 +29,7 @@ export class User {
     lowestRatings: Rating[];
     isPrivate: boolean;
     views: number;
+    type: UserType;
 
     constructor() {
         this.id = 0;
@@ -46,6 +47,7 @@ export class User {
         this.lowestRatings = [];
         this.isPrivate = false;
         this.views = 0;
+        this.type = UserType.AUDIENCE;
     }
 }
 
