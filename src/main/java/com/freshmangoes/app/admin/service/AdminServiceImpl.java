@@ -448,4 +448,19 @@ public class AdminServiceImpl implements AdminService {
     }
     return null;
   }
+
+  @Override
+  public void dismissReport(Integer ratingId) {
+    Rating rating = ratingRepository.findById(ratingId).orElse(null);
+    if (rating != null) {
+      rating.setReport(null);
+      rating.setIsFlagged(false);
+      ratingRepository.save(rating);
+    }
+  }
+
+  @Override
+  public void dismissCriticApplication(Integer userId) {
+    userRepository.deleteCriticApplication(userId);
+  }
 }
