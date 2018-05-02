@@ -118,7 +118,6 @@ export class EditPageComponent extends React.Component {
 
         axios.post(window.location.origin + "/api/admin/update/cast/" + this.state.id, requestBody)
             .then(res => {
-               ////console.log("Completed Request for update Cast" + res);
                window.location.reload();
             });
     }
@@ -131,7 +130,7 @@ export class EditPageComponent extends React.Component {
     }
 
     removeCastMember = (castMember, i) => {
-        this.setState({castNum: this.state.castNum - 1});
+        this.setState(castNum: this.state.castNum - 1});
         castMember.splice(i, 1);
         this.state.tempCast.splice(i, 1);
         // this.forceUpdate();
