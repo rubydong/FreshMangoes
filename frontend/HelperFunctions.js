@@ -5,7 +5,7 @@ export function parseMedia(media) {
 }
 
 export function parseUserMedia(media) {
-    return (media && media.path != "") ? window.location.origin + '/media' + edia.path : NO_USER_PHOTO;
+    return (media && media.path != "") ? window.location.origin + '/media/profiles' + media.path : NO_USER_PHOTO;
 }
 export function parseMoreMedia(media, list) {
     if (media && media.path != "") {
