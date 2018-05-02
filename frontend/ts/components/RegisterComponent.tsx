@@ -32,6 +32,7 @@ export class RegisterComponent extends React.Component {
         email: this.state.email,
         displayName: this.state.displayName,
         password: this.state.password,
+        passwordConfirmation: this.state.passwordConfirmation
     };
 
     axios.post(window.location.origin + '/api/register', registerInfo)

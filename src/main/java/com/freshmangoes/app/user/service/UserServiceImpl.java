@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -39,7 +40,6 @@ public class UserServiceImpl implements UserService {
   @Override
   public User getUser(final Integer userId) {
     final User user = userRepository.findById(userId).orElse(null);
-//    user.setRatings(ratingRepository.findByUserId(userId));
     return user;
   }
 
@@ -49,31 +49,53 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void updatePassword(User user, String s) {
-    String hash = passwordEncoder.encode(s);
+  public void updatePassword(User user, String oldPassword, String newPassword) {
+    if (!passwordEncoder.matches(oldPassword, user.getHash())) {
+      return;
+    }
+    String hash = passwordEncoder.encode(newPassword);
     user.setHash(hash);
     userRepository.save(user);
   }
 
   @Override
-  public void updateEmail(User user, String email) {
+  public void updateEmail(User user, String password, String email) {
+    if (!passwordEncoder.matches(password, user.getHash())) {
+      return;
+    }
     user.setEmail(email);
     userRepository.save(user);
   }
 
   @Override
   public Boolean forgotPassword(String email) {
+    String s = UUID.randomUUID().toString();
+    String hash = passwordEncoder.encode(s);
+    User user = userRepository.findByEmail(email);
+    user.setHash(hash);
+    userRepository.save(user);
     return emailService.sendEmail(email, "Fresh Mangoes Password Reset",
-        "Click this link to reset your password: http://localhost:9000/resetpassword/");
+        "This is your new password: " + s);
   }
 
   @Override
-  public void deleteAccount(User user) {
+  public void deleteAccount(User user, String password) {
+    if (!passwordEncoder.matches(password, user.getHash())) {
+      return;
+    }
+    user.setDisinterestedList(null);
+    user.setInterestedList(null);
+    user.setFollowers(null);
+    user.setFollowing(null);
+    userRepository.save(user);
     userRepository.delete(user);
   }
 
   @Override
-  public Boolean updatePicture(User user, MultipartFile mpf) {
+  public Boolean updatePicture(User user, String password, MultipartFile mpf) {
+    if (!passwordEncoder.matches(password, user.getHash())) {
+      return false;
+    }
     File f = new File(Constants.FILE_PATH + mpf.getOriginalFilename());
     try {
       if (!f.getParentFile().exists()) {
@@ -97,7 +119,10 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void updateName(User user, String name) {
+  public void updateName(User user, String password, String name) {
+    if (!passwordEncoder.matches(password, user.getHash())) {
+      return;
+    }
     user.setDisplayName(name);
     userRepository.save(user);
   }

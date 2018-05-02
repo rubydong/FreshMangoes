@@ -19,6 +19,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -40,6 +41,7 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
+  @Column(name = "email", unique = true)
   private String email;
 
   @JsonIgnore
@@ -100,6 +102,7 @@ public class User {
   private List<Content> disinterestedList;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+  @OrderBy (value = "id DESC")
   @JsonIgnoreProperties({"flagged", "report"})
   private List<Rating> ratings;
 
