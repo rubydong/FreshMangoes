@@ -77,6 +77,16 @@ public class UserController {
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
   }
 
+  @PostMapping(Constants.CHANGE_PRIVACY_MAPPING)
+  public ResponseEntity changePrivacy(@RequestBody final Map<String, String> body) {
+    User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
+    if (user != null) {
+      userService.updatePrivacy(user, body.get(Constants.NEW_PRIVACY));
+      return new ResponseEntity(HttpStatus.OK);
+    }
+    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+  }
+
   @PostMapping(Constants.FORGOT_PASSWORD_MAPPING)
   public ResponseEntity forgotPassword(@RequestBody final Map<String, String> body) {
     if (userService.forgotPassword(body.get(Constants.EMAIL))) {
@@ -104,16 +114,6 @@ public class UserController {
       if (userService.updatePicture(user, password, file)) {
         return new ResponseEntity(HttpStatus.OK);
       }
-    }
-    return new ResponseEntity(HttpStatus.BAD_REQUEST);
-  }
-
-  @PostMapping(Constants.CHANGE_PRIVACY_MAPPING)
-  public ResponseEntity changePrivacy(@RequestBody final Map<String, String> body) {
-    User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
-    if (user != null) {
-      userService.updatePrivacy(user, body.get(Constants.NEW_PRIVACY));
-      return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
   }

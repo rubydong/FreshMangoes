@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
     return user;
   }
 
+
   @Override
   public void updatePassword(User user, String oldPassword, String newPassword) {
     if (!passwordEncoder.matches(oldPassword, user.getHash())) {
@@ -67,31 +68,6 @@ public class UserServiceImpl implements UserService {
     userRepository.save(user);
   }
 
-  @Override
-  public Boolean forgotPassword(String email) {
-    String s = UUID.randomUUID().toString();
-    String hash = passwordEncoder.encode(s);
-    User user = userRepository.findByEmail(email);
-    user.setHash(hash);
-    userRepository.save(user);
-    return emailService.sendEmail(email, "Fresh Mangoes Password Reset",
-        "This is your new password: " + s);
-  }
-
-  @Override
-  public void deleteAccount(User user, String password) {
-    if (!passwordEncoder.matches(password, user.getHash())) {
-      return;
-    }
-    user.setDisinterestedList(null);
-    user.setInterestedList(null);
-    user.setFollowers(null);
-    user.setFollowing(null);
-    userRepository.save(user);
-    userRepository.delete(user);
-  }
-
-  @Override
   public Boolean updatePicture(User user, String password, MultipartFile mpf) {
     if (!passwordEncoder.matches(password, user.getHash())) {
       return false;
@@ -128,6 +104,30 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public void updatePrivacy(User user, String privacy) {
+    if (privacy.equals("Everyone")) {
+      user.setIsPrivate(false);
+    } else {
+      user.setIsPrivate(true);
+    }
+    userRepository.save(user);
+  }
+
+  @Override
+  public void deleteAccount(User user, String password) {
+    if (!passwordEncoder.matches(password, user.getHash())) {
+      return;
+    }
+    user.setDisinterestedList(null);
+    user.setInterestedList(null);
+    user.setFollowers(null);
+    user.setFollowing(null);
+    userRepository.save(user);
+    userRepository.delete(user);
+  }
+
+
+  @Override
   public List<User> getCritics() {
     List<User> critics = userRepository.getAllCritics();
     critics.sort((User o1, User o2) -> Integer.compare(o2.getRatings().size(), o1.getRatings().size()));
@@ -144,17 +144,19 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void updatePrivacy(User user, String privacy) {
-    if (privacy.equals("Everyone")) {
-      user.setIsPrivate(false);
-    } else {
-      user.setIsPrivate(true);
-    }
-    userRepository.save(user);
-  }
-
   public void updateViews(User user, BigInteger views) {
     user.setViews(views);
     userRepository.save(user);
+  }
+
+  @Override
+  public Boolean forgotPassword(String email) {
+    String s = UUID.randomUUID().toString();
+    String hash = passwordEncoder.encode(s);
+    User user = userRepository.findByEmail(email);
+    user.setHash(hash);
+    userRepository.save(user);
+    return emailService.sendEmail(email, "Fresh Mangoes Password Reset",
+        "This is your new password: " + s);
   }
 }
