@@ -201,9 +201,10 @@ a,.summary h2, .filmography h4, .episode b {
 }
 
 @media only screen and (max-width: 870px) {
-	.spotlight-posters {
-		flex-wrap: wrap;
-		flex-direction: column;
+	.spotlight-posters img {
+		width: 100px;
+		height: 150px;
+		
 	}
 
 	#spotlight-page ul .btn-link {
@@ -212,6 +213,17 @@ a,.summary h2, .filmography h4, .episode b {
 	}
 }
 
+@media only screen and (max-width: 620px) {
+	.spotlight-posters{
+		flex-wrap: wrap;
+		flex-direction: column;
+	}
+
+	.spotlight-page-posters img{
+		width: 50px !important;
+		height: 75px !important;
+	}
+}
 .movieshow {
 	text-align: center;
 	font-size: 14px;
@@ -355,7 +367,15 @@ select, option {
 	clear: both;
 }
 
-
+@media only screen and (max-width: 875px) {
+	.summary img {
+		width: 150px;
+		height: 200px;
+	}
+	.summary-title, .content-info, .plot {
+		margin-left: calc(150px + 2%) !important;
+	}
+}
 /* movie only */
 .showtime {
 	list-style: none;
@@ -450,7 +470,7 @@ iframe {
 		width: 60%;
 	}
 	
-	.content-info {
+	.content-info, .plot {
 		float: none	;
 		margin-left: calc(280px + 2%);
 	}
