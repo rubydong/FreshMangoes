@@ -15,14 +15,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Table structure for `critic_application`
-DROP TABLE IF EXISTS `critic_application`;
-CREATE TABLE `critic_application` (
-  `user_id` int(11),
-  `statement` text DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-);
 --
 -- Table structure for table `casted`
 --
@@ -234,6 +226,29 @@ CREATE TABLE `crew` (
 LOCK TABLES `crew` WRITE;
 /*!40000 ALTER TABLE `crew` DISABLE KEYS */;
 /*!40000 ALTER TABLE `crew` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `critic_application`
+--
+
+DROP TABLE IF EXISTS `critic_application`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `critic_application` (
+  `user_id` int(11) NOT NULL,
+  `statement` text,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `critic_application`
+--
+
+LOCK TABLES `critic_application` WRITE;
+/*!40000 ALTER TABLE `critic_application` DISABLE KEYS */;
+/*!40000 ALTER TABLE `critic_application` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -452,4 +467,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-01 21:09:06
+-- Dump completed on 2018-05-01 21:20:48
