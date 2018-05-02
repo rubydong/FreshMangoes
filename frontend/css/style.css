@@ -87,6 +87,10 @@ a,.summary h2, .filmography h4, .episode b {
 	margin-right: 15px;
 }
 
+.margin-overall {
+	margin: 3px;
+}
+
 .big-margin-right {
 	margin-right: 10%;
 }
@@ -94,6 +98,11 @@ a,.summary h2, .filmography h4, .episode b {
 .align-right {
 	clear: both;
 	float: right;
+}
+
+.align-left {
+	clear: both;
+	float: left;
 }
 
 .align-center {
@@ -533,9 +542,9 @@ iframe {
 }
 
 .search-results {
-	width: 60%;
-	float: left;
+	width: 80%;
 	padding: 10px;
+	margin-left: 10%;
 }
 
 .search-results h4, .search-results h5 {
