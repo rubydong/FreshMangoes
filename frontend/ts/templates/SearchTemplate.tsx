@@ -19,7 +19,7 @@ export class SearchTemplate extends React.Component {
             this.state.results = response.data.celebrities.length + response.data.content.length;
             this.setState(response.data);
         } catch (err) {
-            console.log(err);
+            //console.log(err);
         }
     }
 

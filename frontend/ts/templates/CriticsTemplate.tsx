@@ -20,9 +20,9 @@ export class CriticsTemplate extends React.Component {
             const [critics, reviews] = await Promise.all([criticsPromise, latestReviewsPromise]);
             this.setState({critics: critics.data});
             this.setState({latestReviews: reviews.data});
-            console.log(this.state);
+            //console.log(this.state);
         } catch (err) {
-            console.log(err);
+            //console.log(err);
         }
     }
 
