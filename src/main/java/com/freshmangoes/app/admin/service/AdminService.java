@@ -42,4 +42,8 @@ public interface AdminService {
   void deleteCast(Integer contentId, ContentType contentType, Integer celebrityId);
 
   void deleteMedia(Integer contentId, ContentType contentType, Integer mediaId);
+
+  void dismissReport(Integer ratingId);
+
+  void dismissCriticApplication(Integer userId);
 }

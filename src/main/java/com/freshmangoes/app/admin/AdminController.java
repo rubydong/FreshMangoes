@@ -187,6 +187,34 @@ public class AdminController {
     return ResponseEntity.status(status).build();
   }
 
+  @PostMapping(Constants.ADMIN_DISMISS_REPORT)
+  public ResponseEntity dismissReport(@PathVariable final Integer ratingId) {
+    final HttpStatus status;
+
+    if (adminService.isAuthenticatedAdmin(session)) {
+      status = HttpStatus.OK;
+      adminService.dismissReport(ratingId);
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+
+    return ResponseEntity.status(status).build();
+  }
+
+  @PostMapping(Constants.ADMIN_DISMISS_CRITIC_APP)
+  public ResponseEntity dismissCriticApplication(@PathVariable final Integer userId) {
+    final HttpStatus status;
+
+    if (adminService.isAuthenticatedAdmin(session)) {
+      status = HttpStatus.OK;
+      adminService.dismissCriticApplication(userId);
+    } else {
+      status = HttpStatus.BAD_REQUEST;
+    }
+
+    return ResponseEntity.status(status).build();
+  }
+
   @PostMapping(value = Constants.ADMIN_UPLOAD_MEDIA,
                headers = "content-type=multipart/*",
                consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)

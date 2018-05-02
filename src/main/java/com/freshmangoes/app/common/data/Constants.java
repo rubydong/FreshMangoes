@@ -67,6 +67,8 @@ public class Constants {
   public static final String ADMIN_REINDEX_MAPPING = "/admin/reindex";
   public static final String ADMIN_APPROVE_CRITIC = "/admin/approve/{userId}";
   public static final String ADMIN_GET_CRITIC_APPS = "/admin/critic/apps";
+  public static final String ADMIN_DISMISS_REPORT = "/admin/dismiss/rating/{ratingId}";
+  public static final String ADMIN_DISMISS_CRITIC_APP = "/admin/dismiss/critic/{userId}";
   public static final String ADMIN_UPLOAD_MEDIA = "/admin/upload";
 
   public static final String APPLICATION_JSON = "application/json";
