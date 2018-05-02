@@ -23,7 +23,7 @@ export class IndexComponent extends React.Component {
     }
 
     render() {
-        const selectedMovies = (this.state.selectedMovies.length != 0 ? this.state.selectedMovies : (this.props['data-spotlight'].topBoxOffice||[])).slice(0,INDEX_LIMIT).map((content) => {
+        const selectedMovies = (this.state.selectedMovies.length != 0 ? this.state.selectedMovies : (this.props['data-spotlight'].openingThisWeek||[])).slice(0,INDEX_LIMIT).map((content) => {
             const newUrl = parseMedia(content.summaryPhoto);
             return <div className="movieshow" key={content.id}>
                 <img src={newUrl}/> <br/>
