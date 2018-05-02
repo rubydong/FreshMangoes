@@ -13,12 +13,14 @@ export class SummaryComponent extends React.Component {
         let regex, match, current;
 
         if (type == ContentType.SEASON) {
-            regex = "\/season\/(\d+)";
+            regex = /\/season\/(\d+)/g;
             match = regex.exec(window.location.pathname);
+            console.log(match);
             current = Number(match[1]);
-        } else {
-            regex = "\/season\/(\d+)\/episode\/(\d+)"
+        } else if (type == ContentType.EPISODE) {
+            regex = /\/season\/(\d+)\/episode\/(\d+)/g;
             match = regex.exec(window.location.pathname);
+            console.log(match);
             current = Number(match[2]);
         }
 
