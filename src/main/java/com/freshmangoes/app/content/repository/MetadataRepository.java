@@ -18,4 +18,18 @@ public interface MetadataRepository extends CrudRepository<ContentMetadata, Inte
       + " WHERE id = ?1"
       , nativeQuery = true)
   void updateAudienceScore(Integer contentId);
+
+  @Transactional
+  @Modifying(clearAutomatically = true)
+  @Query(value = "UPDATE  content_metadata, "
+      + "(SELECT AVG(score) avg_score"
+      + " FROM Ratings r, Users u"
+      + " WHERE r.content_id = ?1"
+      + " AND u.user_type = 1"
+      + " AND r.user_id = u.id"
+      + ") b"
+      + " SET audience_score = b.avg_score"
+      + " WHERE id = ?1"
+      , nativeQuery = true)
+  void updateMangoScore(Integer contentId);
 }

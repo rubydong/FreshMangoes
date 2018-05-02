@@ -30,5 +30,5 @@ public interface UserService {
   Boolean applyForCritic(Integer userId, String statement);
 
 
-  void updatePrivacy(User user, String s);
+  void updatePrivacy(User user, String s1, String s);
 }
