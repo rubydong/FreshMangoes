@@ -273,7 +273,9 @@ export class EditPageComponent extends React.Component {
                             : ''}
                             <div className="form-control flex-center"> {photos} </div>
                             <p/>
+                            { currentUser && currentUser.userType == UserType.ADMIN ? 
                             <button className="btn" onClick={this.handleMediaChange}> Save Changes </button>
+                            : ''}
                         </div>
                     </div>    
                 </div>

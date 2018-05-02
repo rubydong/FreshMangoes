@@ -40,13 +40,13 @@ export class SearchContentComponent extends React.Component {
 			  const buttons = [];
 
         if (this.state.currentPage != 0) {
-            buttons.push(<button className="btn-link" value={-1} onClick={this.handleClick}>
-                             Prev
+            buttons.push(<button className="btn margin-overall" value={-1} onClick={this.handleClick}>
+                            Prev
                          </button>);
 				}
 
-				if (this.state.currentPage != Math.ceil(this.props['data-content'].length / SEARCH_SELECTED_LIMIT)) {
-            buttons.push(<button className="btn-link" value={1} onClick={this.handleClick}>
+				if (this.state.currentPage != Math.ceil(this.props['data-content'].length / SEARCH_SELECTED_LIMIT)-1) {
+            buttons.push(<button className="btn margin-overall" value={1} onClick={this.handleClick}>
                              Next
                          </button>);
         }
@@ -58,10 +58,12 @@ export class SearchContentComponent extends React.Component {
                         {this.props['data-title']}
                     </h5>
                     <div className="search-shows search-content flex-center">
-                        {contentList}
+                        {contentList.length == 0 ? <div>There are no matching results.</div> : contentList}
                     </div>
                 </div>
-                <span className="align-right">{buttons}</span>
+                
+                {contentList.length == 0 ? '' : <div className="align-center"> {buttons} </div>}
+
             </div>
         );
     }

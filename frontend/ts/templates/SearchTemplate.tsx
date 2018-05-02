@@ -40,9 +40,8 @@ export class SearchTemplate extends React.Component {
         <div className="search page-background-color">
             
             <div className="content">
-                <SearchCriteriaComponent/>
                 <div className="search-results margin-bottom">
-                    <h4> {this.state.results} Results found for "{window.location.search.substring(7).replace("%20", " ")}"</h4> <hr/>
+                    <h4> {this.state.results} Results found for "{window.location.search.substring(7).replace(/%20/g, " ")}"</h4> <hr/>
                     <ul className="list-inline">
                         <li><button className="btn-link" onClick={() => this.setSelectedContent([], '')}>All</button></li>
                         <li><button className="btn-link" onClick={() => this.setSelectedContent(movies, 'Movies')}>Movies</button></li>
@@ -57,8 +56,8 @@ export class SearchTemplate extends React.Component {
                     </div>
                     : <SearchContentComponent data-title={this.state.selectedTitle} data-content={this.state.selectedContent}/>
                     }
+                    <div className="clear-both"></div>	
                 </div>		
-                <div className="clear-both"></div>	
             </div>
         </div>
         );
