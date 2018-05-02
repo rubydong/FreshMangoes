@@ -17,9 +17,9 @@ export class IndexTemplate extends React.Component {
         try {
             const response = await axios.get(window.location.origin + '/api/index')
             this.setState(response.data);
-            console.log(this.state);
+            //console.log(this.state);
         } catch (err) {
-            console.log(err);
+            //console.log(err);
         }
     }
 

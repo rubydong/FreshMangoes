@@ -15,7 +15,7 @@ export class CriticApplicationsTemplate extends React.Component {
             const response = await axios.get(window.location.origin + "/api/admin/critic/apps");
             this.setState({critics : response.data});
         } catch (err) {
-            console.log(err);
+            //console.log(err);
         }
     }
 

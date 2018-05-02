@@ -16,18 +16,18 @@ export class CreatePagesTemplate extends React.Component {
 
     handleCreateContentPage = event => {
         event.preventDefault();
-        console.log(this.state);
+        //console.log(this.state);
 
-        console.log("I AM HERE");
+        //console.log("I AM HERE");
 
         let summaryPhoto = null;
         if (this.state.summaryPhoto != null) {
             let formData = new FormData();
             formData.append("myImage", this.state.summaryPhoto);
-            console.log("Posting to upload summaryPhoto");
+            //console.log("Posting to upload summaryPhoto");
             axios.post(window.location.origin + "/api/admin/upload", formData)
                 .then(res => {
-                    console.log("Completed Request " + res);
+                    //console.log("Completed Request " + res);
                 })
             summaryPhoto = new Media()
             summaryPhoto.path = this.state.summaryPhoto.name;
@@ -42,7 +42,7 @@ export class CreatePagesTemplate extends React.Component {
                 formData.append("myImage", this.state.photos.item(i));
                 axios.post(window.location.origin + "/api/admin/upload", formData)
                     .then(res => {
-                        console.log("Completed Request " + res);
+                        //console.log("Completed Request " + res);
                     })
                 let pic = new Media();
                 pic.path = this.state.photos.item(i).name;
@@ -66,7 +66,7 @@ export class CreatePagesTemplate extends React.Component {
                 formData.append("myImage", c.profilePictureFile);
                 axios.post(window.location.origin + "/api/admin/upload", formData)
                     .then(res => {
-                        console.log("Completed Request " + res);
+                        //console.log("Completed Request " + res);
                     })
                 c2.celebrity['profilePicture'] =  {
                     path: c.profilePictureFile.name,
@@ -96,12 +96,12 @@ export class CreatePagesTemplate extends React.Component {
             cast: formattedCast
         }
 
-        console.log("about to post insert");
-        console.log(requestBody);
+        //console.log("about to post insert");
+        //console.log(requestBody);
         axios.post(window.location.origin + "/api/admin/content/insert", requestBody)
             .then(res => {
-                console.log(res);
-                console.log("after posting to insert")
+                //console.log(res);
+                //console.log("after posting to insert")
 
                 if (requestBody.type == ContentType.MOVIE) {
                     window.location.assign(window.location.origin + "/movie/" + res.data.id);
@@ -125,7 +125,7 @@ export class CreatePagesTemplate extends React.Component {
             let i = this.state.genres.indexOf(GENRES_VALUES_MAP[event.target.value]);
             this.state.genres.splice(i, 1);
         }
-        console.log(this.state.genres);
+        //console.log(this.state.genres);
     }
     
     addCastMember = () => {

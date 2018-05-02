@@ -26,7 +26,7 @@ export class ContentTemplate extends React.Component {
             const [content, currentUser] = await Promise.all([contentPromise, currentUserPromise]);
             this.setState(content.data);
             this.setState({currentUser : currentUser.data});
-            console.log(this.state);
+            //console.log(this.state);
         } catch (err) {
             //window.location.assign('/404');
         }

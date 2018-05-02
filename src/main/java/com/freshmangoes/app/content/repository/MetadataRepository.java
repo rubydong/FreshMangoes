@@ -11,7 +11,7 @@ public interface MetadataRepository extends CrudRepository<ContentMetadata, Inte
   @Modifying(clearAutomatically = true)
   @Query(value = "UPDATE  content_metadata, "
       + "(SELECT AVG(score) avg_score"
-      + " FROM Ratings r, Users u"
+      + " FROM ratings r, users u"
       + " WHERE r.content_id = ?1"
       + " AND u.user_type = 0"
       + " AND r.user_id = u.id"
@@ -25,7 +25,7 @@ public interface MetadataRepository extends CrudRepository<ContentMetadata, Inte
   @Modifying(clearAutomatically = true)
   @Query(value = "UPDATE  content_metadata, "
       + "(SELECT AVG(score) avg_score"
-      + " FROM Ratings r, Users u"
+      + " FROM ratings r, users u"
       + " WHERE r.content_id = ?1"
       + " AND u.user_type = 1"
       + " AND r.user_id = u.id"
