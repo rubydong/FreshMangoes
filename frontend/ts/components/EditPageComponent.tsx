@@ -26,7 +26,6 @@ export class EditPageComponent extends React.Component {
             formData.append("myImage", this.state.tempSummaryPhoto);
             axios.post(window.location.origin + "/api/admin/upload", formData)
                 .then(res => {
-                    ////console.log("Completed Request " + res);
                 })
             summaryPhoto = this.state.tempSummaryPhoto.name;
         }
@@ -43,7 +42,6 @@ export class EditPageComponent extends React.Component {
 
         axios.post(window.location.origin + "/api/admin/update/summary/" + id, requestBody)
             .then(res => {
-                ////console.log("Completed Request " + res);
                 window.location.reload();
             })
     }
@@ -56,7 +54,6 @@ export class EditPageComponent extends React.Component {
     handleDeletePhoto = (photos, i, id) => {
         axios.delete(window.location.origin + "/api/admin/delete/media/" + this.state.type.toString() + "/" + this.state.id + "/" + id)
             .then(res => {
-                ////console.log("Completed Request " + res);
             })
         photos.splice(i, 1);
         this.forceUpdate();
@@ -75,14 +72,12 @@ export class EditPageComponent extends React.Component {
     handleDeleteCast = (cast, i, id) => {
         axios.delete(window.location.origin + "/api/admin/delete/cast/" + this.state.type.toString() + "/" + this.state.id + "/" + id)
             .then(res => {
-                ////console.log("Completed Request " + res);
             })
         cast.splice(i, 1);
         this.forceUpdate();
     }
 
     handleUpdateCast = event => {
-        ////console.log("updating cast");
 
 
         let formattedCast = []
@@ -96,12 +91,10 @@ export class EditPageComponent extends React.Component {
                 role: cast.role
             };
             if (cast.profilePictureFile != null) {
-                ////console.log("profile pic here");
                 let formData = new FormData();
                 formData.append("myImage", cast.profilePictureFile);
                 axios.post(window.location.origin + "/api/admin/upload", formData)
                     .then(res => {
-                        ////console.log("Completed Request " + res);
                     });
                 formatCast.celebrity['profilePicture'] = {
                     path: cast.profilePictureFile.name,
@@ -125,12 +118,11 @@ export class EditPageComponent extends React.Component {
     addCastMember = () => {
         this.setState({castNum: this.state.castNum + 1});
         this.state.tempCast.push(new CreateCast());
-        ////console.log(this.state.tempCast);
         // this.forceUpdate();
     }
 
     removeCastMember = (castMember, i) => {
-        this.setState(castNum: this.state.castNum - 1});
+        this.setState({castNum: this.state.castNum - 1});
         castMember.splice(i, 1);
         this.state.tempCast.splice(i, 1);
         // this.forceUpdate();
@@ -161,16 +153,14 @@ export class EditPageComponent extends React.Component {
     }
 
     handleMediaChange = event => {
-        ////console.log('here');
         let mediaPaths = [];
         if (this.state.tempPhoto != null && this.state.tempPhoto.length > 0) {
             for (let i = 0; i < this.state.tempPhoto.length; i++) {
-                ////console.log(this.state.tempPhoto.item(i).name);
+                //console.log(this.state.tempPhoto.item(i).name);
                 let formData = new FormData();
                 formData.append("myImage", this.state.tempPhoto.item(i));
                 axios.post(window.location.origin + "/api/admin/upload", formData)
                     .then(res => {
-                        ////console.log("Completed Request " + res);
                     })
                 let pic = new Media();
                 pic.path = this.state.tempPhoto.item(i).name;
@@ -187,7 +177,6 @@ export class EditPageComponent extends React.Component {
         ///admin/update/cast/{contentId}
         axios.post(window.location.origin + "/api/admin/update/media/" + this.state.id, requestBody)
             .then(res => {
-                ////console.log("Completed Request for update Cast" + res);
                 window.location.reload();
             });
     }
