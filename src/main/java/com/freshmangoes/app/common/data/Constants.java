@@ -50,7 +50,6 @@ public class Constants {
   public static final String CHANGE_NAME_MAPPING = "/profile/name/update";
   public static final String CHANGE_EMAIL_MAPPING = "/profile/email/reset";
   public static final String FORGOT_PASSWORD_MAPPING = "/forgotpassword";
-  public static final String RESET_PASSWORD_MAPPING = "/resetpassword";
   public static final String CHANGE_PRIVACY_MAPPING = "/profile/privacy/update";
 
 
