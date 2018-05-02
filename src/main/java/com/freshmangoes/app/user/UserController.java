@@ -99,9 +99,10 @@ public class UserController {
   public ResponseEntity deleteAccount(@RequestBody final Map<String, String> body) {
     User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
-      userService.deleteAccount(user, body.get(Constants.OLD_PASSWORD));
-      session.invalidate();
-      return new ResponseEntity(HttpStatus.OK);
+      if (userService.deleteAccount(user, body.get(Constants.OLD_PASSWORD))) {
+        session.invalidate();
+        return new ResponseEntity(HttpStatus.OK);
+      }
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
   }

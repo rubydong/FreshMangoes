@@ -117,9 +117,9 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void deleteAccount(User user, String password) {
+  public Boolean deleteAccount(User user, String password) {
     if (!passwordEncoder.matches(password, user.getHash())) {
-      return;
+      return false;
     }
     user.setDisinterestedList(null);
     user.setInterestedList(null);
@@ -127,6 +127,7 @@ public class UserServiceImpl implements UserService {
     user.setFollowing(null);
     userRepository.save(user);
     userRepository.delete(user);
+    return true;
   }
 
 
