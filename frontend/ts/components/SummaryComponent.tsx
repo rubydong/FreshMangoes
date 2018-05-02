@@ -33,9 +33,12 @@ export class SummaryComponent extends React.Component {
                         Audience Score
                     </b>
                     <br/>
-                    <Mangoes data-rating={metadata.mangoScore || 0}/> {metadata.mangoScore || 0}%
-                    <span className="med-margin-right"></span>
-                    <Mangoes data-rating={metadata.audienceScore || 0}/> {metadata.audienceScore || 0}%
+                    {type==ContentType.SEASON || type == ContentType.EPISODE ? '' 
+                    : <div>
+                        <Mangoes data-rating={metadata.mangoScore || 0}/> {metadata.mangoScore || 0}%
+                        <span className="med-margin-right"></span>
+                        <Mangoes data-rating={metadata.audienceScore || 0}/> {metadata.audienceScore || 0}%
+                    </div>}
                     <p/>
                     {metadata.summary ? <div> <b>About Movie</b> <br/> {metadata.summary} <p/></div>: ''}
                 </div>
