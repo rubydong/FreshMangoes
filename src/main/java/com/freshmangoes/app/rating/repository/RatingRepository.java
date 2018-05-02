@@ -18,6 +18,6 @@ public interface RatingRepository extends CrudRepository<Rating, Integer> {
   @Query(value = "SELECT * FROM ratings WHERE flagged=true", nativeQuery = true)
   List<Rating> findFlaggedRatings();
 
-  @Query(value = "SELECT * FROM ratings ORDER BY id DESC LIMIT ?1", nativeQuery = true)
+  @Query(value = "SELECT * FROM ratings WHERE ratings.user_id in (SELECT id from users where users.user_type=1) ORDER BY id DESC LIMIT ?1", nativeQuery = true)
   List<Rating> findLatestRatings(Integer numRatings);
 }
