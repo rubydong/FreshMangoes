@@ -69,7 +69,7 @@ export class CreatePagesTemplate extends React.Component {
                         console.log("Completed Request " + res);
                     })
                 c2.celebrity['profilePicture'] =  {
-                    path: FILE_STORAGE_BASE_DIR + c.profilePictureFile.name,
+                    path: c.profilePictureFile.name,
                     type: MediaType.PHOTO
                 }
 
