@@ -86,8 +86,8 @@ public class UserServiceImpl implements UserService {
         mediaRepository.save(media);
         user.setProfilePicture(media);
         userRepository.save(user);
-        return true;
       }
+      return true;
     } catch (IOException e) {
       e.printStackTrace();
     }
