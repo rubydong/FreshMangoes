@@ -89,7 +89,7 @@ public class Constants {
   public static final String NEW_PROFILE = "newFile";
   public static final String NEW_PRIVACY = "newPrivacy";
 
-  public static final String FILE_PATH = "/Users/Jack/Desktop/CSE308Project/photos/";
+  public static final String FILE_PATH = "/mnt/media/profiles/";
   public static final Integer NUM_LATEST_REVIEWS = 10;
 
 }

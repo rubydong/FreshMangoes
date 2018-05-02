@@ -20,8 +20,8 @@ public class VerificationServiceImpl implements VerificationService {
     final String verificationKey = UUID.randomUUID().toString();
     user.setVerificationKey(verificationKey);
     userRepository.save(user);
-    return emailService.sendEmail(user.getEmail(), "Fresh Mangoes Verification", "Click this link to"
-        + "verify yourself please: http://localhost:9000/verify/" + verificationKey);
+    return emailService.sendEmail(user.getEmail(), "Fresh Mangoes Verification", "Click this link to "
+        + "verify yourself please: http://freshmangoes.me/verify/" + verificationKey);
   }
 
   @Override
@@ -29,8 +29,8 @@ public class VerificationServiceImpl implements VerificationService {
     final User user = userRepository.findByEmail(email);
 
     if (user != null) {
-      return emailService.sendEmail(email, "Fresh Mangoes Verification Resend", "Click this link to"
-          + "verify yourself please: http://localhost:9000/verify/" + user.getVerificationKey());
+      return emailService.sendEmail(email, "Fresh Mangoes Verification Resend", "Click this link to "
+          + "verify yourself please: http://freshmangoes.me/verify/" + user.getVerificationKey());
     } else {
       return false;
     }
