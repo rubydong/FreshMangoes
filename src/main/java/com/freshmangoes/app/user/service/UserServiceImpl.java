@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
         f.createNewFile();
         mpf.transferTo(f);
         Media media = new Media();
-        media.setPath(f.getCanonicalPath());
+        media.setPath('/' + mpf.getOriginalFilename());
         media.setType(MediaType.PHOTO);
         mediaRepository.save(media);
         user.setProfilePicture(media);
