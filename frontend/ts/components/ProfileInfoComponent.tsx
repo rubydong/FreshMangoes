@@ -127,7 +127,7 @@ export class ProfileInfoComponent extends React.Component {
             <div className="left">
                 <h2>{state.displayName}</h2>
                 <div className="bio box-shadow">
-                    <img className="profile-picture" src={parseUserMedia(state.profilePicture)}/>
+                    <img className="profile-picture" src={window.location.origin + '/media/' + parseUserMedia(state.profilePicture)}/>
                     <b>Views: </b> {state.views}
                     <FollowComponent data-followers={state.followers} data-following={state.following}/>
                     <p/>

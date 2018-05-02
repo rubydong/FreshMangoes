@@ -220,7 +220,8 @@ public class AdminController {
                consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
   public String uploadMedia(@RequestParam("myImage") final MultipartFile file) {
     if (adminService.isAuthenticatedAdmin(session)) {
-      return adminService.uploadMedia(file);
+      adminService.uploadMedia(file);
+      return file.getOriginalFilename();
     }
     return null;
   }
