@@ -11,8 +11,10 @@ public interface MetadataRepository extends CrudRepository<ContentMetadata, Inte
   @Modifying(clearAutomatically = true)
   @Query(value = "UPDATE  content_metadata, "
       + "(SELECT AVG(score) avg_score"
-      + " FROM Ratings r"
+      + " FROM Ratings r, Users u"
       + " WHERE r.content_id = ?1"
+      + " AND u.user_type = 0"
+      + " AND r.user_id = u.id"
       + ") b"
       + " SET audience_score = b.avg_score"
       + " WHERE id = ?1"
@@ -28,7 +30,7 @@ public interface MetadataRepository extends CrudRepository<ContentMetadata, Inte
       + " AND u.user_type = 1"
       + " AND r.user_id = u.id"
       + ") b"
-      + " SET audience_score = b.avg_score"
+      + " SET mango_score = b.avg_score"
       + " WHERE id = ?1"
       , nativeQuery = true)
   void updateMangoScore(Integer contentId);

@@ -23,7 +23,7 @@ export class IndexComponent extends React.Component {
     }
 
     render() {
-        const selectedMovies = (this.state.selectedMovies.length != 0 ? this.state.selectedMovies : (this.props['data-spotlight'].topBoxOffice||[])).slice(0,INDEX_LIMIT).map((content) => {
+        const selectedMovies = (this.state.selectedMovies.length != 0 ? this.state.selectedMovies : (this.props['data-spotlight'].openingThisWeek||[])).slice(0,INDEX_LIMIT).map((content) => {
             const newUrl = parseMedia(content.summaryPhoto);
             return <div className="movieshow" key={content.id}>
                 <img src={newUrl}/> <br/>
@@ -49,9 +49,9 @@ export class IndexComponent extends React.Component {
                     <div className="margin-top-bottom spotlight">
                         <h2> Movies Spotlight </h2>	<hr/>
                         <ul className="list-inline align-center spotlight-nav">
-                            <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].topBoxOffice)}>Top Box Office</button></li>		
-                            <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].certifiedFreshMovies)}>Certified Fresh Movies</button></li>
+                            <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].openingThisWeek)}>Opening This Week</button></li>	
                             <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].comingSoon)}>Coming Soon</button></li> 
+                            <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].topBoxOffice)}>Top Box Office</button></li>		
                             <li><a href="/spotlight">View All</a></li>
                         </ul>
                     
@@ -61,13 +61,11 @@ export class IndexComponent extends React.Component {
                     </div>
                 </div>
 
-                {/* <img id="poster" src="https://image.tmdb.org/t/p/original/b6ZJZHUdMEFECvGiDpJjlfUWela.jpg"/> */}
-
                 <div className="content">
                     <div className="margin-top-bottom spotlight">
                         <h2> Shows Spotlight </h2>	<hr/>
                         <ul className="list-inline align-center spotlight-nav">
-                            <button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].newTonight)}>New Shows</button>
+                            <button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].newTonight)}>New Shows Tonight</button>
                             <li><button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].mostPopular)}>Most Popular</button></li>		
                             <li><button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].highestRatedShows)}>Highest Rated Shows</button></li> 
                             <li><a href="/spotlight">View All</a></li>
