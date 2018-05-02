@@ -65,8 +65,8 @@ export class ProfileInfoComponent extends React.Component {
                     window.location.reload();
                 })
         }
-        console.log(editProfileInfo.newFile);
-        console.log(editProfileInfo.newEmail);
+        //console.log(editProfileInfo.newFile);
+        //console.log(editProfileInfo.newEmail);
         if (editProfileInfo.newFile != null) {
             let formData = new FormData();
             formData.append("myImage", editProfileInfo.newFile);
@@ -77,8 +77,8 @@ export class ProfileInfoComponent extends React.Component {
                 })
         }
         if (editProfileInfo.newEmail != '') {
-            console.log("here")
-            console.log(editProfileInfo)
+            //console.log("here")
+            //console.log(editProfileInfo)
             axios.post(window.location.origin + '/api/profile/picture/update/', editProfileInfo)
                 .then(res => {
                     window.location.reload();
@@ -114,12 +114,12 @@ export class ProfileInfoComponent extends React.Component {
     async adminDeleteAccount() {
         const response = await axios.delete(window.location.origin + '/api/admin/user/delete/' + getUrlID());
         window.location.reload();
-        console.log(response);
+        //console.log(response);
     }
 
     render() {
         const state = this.props['data-state'];
-        console.log(state);
+        //console.log(state);
         const sameUser = ("/profile/" + state.currentUser.userId) == window.location.pathname;
         let alreadyFollowed = false;
         for (let i = 0; i < state.followers.length; i++) {

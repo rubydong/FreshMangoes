@@ -40,7 +40,7 @@ export class RegisterComponent extends React.Component {
             window.location.reload();
         })
         .catch(err => {
-            console.log(err);
+            //console.log(err);
         })
     }
     render() {
