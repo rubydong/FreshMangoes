@@ -1,7 +1,10 @@
 import { NO_CONTENT_PHOTO, NO_USER_PHOTO } from "./GlobalVariables";
 
 export function parseMedia(media) {
-    return (media && media.path != "") ? media.path : NO_CONTENT_PHOTO;
+    if (media && media.path != "") {
+	return media.path.startsWith('http') ? media.path : window.location.origin + '/media/profiles/' + media.path;
+    }
+    return NO_CONTENT_PHOTO;
 }
 
 export function parseUserMedia(media) {
@@ -9,7 +12,7 @@ export function parseUserMedia(media) {
 }
 export function parseMoreMedia(media, list) {
     if (media && media.path != "") {
-        return media.path;
+	return media.path.startsWith('http') ? media.path : window.location.origin + '/media/profiles/' + media.path;
     } else {
         if (list && list.length != 0 && list[0].path != "") return list[0].path;
         return NO_CONTENT_PHOTO;
