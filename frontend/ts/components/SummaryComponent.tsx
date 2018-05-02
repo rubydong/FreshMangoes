@@ -8,11 +8,24 @@ export class SummaryComponent extends React.Component {
         const metadata = this.props['data-metadata'];
         const list = [];
         const type = this.props['data-type'];
+        const selectorText = (type == ContentType.SEASON) ? 'Season ' : 'Episode ';
+
+        let regex, match, current;
+
+        if (type == ContentType.SEASON) {
+            regex = "\/season\/(\d+)";
+            match = regex.exec(window.location.pathname);
+            current = Number(match[1]);
+        } else {
+            regex = "\/season\/(\d+)\/episode\/(\d+)"
+            match = regex.exec(window.location.pathname);
+            current = Number(match[2]);
+        }
 
         for (let i = 1; i <= this.props['data-list-count']; i++) {
             list.push(
-                <option key={i} value={"./" + i}> 
-                    {type==ContentType.SEASON ? 'Season ' + i : 'Episode ' + i}
+                <option key={i} value={"./" + i} selected={i == current}>
+                    {selectorText + i}
                 </option>
             );
         }
