@@ -17,7 +17,7 @@ public interface UserService {
 
   Boolean forgotPassword(String email);
 
-  void deleteAccount(User user, String s);
+  Boolean deleteAccount(User user, String s);
 
   Boolean updatePicture(User user, String s, MultipartFile file);
 

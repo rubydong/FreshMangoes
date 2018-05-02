@@ -7,7 +7,11 @@ import com.freshmangoes.app.content.repository.MovieRepository;
 import com.freshmangoes.app.content.repository.ShowRepository;
 import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.repository.RatingRepository;
+
 import java.util.List;
+
+import com.freshmangoes.app.user.data.User;
+import com.freshmangoes.app.user.data.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,9 +39,14 @@ public class RatingServiceImpl implements RatingService {
         break;
     }
 
-    if(ratingRepository.existsByUserId(rating.getUser().getId(), contentId) == null) {
+    User user = rating.getUser();
+    if (ratingRepository.existsByUserId(user.getId(), contentId) == null) {
       ratingRepository.save(rating);
-      metadataRepository.updateAudienceScore(contentId);
+      if (user.getType() == UserType.AUDIENCE) {
+        metadataRepository.updateAudienceScore(contentId);
+      } else if (user.getType() == UserType.CRITIC) {
+        metadataRepository.updateMangoScore(contentId);
+      }
       return rating;
     }
     return null;
@@ -51,7 +60,14 @@ public class RatingServiceImpl implements RatingService {
     existingRating.setBody(rating.getBody());
     existingRating.setScore(rating.getScore());
     ratingRepository.save(existingRating);
-    metadataRepository.updateAudienceScore(existingRating.getContent().getId());
+
+    User user = rating.getUser();
+    if (user.getType() == UserType.AUDIENCE) {
+      metadataRepository.updateAudienceScore(existingRating.getContent().getId());
+    } else if (user.getType() == UserType.CRITIC) {
+      metadataRepository.updateMangoScore(existingRating.getContent().getId());
+    }
+
     return existingRating;
   }
 
@@ -69,7 +85,13 @@ public class RatingServiceImpl implements RatingService {
       return;
     }
     ratingRepository.deleteById(ratingId);
-    metadataRepository.updateAudienceScore(rating.getContent().getId());
+    User user = rating.getUser();
+    if (user.getType() == UserType.AUDIENCE) {
+      metadataRepository.updateAudienceScore(rating.getContent().getId());
+    } else if (user.getType() == UserType.CRITIC) {
+      metadataRepository.updateMangoScore(rating.getContent().getId());
+    }
+
   }
 
   public Rating flagRating(final Integer ratingId, final String report) {
