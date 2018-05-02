@@ -19,7 +19,7 @@ export class SpotlightTemplate extends React.Component {
             this.state.selectedTitle = 'Top Box Office';
             this.setState(response.data);
         } catch (err) {
-            console.log(err);
+            //console.log(err);
         }
     }
 

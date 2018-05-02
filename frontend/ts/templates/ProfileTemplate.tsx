@@ -21,7 +21,7 @@ export class ProfileTemplate extends React.Component {
             const [content, currentUser] = await Promise.all([profilePromise, currentUserPromise]);
             this.setState(content.data);
             this.setState({currentUser : currentUser.data});
-            console.log(this.state);
+            //console.log(this.state);
         } catch (err) {
             window.location.assign('/404');
         }
@@ -33,26 +33,26 @@ export class ProfileTemplate extends React.Component {
         let myData = [];
         this.state.highestRatings = [];
         this.state.lowestRatings = [];
-        console.log(this.state.ratings)
+        //console.log(this.state.ratings)
         if (this.state.ratings.length != 0) {
             myData = [].concat(this.state.ratings)
                 .sort((b, a) => a.score - b.score);
         }
-        console.log(myData)
+        //console.log(myData)
         for (let i = 0; i < myData.length; i++) {
             if (myData[i].score >= 80) {
                 this.state.highestRatings.push(myData[i]);
                 // break;
             }
         }
-        console.log(this.state.highestRatings);
+        //console.log(this.state.highestRatings);
         for (let i = myData.length - 1; i >= 0; i--) {
             if (myData[i].score <= 40) {
                 this.state.lowestRatings.push(myData[i]);
                 // break;
             }
         }
-        console.log(this.state.lowestRatings);
+        //console.log(this.state.lowestRatings);
 
         return (
             <div className="profile page-background-color">

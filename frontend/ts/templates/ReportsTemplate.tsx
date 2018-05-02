@@ -15,7 +15,7 @@ export class ReportsTemplate extends React.Component {
             const response = await axios.get(window.location.origin + '/api/admin/reports')
             this.setState({reports : response.data});
         } catch (err) {
-            console.log(err);
+            //console.log(err);
         }
     }
 
