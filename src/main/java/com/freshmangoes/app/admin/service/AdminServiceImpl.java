@@ -114,13 +114,9 @@ public class AdminServiceImpl implements AdminService {
     return (user != null && user.getType() == UserType.ADMIN);
   }
 
-  @Override
-  public Content jsonToContent(final String body) {
+  private Content readContentByType(final String body, ContentType contentType) {
     Content content = null;
     try {
-      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-      JsonNode root = objectMapper.readTree(body);
-      ContentType contentType = ContentType.valueOf(root.path("type").asText());
       switch (contentType) {
         case MOVIE:
           content = objectMapper.readValue(body, Movie.class);
@@ -135,6 +131,20 @@ public class AdminServiceImpl implements AdminService {
           content = objectMapper.readValue(body, Episode.class);
           break;
       }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return content;
+  }
+
+  @Override
+  public Content jsonToContent(final String body) {
+    Content content = null;
+    try {
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      JsonNode root = objectMapper.readTree(body);
+      ContentType contentType = ContentType.valueOf(root.path("type").asText());
+      content = readContentByType(body, contentType);
 
       content.setViews(BigInteger.ZERO);
 
@@ -144,9 +154,7 @@ public class AdminServiceImpl implements AdminService {
 
       List<Media> unsavedMedia = content.getMedia();
       content.setMedia(new ArrayList<>());
-      for (Media m : unsavedMedia) {
-        content.getMedia().add(mediaRepository.save(m));
-      }
+      addMedia(content, unsavedMedia);
 
       content.setMetadata(metadataRepository.save(content.getMetadata()));
       List<Cast> unsavedCast = content.getCast();
@@ -182,36 +190,120 @@ public class AdminServiceImpl implements AdminService {
 
       // do celebrities now
       // check celebrity id, if it exists find and add into cast, if not create new celebrity
-      for (Cast cast : unsavedCast) {
-        Celebrity celebrity = cast.getCelebrity();
-        if (celebrity.getId() == -1) {
-          // create a new celebrity here
-          //  media -> celebrities, casted (mainly just profile and celebrities, then put the new celebrities into content object)
-          if (celebrity.getProfilePicture() != null) {
-            celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
-          }
-          castedRepository.save(
-           Cast
-            .builder()
-            .content(content)
-            .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build());
-        } else {
-          celebrity = celebrityRepository.findById(celebrity.getId()).orElse(null);
-          if (celebrity != null) {
-            castedRepository.save(
-             Cast
-              .builder()
-              .content(content)
-              .celebrity(celebrity)
-              .role(cast.getRole()).build());
-          }
-        }
-      }
+      addCast(unsavedCast, content);
 
     } catch (IOException e) {
       e.printStackTrace();
     }
     return content;
+  }
+
+  private void addMedia(Content content, List<Media> unsavedMedia) {
+    for (Media m : unsavedMedia) {
+      content.getMedia().add(mediaRepository.save(m));
+    }
+  }
+
+  private void addCast(List<Cast> unsavedCast, Content content) {
+    for (Cast cast : unsavedCast) {
+      Celebrity celebrity = cast.getCelebrity();
+      if (celebrity.getId() == -1) {
+        // create a new celebrity here
+        //  media -> celebrities, casted (mainly just profile and celebrities, then put the new celebrities into content object)
+        if (celebrity.getProfilePicture() != null) {
+          celebrity.setProfilePicture(mediaRepository.save(celebrity.getProfilePicture()));
+        }
+        castedRepository.save(
+         Cast
+          .builder()
+          .content(content)
+          .celebrity(celebrityRepository.save(celebrity)).role(cast.getRole()).build());
+      } else {
+        celebrity = celebrityRepository.findById(celebrity.getId()).orElse(null);
+        if (celebrity != null) {
+          castedRepository.save(
+           Cast
+            .builder()
+            .content(content)
+            .celebrity(celebrity)
+            .role(cast.getRole()).build());
+        }
+      }
+    }
+  }
+
+  @Override
+  public Content editCast(final String json, final Integer contentId) {
+    Content content = null;
+    try {
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      JsonNode root = objectMapper.readTree(json);
+      ContentType contentType = ContentType.valueOf(root.path("type").asText());
+      content = readContentByType(json, contentType);
+
+      Content originalContent = findContentByType(contentType, contentId);
+      if (originalContent == null) {
+        return null;
+      }
+
+      List<Cast> newCast = content.getCast();
+      addCast(newCast, originalContent);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return content;
+  }
+
+  @Override
+  public Content editMedia(final String json, final Integer contentId) {
+    Content content = null;
+    try {
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      JsonNode root = objectMapper.readTree(json);
+      ContentType contentType = ContentType.valueOf(root.path("type").asText());
+      content = readContentByType(json, contentType);
+
+      Content originalContent = findContentByType(contentType, contentId);
+      if (originalContent == null) {
+        return null;
+      }
+
+      addMedia(originalContent, content.getMedia());
+
+      saveContentByType(originalContent, contentType);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return content;
+  }
+
+  @Override
+  public void deleteCast(Integer contentId, ContentType contentType, Integer celebrityId) {
+    Content content = findContentByType(contentType, contentId);
+    if (content == null) {
+      return;
+    }
+    if (content.getCast() != null) {
+      Cast toRemove = null;
+      List<Cast> casts = content.getCast();
+      for (Cast c : casts) {
+        Celebrity celebrity = c.getCelebrity();
+        if (celebrity.getId().equals(celebrityId)) {
+          toRemove = c;
+          break;
+        }
+      }
+      if (toRemove != null) {
+//        toRemove.setCelebrity(null);
+//        toRemove.setContent(null);
+        casts.remove(toRemove);
+        saveContentByType(content, contentType);
+        castedRepository.delete(toRemove);
+      }
+    }
+
   }
 
   @Override
@@ -222,22 +314,7 @@ public class AdminServiceImpl implements AdminService {
       JsonNode root = objectMapper.readTree(json);
       String summaryPhoto = root.path("summaryPhoto").asText();
       ContentType contentType = ContentType.valueOf(root.path("type").asText());
-      switch (contentType) {
-        case MOVIE:
-          oldContent = movieRepository.findById(contentId).orElse(null);
-          break;
-        case SHOW:
-          oldContent = showRepository.findById(contentId).orElse(null);
-          break;
-        case SEASON:
-          oldContent = seasonRepository.findById(contentId).orElse(null);
-          break;
-        case EPISODE:
-          oldContent = episodeRepository.findById(contentId).orElse(null);
-          break;
-      }
-
-//      {"type":"MOVIE","summaryPhoto":"","name":"Fake Title","summary":"Fake Description","genre":[28,99,27]}
+      oldContent = findContentByType(contentType, contentId);
 
       if (oldContent == null) {
         return null;
@@ -263,24 +340,72 @@ public class AdminServiceImpl implements AdminService {
         oldContent.getMetadata().getGenres().add(jn.asInt());
       }
 
-      switch (contentType) {
-        case MOVIE:
-          oldContent = movieRepository.save((Movie) oldContent);
-          break;
-        case SHOW:
-          oldContent = showRepository.save((Show) oldContent);
-          break;
-        case SEASON:
-          oldContent = seasonRepository.save((Season) oldContent);
-          break;
-        case EPISODE:
-          oldContent = episodeRepository.save((Episode) oldContent);
-          break;
-      }
+      oldContent = saveContentByType(oldContent, contentType);
+
     } catch (IOException e) {
       e.printStackTrace();
     }
     return oldContent;
+  }
+
+  private Content findContentByType(ContentType contentType, Integer contentId) {
+    Content oldContent = null;
+    switch (contentType) {
+      case MOVIE:
+        oldContent = movieRepository.findById(contentId).orElse(null);
+        break;
+      case SHOW:
+        oldContent = showRepository.findById(contentId).orElse(null);
+        break;
+      case SEASON:
+        oldContent = seasonRepository.findById(contentId).orElse(null);
+        break;
+      case EPISODE:
+        oldContent = episodeRepository.findById(contentId).orElse(null);
+        break;
+    }
+    return oldContent;
+  }
+
+  private Content saveContentByType(Content content, ContentType contentType) {
+    switch (contentType) {
+      case MOVIE:
+        content = movieRepository.save((Movie) content);
+        break;
+      case SHOW:
+        content = showRepository.save((Show) content);
+        break;
+      case SEASON:
+        content = seasonRepository.save((Season) content);
+        break;
+      case EPISODE:
+        content = episodeRepository.save((Episode) content);
+        break;
+    }
+    return content;
+  }
+
+  @Override
+  public void deleteMedia(Integer contentId, ContentType contentType, Integer mediaId) {
+    Content oldContent = findContentByType(contentType, contentId);
+    if (oldContent == null) {
+      return;
+    }
+    if (oldContent.getMedia() != null) {
+      List<Media> medias = oldContent.getMedia();
+      Media toRemove = null;
+      for (Media m : medias) {
+        if (m.getId() == mediaId) {
+          toRemove = m;
+          break;
+        }
+      }
+      if (toRemove != null) {
+        medias.remove(toRemove);
+        mediaRepository.delete(toRemove);
+        saveContentByType(oldContent, contentType);
+      }
+    }
   }
 
   @Override
@@ -322,5 +447,20 @@ public class AdminServiceImpl implements AdminService {
       e.printStackTrace();
     }
     return null;
+  }
+
+  @Override
+  public void dismissReport(Integer ratingId) {
+    Rating rating = ratingRepository.findById(ratingId).orElse(null);
+    if (rating != null) {
+      rating.setReport(null);
+      rating.setIsFlagged(false);
+      ratingRepository.save(rating);
+    }
+  }
+
+  @Override
+  public void dismissCriticApplication(Integer userId) {
+    userRepository.deleteCriticApplication(userId);
   }
 }

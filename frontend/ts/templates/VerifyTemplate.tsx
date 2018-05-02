@@ -11,7 +11,7 @@ export class VerifyTemplate extends React.Component {
     render() {	
         return (	
             <div>	
-                <hr className="header-hr"/>	
+                	
                 <div className="content center-text">	
                     <h1>Thanks for joining Fresh Mangoes!</h1>	
                     <h3>You are now verified, go to the <a href="/../">home page.</a></h3>	

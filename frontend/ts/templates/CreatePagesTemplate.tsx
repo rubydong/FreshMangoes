@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import axios from "axios";
-import { MOVIE_GENRES, TV_GENRES, GENRES_VALUES_MAP, FILE_STORAGE_BASE_DIR } from "../../GlobalVariables";
+import { MOVIE_GENRES, TV_GENRES, GENRES_VALUES_MAP, FILE_STORAGE_BASE_DIR, TRASH_ICON } from "../../GlobalVariables";
 import { CreatePage, ContentType } from "../types/content";
 import { CreateCast } from "../types/celebrity";
 import {Media, MediaType} from "../types/media";
@@ -68,9 +68,9 @@ export class CreatePagesTemplate extends React.Component {
                     .then(res => {
                         console.log("Completed Request " + res);
                     })
-                c2['profilePicture'] =  {
+                c2.celebrity['profilePicture'] =  {
                     path: FILE_STORAGE_BASE_DIR + c.profilePictureFile.name,
-                        type: MediaType.PHOTO
+                    type: MediaType.PHOTO
                 }
 
             }
@@ -146,7 +146,7 @@ export class CreatePagesTemplate extends React.Component {
         for (let i = 0; i < this.state.castNum; i++) {
             castMember.push(<div key ={i} className={i != 0 ? "padding-top" : ""}>
                 <input type="file" onChange={(event) => this.state.cast[i].profilePictureFile = event.target.files[0]}/>
-                <button type="button" className="btn-link align-right" onClick={() => this.removeCastMember(castMember, i)}>x</button>
+                <img src={TRASH_ICON} className="align-right" onClick={() => this.removeCastMember(castMember, i)}/>
                 <input type="text" className="form-control" placeholder="Name" onChange={(event) => this.state.cast[i].name = event.target.value}/>
                 <input type="text" className="form-control" placeholder="ID" onChange={(event) => this.state.cast[i].id = parseInt(event.target.value)}/>
                 <input type="text" className="form-control" placeholder="Role" onChange={(event) => this.state.cast[i].role = event.target.value}/>
@@ -165,7 +165,7 @@ export class CreatePagesTemplate extends React.Component {
         
         return ( 
             <div className="page-background-color">
-                <hr className="header-hr"/>
+                
                 <div className="content">
                     <form id="create-form" onSubmit={this.handleCreateContentPage.bind(this)}>
                         <h2> Create a New Content Page </h2> 

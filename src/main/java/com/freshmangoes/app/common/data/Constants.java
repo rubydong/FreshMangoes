@@ -58,13 +58,17 @@ public class Constants {
   public static final String ADMIN_UPDATE_DETAIL_SUMMARY_MAPPING = "/admin/update/summary/{contentId}";
   public static final String ADMIN_UPDATE_DETAIL_MEDIA_MAPPING = "/admin/update/media/{contentId}";
   public static final String ADMIN_UPDATE_DETAIL_CAST_MAPPING = "/admin/update/cast/{contentId}";
+  public static final String ADMIN_DELETE_CAST_MAPPING = "/admin/delete/cast/{contentType}/{contentId}/{castId}";
   public static final String ADMIN_DELETE_DETAIL_PAGE_MAPPING = "/admin/delete/{contentType}/{contentId}";
+  public static final String ADMIN_DELETE_MEDIA_MAPPING = "/admin/delete/media/{contentType}/{contentId}/{mediaId}";
   public static final String ADMIN_VIEW_REPORTS_MAPPING = "/admin/reports";
   public static final String ADMIN_DELETE_RATING_MAPPING = "/admin/rating/delete/{ratingId}";
   public static final String ADMIN_DELETE_USER_MAPPING = "/admin/user/delete/{userId}";
   public static final String ADMIN_REINDEX_MAPPING = "/admin/reindex";
   public static final String ADMIN_APPROVE_CRITIC = "/admin/approve/{userId}";
   public static final String ADMIN_GET_CRITIC_APPS = "/admin/critic/apps";
+  public static final String ADMIN_DISMISS_REPORT = "/admin/dismiss/rating/{ratingId}";
+  public static final String ADMIN_DISMISS_CRITIC_APP = "/admin/dismiss/critic/{userId}";
   public static final String ADMIN_UPLOAD_MEDIA = "/admin/upload";
 
   public static final String APPLICATION_JSON = "application/json";

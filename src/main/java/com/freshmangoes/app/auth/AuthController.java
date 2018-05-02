@@ -9,8 +9,11 @@ import com.freshmangoes.app.content.data.Content;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.service.UserService;
 import com.freshmangoes.app.verification.service.VerificationService;
+
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +48,7 @@ public class AuthController {
     final User user;
 
     user = authService.loginUser(body.get(Constants.EMAIL),
-                                 body.get(Constants.PASSWORD));
+        body.get(Constants.PASSWORD));
 
     if (user != null) {
       session.setAttribute(Constants.USER_ID, user.getId());
@@ -70,12 +73,12 @@ public class AuthController {
     final String email = body.get(Constants.EMAIL);
 
     user = authService.registerUser(email,
-                                      body.get(Constants.PASSWORD),
-                                      body.get(Constants.DISPLAY_NAME));
+        body.get(Constants.PASSWORD),
+        body.get(Constants.DISPLAY_NAME));
 
     if (user != null) {
       status = (verificationService.sendVerificationEmail(user)) ? HttpStatus.OK
-                                                                 : HttpStatus.BAD_REQUEST;
+          : HttpStatus.BAD_REQUEST;
     } else {
       status = HttpStatus.BAD_REQUEST;
     }

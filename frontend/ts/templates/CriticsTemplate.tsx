@@ -15,9 +15,12 @@ export class CriticsTemplate extends React.Component {
 
     async componentWillMount() {
         try {
-            const response = await axios.get(window.location.origin + '/api' + window.location.pathname);
-            this.setState({critics:response.data});
-            console.log(response.data);
+            const criticsPromise = axios.get(window.location.origin + '/api' + window.location.pathname);
+            const latestReviewsPromise = axios.get(window.location.origin + '/api/rating/latest');
+            const [critics, reviews] = await Promise.all([criticsPromise, latestReviewsPromise]);
+            this.setState({critics: critics.data});
+            this.setState({latestReviews: reviews.data});
+            console.log(this.state);
         } catch (err) {
             console.log(err);
         }
@@ -44,18 +47,15 @@ export class CriticsTemplate extends React.Component {
                    </li>
         });
 
-        const reviews = (this.state.critics || []).slice(0,1).map((critic, i) => {
-            return <RatingComponent data-ratings={critic.ratings} data-rating-type="profile" data-show-title="false"/>
-        });
-
         return (
-            <div id="critics" className="page-background-color"> 
-                <hr className="header-hr"/>
+
+            <div id="critics" className="page-background-color">     
+                {this.state.critics.length == 0 ? '' :
                 <div className="content">
                     <div className="split-half big-margin-right">
-                        
+                      
                         <h2> Top Critic </h2> <hr/>
-                        <div className="interests flex-center">
+                        <div className="interests flex-center box-shadow">
                             {topCritics}
                             <br className="clear-both"/>
                         </div>
@@ -71,10 +71,9 @@ export class CriticsTemplate extends React.Component {
                     </div>
 
                     <div className="split-half">
-                        <h2> Top Reviews </h2> <hr/>
-                        {reviews}
+                        <RatingComponent data-ratings={this.state.latestReviews.slice(0,5)} data-title="Latest Critic Reviews"/>
                     </div>
-
+                    <p className="clear-both"/>
                     <div id="critic-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-lg">
                             <div className="modal-content">
@@ -92,6 +91,8 @@ export class CriticsTemplate extends React.Component {
                         </div>
                     </div>
                 </div>
+                }
+            
             </div>
         )
     }

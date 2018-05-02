@@ -23,6 +23,7 @@ export class FilmRating {
 }
 
 export class Celebrity {
+    id: number;
     name: string;
     profilePicture: Media;
     birthday: Date;
@@ -34,6 +35,7 @@ export class Celebrity {
     
   
     constructor() {
+        this.id = -1;
         this.name = "";
         this.profilePicture = new Media();
         this.birthday = new Date();
@@ -51,6 +53,7 @@ export class CreateCast {
     role: string;
     profilePicture: string;
     profilePictureFile: File;
+    isNewCast: boolean;
 
     constructor() {
         this.id = -1;
@@ -58,6 +61,7 @@ export class CreateCast {
         this.role = "";
         this.profilePictureFile = null;
         this.profilePicture = "";
+        this.isNewCast = false;
     }
 }
 

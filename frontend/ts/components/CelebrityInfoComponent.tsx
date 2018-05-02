@@ -26,7 +26,7 @@ export class CelebrityInfoComponent extends React.Component {
         }
     
         return (
-            <div className="summary">
+            <div className="summary white-component">
                 <img src={parseMedia(state.profilePicture)} className="img-align-left"/>
                 <h2>{state.name}</h2> <p/>
                

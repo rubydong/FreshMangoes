@@ -40,23 +40,25 @@ export class ReportsTemplate extends React.Component {
 
         return (            
             <div>
-                <hr className="header-hr"/>
-                <div className="content">
-                    <h2> View Reports </h2>
-                    {r.length == 0 ? <div className="center-text"><hr/>There are no reports right now.</div> :
-                    (<table className="table">
-                        <thead className="thead-light">
-                            <tr>
-                                <th>User</th>
-                                <th>Review</th>
-                                <th>Content Reviewed</th>
-                                <th>Reason for Report</th>
-                                <th>Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody> {r} </tbody>
-                    </table>)
-                    }
+                
+                <div className="content page-background-color">
+                    <div className="white-component">
+                        <h2> View Reports </h2>
+                        {r.length == 0 ? <div className="center-text"><hr/>There are no reports right now.</div> :
+                        (<table className="table">
+                            <thead className="thead-light">
+                                <tr>
+                                    <th>User</th>
+                                    <th>Review</th>
+                                    <th>Content Reviewed</th>
+                                    <th>Reason for Report</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody> {r} </tbody>
+                        </table>)
+                        }
+                    </div>
                 </div>
             </div>
         )

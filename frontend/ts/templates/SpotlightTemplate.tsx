@@ -31,9 +31,9 @@ export class SpotlightTemplate extends React.Component {
 
     render() {
         return (
-            <div id="spotlight-page">
-                <hr className="header-hr"/>
-                <div className="spotlight-type">
+            <div id="spotlight-page" className="page-background-color">
+                
+                <div className="spotlight-type white-component margin-top-bottom">
                     <b>IN THEATERS</b>
                     <ul>
                         <li> <button className="btn-link" onClick={() => this.setSelectedContent(this.state.topBoxOffice, 'Top Box Office')}>Top Box Office </button> </li>
@@ -53,6 +53,7 @@ export class SpotlightTemplate extends React.Component {
                 </div>
 
                 <SpotlightDetailComponent data-content={this.state.selectedContent} data-title={this.state.selectedTitle}/>
+                <div className="clear-both"></div>	
             </div>
         )
     }

@@ -11,17 +11,17 @@ public interface UserService {
 
   User getUserByEmail(String email);
 
-  void updatePassword(User user, String s);
+  void updatePassword(User user, String s1, String s);
 
-  void updateEmail(User user, String s);
+  void updateEmail(User user, String s1, String s);
 
   Boolean forgotPassword(String email);
 
-  void deleteAccount(User user);
+  void deleteAccount(User user, String s);
 
-  Boolean updatePicture(User user, MultipartFile file);
+  Boolean updatePicture(User user, String s, MultipartFile file);
 
-  void updateName(User user, String s);
+  void updateName(User user, String s1, String s);
 
   void updateViews(User user, BigInteger views);
 

@@ -11,7 +11,7 @@ export class ProfileInfoComponent extends React.Component {
         newPassword: '',
         oldPassword: '',
         profileUser: getUrlID(),
-        privacy: ''
+        privacy: '',
     }
 
     followUser() {
@@ -69,7 +69,7 @@ export class ProfileInfoComponent extends React.Component {
         if (editProfileInfo.newFile != null) {
             let formData = new FormData();
             formData.append("myImage", editProfileInfo.newFile);
-
+            formData.append("oldPassword", editProfileInfo.oldPassword);
             axios.post(window.location.origin + '/api/profile/picture/update/', formData)
                 .then(res => {
                     window.location.reload();
@@ -101,16 +101,20 @@ export class ProfileInfoComponent extends React.Component {
     }
 
     async deleteAccount() {
-        const response = await axios.post(window.location.origin + '/api/delete/profile');
+        const editInfo= {
+            oldPassword: this.state.oldPassword
+        }
+        const response = await axios.post(window.location.origin + '/api/delete/profile', editInfo);
         window.location.reload();
     }
 
     render() {
         const state = this.props['data-state'];
-        const sameUser = ("/profile/" + state.currentUser) == window.location.pathname;
+        console.log(state);
+        const sameUser = ("/profile/" + state.currentUser.userId) == window.location.pathname;
         let alreadyFollowed = false;
         for (let i = 0; i < state.followers.length; i++) {
-            if (state.followers[i].id == state.currentUser) {
+            if (state.followers[i].id == state.currentUser.userId) {
                 alreadyFollowed = true;
                 break;
             }
@@ -127,6 +131,7 @@ export class ProfileInfoComponent extends React.Component {
                 <h2>{state.displayName}</h2>
                 <div className="bio box-shadow">
                     <img className="profile-picture" src={parseUserMedia(state.profilePicture)}/>
+                    <b>Views: </b> {state.views}
                     <FollowComponent data-followers={state.followers} data-following={state.following}/>
                     <p/>
                     {editOrFollowButton}
@@ -147,9 +152,12 @@ export class ProfileInfoComponent extends React.Component {
                                 <input type="text" className="form-control" onChange={this.handleEmailChange}/>
                                 New Password
                                 <input type="password" className="form-control" onChange={this.handlePasswordChange}/>
-                                Privacy Settings
-                                <input type="radio" value="Everyone" name="privacy" onChange={this.handlePrivacyChange}/> Show to Everyone
-                                <input type="radio" value="Me" name="privacy" onChange={this.handlePrivacyChange}/> Only Me
+                                Privacy Settings 
+                                <div className="form-control">
+                                    <input type="radio" value="Everyone" name="privacy" onChange={this.handlePrivacyChange}/> Show to Everyone
+                                    <span className="med-margin-right"/>
+                                    <input type="radio" value="Me" name="privacy" onChange={this.handlePrivacyChange}/> Only Me
+                                </div>
                                 <br/>
                                 Confirm Changes With Your Old Password
                                 <input type="password" className="form-control"

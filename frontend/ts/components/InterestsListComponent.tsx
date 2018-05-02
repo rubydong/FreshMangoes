@@ -37,14 +37,14 @@ export class InterestsListComponent extends React.Component {
         return (
             <div>
                 <div>
-                    <h2 className={this.props['data-title'] == "Interested" ? '' : 'padding-top'}> {this.props['data-title']} </h2>
+                    <h2 className={this.props['data-title'] == "Interested" ? 'margin-top' : 'padding-top'}> {this.props['data-title']} </h2>
                     <div className="interests box-shadow">
                         <div className="flex-center"> {contentList} </div>
                         {contentList.length == 0 
                             ? <div className="center-text"> You have not added anything to your list yet! </div>
-                            : <span className="align-right"> <a href="">View All</a> </span>
+                            : <div> <span className="align-right"> <a href="">View All</a> </span> <br className="clear-both"/> </div>
                         }
-                        <br className="clear-both"/>
+                        
                     </div>
                 </div>
             

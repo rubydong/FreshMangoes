@@ -23,10 +23,12 @@ export class User {
     following: User [];
     interestedList: Content[];
     disinterestedList: Content[];
-    currentUser: number;
+    currentUser: CurrentUser;
     ratings: Rating[];
     highestRatings: Rating[];
     lowestRatings: Rating[];
+    isPrivate: boolean;
+    views: number;
 
     constructor() {
         this.id = 0;
@@ -38,10 +40,12 @@ export class User {
         this.following = [];
         this.interestedList = [];
         this.disinterestedList = [];
-        this.currentUser = -1;
+        this.currentUser = new CurrentUser();
         this.ratings = [];
         this.highestRatings = [];
         this.lowestRatings = [];
+        this.isPrivate = false;
+        this.views = 0;
     }
 }
 
@@ -62,12 +66,14 @@ export class Critics {
     applicationName: string;
     applicationProfile: string;
     applicationReason: string;
+    latestReviews: Rating[];
 
     constructor() {
         this.critics = []
         this.applicationName = "";
         this.applicationProfile = "";
         this.applicationReason = "";
+        this.latestReviews = [];
     }
 }
 

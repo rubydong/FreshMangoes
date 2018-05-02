@@ -12,7 +12,7 @@ export class VideoComponent extends React.Component {
         
         return (videos == null || videos.length == 0) 
             ? ''
-            : <div className="margin-top-bottom">
+            : <div className="white-component margin-top-bottom">
                 <h2> Videos </h2>
                 <hr/>
                 <div className="videos"> {videos} </div>

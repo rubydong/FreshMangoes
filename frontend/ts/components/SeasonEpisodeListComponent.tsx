@@ -23,7 +23,7 @@ export class SeasonEpisodeListComponent extends React.Component {
         });
 
         return (
-            <div className="seasons margin-top-bottom">
+            <div className="seasons white-component margin-top-bottom">
                 <h2> {this.props['data-seasons'] ? 'Seasons' : 'Episodes'} </h2> <hr/>
                 {seasons} {episodes}
             </div>

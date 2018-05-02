@@ -93,7 +93,7 @@ export class RatingComponent extends React.Component {
                     { this.state.currentUser == rating.user.id || this.state.currentUserType == 'ADMIN'
                     ? <span className="align-right">
                         <img src={EDIT_ICON} data-toggle="modal" data-target="#edit-rating-modal" onClick={()=>this.state.currentReviewId = rating.id}/>
-                        <img src={TRASH_ICON} onClick={() => this.deleteReview(rating.id)}/>
+                        <img src={TRASH_ICON} onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteReview(rating.id) }}/>
                       </span> 
                     : <span className="align-right"> <img src="/../../images/flag.png" data-toggle="modal" data-target="#report-rating-modal" onClick={()=>this.state.currentReviewId=rating.id}/> </span>
                     }
@@ -141,11 +141,11 @@ export class RatingComponent extends React.Component {
         });
 
         return (
-            <div className="reviews margin-top-bottom">
-                {this.props['data-show-title'] == "false"? '' : <h2> Reviews </h2> } {isProfile ? '' : <hr/>}
-                {ratings.length == 0 ? <div className={isProfile ? 'interests box-shadow center-text' : 'center-text'}>There are no reviews right now. You can be the first!</div> : ratings}
+            <div className={this.props['data-no-margin'] ? "reviews" : "margin-top-bottom reviews"}>
+                <h2> {this.props['data-title']} </h2> {isProfile ? '' : <hr/>}
+                {ratings.length == 0 ? <div className={isProfile ? 'interests box-shadow center-text' : 'center-text'}>There are no {this.props['data-title'].toLowerCase()} reviews right now. You can add one!</div> : ratings}
                 {isProfile ? '' : <span className="align-right small-padding-top"> <a href="" data-toggle="modal" data-target="#rating-modal">Add a Rating</a></span>}
-                <div className="padding-top clear-both"></div>
+                <div className="clear-both"></div>
                 <div id="rating-modal" className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">

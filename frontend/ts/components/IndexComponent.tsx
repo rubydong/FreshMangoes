@@ -44,32 +44,38 @@ export class IndexComponent extends React.Component {
         }); 
 
         return (
-            <div className="content">
-                <div className="margin-top-bottom spotlight">
-                    <h2> Movies Spotlight </h2>	<hr/>
-                    <ul className="list-inline align-center spotlight-nav">
-                        <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].topBoxOffice)}>Top Box Office</button></li>		
-                        <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].certifiedFreshMovies)}>Certified Fresh Movies</button></li>
-                        <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].comingSoon)}>Coming Soon</button></li> 
-                        <li><a href="/spotlight">View All</a></li>
-                    </ul>
-                
-                    <div className="spotlight-posters">
-                        {selectedMovies}
+            <div>
+                <div className="content">
+                    <div className="margin-top-bottom spotlight">
+                        <h2> Movies Spotlight </h2>	<hr/>
+                        <ul className="list-inline align-center spotlight-nav">
+                            <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].topBoxOffice)}>Top Box Office</button></li>		
+                            <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].certifiedFreshMovies)}>Certified Fresh Movies</button></li>
+                            <li><button className="btn-link" onClick={() => this.setSelectedMovieContent(this.props['data-spotlight'].comingSoon)}>Coming Soon</button></li> 
+                            <li><a href="/spotlight">View All</a></li>
+                        </ul>
+                    
+                        <div className="spotlight-posters">
+                            {selectedMovies}
+                        </div>
                     </div>
                 </div>
 
-                <div className="margin-top-bottom spotlight">
-                    <h2> Shows Spotlight </h2>	<hr/>
-                    <ul className="list-inline align-center spotlight-nav">
-                        <button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].newTonight)}>New Shows</button>
-                        <li><button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].mostPopular)}>Most Popular</button></li>		
-                        <li><button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].highestRatedShows)}>Highest Rated Shows</button></li> 
-                        <li><a href="/spotlight">View All</a></li>
-                    </ul>
+                {/* <img id="poster" src="https://image.tmdb.org/t/p/original/b6ZJZHUdMEFECvGiDpJjlfUWela.jpg"/> */}
 
-                    <div className="spotlight-posters">
-                        {selectedShows}
+                <div className="content">
+                    <div className="margin-top-bottom spotlight">
+                        <h2> Shows Spotlight </h2>	<hr/>
+                        <ul className="list-inline align-center spotlight-nav">
+                            <button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].newTonight)}>New Shows</button>
+                            <li><button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].mostPopular)}>Most Popular</button></li>		
+                            <li><button className="btn-link" onClick={() => this.setSelectedShowContent(this.props['data-spotlight'].highestRatedShows)}>Highest Rated Shows</button></li> 
+                            <li><a href="/spotlight">View All</a></li>
+                        </ul>
+
+                        <div className="spotlight-posters">
+                            {selectedShows}
+                        </div>
                     </div>
                 </div>
             </div>
