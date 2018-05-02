@@ -11,14 +11,14 @@ export class DetailsComponent extends React.Component {
     addToInterested = event => {
         axios.post(window.location.origin + '/api/interested/add/' + getUrlID())
             .then(res => {
-                console.log(res);
+                //console.log(res);
                 window.location.reload();
         })
     }
     addToDisinterested = event => {
         axios.post(window.location.origin + '/api/disinterested/add/' + getUrlID())
             .then(res => {
-                console.log(res);
+                //console.log(res);
                 window.location.reload();
         })
     }
@@ -40,7 +40,7 @@ export class DetailsComponent extends React.Component {
     deleteContent() {
         axios.delete(window.location.origin + '/api/admin/delete/' + this.props['data-state'].type.toString() + '/' + this.props['data-state'].id)
             .then(res => {
-                console.log(res);
+                //console.log(res);
                 window.location.assign(window.location.origin);
             })
     }

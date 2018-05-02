@@ -24,7 +24,7 @@ export class RatingComponent extends React.Component {
             });
         })
         .catch(function (error) {
-            console.log(error);
+            //console.log(error);
         });
     }
 
@@ -55,7 +55,7 @@ export class RatingComponent extends React.Component {
             body: this.state.body,
             id: this.state.currentReviewId
         };
-        console.log(rating);
+        //console.log(rating);
 
         axios.post(window.location.origin + '/api/rating/update/' + rating.id, rating)
             .then(res => {
