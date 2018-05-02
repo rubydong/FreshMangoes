@@ -228,13 +228,8 @@ export class CreatePagesTemplate extends React.Component {
                         </div>
                         
                         <div className="form-group row">
-                            <label className="col-form-label col-sm-2">Photos</label>
+                            <label className="col-form-label col-sm-2">Media</label>
                             <input className="col-sm-6 form-control" type="file" multiple onChange={(event) => this.state.photos = event.target.files}/>
-                        </div>
-
-                        <div className="form-group row">
-                            <label className="col-form-label col-sm-2">Videos</label>
-                            <input className="col-sm-6 form-control" type="file" multiple onChange={(event) => this.state.videos = event.target.files}/>
                         </div>
 
                         <div className="form-group row">
