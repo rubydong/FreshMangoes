@@ -186,7 +186,7 @@ export class EditPageComponent extends React.Component {
                         console.log("Completed Request " + res);
                     })
                 let pic = new Media();
-                pic.path = FILE_STORAGE_BASE_DIR + this.state.tempPhoto.item(i).name;
+                pic.path = this.state.tempPhoto.item(i).name;
                 pic.type = MediaType.PHOTO;
                 mediaPaths.push(pic);
             }
