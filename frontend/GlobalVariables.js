@@ -11,13 +11,9 @@ export const NO_USER_PHOTO = "/./images/nouserphoto.png";
 export const NO_CONTENT_PHOTO = "/./images/nocontent.png";
 export const HOME_PAGE_POSTER = "/./images/greatestshowmanbanner.jpg";
 export const HOME_POSTERS = [
-    "https://image.tmdb.org/t/p/original/lrNKm3HNvGdZoAfiBKu7b04FLHN.jpg",
-    "https://image.tmdb.org/t/p/original/kbGO5mHPK7rh516MgAIJUQ9RvqD.jpg",
-    "https://image.tmdb.org/t/p/original/b6ZJZHUdMEFECvGiDpJjlfUWela.jpg",
-    "https://image.tmdb.org/t/p/original/wSJHuSD7ojzoXifWjOAjxV7UpEL.jpg"
-]
-export const HOME_TITLES = [
-    
+    "/./images/greatestshowmanbanner.jpg",
+    "/./images/infinitywar.jpg",
+    "/./images/wrinkle.png"
 ]
 
 export const TRASH_ICON = "/./images/trash.png";

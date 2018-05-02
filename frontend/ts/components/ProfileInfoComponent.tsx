@@ -48,9 +48,8 @@ export class ProfileInfoComponent extends React.Component {
         this.setState({oldPassword: event.target.value});
     }
 
-    handleSubmit = async event => {
+    handleSubmit = event => {
         event.preventDefault();
-        const requests = []
         const editProfileInfo = {
             newName: this.state.newDisplayName,
             newFile: this.state.newFile,
@@ -61,25 +60,43 @@ export class ProfileInfoComponent extends React.Component {
         };
 
         if (editProfileInfo.newName != '') {
-            requests.push(axios.post(window.location.origin + '/api/profile/name/update/', editProfileInfo));
+            axios.post(window.location.origin + '/api/profile/name/update/', editProfileInfo)
+                .then(res => {
+                    window.location.reload();
+                })
         }
+        console.log(editProfileInfo.newFile);
+        console.log(editProfileInfo.newEmail);
         if (editProfileInfo.newFile != null) {
             let formData = new FormData();
             formData.append("myImage", editProfileInfo.newFile);
             formData.append("oldPassword", editProfileInfo.oldPassword);
-            requests.push(axios.post(window.location.origin + '/api/profile/picture/update/', formData));
+            axios.post(window.location.origin + '/api/profile/picture/update/', formData)
+                .then(res => {
+                    window.location.reload();
+                })
         }
         if (editProfileInfo.newEmail != '') {
-            requests.push(axios.post(window.location.origin + '/api/profile/email/reset/', editProfileInfo));
+            console.log("here")
+            console.log(editProfileInfo)
+            axios.post(window.location.origin + '/api/profile/picture/update/', editProfileInfo)
+                .then(res => {
+                    window.location.reload();
+                })
         }
         if (editProfileInfo.newPassword != '') {
-            requests.push(axios.post(window.location.origin + '/api/profile/password/reset/', editProfileInfo));
+            axios.post(window.location.origin + '/api/profile/password/reset/', editProfileInfo)
+                .then(res => {
+                    window.location.reload();
+                })
         }
         if(editProfileInfo.newPrivacy != ''){
-            requests.push(axios.post(window.location.origin + '/api/profile/privacy/update/', editProfileInfo));
+            axios.post(window.location.origin + '/api/profile/privacy/update/', editProfileInfo)
+                .then(res => {
+                    window.location.reload();
+                })
         }
-        await Promise.all(requests)
-        window.location.reload();
+
     }
 
     handlePrivacyChange = event => {
@@ -120,7 +137,7 @@ export class ProfileInfoComponent extends React.Component {
         const adminDeleteButton = state.currentUser.userType == "ADMIN" 
                 ? <button type="submit" className="btn btn primary" onClick={() => 
                     { if (window.confirm("Are you sure you want to delete this account?")) this.adminDeleteAccount() }}> 
-                    DeleteAccount
+                    Delete Account
                   </button>
                 : '';
         return (

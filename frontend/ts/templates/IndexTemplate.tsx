@@ -27,16 +27,13 @@ export class IndexTemplate extends React.Component {
         const posters = HOME_POSTERS.map((poster, i) => {
             return <div className={i==0 ? 'active carousel-item' : 'carousel-item'}>
                 <img id="poster" src={poster} key={i}/>
-                <div className="carousel-caption d-none d-md-block">
-                    <h2>The greatst showman</h2>
-                </div>
             </div>
         })
 
         return (
         <div>
-            <img id="poster" src={HOME_PAGE_POSTER}/>
-            {/* <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+            {/* <img id="poster" src={HOME_PAGE_POSTER}/> */}
+            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
                     {posters}
                 </div>
@@ -48,7 +45,7 @@ export class IndexTemplate extends React.Component {
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="sr-only">Next</span>
                 </a>
-            </div> */}
+            </div>
             <IndexComponent data-spotlight={this.state}/>
         </div>
     )}
