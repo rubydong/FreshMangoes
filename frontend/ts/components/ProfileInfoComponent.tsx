@@ -120,7 +120,7 @@ export class ProfileInfoComponent extends React.Component {
         const adminDeleteButton = state.currentUser.userType == "ADMIN"
             ? <button type="submit" className="btn btn primary" onClick={() =>
             { if (window.confirm("Are you sure you want to delete this account?")) this.adminDeleteAccount() }}>
-                DeleteAccount
+                Delete Account
             </button>
             : '';
         return (
