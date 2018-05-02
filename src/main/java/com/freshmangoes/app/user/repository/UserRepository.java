@@ -51,7 +51,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
   @Query(value = "DELETE FROM disinterests WHERE user_id=?1 and content_id=?2", nativeQuery = true)
   void deleteFromDisinterestedList(Integer userId, Integer contentId);
 
-  @Query(value = "SELECT * FROM Users WHERE user_type=1", nativeQuery = true)
+  @Query(value = "SELECT * FROM users WHERE user_type=1", nativeQuery = true)
   List<User> getAllCritics();
 
   @Transactional
