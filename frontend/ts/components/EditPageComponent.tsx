@@ -156,7 +156,7 @@ export class EditPageComponent extends React.Component {
         let mediaPaths = [];
         if (this.state.tempPhoto != null && this.state.tempPhoto.length > 0) {
             for (let i = 0; i < this.state.tempPhoto.length; i++) {
-                //console.log(this.state.tempPhoto.item(i).name);
+                ////console.log(this.state.tempPhoto.item(i).name);
                 let formData = new FormData();
                 formData.append("myImage", this.state.tempPhoto.item(i));
                 axios.post(window.location.origin + "/api/admin/upload", formData)
