@@ -4,6 +4,7 @@ export const VIDEO_LIMIT = 3;
 export const CONTENT_LIMIT = 8;
 export const SEARCH_SELECTED_LIMIT = 12;
 export const CAST_LIMIT = 9;
+export const MEDIA_FULL_PATH = "/media/full"
 export const MANGO_COLOR = "/./images/mangocolor.png";
 export const MANGO_BW = "/./images/mangobw.png";
 export const LOGO = "/./images/logo.png";

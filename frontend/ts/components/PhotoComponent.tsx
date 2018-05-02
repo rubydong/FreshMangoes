@@ -1,5 +1,6 @@
 import * as React from "react";
 import { MEDIA_LIMIT, EDIT_ICON } from "../../GlobalVariables";
+import { parseMedia } from "../../HelperFunctions";
 import { isNullOrUndefined } from "util";
 import { UserType } from '../types/user';
 import { EditPageComponent } from "./EditPageComponent";
@@ -9,7 +10,7 @@ export class PhotoComponent extends React.Component {
         const currentUser = this.props['data-current-user'];
         const photosOnly = this.props['data-photos'].filter(photo => photo.type == 'PHOTO');
         const photos = photosOnly.slice(0, MEDIA_LIMIT).map((photo, i) => {
-            return <img src={photo.path} key={i}/>
+            return <img src={parseMedia(photo)} key={i}/>
         });
 
         return ( photos == isNullOrUndefined || photos.length == 0 ) 
