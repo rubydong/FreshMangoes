@@ -14,7 +14,9 @@ public interface ContentService {
 
   List<Movie> findMoviesByRevenue(Integer page, Integer limit);
 
-  List<Movie> findTop10MoviesWithMangoScoreGreaterThan(Double mangoScore);
+  List<Movie> findMoviesWithMangoScoreGreaterThan(Double mangoScore, Integer page, Integer limit);
+
+  List<Movie> findMoviesWithMangoScoreGreaterThanOrderByReleaseDate(Double mangoScore, Integer page, Integer limit);
 
   List<Show> findPopularShowsDateRange(Date startDate, Date endDate);
 
@@ -22,7 +24,7 @@ public interface ContentService {
 
   List<Show> findShowsByReleaseDateRange(Date startDate, Date endDate);
 
-  List<Show> findTop10ShowsWithMangoScoreGreaterThan(Double mangoScore);
+  List<Show> findShowsWithMangoScoreGreaterThan(Double mangoScore, Integer page, Integer limit);
 
   Movie saveMovie(Movie movie);
 

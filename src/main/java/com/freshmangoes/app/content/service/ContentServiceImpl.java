@@ -46,9 +46,13 @@ public class ContentServiceImpl implements ContentService {
     return movieRepository.findByOrderByRevenueDesc(PageRequest.of(page, limit)).getContent();
   }
 
+  public List<Movie> findMoviesWithMangoScoreGreaterThan(Double mangoScore, Integer page, Integer limit) {
+    return movieRepository.findByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDesc(mangoScore, PageRequest.of(page, limit)).getContent();
+  }
+
   @Override
-  public List<Movie> findTop10MoviesWithMangoScoreGreaterThan(Double mangoScore) {
-    return movieRepository.findTop10ByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDesc(mangoScore);
+  public List<Movie> findMoviesWithMangoScoreGreaterThanOrderByReleaseDate(Double mangoScore, Integer page, Integer limit) {
+    return movieRepository.findByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDescMetadata_ReleaseDateDesc(mangoScore, PageRequest.of(page, limit)).getContent();
   }
 
   public List<Show> findPopularShowsDateRange(Date startDate, Date endDate) {
@@ -77,9 +81,8 @@ public class ContentServiceImpl implements ContentService {
     return Lists.newArrayList(shows);
   }
 
-  @Override
-  public List<Show> findTop10ShowsWithMangoScoreGreaterThan(Double mangoScore) {
-    return showRepository.findTop10ByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDesc(mangoScore);
+  public List<Show> findShowsWithMangoScoreGreaterThan(Double mangoScore, Integer page, Integer limit) {
+    return showRepository.findByMetadata_MangoScoreGreaterThanOrderByMetadata_MangoScoreDesc(mangoScore, PageRequest.of(page, limit)).getContent();
   }
 
   public Movie saveMovie(final Movie movie) {

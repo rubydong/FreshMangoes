@@ -62,15 +62,14 @@ public class SpotlightServiceImpl implements SpotlightService {
                              contentService.findMovieByReleaseDateRange(today, monthFromToday
                              ))
                          .certifiedFreshMovies(
-                             contentService.findTop10MoviesWithMangoScoreGreaterThan(75.00
-                             ))
+                             contentService.findMoviesWithMangoScoreGreaterThan(75.00, 0, 30))
                          .highestRatedMovies(
-                             contentService.findTop10MoviesWithMangoScoreGreaterThan(0.00
+                             contentService.findMoviesWithMangoScoreGreaterThanOrderByReleaseDate(0.00, 0,30
                              ))
                          .newTonight(contentService.findShowsByReleaseDateRange(today, tomorrow))
                          .mostPopular(contentService.findPopularShowsDateRange(twoWeeksAgo, today))
-                         .certifiedFreshShows(contentService.findTop10ShowsWithMangoScoreGreaterThan(75.00))
-                         .highestRatedShows(contentService.findTop10ShowsWithMangoScoreGreaterThan(0.00))
+                         .certifiedFreshShows(contentService.findShowsWithMangoScoreGreaterThan(75.00, 0, 30))
+                         .highestRatedShows(contentService.findShowsWithMangoScoreGreaterThan(0.00, 0, 30))
                          .build();
   }
 
