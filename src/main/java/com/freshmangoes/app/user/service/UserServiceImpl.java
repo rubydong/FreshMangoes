@@ -4,7 +4,9 @@ import com.freshmangoes.app.common.data.Constants;
 import com.freshmangoes.app.common.data.Media;
 import com.freshmangoes.app.common.data.MediaType;
 import com.freshmangoes.app.content.repository.MediaRepository;
+import com.freshmangoes.app.content.repository.MetadataRepository;
 import com.freshmangoes.app.email.service.EmailService;
+import com.freshmangoes.app.rating.data.Rating;
 import com.freshmangoes.app.rating.repository.RatingRepository;
 import com.freshmangoes.app.user.data.User;
 import com.freshmangoes.app.user.repository.UserRepository;
@@ -36,6 +38,9 @@ public class UserServiceImpl implements UserService {
 
   @Autowired
   private EmailService emailService;
+
+  @Autowired
+  private MetadataRepository metadataRepository;
 
   @Override
   public User getUser(final Integer userId) {
@@ -121,12 +126,18 @@ public class UserServiceImpl implements UserService {
     if (!passwordEncoder.matches(password, user.getHash())) {
       return false;
     }
+    List<Rating> ratings = user.getRatings();
+
     user.setDisinterestedList(null);
     user.setInterestedList(null);
     user.setFollowers(null);
     user.setFollowing(null);
     userRepository.save(user);
     userRepository.delete(user);
+    for (Rating r : ratings) {
+      metadataRepository.updateAudienceScore(r.getContent().getId());
+      metadataRepository.updateMangoScore(r.getContent().getId());
+    }
     return true;
   }
 
