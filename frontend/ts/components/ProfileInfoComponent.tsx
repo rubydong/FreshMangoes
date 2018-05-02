@@ -60,26 +60,29 @@ export class ProfileInfoComponent extends React.Component {
             newPrivacy: this.state.privacy
         };
 
-        if (editProfileInfo.newName != '') {
-            requests.push(axios.post(window.location.origin + '/api/profile/name/update/', editProfileInfo));
+        if (editProfileInfo.oldPassword == "") { alert("Please confirm changes by typing in your old password")}
+        else {
+            if (editProfileInfo.newName != '') {
+                requests.push(axios.post(window.location.origin + '/api/profile/name/update/', editProfileInfo));
+            }
+            if (editProfileInfo.newFile != null) {
+                let formData = new FormData();
+                formData.append("myImage", editProfileInfo.newFile);
+                formData.append("oldPassword", editProfileInfo.oldPassword);
+                requests.push(axios.post(window.location.origin + '/api/profile/picture/update/', formData));
+            }
+            if (editProfileInfo.newEmail != '') {
+                requests.push(axios.post(window.location.origin + '/api/profile/email/reset/', editProfileInfo));
+            }
+            if (editProfileInfo.newPassword != '') {
+                requests.push(axios.post(window.location.origin + '/api/profile/password/reset/', editProfileInfo));
+            }
+            if(editProfileInfo.newPrivacy != ''){
+                requests.push(axios.post(window.location.origin + '/api/profile/privacy/update/', editProfileInfo));
+            }
+            await Promise.all(requests)
+            window.location.reload();
         }
-        if (editProfileInfo.newFile != null) {
-            let formData = new FormData();
-            formData.append("myImage", editProfileInfo.newFile);
-            formData.append("oldPassword", editProfileInfo.oldPassword);
-            requests.push(axios.post(window.location.origin + '/api/profile/picture/update/', formData));
-        }
-        if (editProfileInfo.newEmail != '') {
-            requests.push(axios.post(window.location.origin + '/api/profile/email/reset/', editProfileInfo));
-        }
-        if (editProfileInfo.newPassword != '') {
-            requests.push(axios.post(window.location.origin + '/api/profile/password/reset/', editProfileInfo));
-        }
-        if(editProfileInfo.newPrivacy != ''){
-            requests.push(axios.post(window.location.origin + '/api/profile/privacy/update/', editProfileInfo));
-        }
-        await Promise.all(requests)
-        window.location.reload();
     }
 
     handlePrivacyChange = event => {

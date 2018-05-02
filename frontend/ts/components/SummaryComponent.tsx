@@ -13,12 +13,14 @@ export class SummaryComponent extends React.Component {
         let regex, match, current;
 
         if (type == ContentType.SEASON) {
-            regex = "\/season\/(\d+)";
+            regex = /\/season\/(\d+)/g;
             match = regex.exec(window.location.pathname);
+            console.log(match);
             current = Number(match[1]);
-        } else {
-            regex = "\/season\/(\d+)\/episode\/(\d+)"
+        } else if (type == ContentType.EPISODE) {
+            regex = /\/season\/(\d+)\/episode\/(\d+)/g;
             match = regex.exec(window.location.pathname);
+            console.log(match);
             current = Number(match[2]);
         }
 
@@ -40,14 +42,14 @@ export class SummaryComponent extends React.Component {
 
                 <div className="plot">
                     { list.length != 0 ? <select className="form-control" onChange={(event) => window.location.assign(event.target.value)}> {list} </select> : ''} 
-                    <b>
+                    {type==ContentType.SEASON || type == ContentType.EPISODE ? '' 
+                    : 
+                     <div>
+                        <b>
                         MangoMeter
                         <span className="med-margin-right"></span>
                         Audience Score
-                    </b>
-                    <br/>
-                    {type==ContentType.SEASON || type == ContentType.EPISODE ? '' 
-                    : <div>
+                        </b>
                         <Mangoes data-rating={metadata.mangoScore || 0}/> {metadata.mangoScore || 0}%
                         <span className="med-margin-right"></span>
                         <Mangoes data-rating={metadata.audienceScore || 0}/> {metadata.audienceScore || 0}%
