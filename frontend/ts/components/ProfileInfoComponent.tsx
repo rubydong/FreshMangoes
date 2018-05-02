@@ -108,6 +108,12 @@ export class ProfileInfoComponent extends React.Component {
         window.location.reload();
     }
 
+    async adminDeleteAccount() {
+        const response = await axios.delete(window.location.origin + '/api/admin/user/delete/' + getUrlID());
+        window.location.reload();
+        console.log(response);
+    }
+
     render() {
         const state = this.props['data-state'];
         console.log(state);
@@ -125,7 +131,12 @@ export class ProfileInfoComponent extends React.Component {
             : (alreadyFollowed
                 ? <button className="btn-light" onClick={this.unfollowUser}>Unfollow</button>
                 : <button className="btn" onClick={this.followUser}>Follow</button>);
-
+        const adminDeleteButton = state.currentUser.userType == "ADMIN" 
+                ? <button type="submit" className="btn btn primary" onClick={() => 
+                    { if (window.confirm("Are you sure you want to delete this account?")) this.adminDeleteAccount() }}> 
+                    DeleteAccount
+                  </button>
+                : '';
         return (
             <div className="left">
                 <h2>{state.displayName}</h2>
@@ -134,7 +145,8 @@ export class ProfileInfoComponent extends React.Component {
                     <b>Views: </b> {state.views}
                     <FollowComponent data-followers={state.followers} data-following={state.following}/>
                     <p/>
-                    {editOrFollowButton}
+                    {editOrFollowButton} <p/>
+                    {adminDeleteButton}
                 </div>
 
 
