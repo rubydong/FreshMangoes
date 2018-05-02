@@ -104,7 +104,10 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void updatePrivacy(User user, String privacy) {
+  public void updatePrivacy(User user, String password, String privacy) {
+    if (!passwordEncoder.matches(password, user.getHash())) {
+      return;
+    }
     if (privacy.equals("Everyone")) {
       user.setIsPrivate(false);
     } else {

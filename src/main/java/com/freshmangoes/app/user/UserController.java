@@ -81,7 +81,7 @@ public class UserController {
   public ResponseEntity changePrivacy(@RequestBody final Map<String, String> body) {
     User user = userService.getUser((Integer) session.getAttribute(Constants.USER_ID));
     if (user != null) {
-      userService.updatePrivacy(user, body.get(Constants.NEW_PRIVACY));
+      userService.updatePrivacy(user, body.get(Constants.PASSWORD), body.get(Constants.NEW_PRIVACY));
       return new ResponseEntity(HttpStatus.OK);
     }
     return new ResponseEntity(HttpStatus.BAD_REQUEST);
