@@ -65,7 +65,8 @@ export class ProfileInfoComponent extends React.Component {
                     window.location.reload();
                 })
         }
-
+        console.log(editProfileInfo.newFile);
+        console.log(editProfileInfo.newEmail);
         if (editProfileInfo.newFile != null) {
             let formData = new FormData();
             formData.append("myImage", editProfileInfo.newFile);
@@ -76,6 +77,8 @@ export class ProfileInfoComponent extends React.Component {
                 })
         }
         if (editProfileInfo.newEmail != '') {
+            console.log("here")
+            console.log(editProfileInfo)
             axios.post(window.location.origin + '/api/profile/picture/update/', editProfileInfo)
                 .then(res => {
                     window.location.reload();
