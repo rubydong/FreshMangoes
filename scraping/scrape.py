@@ -97,19 +97,23 @@ def scrape_shows(num_shows):
 
 
 def scrape_movies(num_movies):
-    page = 1
-    while num_movies > 0:
-        print(f"{num_movies} movies left")
-        discoveries = download_json(f"{tmdb_url}/discover/movie", {"api_key": tmdb_api_key, "page": page})
-
-        for discovered in discoveries["results"]:
-            base_url = f"{tmdb_url}/movie/{discovered['id']}"
-            params = {"api_key": tmdb_api_key}
-
-            scrape(base_url, params, discovered['id'], "movies")
-
-        page += 1
-        num_movies -= len(discoveries["results"])
+    # page = 1
+    # while num_movies > 0:
+    #     print(f"{num_movies} movies left")
+    #     discoveries = download_json(f"{tmdb_url}/discover/movie", {"api_key": tmdb_api_key, "page": page})
+    #
+    #     for discovered in discoveries["results"]:
+    #         base_url = f"{tmdb_url}/movie/{discovered['id']}"
+    #         params = {"api_key": tmdb_api_key}
+    #
+    #         scrape(base_url, params, discovered['id'], "movies")
+    #
+    #     page += 1
+    #     num_movies -= len(discoveries["results"])
+    for movie_id in [454619, 298096, 474333, 460713, 353576] + [497814, 341689, 399796, 502682, 425148, 458737, 514285,
+470918, 471530, 332283, 454615]:
+        base_url = f"{tmdb_url}/movie/{movie_id}"
+        scrape(base_url, {"api_key": tmdb_api_key}, movie_id, "movies")
 
 
 def assure_path_exists(path):
@@ -128,13 +132,12 @@ def main():
 
     assure_path_exists('celebrities')
     assure_path_exists('celebrities/images')
-    assure_path_exists('scraped_media')
 
     scrape_movies(2000)
-    scrape_shows(2000)
-    scrape_show_moredetails()
+    # scrape_shows(2000)
+    # scrape_show_moredetails()
     scrape_celebrities()
-    scrape_images()
+    # scrape_images()
 
 
 if __name__ == "__main__":

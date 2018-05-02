@@ -28,7 +28,7 @@ export class ContentTemplate extends React.Component {
             this.setState({currentUser : currentUser.data});
             console.log(this.state);
         } catch (err) {
-            window.location.assign('/404');
+            //window.location.assign('/404');
         }
     }
 

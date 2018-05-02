@@ -66,7 +66,7 @@ def insert_celebrities():
             continue
 
         if celebrity_details.get("profile_path", None) is not None:
-            cursor.execute(INSERT_MEDIA, (celebrity_details["profile_path"], 0))
+            cursor.execute(INSERT_MEDIA, (BASE_PHOTO_URL + celebrity_details["profile_path"], 0))
             profile_photo_id = cursor.lastrowid
 
         birthday = celebrity_details.get("birthday", None)
@@ -84,7 +84,7 @@ def insert_celebrities():
             for image in celebrity_images.get("results", []):
                 if "file_path" not in image or image["file_path"] is None:
                     continue
-                cursor.execute(INSERT_MEDIA, (image["file_path"], 0))
+                cursor.execute(INSERT_MEDIA, (BASE_PHOTO_URL + image["file_path"], 0))
                 cursor.execute(INSERT_CELEBRTY_MEDIA, (celebrity_details["id"], cursor.lastrowid))
 
 
@@ -92,8 +92,8 @@ def insert_content(content_metadata, content_type, content_credits, content_deta
                    content_videos):
 
     photos = []
-    photos += [backdrop["file_path"] for backdrop in content_photos.get("backdrops", [])]
-    photos += [still["file_path"] for still in content_photos.get("stills", [])]
+    photos += [BASE_PHOTO_URL + backdrop["file_path"] for backdrop in content_photos.get("backdrops", [])]
+    photos += [BASE_PHOTO_URL + still["file_path"] for still in content_photos.get("stills", [])]
 
     videos = []
     videos += [BASE_VIDEO_URL + result["key"] for result in content_videos["results"]]
@@ -106,7 +106,7 @@ def insert_content(content_metadata, content_type, content_credits, content_deta
         cursor.execute(INSERT_MEDIA, (content_more_details["Poster"], 0))
         summary_photo_id = cursor.lastrowid
     elif content_photos.get("posters"):
-        cursor.execute(INSERT_MEDIA, (content_photos.get("posters")[0]["file_path"], 0))
+        cursor.execute(INSERT_MEDIA, (BASE_PHOTO_URL + content_photos.get("posters")[0]["file_path"], 0))
         summary_photo_id = cursor.lastrowid
 
     cursor.execute(INSERT_CONTENT, (content_type, content_metadata_id, summary_photo_id, content_details.get("revenue", None), 0))
