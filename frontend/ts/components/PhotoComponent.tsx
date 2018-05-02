@@ -1,4 +1,5 @@
 import * as React from "react";
+import Lightbox from "react-images";
 import { MEDIA_LIMIT, EDIT_ICON } from "../../GlobalVariables";
 import { parseMedia } from "../../HelperFunctions";
 import { isNullOrUndefined } from "util";
@@ -10,7 +11,7 @@ export class PhotoComponent extends React.Component {
         const currentUser = this.props['data-current-user'];
         const photosOnly = this.props['data-photos'].filter(photo => photo.type == 'PHOTO');
         const photos = photosOnly.slice(0, MEDIA_LIMIT).map((photo, i) => {
-            return <img src={parseMedia(photo)} key={i}/>
+            return { src: parseMedia(photo) }
         });
 
         return ( photos == isNullOrUndefined || photos.length == 0 ) 
@@ -23,7 +24,7 @@ export class PhotoComponent extends React.Component {
                         : ''
                     }
                 </h2> <p/> <hr/>
-                <div className="photos-inner"> {photos} </div>
+                <div className="photos-inner"> <Lightbox images={photos}/> </div>
                 <span className="align-right"><a href="" data-toggle="modal" data-target="#edit-photos-modal">View All Photos</a></span>
               </div>;
     }
