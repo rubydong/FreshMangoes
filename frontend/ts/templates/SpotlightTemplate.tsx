@@ -34,7 +34,7 @@ export class SpotlightTemplate extends React.Component {
             <div id="spotlight-page" className="page-background-color">
                 
                 <div className="spotlight-type white-component margin-top-bottom">
-                    <b>IN THEATERS</b>
+                    <b>MOVIES</b>
                     <ul>
                         <li> <button className="btn-link" onClick={() => this.setSelectedContent(this.state.topBoxOffice, 'Top Box Office')}>Top Box Office </button> </li>
                         <li> <button className="btn-link" onClick={() => this.setSelectedContent(this.state.openingThisWeek, 'Opening This Week')}>Opening This Week </button> </li>
