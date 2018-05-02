@@ -72,7 +72,7 @@ export class ProfileTemplate extends React.Component {
                         </div>
                         <div className="clear-both padding-top"></div>
                     </div>
-                    : <h2 className="align-center">This user has privated their profile.</h2>
+                    : <h2 className="align-center">This account is private.</h2>
                     }
                 </div>
                 <div className="clear-both"></div>	
