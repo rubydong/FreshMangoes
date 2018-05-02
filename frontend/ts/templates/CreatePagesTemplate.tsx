@@ -30,7 +30,7 @@ export class CreatePagesTemplate extends React.Component {
                     console.log("Completed Request " + res);
                 })
             summaryPhoto = new Media()
-            summaryPhoto.path = FILE_STORAGE_BASE_DIR + this.state.summaryPhoto.name;
+            summaryPhoto.path = this.state.summaryPhoto.name;
             summaryPhoto.type = MediaType.PHOTO;
         }
 
@@ -45,7 +45,7 @@ export class CreatePagesTemplate extends React.Component {
                         console.log("Completed Request " + res);
                     })
                 let pic = new Media();
-                pic.path = FILE_STORAGE_BASE_DIR + this.state.photos.item(i).name;
+                pic.path = this.state.photos.item(i).name;
                 pic.type = MediaType.PHOTO;
                 mediaPaths.push(pic);
             }
