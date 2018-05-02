@@ -30,7 +30,7 @@ export class Header extends React.Component {
             });
         })
         .catch(function (error) {
-            console.log(error);
+            //console.log(error);
         });
     }
 

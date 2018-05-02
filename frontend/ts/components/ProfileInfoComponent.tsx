@@ -97,12 +97,12 @@ export class ProfileInfoComponent extends React.Component {
     async adminDeleteAccount() {
         const response = await axios.delete(window.location.origin + '/api/admin/user/delete/' + getUrlID());
         window.location.reload();
-        console.log(response);
+        //console.log(response);
     }
 
     render() {
         const state = this.props['data-state'];
-        console.log(state);
+        //console.log(state);
         const sameUser = ("/profile/" + state.currentUser.userId) == window.location.pathname;
         let alreadyFollowed = false;
         for (let i = 0; i < state.followers.length; i++) {
