@@ -14,14 +14,20 @@ export class ReportsTemplate extends React.Component {
         try {
             const response = await axios.get(window.location.origin + '/api/admin/reports')
             this.setState({reports : response.data});
-            console.log(this.state);
         } catch (err) {
             console.log(err);
         }
     }
 
-    deleteReview(reviewId) { 
-        axios.delete(window.location.origin + '/api/rating/delete/' + reviewId)
+    deleteReport(reportId) { 
+        axios.delete(window.location.origin + '/api/admin/rating/delete/' + reportId)
+            .then(res => {
+            window.location.reload();
+        })
+    }
+
+    dismissReport(reportId) { 
+        axios.post(window.location.origin + '/api/admin/dismiss/rating/' + reportId)
             .then(res => {
             window.location.reload();
         })
@@ -34,7 +40,8 @@ export class ReportsTemplate extends React.Component {
                     <td> {report.body} </td>
                     <td> <a href={"./" + report.content.type.toLowerCase() + "/" + report.content.id}>{report.content.metadata.name} </a></td>
                     <td> {report.report} </td>
-                    <td> <button className="btn btn-thinner" onClick={()=>this.deleteReview(report.id)}> Remove Review </button> </td>
+                    <td> <button className="btn btn-thinner" onClick={()=>this.deleteReport(report.id)}> Remove Review </button> </td>
+                    <td> <button className="btn btn-thinner" onClick={()=>this.dismissReport(report.id)}> Dismiss Review </button> </td>
                 </tr>
         });
 
@@ -53,6 +60,7 @@ export class ReportsTemplate extends React.Component {
                                     <th>Content Reviewed</th>
                                     <th>Reason for Report</th>
                                     <th>Remove</th>
+                                    <th>Dismiss</th>
                                 </tr>
                             </thead>
                             <tbody> {r} </tbody>
