@@ -28,7 +28,7 @@ export class EditPageComponent extends React.Component {
                 .then(res => {
                     console.log("Completed Request " + res);
                 })
-            summaryPhoto = FILE_STORAGE_BASE_DIR + this.state.tempSummaryPhoto.name;
+            summaryPhoto = this.state.tempSummaryPhoto.name;
         }
 
         const requestBody = {
@@ -53,9 +53,6 @@ export class EditPageComponent extends React.Component {
         //axios call here for uploading......
     }
 
-//     this.setState({castNum: this.state.castNum - 1});
-// castMember.splice(i, 1);
-// this.state.cast.splice(i, 1);
     handleDeletePhoto = (photos, i, id) => {
         axios.delete(window.location.origin + "/api/admin/delete/media/" + this.state.type.toString() + "/" + this.state.id + "/" + id)
             .then(res => {
@@ -87,11 +84,6 @@ export class EditPageComponent extends React.Component {
     handleUpdateCast = event => {
         console.log("updating cast");
 
-        // for (let i = 0; i < this.state.tempCast.length; i++) {
-        //     let c = this.state.tempCast[i];
-        //     console.log(c.role);
-        //     console.log(c.name);
-        // }
 
         let formattedCast = []
         for (let i = 0; i < this.state.tempCast.length; i++) {
@@ -112,7 +104,7 @@ export class EditPageComponent extends React.Component {
                         console.log("Completed Request " + res);
                     });
                 formatCast.celebrity['profilePicture'] = {
-                    path: FILE_STORAGE_BASE_DIR + cast.profilePictureFile.name,
+                    path: cast.profilePictureFile.name,
                     type: MediaType.PHOTO
                 }
             }
@@ -124,15 +116,11 @@ export class EditPageComponent extends React.Component {
             cast: formattedCast
         }
 
-        ///admin/update/cast/{contentId}
         axios.post(window.location.origin + "/api/admin/update/cast/" + this.state.id, requestBody)
             .then(res => {
                console.log("Completed Request for update Cast" + res);
+               window.location.reload();
             });
-
-
-
-        // window.location.reload();
     }
     
     addCastMember = () => {
@@ -143,7 +131,7 @@ export class EditPageComponent extends React.Component {
     }
 
     removeCastMember = (castMember, i) => {
-        this.setState({castNum: this.state.castNum - 1});
+        this.setState(castNum: this.state.castNum - 1});
         castMember.splice(i, 1);
         this.state.tempCast.splice(i, 1);
         // this.forceUpdate();
@@ -201,8 +189,15 @@ export class EditPageComponent extends React.Component {
         axios.post(window.location.origin + "/api/admin/update/media/" + this.state.id, requestBody)
             .then(res => {
                 console.log("Completed Request for update Cast" + res);
-                window.location.reload();
+                //window.location.reload();
             });
+    }
+    
+    getImagePath(path) {
+        if (path.startsWith('https')) {
+            return path;
+        }
+        return window.location.origin + '/media/profiles/' + path;
     }
 
     render() {
@@ -219,14 +214,14 @@ export class EditPageComponent extends React.Component {
         
         const photos = state.media.filter(photo => photo.type == 'PHOTO').map((photo, i) => {
             return <div className="search-item">
-                <img className="no-padding" src={photo.path}/> 
+                <img className="no-padding" src={this.getImagePath(photo.path)}/> 
                 { currentUser && currentUser.userType == UserType.ADMIN ? <span onClick={() => this.handleDeletePhoto(state.media, i, photo.id)}> <div className="x">X</div></span> : ''}
             </div>
         });
         
         const cast = state.cast.map((castPerson, i) => {
             return <div className="cast-person" key={i}>
-                <img className="img-align-left" src={castPerson.celebrity.profilePicture ? castPerson.celebrity.profilePicture.path : NO_USER_PHOTO}/>
+                <img className="img-align-left" src={castPerson.celebrity.profilePicture ? this.getImagePath(castPerson.celebrity.profilePicture.path) : NO_USER_PHOTO}/>
                 <b> <a href={"/../celebrity/" + castPerson.celebrity.id}>{castPerson.celebrity.name}</a> </b> <br/>
                 <i>{castPerson.role}</i> <br/>
                 { currentUser && currentUser.userType == UserType.ADMIN 
