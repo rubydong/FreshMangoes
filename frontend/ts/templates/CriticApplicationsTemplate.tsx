@@ -19,18 +19,27 @@ export class CriticApplicationsTemplate extends React.Component {
         }
     }
 
-    approveReview (id) {
+    approveApplication (id) {
         axios.post(window.location.origin + '/api/admin/approve/' + id)
             .then(res => {
             window.location.reload();
         })
     }
+
+    rejectApplication (id) {
+        axios.post(window.location.origin + '/api/admin/dismiss/critic/' + id)
+            .then(res => {
+            window.location.reload();
+        })
+    }
+
     render() {
         const applications = this.state.critics.map((application, i) => {
             return <tr key={i}>
                     <td> <a href={"./profile/" + application.user.id}>{application.user.displayName}</a></td>
                     <td> {application.statement} </td>
-                    <td> <button className="btn btn-thinner" onClick={()=>this.approveReview(application.user.id)}> Approve Application </button></td>
+                    <td> <button className="btn btn-thinner" onClick={()=>this.approveApplication(application.user.id)}> Approve Application </button></td>
+                    <td> <button className="btn btn-thinner" onClick={()=>this.rejectApplication(application.user.id)}> Reject Application </button></td>
                 </tr>
         });
 
@@ -46,7 +55,8 @@ export class CriticApplicationsTemplate extends React.Component {
                                 <tr>
                                     <th>User</th>
                                     <th>Reason</th>
-                                    <th>Decision</th>
+                                    <th>Approve</th>
+                                    <th>Deny</th>
                                 </tr>
                             </thead>
                             <tbody> {applications} </tbody>
